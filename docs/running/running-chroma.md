@@ -22,10 +22,13 @@ Available options:
 docker run -p 8000:8000 -v /path/to/my/localdata:/chroma/chroma chromadb/chroma:latest
 ```
 
-
 ## Docker Compose (cloned repo)
 
 ```bash
 git clone 
 docker-compose up -d --build
 ```
+
+## Docker Compose (pulled image)
+
+```yaml

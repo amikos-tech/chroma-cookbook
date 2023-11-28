@@ -1,6 +1,6 @@
 # Keyword Search
 
-Chroma uses SQLite for storing metadata and documents. Additionally documents are indexed using [SQLite FTS5](https://www.sqlite.org/fts5.html) for fast search. 
+Chroma uses SQLite for storing metadata and documents. Additionally documents are indexed using [SQLite FTS5](https://www.sqlite.org/fts5.html) for fast text search.
 
 ```python
 import chromadb
