@@ -15,11 +15,13 @@ Available options:
 | `--host` | Host to run the server on. |
 | `--port` | Port to run the server on. |
 
-
 ## Docker Run
 
+The below command will run a background container of chroma named `chroma` with the data stored in `./chroma-data` (mounted volume) and exposed on port `8000`.
+The `-e` env var `IS_PERSISTENT=true` will ensure that the data is persisted in the mounted volume.
+
 ```bash
-docker run -p 8000:8000 -v /path/to/my/localdata:/chroma/chroma chromadb/chroma:latest
+docker run -d --rm --name chroma -v ./chroma-data:/chroma/chroma -p 8000:8000 -e IS_PERSISTENT=true chromadb/chroma:latest
 ```
 
 ## Docker Compose (cloned repo)
