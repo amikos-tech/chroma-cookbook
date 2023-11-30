@@ -44,3 +44,5 @@ docs = retriever.get_relevant_documents("document")
 
 assert len(docs)==1
 ```
+
+Ref: https://colab.research.google.com/drive/1L0RwQVVBtvTTd6Le523P4uzz3m3fm0pH#scrollTo=xROOfxLohE5j
