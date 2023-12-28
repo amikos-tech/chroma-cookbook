@@ -2,6 +2,10 @@
 
 Chroma is unopinionated about document IDs and delegates those decisions to the user. This frees users to build semantics around their IDs.
 
+## Note on Compound IDs
+
+While you can choose to use IDs that are composed of multiple sub-IDs (e.g. `user_id` + `document_id`), it is important to highlight that Chroma does not support querying by partial ID.
+
 ## Common Practices
 
 ### UUIDs
