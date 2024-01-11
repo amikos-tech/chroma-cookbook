@@ -24,9 +24,9 @@ extra:
 extra_javascript:
   - javascripts/gtag.js
 markdown_extensions:
-  #  - abbr
+  - abbr
   - admonition
-#  - attr_list
+  - attr_list
   - md_in_html
   - toc:
       permalink: true
@@ -38,7 +38,8 @@ markdown_extensions:
       line_spans: __span
       pygments_lang_class: true
   - pymdownx.inlinehilite
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      base_path: assets/snippets/
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
