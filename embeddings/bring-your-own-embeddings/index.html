@@ -78,10 +78,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="ChromaDB Cookbook" class="md-header__button md-logo" aria-label="ChromaDB Cookbook" data-md-component="logo">
+    <a href="https://www.trychroma.com" title="ChromaDB Cookbook" class="md-header__button md-logo" aria-label="ChromaDB Cookbook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../assets/images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -173,10 +172,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ChromaDB Cookbook" class="md-nav__button md-logo" aria-label="ChromaDB Cookbook" data-md-component="logo">
+    <a href="https://www.trychroma.com" title="ChromaDB Cookbook" class="md-nav__button md-logo" aria-label="ChromaDB Cookbook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../assets/images/logo.png" alt="logo">
 
     </a>
     ChromaDB Cookbook
@@ -1006,7 +1004,9 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
   
@@ -1026,24 +1026,24 @@
                   
 
 
-<h1 id="creating-your-own-embedding-function">Creating your own embedding function</h1>
-<pre><code class="language-python">from chromadb.api.types import (
-    Documents,
-    EmbeddingFunction,
-    Embeddings
-)
-
-class MyCustomEmbeddingFunction(EmbeddingFunction[Documents]):
-    def __init__(
-        self,
-        my_ef_param: str
-    ):
-        &quot;&quot;&quot;Initialize the embedding function.&quot;&quot;&quot;
-
-    def __call__(self, input: Documents) -&gt; Embeddings:
-        &quot;&quot;&quot;Embed the input documents.&quot;&quot;&quot;
-        return self._my_ef(input)
-</code></pre>
+<h1 id="creating-your-own-embedding-function">Creating your own embedding function<a class="headerlink" href="#creating-your-own-embedding-function" title="Permanent link">&para;</a></h1>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">chromadb.api.types</span> <span class="kn">import</span> <span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">Documents</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">EmbeddingFunction</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">Embeddings</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">)</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">class</span> <span class="nc">MyCustomEmbeddingFunction</span><span class="p">(</span><span class="n">EmbeddingFunction</span><span class="p">[</span><span class="n">Documents</span><span class="p">]):</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="bp">self</span><span class="p">,</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="n">my_ef_param</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="p">):</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the embedding function.&quot;&quot;&quot;</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Documents</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Embeddings</span><span class="p">:</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Embed the input documents.&quot;&quot;&quot;</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_my_ef</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+</span></code></pre></div>
 <p>Now let's break the above down.</p>
 <p>First you create a class that inherits from <code>EmbeddingFunction[Documents]</code>. The <code>Documents</code> type is a list of <code>Document</code> objects. Each <code>Document</code> object has a <code>text</code> attribute that contains the text of the document. Chroma also supports multi-modal</p>
 

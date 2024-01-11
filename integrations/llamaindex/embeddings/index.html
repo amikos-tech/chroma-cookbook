@@ -78,10 +78,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="ChromaDB Cookbook" class="md-header__button md-logo" aria-label="ChromaDB Cookbook" data-md-component="logo">
+    <a href="https://www.trychroma.com" title="ChromaDB Cookbook" class="md-header__button md-logo" aria-label="ChromaDB Cookbook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../../assets/images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -173,10 +172,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="ChromaDB Cookbook" class="md-nav__button md-logo" aria-label="ChromaDB Cookbook" data-md-component="logo">
+    <a href="https://www.trychroma.com" title="ChromaDB Cookbook" class="md-nav__button md-logo" aria-label="ChromaDB Cookbook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../../assets/images/logo.png" alt="logo">
 
     </a>
     ChromaDB Cookbook
@@ -816,7 +814,9 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
   
@@ -825,7 +825,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
@@ -1047,7 +1047,9 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
   
@@ -1056,7 +1058,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
@@ -1084,38 +1086,37 @@
                   
 
 
-<h1 id="llamaindex-embeddings">LlamaIndex Embeddings</h1>
-<h2 id="embedding-functions">Embedding Functions</h2>
+<h1 id="llamaindex-embeddings">LlamaIndex Embeddings<a class="headerlink" href="#llamaindex-embeddings" title="Permanent link">&para;</a></h1>
+<h2 id="embedding-functions">Embedding Functions<a class="headerlink" href="#embedding-functions" title="Permanent link">&para;</a></h2>
 <p>Chroma and LlamaIndex both offer embedding functions which are wrappers on top of popular embedding models.</p>
 <p>Unfortunately Chroma and LI's embedding functions are not compatible with each other. Below we offer an adapters to convert LI embedding function to Chroma one.</p>
-<pre><code class="language-python">from llama_index.embeddings.base import BaseEmbedding
-from chromadb.api.types import EmbeddingFunction
-
-class LlamaIndexEmbeddingAdapter(EmbeddingFunction):
-  def __init__(self,ef:BaseEmbedding):
-    self.ef = ef
-
-  def __call__(self, input: Documents) -&gt; Embeddings:
-    return [node.embedding for node in self.ef(input)]
-
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">llama_index.embeddings.base</span> <span class="kn">import</span> <span class="n">BaseEmbedding</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">chromadb.api.types</span> <span class="kn">import</span> <span class="n">EmbeddingFunction</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">class</span> <span class="nc">LlamaIndexEmbeddingAdapter</span><span class="p">(</span><span class="n">EmbeddingFunction</span><span class="p">):</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ef</span><span class="p">:</span><span class="n">BaseEmbedding</span><span class="p">):</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">ef</span> <span class="o">=</span> <span class="n">ef</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Documents</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Embeddings</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="k">return</span> <span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">embedding</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ef</span><span class="p">(</span><span class="nb">input</span><span class="p">)]</span>
+</span></code></pre></div>
 <p>An example of how to use the above with LlamaIndex:</p>
 <blockquote>
 <p>Note: Make sure you have <code>OPENAI_API_KEY</code> as env var.</p>
 </blockquote>
-<pre><code class="language-python">from llama_index.embeddings import OpenAIEmbedding
-from llama_index import ServiceContext, set_global_service_context
-import chromadb
-
-embed_model = OpenAIEmbedding(embed_batch_size=10)
-
-client = chromadb.Client()
-
-col = client.get_or_create_collection(&quot;test_collection&quot;,embedding_function=LlamaIndexEmbeddingAdapter(embed_model))
-
-col.add(ids=[&quot;1&quot;],documents=[&quot;this is a test document&quot;])
-# your embeddings should be of 1536 dimensions (OpenAI's ADA model)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">llama_index.embeddings</span> <span class="kn">import</span> <span class="n">OpenAIEmbedding</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span> <span class="nn">llama_index</span> <span class="kn">import</span> <span class="n">ServiceContext</span><span class="p">,</span> <span class="n">set_global_service_context</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">import</span> <span class="nn">chromadb</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">embed_model</span> <span class="o">=</span> <span class="n">OpenAIEmbedding</span><span class="p">(</span><span class="n">embed_batch_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">col</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;test_collection&quot;</span><span class="p">,</span><span class="n">embedding_function</span><span class="o">=</span><span class="n">LlamaIndexEmbeddingAdapter</span><span class="p">(</span><span class="n">embed_model</span><span class="p">))</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">col</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">],</span><span class="n">documents</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;this is a test document&quot;</span><span class="p">])</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># your embeddings should be of 1536 dimensions (OpenAI&#39;s ADA model)</span>
+</span></code></pre></div>
 
 
 

@@ -78,10 +78,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="ChromaDB Cookbook" class="md-header__button md-logo" aria-label="ChromaDB Cookbook" data-md-component="logo">
+    <a href="https://www.trychroma.com" title="ChromaDB Cookbook" class="md-header__button md-logo" aria-label="ChromaDB Cookbook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../assets/images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -173,10 +172,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ChromaDB Cookbook" class="md-nav__button md-logo" aria-label="ChromaDB Cookbook" data-md-component="logo">
+    <a href="https://www.trychroma.com" title="ChromaDB Cookbook" class="md-nav__button md-logo" aria-label="ChromaDB Cookbook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../assets/images/logo.png" alt="logo">
 
     </a>
     ChromaDB Cookbook
@@ -887,7 +885,9 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
   
@@ -896,7 +896,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
@@ -1072,7 +1072,9 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
   
@@ -1081,7 +1083,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
@@ -1136,11 +1138,11 @@
                   
 
 
-<h1 id="running-chroma">Running Chroma</h1>
-<h2 id="cli">CLI</h2>
-<pre><code class="language-bash">pip install chromadb
-chroma run --path /path/to/my/localdata
-</code></pre>
+<h1 id="running-chroma">Running Chroma<a class="headerlink" href="#running-chroma" title="Permanent link">&para;</a></h1>
+<h2 id="cli">CLI<a class="headerlink" href="#cli" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>chromadb
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>chroma<span class="w"> </span>run<span class="w"> </span>--path<span class="w"> </span>/path/to/my/localdata
+</span></code></pre></div>
 <p>Available options:</p>
 <table>
 <thead>
@@ -1164,43 +1166,48 @@ chroma run --path /path/to/my/localdata
 </tr>
 </tbody>
 </table>
-<h2 id="docker-run">Docker Run</h2>
-<p>The below command will run a background container of chroma named <code>chroma</code> with the data stored in <code>./chroma-data</code> (mounted volume) and exposed on port <code>8000</code>.
+<h2 id="docker-run">Docker Run<a class="headerlink" href="#docker-run" title="Permanent link">&para;</a></h2>
+<p>The below command will run a background container of chroma named <code>chroma</code> with the data stored in <code>./chroma-data</code> (
+mounted volume) and exposed on port <code>8000</code>.
 The <code>-e</code> env var <code>IS_PERSISTENT=true</code> will ensure that the data is persisted in the mounted volume.</p>
-<pre><code class="language-bash">docker run -d --rm --name chroma -v ./chroma-data:/chroma/chroma -p 8000:8000 -e IS_PERSISTENT=true chromadb/chroma:latest
-</code></pre>
-<h2 id="docker-compose-cloned-repo">Docker Compose (cloned repo)</h2>
-<pre><code class="language-bash">git clone 
-docker-compose up -d --build
-</code></pre>
-<h2 id="docker-compose-cloned-repo-with-overrides">Docker Compose (cloned repo with overrides)</h2>
-<p>Create an override file <code>docker-compose.override.yml</code>. The override file can be used to override any of the settings in Chroma's default <code>docker-compose.yml</code> file.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--rm<span class="w"> </span>--name<span class="w"> </span>chroma<span class="w"> </span>-v<span class="w"> </span>./chroma-data:/chroma/chroma<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>-e<span class="w"> </span><span class="nv">IS_PERSISTENT</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>chromadb/chroma:latest
+</span></code></pre></div>
+<h2 id="docker-compose-cloned-repo">Docker Compose (cloned repo)<a class="headerlink" href="#docker-compose-cloned-repo" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>clone<span class="w"> </span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+</span></code></pre></div>
+<h2 id="docker-compose-cloned-repo-with-overrides">Docker Compose (cloned repo with overrides)<a class="headerlink" href="#docker-compose-cloned-repo-with-overrides" title="Permanent link">&para;</a></h2>
+<p>Create an override file <code>docker-compose.override.yml</code>. The override file can be used to override any of the settings in
+Chroma's default <code>docker-compose.yml</code> file.</p>
 <p>Here is an example where we override the exposed port to be <code>8001</code> instead of <code>8000</code> (the default):</p>
-<pre><code class="language-yaml">version: '3.9'
-services:
-  server:
-    ports:
-      - 8001:8000
-</code></pre>
-<p>Here is another example where we mount a local directory (<code>./chroma-data</code>) to the container's <code>/chroma/chroma</code> directory:</p>
-<pre><code class="language-yaml">version: '3.9'
-services:
-  server:
-    volumes:
-      - ./chroma-data:/chroma/chroma
-</code></pre>
-<p>Generally <code>.override.</code> files are stored together with the main docker-compose file however you can store them anywhere and use the <code>-f</code> flag to specify the override file:</p>
-<pre><code class="language-bash">docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d --build
-</code></pre>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.9&#39;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">server</span><span class="p">:</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8001:8000</span>
+</span></code></pre></div>
+<p>Here is another example where we mount a local directory (<code>./chroma-data</code>) to the container's <code>/chroma/chroma</code>
+directory:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.9&#39;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">server</span><span class="p">:</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./chroma-data:/chroma/chroma</span>
+</span></code></pre></div>
+<p>Generally <code>.override.</code> files are stored together with the main docker-compose file however you can store them anywhere
+and use the <code>-f</code> flag to specify the override file:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.yml<span class="w"> </span>-f<span class="w"> </span>docker-compose.override.yml<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+</span></code></pre></div>
 <blockquote>
-<p>Note: The order of the <code>-f</code> flags is important. The first file specified is the base file and the second file specified is the override file.
-Note: When destroying the stack you must specify the override file as well - <code>docker-compose -f docker-compose.yml -f docker-compose.override.yml down --rmi --volumes</code></p>
+<p>Note: The order of the <code>-f</code> flags is important. The first file specified is the base file and the second file
+specified is the override file.
+Note: When destroying the stack you must specify the override file as
+well - <code>docker-compose -f docker-compose.yml -f docker-compose.override.yml down --rmi --volumes</code></p>
 </blockquote>
-<pre><code class="language-bash">
-## Docker Compose (pulled image)
-
-```yaml
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">## Docker Compose (pulled image)</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="sb">```</span>yaml
+</span></code></pre></div>
 
 
 

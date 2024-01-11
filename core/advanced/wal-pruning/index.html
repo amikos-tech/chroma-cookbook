@@ -78,10 +78,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="ChromaDB Cookbook" class="md-header__button md-logo" aria-label="ChromaDB Cookbook" data-md-component="logo">
+    <a href="https://www.trychroma.com" title="ChromaDB Cookbook" class="md-header__button md-logo" aria-label="ChromaDB Cookbook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../../assets/images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -173,10 +172,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="ChromaDB Cookbook" class="md-nav__button md-logo" aria-label="ChromaDB Cookbook" data-md-component="logo">
+    <a href="https://www.trychroma.com" title="ChromaDB Cookbook" class="md-nav__button md-logo" aria-label="ChromaDB Cookbook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../../assets/images/logo.png" alt="logo">
 
     </a>
     ChromaDB Cookbook
@@ -1008,7 +1006,9 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
   
@@ -1028,7 +1028,7 @@
                   
 
 
-<h1 id="write-ahead-log-wal-pruning">Write-ahead Log (WAL) Pruning</h1>
+<h1 id="write-ahead-log-wal-pruning">Write-ahead Log (WAL) Pruning<a class="headerlink" href="#write-ahead-log-wal-pruning" title="Permanent link">&para;</a></h1>
 <p>Chroma uses WAL to ensure data durability, even if things go wrong (e.g. server crashes). To achieve the latter Chroma
 uses what is known in the DB-industry as WAL or Write-Ahead Log. The purpose of the WAL is to ensure that each user
 request (aka transaction) is safely stored before acknowledging back to the user. Subsequently, in fact immediately
@@ -1039,33 +1039,43 @@ obviously not ideal. Here we provide a small script + a few steps how to prune y
 size. Pruning the WAL is particularly important if you have many writes to Chroma (e.g. documents are added, updated or
 deleted frequently).</p>
 <p>Steps:</p>
+<div class="admonition danger">
+<p class="admonition-title">Stop Chroma</p>
+<p>It is vitally important that you stop Chroma before you prune the WAL. 
+If you don't stop Chroma you risk corrupting</p>
+</div>
 <ul>
-<li>Stop Chroma</li>
-<li>Create a backup of your <code>chroma.sqlite3</code> file in your persistent dir</li>
-<li>Check your current <code>chroma.sqlite3</code> size (e.g. <code>ls -lh /path/to/persist/dir/chroma.sqlite3</code>)</li>
-<li>Run the script below</li>
-<li>Check your current <code>chroma.sqlite3</code> size again to verify that the WAL has been pruned</li>
-<li>Start Chroma</li>
+<li>⚠️ Stop Chroma</li>
+<li>💾 Create a backup of your <code>chroma.sqlite3</code> file in your persistent dir</li>
+<li>👀 Check your current <code>chroma.sqlite3</code> size (e.g. <code>ls -lh /path/to/persist/dir/chroma.sqlite3</code>)</li>
+<li>🖥️ Run the script below</li>
+<li>🔭 Check your current <code>chroma.sqlite3</code> size again to verify that the WAL has been pruned</li>
+<li>🚀 Start Chroma</li>
 </ul>
 <p>Script (store it in a file like <code>compact-wal.sql</code>)</p>
-<pre><code class="language-sql">BEGIN TRANSACTION;
-WITH to_delete AS (select t2.topic, t1.seq_id
-                   from max_seq_id t1
-                            left join segments t2 on t1.segment_id = t2.id
-                   where t2.scope = 'METADATA')
-DELETE
-FROM embeddings_queue
-WHERE EXISTS (SELECT 1
-              FROM to_delete td
-              WHERE td.topic = embeddings_queue.topic AND td.seq_id &gt;= embeddings_queue.seq_id);
-
-
-COMMIT;
-VACUUM;
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">BEGIN</span><span class="w"> </span><span class="k">TRANSACTION</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">WITH</span><span class="w"> </span><span class="n">to_delete</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">seq_id</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">                   </span><span class="k">from</span><span class="w"> </span><span class="n">max_seq_id</span><span class="w"> </span><span class="n">t1</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">                            </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">segments</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">segment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">id</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">                   </span><span class="k">where</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="k">scope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;METADATA&#39;</span><span class="p">)</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">DELETE</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">FROM</span><span class="w"> </span><span class="n">embeddings_queue</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">              </span><span class="k">FROM</span><span class="w"> </span><span class="n">to_delete</span><span class="w"> </span><span class="n">td</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">              </span><span class="k">WHERE</span><span class="w"> </span><span class="n">td</span><span class="p">.</span><span class="n">topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">embeddings_queue</span><span class="p">.</span><span class="n">topic</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">                </span><span class="k">AND</span><span class="w"> </span><span class="n">td</span><span class="p">.</span><span class="n">seq_id</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">embeddings_queue</span><span class="p">.</span><span class="n">seq_id</span><span class="p">);</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">COMMIT</span><span class="p">;</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">VACUUM</span><span class="p">;</span>
+</span></code></pre></div>
 <p>Run the script</p>
-<pre><code class="language-bash">sqlite3 /path/to/persist/dir/chroma.sqlite3 &lt; compact-wal.sql
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Let&#39;s create a backup</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>tar<span class="w"> </span>-czvf<span class="w"> </span>/path/to/persist/dir/chroma.sqlite3.backup.tar.gz<span class="w"> </span>/path/to/persist/dir/chroma.sqlite3
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>lsof<span class="w"> </span>/path/to/persist/dir/chroma.sqlite3<span class="w"> </span><span class="c1"># make sure that no process is using the file</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>sqlite3<span class="w"> </span>/path/to/persist/dir/chroma.sqlite3<span class="w"> </span>&lt;<span class="w"> </span>compact-wal.sql
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># start chroma</span>
+</span></code></pre></div>
 
 
 
