@@ -1,11 +1,5 @@
 # Write-ahead Log (WAL) Pruning
 
-Chroma uses WAL to ensure data durability, even if things go wrong (e.g. server crashes). To achieve the latter Chroma
-uses what is known in the DB-industry as WAL or Write-Ahead Log. The purpose of the WAL is to ensure that each user
-request (aka transaction) is safely stored before acknowledging back to the user. Subsequently, in fact immediately
-after writing to the WAL, the data is also written to the index. This enables Chroma to serve as real-time search
-engine, where the data is available for querying immediately after it is written to the WAL.
-
 As of this writing (v0.4.22) Chroma stores its WAL forever. This means that the WAL will grow indefinitely. This is
 obviously not ideal. Here we provide a small script + a few steps how to prune your WAL and keep it at a reasonable
 size. Pruning the WAL is particularly important if you have many writes to Chroma (e.g. documents are added, updated or
