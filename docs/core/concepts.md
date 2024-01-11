@@ -37,4 +37,10 @@ Metadata values can be of the following types:
 - floats
 - booleans
 
+## Embedding Function
 
+Also referred to as embedding model, embedding functions in ChromaDB are wrappers that expose a consistent interface for
+generating embedding vectors from documents or text queries.
+
+For a list of supported embedding functions see Chroma's
+official [documentation](https://docs.trychroma.com/embeddings).
