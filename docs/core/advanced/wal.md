@@ -8,10 +8,10 @@ engine, where the data is available for querying immediately after it is written
 
 Below is a diagram that illustrates the WAL in ChromaDB (ca. v0.4.22):
 
-![WAL](assets/images/WAL.png)`,
+![WAL](../../assets/images/WAL.png){: style="width:50%"}
 
 ## Further Reading
 
 For the DevOps minded folks we have a few more resources:
 
-- [WAL Pruning](core/advanced/wal-pruning.md) - Clean up your WAL
+- [WAL Pruning](./wal-pruning.md) - Clean up your WAL
