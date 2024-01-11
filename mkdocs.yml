@@ -14,8 +14,8 @@ extra:
   analytics:
     provider: google
     property: G-FZFKK5FLEY
-extra_javascript:
-  - javascripts/gtag.js
+#extra_javascript:
+#  - javascripts/gtag.js
 markdown_extensions:
   - abbr
   - admonition
