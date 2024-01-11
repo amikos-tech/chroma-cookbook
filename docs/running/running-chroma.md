@@ -1,78 +1,173 @@
 # Running Chroma
 
-## CLI
+## Locally
+### Chroma CLI
 
-```bash
+The simplest way to run Chroma locally is via the Chroma `cli` which is part of the core Chroma package.
+
+Prerequisites:
+
+- Python 3.8 to 3.11 - [Download Python | Python.org](https://www.python.org/downloads/)
+
+```shell
 pip install chromadb
-chroma run --path /path/to/my/localdata
+chroma run --host localhost --port 8000 --path ./my_chroma_data
 ```
 
-Available options:
+`--host` The host to which to listen to, by default it is `[localhost](http://localhost)` , but if you want to expose it to your entire network then you can specify `0.0.0.0``
 
-| Option   | Description                |
-|----------|----------------------------|
-| `--path` | Path to the collection.    |
-| `--host` | Host to run the server on. |
-| `--port` | Port to run the server on. |
+`--port` The port on which to listen to, by default this is `8000`.
 
-## Docker Run
+`--path` The path where to persist your Chroma data locally.
 
-The below command will run a background container of chroma named `chroma` with the data stored in `./chroma-data` (
-mounted volume) and exposed on port `8000`.
-The `-e` env var `IS_PERSISTENT=true` will ensure that the data is persisted in the mounted volume.
+### Docker
 
-```bash
-docker run -d --rm --name chroma -v ./chroma-data:/chroma/chroma -p 8000:8000 -e IS_PERSISTENT=true chromadb/chroma:latest
+Running Chroma server locally can be achieved via a simple docker command as shown below.
+
+Prerequisites:
+
+- Docker - [Overview of Docker Desktop | Docker Docs](https://docs.docker.com/desktop/)
+
+```shell
+docker run -d --rm --name chromadb -v ./chroma:/chroma/chroma -e IS_PERSISTENT=TRUE -e ANONYMIZED_TELEMETRY=TRUE chromadb/chroma:latest
 ```
 
-## Docker Compose (cloned repo)
+Options:
 
-```bash
-git clone 
-docker-compose up -d --build
+- `-v` specifies a local dir which is where Chroma will store its data so when the container is destroyed the data remains
+- `-e` `IS_PERSISTENT=TRUE` let’s Chroma know to persist data
+- `-e ANONYMIZED_TELEMETRY=TRUE` allows you to turn on (`TRUE`) or off (`FALSE`) anonymous product telemetry which helps the Chroma team in making informed decisions about Chroma OSS and commercial direction.
+- `chromadb/chroma:latest` indicates the latest Chroma version but can be replaced with any valid tag if a prior version is needed (e.g. `chroma:0.4.18`)
+
+### Docker Compose (Cloned Repo)
+
+If you are feeling adventurous you can also use the Chroma `main` branch to run a local Chroma server with the latest changes:
+
+Prerequisites:
+
+- Docker - [Overview of Docker Desktop | Docker Docs](https://docs.docker.com/desktop/)
+- Git - [Git - Downloads (git-scm.com)](https://git-scm.com/downloads)
+
+```shell
+git clone https://github.com/chroma-core/chroma && cd chroma
+docker compose up -d --build
 ```
 
-## Docker Compose (cloned repo with overrides)
+If you want to run a specific version of Chroma you can checkout the version tag you need:
 
-Create an override file `docker-compose.override.yml`. The override file can be used to override any of the settings in
-Chroma's default `docker-compose.yml` file.
+```shell
+git checkout release/0.4.20
+```
 
-Here is an example where we override the exposed port to be `8001` instead of `8000` (the default):
+### Docker Compose (Without Cloning the Repo)
+
+If you do not wish or are able to clone the repo locally, Chroma server can also be run with docker compose by creating (or using a gist) a `docker-compose.yaml`
+
+Prerequisites:
+
+- Docker - [Overview of Docker Desktop | Docker Docs](https://docs.docker.com/desktop/)
+- cURL (if you want to use the gist approach)
 
 ```yaml
 version: '3.9'
-services:
-  server:
-    ports:
-      - 8001:8000
-```
 
-Here is another example where we mount a local directory (`./chroma-data`) to the container's `/chroma/chroma`
-directory:
-
-```yaml
-version: '3.9'
+networks:
+  net:
+    driver: bridge
 services:
-  server:
+  chromadb:
+    image: chromadb/chroma:latest
     volumes:
-      - ./chroma-data:/chroma/chroma
+      - ./chromadb:/chroma/chroma
+    environment:
+      - IS_PERSISTENT=TRUE
+      - ANONYMIZED_TELEMETRY=${ANONYMIZED_TELEMETRY:-TRUE}
+    ports:
+      - 8000:8000
+    networks:
+      - net
 ```
 
-Generally `.override.` files are stored together with the main docker-compose file however you can store them anywhere
-and use the `-f` flag to specify the override file:
+The above will create a container with the latest Chroma (`chromadb/chroma:latest`), will expose it to port `8000` on the local machine and will persist data in `./chromadb` relative path from where the `docker-compose.yaml` has been ran.
+
+We have also created a small gist with the above file for convenience:
 
 ```bash
-docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d --build
+curl -s https://gist.githubusercontent.com/tazarov/4fd933274bbacb3b9f286b15c01e904b/raw/87268142d64d8ee0f7f98c27a62a5d089923a1df/docker-compose.yaml | docker-compose -f - up
 ```
 
-> Note: The order of the `-f` flags is important. The first file specified is the base file and the second file
-> specified is the override file.
-> Note: When destroying the stack you must specify the override file as
-> well - `docker-compose -f docker-compose.yml -f docker-compose.override.yml down --rmi --volumes`
+### Minikube With Helm Chart
+
+> Note: This deployment can just as well be done with `KinD` depending on your preference.
+>
+
+A more advanced approach to running Chroma locally (but also on a remote cluster) is to deploy it using a Helm chart.
+
+> Disclaimer: The chart used here is not a 1st party chart, but is contributed by a core contributor to Chroma.
+>
+
+Prerequisites:
+
+- Docker - [Overview of Docker Desktop | Docker Docs](https://docs.docker.com/desktop/)
+- Install minikube - [minikube start | minikube (k8s.io)](https://minikube.sigs.k8s.io/docs/start/)
+- kubectl - [Install Tools | Kubernetes](https://kubernetes.io/docs/tasks/tools/#kubectl)
+- Helm - [Helm | Installing Helm](https://helm.sh/docs/intro/install/)
+
+Once you have all of the above running Chroma in a local `minikube` cluster quite simple
+
+Create a `minikube` cluster:
 
 ```bash
-
-## Docker Compose (pulled image)
-
-```yaml
+minikube start --addons=ingress -p chroma
+minikube profile chroma
 ```
+
+Get and install the chart:
+
+```bash
+helm repo add chroma https://amikos-tech.github.io/chromadb-chart/
+helm repo update
+helm install chroma chroma/chromadb --set chromadb.apiVersion="0.4.20"
+```
+
+By default the chart will enable authentication in Chroma. To get the token run the following:
+
+```bash
+kubectl --namespace default get secret chromadb-auth -o jsonpath="{.data.token}" | base64 --decode
+# or use this to directly export variable
+export CHROMA_TOKEN=$(kubectl --namespace default get secret chromadb-auth -o jsonpath="{.data.token}" | base64 --decode)
+```
+
+The first step to connect and start using Chroma is to forward your port:
+
+```bash
+minikube service chroma-chromadb --url
+```
+
+The above should print something like this:
+
+```bash
+http://127.0.0.1:61892
+❗  Because you are using a Docker driver on darwin, the terminal needs to be open to run it.
+```
+
+> Note: Depending on your OS the message might be slightly different.
+>
+
+Test it out (`pip install chromadb`):
+
+```python
+import chromadb
+from chromadb.config import Settings
+
+client = chromadb.HttpClient(host="http://127.0.0.1:61892",
+    settings=Settings(chroma_client_auth_provider="chromadb.auth.token.TokenAuthClientProvider",
+                      chroma_client_auth_credentials="<your_chroma_token>"))
+client.heartbeat()  # this should work with or without authentication - it is a public endpoint
+
+client.get_version()  # this should work with or without authentication - it is a public endpoint
+
+client.list_collections()  # this is a protected endpoint and requires authentication
+```
+
+For more information about the helm chart consult - https://github.com/amikos-tech/chromadb-chart
