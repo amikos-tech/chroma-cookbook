@@ -1199,10 +1199,31 @@
 
 <h1 id="chroma-core-concepts">Chroma Core Concepts<a class="headerlink" href="#chroma-core-concepts" title="Permanent link">&para;</a></h1>
 <h2 id="tenants">Tenants<a class="headerlink" href="#tenants" title="Permanent link">&para;</a></h2>
+<p>A tenant is a logical grouping for a set of databases. A tenant is designed to model a single organization or user. A
+tenant can have multiple databases.</p>
 <h2 id="databases">Databases<a class="headerlink" href="#databases" title="Permanent link">&para;</a></h2>
+<p>A database is a logical grouping for a set of collections. A database is designed to model a single application or
+project. A database can have multiple collections.</p>
 <h2 id="collections">Collections<a class="headerlink" href="#collections" title="Permanent link">&para;</a></h2>
+<p>Collections are the grouping mechanism for embeddings, documents, and metadata.</p>
 <h2 id="documents">Documents<a class="headerlink" href="#documents" title="Permanent link">&para;</a></h2>
+<p>::: note "Chunks of text"</p>
+<div class="language-text highlight"><pre><span></span><code>Documents in ChromaDB lingo are chunks of text that fits within the embedding model&#39;s context window. 
+Unlike other frameworks that use the term &quot;document&quot; to mean a file, 
+ChromaDB uses the term &quot;document&quot; to mean a chunk of text.
+</code></pre></div>
+<p>Documents are raw chunks of text that are associated with an embedding. Documents are stored in the database and can be
+queried for.</p>
 <h2 id="metadata">Metadata<a class="headerlink" href="#metadata" title="Permanent link">&para;</a></h2>
+<p>Metadata is a dictionary of key-value pairs that can be associated with an embedding. Metadata is stored in the
+database and can be queried for.</p>
+<p>Metadata values can be of the following types:</p>
+<ul>
+<li>strings</li>
+<li>integers</li>
+<li>floats</li>
+<li>booleans</li>
+</ul>
 
 
 
