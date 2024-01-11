@@ -11,6 +11,9 @@ theme:
     - content.code.copy
 extra:
   homepage: https://www.trychroma.com
+  analytics:
+    provider: google
+    property: G-FZFKK5FLEY
 markdown_extensions:
   - abbr
   - admonition
