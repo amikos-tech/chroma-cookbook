@@ -11,12 +11,6 @@ Each collection is characterized by the following properties:
 - `name`: The name of the collection
 - `metadata`: A dictionary of metadata associated with the collection. The metadata is a dictionary of key-value pairs.
 
-Collection object:
-
-```python
---8<-- "https://github.com/chroma-core/chroma/blob/main/chromadb/api/models/Collection.py#L57C1-L62C35"
-```
-
 ### Creating a collection
 
 ```python
