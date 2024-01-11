@@ -363,6 +363,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chroma Clients
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -372,6 +383,51 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#persistent-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistent Client
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persistent Client">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uses-of-persistent-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uses of Persistent Client
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1054,6 +1110,38 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#persistent-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistent Client
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persistent Client">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uses-of-persistent-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uses of Persistent Client
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1068,7 +1156,20 @@
 
 
 <h1 id="chroma-clients">Chroma Clients<a class="headerlink" href="#chroma-clients" title="Permanent link">&para;</a></h1>
-<p>Clients TBD.</p>
+<h2 id="persistent-client">Persistent Client<a class="headerlink" href="#persistent-client" title="Permanent link">&para;</a></h2>
+<p>To create your a local persistent client use the <code>PersistentClient</code> class. This client will store all data locally in a
+directory on your machine at the path you specify.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="uses-of-persistent-client">Uses of Persistent Client<a class="headerlink" href="#uses-of-persistent-client" title="Permanent link">&para;</a></h3>
+<p>The persistent client is useful for:</p>
+<ul>
+<li><strong>Local development</strong>: You can use the persistent client to develop locally and test out ChromaDB.</li>
+<li><strong>Embedded applications</strong>: You can use the persistent client to embed ChromaDB in your application. For example, if
+  you are building a web application, you can use the persistent client to store data locally on the server.</li>
+</ul>
 
 
 
