@@ -1,6 +1,9 @@
-site_name: ChromaDB Cookbook
+site_name: ChromaDB Cookbook | The Unofficial Guide to ChromaDB
+site_url: https://cookbook.chromadb.dev
 theme:
   name: material
+  palette:
+    primary: black
   logo: assets/images/logo.png
   favicon: assets/images/favicon.png
   font:
