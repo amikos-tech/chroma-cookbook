@@ -51,6 +51,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://cookbook.chromadb.dev/core/advanced/wal/</loc>
+         <lastmod>2024-01-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://cookbook.chromadb.dev/embeddings/bring-your-own-embeddings/</loc>
          <lastmod>2024-01-11</lastmod>
          <changefreq>daily</changefreq>

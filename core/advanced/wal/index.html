@@ -8,26 +8,28 @@
       
       
       
-        <link rel="canonical" href="https://cookbook.chromadb.dev/strategies/time-based-queries/">
+        <link rel="canonical" href="https://cookbook.chromadb.dev/core/advanced/wal/">
       
       
-        <link rel="prev" href="../privacy/">
+        <link rel="prev" href="../wal-pruning/">
       
       
+        <link rel="next" href="../../../embeddings/bring-your-own-embeddings/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
     
     
       
-        <title>Time-based Queries - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+        <title>Write-ahead Log (WAL) - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.50c56a3b.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -46,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -80,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#time-based-queries" class="md-skip">
+        <a href="#write-ahead-log-wal" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +100,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="https://www.trychroma.com" title="ChromaDB Cookbook | The Unofficial Guide to ChromaDB" class="md-header__button md-logo" aria-label="ChromaDB Cookbook | The Unofficial Guide to ChromaDB" data-md-component="logo">
       
-  <img src="../../assets/images/logo.png" alt="logo">
+  <img src="../../../assets/images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -115,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Time-based Queries
+              Write-ahead Log (WAL)
             
           </span>
         </div>
@@ -192,7 +194,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="https://www.trychroma.com" title="ChromaDB Cookbook | The Unofficial Guide to ChromaDB" class="md-nav__button md-logo" aria-label="ChromaDB Cookbook | The Unofficial Guide to ChromaDB" data-md-component="logo">
       
-  <img src="../../assets/images/logo.png" alt="logo">
+  <img src="../../../assets/images/logo.png" alt="logo">
 
     </a>
     ChromaDB Cookbook | The Unofficial Guide to ChromaDB
@@ -207,7 +209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -264,7 +266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contributing/getting-started/" class="md-nav__link">
+      <a href="../../../contributing/getting-started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -285,7 +287,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contributing/useful-shortcuts/" class="md-nav__link">
+      <a href="../../../contributing/useful-shortcuts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -310,19 +312,21 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -336,7 +340,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Core
@@ -350,7 +354,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/clients/" class="md-nav__link">
+      <a href="../../clients/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -371,7 +375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/collections/" class="md-nav__link">
+      <a href="../../collections/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -392,7 +396,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/concepts/" class="md-nav__link">
+      <a href="../../concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -413,7 +417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/databases/" class="md-nav__link">
+      <a href="../../databases/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -434,7 +438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/document-ids/" class="md-nav__link">
+      <a href="../../document-ids/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -455,7 +459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/system_constraints/" class="md-nav__link">
+      <a href="../../system_constraints/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -473,19 +477,21 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" checked>
         
           
           <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
@@ -499,7 +505,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_7">
             <span class="md-nav__icon md-icon"></span>
             Advanced
@@ -513,7 +519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/advanced/wal-pruning/" class="md-nav__link">
+      <a href="../wal-pruning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -531,10 +537,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../core/advanced/wal/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Write-ahead Log (WAL)
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -543,6 +569,37 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Further Reading
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -607,7 +664,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../embeddings/bring-your-own-embeddings/" class="md-nav__link">
+      <a href="../../../embeddings/bring-your-own-embeddings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -628,7 +685,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../embeddings/gpu-support/" class="md-nav__link">
+      <a href="../../../embeddings/gpu-support/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -730,7 +787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/langchain/embeddings/" class="md-nav__link">
+      <a href="../../../integrations/langchain/embeddings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -751,7 +808,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/langchain/retrievers/" class="md-nav__link">
+      <a href="../../../integrations/langchain/retrievers/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -817,7 +874,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/llamaindex/embeddings/" class="md-nav__link">
+      <a href="../../../integrations/llamaindex/embeddings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -890,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../running/running-chroma/" class="md-nav__link">
+      <a href="../../../running/running-chroma/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -915,21 +972,19 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -943,7 +998,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Strategies
@@ -957,7 +1012,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../keyword-search/" class="md-nav__link">
+      <a href="../../../strategies/keyword-search/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -978,7 +1033,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../privacy/" class="md-nav__link">
+      <a href="../../../strategies/privacy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -996,30 +1051,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Time-based Queries
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../strategies/time-based-queries/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1028,37 +1063,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#filtering-documents-by-timestamps" class="md-nav__link">
-    <span class="md-ellipsis">
-      Filtering Documents By Timestamps
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1100,9 +1104,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#filtering-documents-by-timestamps" class="md-nav__link">
+  <a href="#further-reading" class="md-nav__link">
     <span class="md-ellipsis">
-      Filtering Documents By Timestamps
+      Further Reading
     </span>
   </a>
   
@@ -1123,46 +1127,19 @@
                   
 
 
-<h1 id="time-based-queries">Time-based Queries<a class="headerlink" href="#time-based-queries" title="Permanent link">&para;</a></h1>
-<h2 id="filtering-documents-by-timestamps">Filtering Documents By Timestamps<a class="headerlink" href="#filtering-documents-by-timestamps" title="Permanent link">&para;</a></h2>
-<p>In the example below, we create a collection with 100 documents, each with a
-random timestamp in the last two weeks. We then query the collection for
-documents that were created in the last week.</p>
-<p>The example demonstrates how Chroma metadata can be leveraged to filter documents
-based on how recently they were added or updated.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">uuid</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">import</span> <span class="nn">datetime</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span> <span class="nn">random</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">two_weeks_ago</span> <span class="o">=</span> <span class="n">now</span> <span class="o">-</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">dates</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">two_weeks_ago</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">]</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">dates</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">timestamp</span><span class="p">())</span> <span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">dates</span><span class="p">]</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="c1"># convert epoch seconds to iso format</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">def</span> <span class="nf">iso_date</span><span class="p">(</span><span class="n">epoch_seconds</span><span class="p">):</span> <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">epoch_seconds</span><span class="p">)</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">EphemeralClient</span><span class="p">()</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="n">col</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="n">col</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)],</span> <span class="n">documents</span><span class="o">=</span><span class="p">[</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="sa">f</span><span class="s2">&quot;document </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)],</span> <span class="n">metadatas</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="n">date</span><span class="p">}</span> <span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">dates</span><span class="p">])</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="n">res</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$gt&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">now</span> <span class="o">-</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">7</span><span class="p">))</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()}})</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;metadatas&#39;</span><span class="p">]:</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">iso_date</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]))</span>
-</span></code></pre></div>
-<p>Ref: https://gist.github.com/tazarov/3c9301d22ab863dca0b6fb1e5e3511b1</p>
+<h1 id="write-ahead-log-wal">Write-ahead Log (WAL)<a class="headerlink" href="#write-ahead-log-wal" title="Permanent link">&para;</a></h1>
+<p>Chroma uses WAL to ensure data durability, even if things go wrong (e.g. server crashes). To achieve the latter Chroma
+uses what is known in the DB-industry as WAL or Write-Ahead Log. The purpose of the WAL is to ensure that each user
+request (aka transaction) is safely stored before acknowledging back to the user. Subsequently, in fact immediately
+after writing to the WAL, the data is also written to the index. This enables Chroma to serve as real-time search
+engine, where the data is available for querying immediately after it is written to the WAL.</p>
+<p>Below is a diagram that illustrates the WAL in ChromaDB (ca. v0.4.22):</p>
+<p><img alt="WAL" src="assets/images/WAL.png" />`,</p>
+<h2 id="further-reading">Further Reading<a class="headerlink" href="#further-reading" title="Permanent link">&para;</a></h2>
+<p>For the DevOps minded folks we have a few more resources:</p>
+<ul>
+<li><a href="core/advanced/wal-pruning.md">WAL Pruning</a> - Clean up your WAL</li>
+</ul>
 
 
 
@@ -1211,12 +1188,12 @@ based on how recently they were added or updated.</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7c377c4.min.js"></script>
       
-        <script src="../../javascripts/gtag.js"></script>
+        <script src="../../../javascripts/gtag.js"></script>
       
     
   </body>

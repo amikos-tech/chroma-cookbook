@@ -14,7 +14,7 @@
         <link rel="prev" href="../../system_constraints/">
       
       
-        <link rel="next" href="../../../embeddings/bring-your-own-embeddings/">
+        <link rel="next" href="../wal/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -543,6 +543,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Write-ahead Log (WAL)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1049,11 +1070,6 @@
 
 
 <h1 id="write-ahead-log-wal-pruning">Write-ahead Log (WAL) Pruning<a class="headerlink" href="#write-ahead-log-wal-pruning" title="Permanent link">&para;</a></h1>
-<p>Chroma uses WAL to ensure data durability, even if things go wrong (e.g. server crashes). To achieve the latter Chroma
-uses what is known in the DB-industry as WAL or Write-Ahead Log. The purpose of the WAL is to ensure that each user
-request (aka transaction) is safely stored before acknowledging back to the user. Subsequently, in fact immediately
-after writing to the WAL, the data is also written to the index. This enables Chroma to serve as real-time search
-engine, where the data is available for querying immediately after it is written to the WAL.</p>
 <p>As of this writing (v0.4.22) Chroma stores its WAL forever. This means that the WAL will grow indefinitely. This is
 obviously not ideal. Here we provide a small script + a few steps how to prune your WAL and keep it at a reasonable
 size. Pruning the WAL is particularly important if you have many writes to Chroma (e.g. documents are added, updated or
