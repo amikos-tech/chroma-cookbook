@@ -28,7 +28,7 @@ Steps:
 Script (store it in a file like `compact-wal.sql`)
 
 ```sql title="compact-wal.sql"
---8<-- "assets/source/compact-wal.sql"
+--8<-- "compact-wal.sql"
 ```
 
 Run the script
