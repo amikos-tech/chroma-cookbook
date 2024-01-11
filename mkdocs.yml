@@ -20,7 +20,7 @@ extra:
 extra_javascript:
   - javascripts/gtag.js
 markdown_extensions:
-  - abbr
+#  - abbr
   - admonition
   - attr_list
   - md_in_html
