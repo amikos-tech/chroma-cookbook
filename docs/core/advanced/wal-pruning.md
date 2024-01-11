@@ -27,27 +27,13 @@ Steps:
 
 Script (store it in a file like `compact-wal.sql`)
 
-```sql
-BEGIN TRANSACTION;
-WITH to_delete AS (select t2.topic, t1.seq_id
-                   from max_seq_id t1
-                            left join segments t2 on t1.segment_id = t2.id
-                   where t2.scope = 'METADATA')
-DELETE
-FROM embeddings_queue
-WHERE EXISTS (SELECT 1
-              FROM to_delete td
-              WHERE td.topic = embeddings_queue.topic
-                AND td.seq_id >= embeddings_queue.seq_id);
-
-
-COMMIT;
-VACUUM;
+```sql title="compact-wal.sql"
+--8<-- "assets/source/compact-wal.sql"
 ```
 
 Run the script
 
-```bash
+```shell
 # Let's create a backup
 tar -czvf /path/to/persist/dir/chroma.sqlite3.backup.tar.gz /path/to/persist/dir/chroma.sqlite3
 lsof /path/to/persist/dir/chroma.sqlite3 # make sure that no process is using the file

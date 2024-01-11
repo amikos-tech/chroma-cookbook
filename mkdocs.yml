@@ -6,6 +6,9 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
+  features:
+    - content.code.annotate
+    - content.code.copy
 extra:
   homepage: https://www.trychroma.com
 markdown_extensions:
