@@ -12,6 +12,10 @@ theme:
   features:
     - content.code.annotate
     - content.code.copy
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.indexes
 extra:
   homepage: https://www.trychroma.com
   analytics:
