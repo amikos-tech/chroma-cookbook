@@ -1,6 +1,11 @@
 # Running Chroma
 
-## Locally
+## Local Server
+
+!!! note "Article Link"
+        
+        This article is also available on Medium [Running ChromaDB — Part 1: Local Server](https://medium.com/@amikostech/running-chromadb-part-1-local-server-2c61cb1c9f2c).
+
 ### Chroma CLI
 
 The simplest way to run Chroma locally is via the Chroma `cli` which is part of the core Chroma package.
