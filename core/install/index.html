@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://cookbook.chromadb.dev/core/system_constraints/">
+        <link rel="canonical" href="https://cookbook.chromadb.dev/core/install/">
       
       
-        <link rel="prev" href="../install/">
+        <link rel="prev" href="../document-ids/">
       
       
-        <link rel="next" href="../advanced/wal-pruning/">
+        <link rel="next" href="../system_constraints/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Chroma System Constraints - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+        <title>Installation - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chroma-system-constraints" class="md-skip">
+        <a href="#installation" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chroma System Constraints
+              Installation
             
           </span>
         </div>
@@ -456,27 +456,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Installation
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -493,7 +472,7 @@
           
   
   <span class="md-ellipsis">
-    Chroma System Constraints
+    Installation
   </span>
   
 
@@ -504,7 +483,7 @@
         
   
   <span class="md-ellipsis">
-    Chroma System Constraints
+    Installation
   </span>
   
 
@@ -528,9 +507,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#operational-modes" class="md-nav__link">
+  <a href="#core-chromadb" class="md-nav__link">
     <span class="md-ellipsis">
-      Operational Modes
+      Core ChromaDB
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chromadb-python-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChromaDB Python Client
     </span>
   </a>
   
@@ -540,6 +528,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../system_constraints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chroma System Constraints
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1123,9 +1132,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#operational-modes" class="md-nav__link">
+  <a href="#core-chromadb" class="md-nav__link">
     <span class="md-ellipsis">
-      Operational Modes
+      Core ChromaDB
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chromadb-python-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChromaDB Python Client
     </span>
   </a>
   
@@ -1146,31 +1164,26 @@
                   
 
 
-<h1 id="chroma-system-constraints">Chroma System Constraints<a class="headerlink" href="#chroma-system-constraints" title="Permanent link">&para;</a></h1>
-<p>This section contains common constraints of Chroma.</p>
-<ul>
-<li>Chroma is thread-safe</li>
-<li>Chroma is not process-safe</li>
-<li>Multiple Chroma Clients (Ephemeral, Persistent, Http) can be created from one or more threads within the same process</li>
-<li>A collection's name is unique within a Tenant and DB</li>
-<li>A collection's dimensions cannot change after creation =&gt; you cannot change the embedding function after creation</li>
-<li>Chroma operates in two modes - standalone and client/server</li>
-</ul>
-<h2 id="operational-modes">Operational Modes<a class="headerlink" href="#operational-modes" title="Permanent link">&para;</a></h2>
-<p>Chroma can be operated in two modes:</p>
-<ul>
-<li>Standalone - This allows embedding Chroma in your python application without the need to communicate with external processes.</li>
-<li>Client/Server - This allows embedding Chroma in your python application as a thin-client with minimal dependencies and communicating with it via REST API. This is useful when you want to use Chroma from multiple processes or even multiple machines.</li>
-</ul>
-<p>Depending on the mode you choose, you will need to consider the following component responsibilities:</p>
-<ul>
-<li>Standalone:</li>
-<li>Clients (Persistent, Ephemeral) - Responsible for persistence, embedding, querying</li>
-<li>Client/Server:</li>
-<li>Clients (HttpClient) - Responsible for embedding, communication with Chroma server via REST API</li>
-<li>Server - Responsible for persistence and querying</li>
-</ul>
-<p><img alt="Responsibilities of Clients" src="../../assets/images/operational-modes-responsibilities.png" /></p>
+<h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
+<h2 id="core-chromadb">Core ChromaDB<a class="headerlink" href="#core-chromadb" title="Permanent link">&para;</a></h2>
+<p>To install the latest version of chromadb, run:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>chromadb
+</span></code></pre></div>
+<p>To install a specific version of chromadb, run:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">chromadb</span><span class="o">==</span>&lt;x.y.z&gt;
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Releases</p>
+<p>You can find Chroma releases in PyPI <a href="https://pypi.org/project/chromadb/#history">here</a>.</p>
+</div>
+<h2 id="chromadb-python-client">ChromaDB Python Client<a class="headerlink" href="#chromadb-python-client" title="Permanent link">&para;</a></h2>
+<p>To install the latest version of the ChromaDB Python client, run:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pip<span class="w"> </span>install<span class="w"> </span>chromadb-client
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Releases</p>
+<p>You can find Chroma releases in PyPI <a href="https://pypi.org/project/chromadb-client/#history">here</a>.</p>
+</div>
 
 
 
