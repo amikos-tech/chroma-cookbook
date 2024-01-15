@@ -58,11 +58,18 @@ following distance functions:
 
 ## Embedding Model
 
-
 ## Document and Metadata Index
 
+## Vector Index (HNSW Index)
 
-## Binary HNSW Index
+Under the hood (ca. v0.4.22) Chroma uses its
+own [fork](https://github.com/chroma-core/hnswlib) [HNSW lib](https://github.com/nmslib/hnswlib) for indexing and
+searching vectors.
+
+In a single-node mode, Chroma will create a single HNSW index for each collection. The index is stored in a subdir of
+your persistent dir, named after the collection id (UUID-based).
+
+The HNSW lib uses [fast ANN](https://arxiv.org/abs/1603.09320) algo to search the vectors in the index.
 
 
 
