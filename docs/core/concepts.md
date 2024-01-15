@@ -16,7 +16,7 @@ Collections are the grouping mechanism for embeddings, documents, and metadata.
 
 ## Documents
 
-::: note "Chunks of text"
+!!! note "Chunks of text"
 
     Documents in ChromaDB lingo are chunks of text that fits within the embedding model's context window. 
     Unlike other frameworks that use the term "document" to mean a file, 
@@ -44,3 +44,25 @@ generating embedding vectors from documents or text queries.
 
 For a list of supported embedding functions see Chroma's
 official [documentation](https://docs.trychroma.com/embeddings).
+
+## Distance Function
+
+Distance functions help in calculating the difference (distance) between two embedding vectors. ChromaDB supports the
+following distance functions:
+
+- cosine - Useful for text similarity
+- euclidean (L2) - useful for 
+- Inner Product (IP) - recommender systems
+
+## Embedding Vector
+
+## Embedding Model
+
+
+## Document and Metadata Index
+
+
+## Binary HNSW Index
+
+
+
