@@ -1,5 +1,6 @@
 site_name: ChromaDB Cookbook | The Unofficial Guide to ChromaDB
 site_url: https://cookbook.chromadb.dev
+copyright: "Amikos Tech LTD, 2024 (core ChromaDB contributors)"
 theme:
   name: material
   palette:
@@ -18,6 +19,19 @@ theme:
     - navigation.indexes
 extra:
   homepage: https://www.trychroma.com
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/chroma-core/chroma
+      name: Chroma on GitHub
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/trychroma
+      name: Chroma on Twitter
+    - icon: fontawesome/brands/github
+      link: https://github.com/amikos-tech
+      name: Amikos on GitHub
+    - icon: fontawesome/brands/medium
+      link: https://medium.com/@amikostech
+      name: Amikos on Medium
   analytics:
     provider: google
     property: G-FZFKK5FLEY

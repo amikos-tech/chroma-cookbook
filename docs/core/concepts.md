@@ -51,7 +51,7 @@ Distance functions help in calculating the difference (distance) between two emb
 following distance functions:
 
 - cosine - Useful for text similarity
-- euclidean (L2) - useful for 
+- euclidean (L2) - useful for text similarity, sensitive to noise
 - Inner Product (IP) - recommender systems
 
 ## Embedding Vector
