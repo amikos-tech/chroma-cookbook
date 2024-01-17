@@ -1,5 +1,11 @@
 # Chroma Core Concepts
 
+## Tenancy and DB Hierarchies
+
+The following picture illustrates the tenancy and DB hierarchy in Chroma:
+
+![Tenancy and DB Hierarchy](../assets/images/chroma-tenancy-hierarchy.png)
+
 ## Tenants
 
 A tenant is a logical grouping for a set of databases. A tenant is designed to model a single organization or user. A
