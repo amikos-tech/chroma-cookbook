@@ -677,6 +677,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#vector-indices-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector Indices Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadata-indices-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metadata Indices Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#further-reading" class="md-nav__link">
     <span class="md-ellipsis">
       Further Reading
@@ -1250,6 +1268,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#vector-indices-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector Indices Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadata-indices-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metadata Indices Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#further-reading" class="md-nav__link">
     <span class="md-ellipsis">
       Further Reading
@@ -1284,6 +1320,28 @@ after writing to the WAL, the data is also written to the index. This enables Ch
 engine, where the data is available for querying immediately after it is written to the WAL.</p>
 <p>Below is a diagram that illustrates the WAL in ChromaDB (ca. v0.4.22):</p>
 <p><img alt="WAL" src="../../../assets/images/WAL.png" style="width:100%" /></p>
+<h2 id="vector-indices-overview">Vector Indices Overview<a class="headerlink" href="#vector-indices-overview" title="Permanent link">&para;</a></h2>
+<p>The diagram below illustrates how data gets transferred from the WAL to the binary vector indices (Bruteforce and HNSW):</p>
+<p><img alt="WAL to Vector" src="../../../assets/images/chroma-wal-explained.png" style="width:100%" /></p>
+<p>For each collection Chroma maintains two binary indices - Bruteforce (in-memory, fast) and HNSW lib (persisted to disk,
+slow when adding new vectors and persisting). As you can imagine, the BF index serves the role of a buffer that holds
+the uncommitted to HNWS persisted index portion of the WAL. The HNSW index itself has a max sequence id counter, stored
+in a metadata file, that indicates from which position in the WAL the buffering to the BF index should begin. The latter
+buffering usually happens when the collection is first accessed.</p>
+<p>There are two transfer points (in the diagram, sync threshold) for BF to HNSW:</p>
+<ul>
+<li><code>hnsw:batch_size</code> - forces the BF vectors to be added to HNSW in-memory (this is a slow operation)</li>
+<li>
+<p><code>hnsw:sync_threshold</code> - forces Chroma to dump the HNSW in-memory index to disk (this is a slow operation)</p>
+</li>
+<li>
+<p>Both of the above sync points are controlled via Collection-level metadata with respective named params. It is
+  customary <code>hnsw:sync_threshold</code> &gt; <code>hnsw:batch_size</code></p>
+</li>
+</ul>
+<h2 id="metadata-indices-overview">Metadata Indices Overview<a class="headerlink" href="#metadata-indices-overview" title="Permanent link">&para;</a></h2>
+<p>The following diagram illustrates how data gets transferred from the WAL to the metadata index:</p>
+<p><img alt="WAL to Metadata" src="../../../assets/images/chroma-wal-explained-metadata.png" style="width:100%" /></p>
 <h2 id="further-reading">Further Reading<a class="headerlink" href="#further-reading" title="Permanent link">&para;</a></h2>
 <p>For the DevOps minded folks we have a few more resources:</p>
 <ul>
