@@ -6,6 +6,10 @@ The following picture illustrates the tenancy and DB hierarchy in Chroma:
 
 ![Tenancy and DB Hierarchy](../assets/images/chroma-tenancy-hierarchy.png)
 
+!!! warn "Storage"
+
+    In Chroma single-node, all data about tenancy, databases, collections and documents is stored in a single SQLite database.
+
 ## Tenants
 
 A tenant is a logical grouping for a set of databases. A tenant is designed to model a single organization or user. A
@@ -57,10 +61,12 @@ Distance functions help in calculating the difference (distance) between two emb
 following distance functions:
 
 - cosine - Useful for text similarity
-- euclidean (L2) - useful for text similarity, sensitive to noise
+- euclidean (L2) - useful for text similarity, more sensitive to noise than `cosine`
 - Inner Product (IP) - recommender systems
 
 ## Embedding Vector
+
+A representation of a document in the embedding space in te form of a vector, list of 32-bit floats (or ints).
 
 ## Embedding Model
 
