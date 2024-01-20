@@ -5,6 +5,13 @@ the underlying SQLite version of the machine running Chroma which imposes a maxi
 which Chroma translates into a batchable record size, exposed via the `max_batch_size` parameter of the `ChromaClient`
 class.
 
+```python
+import chromadb
+
+client = chromadb.PersistentClient(path="test")
+print("Number of documents that can be inserted at once: ",client.max_batch_size)
+```
+
 
 ## Creating Batches
 
