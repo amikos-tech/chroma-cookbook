@@ -26,7 +26,7 @@ import uuid
 client = chromadb.PersistentClient(path="test")
 large_batch = [(f"{uuid.uuid4()}", f"document {i}", [0.1] * 1536) for i in range(1000)]
 ids, documents, embeddings = zip(*large_batch)
-batches = create_batches(ids=ids, documents=documents, embeddings=embeddings, max_batch_size=100)
+batches = create_batches(api=client,ids=ids, documents=documents, embeddings=embeddings)
 collection = client.get_or_create_collection("test")
 for batch in batches:
     collection.add(ids=batch[0],
