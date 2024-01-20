@@ -23,15 +23,15 @@ import chromadb
 from chromadb.utils.batch_utils import create_batches
 import uuid
 
-client = chromadb.PersistentClient(path="test")
-large_batch = [(f"{uuid.uuid4()}", f"document {i}", [0.1] * 1536) for i in range(1000)]
+client = chromadb.PersistentClient(path="test-large-batch")
+large_batch = [(f"{uuid.uuid4()}", f"document {i}", [0.1] * 1536) for i in range(100000)]
 ids, documents, embeddings = zip(*large_batch)
-batches = create_batches(api=client,ids=ids, documents=documents, embeddings=embeddings)
+batches = create_batches(api=client,ids=list(ids), documents=list(documents), embeddings=list(embeddings))
 collection = client.get_or_create_collection("test")
 for batch in batches:
+    print(f"Adding batch of size {len(batch[0])}")
     collection.add(ids=batch[0],
                    documents=batch[3],
                    embeddings=batch[1],
                    metadatas=batch[2])
-
 ```
