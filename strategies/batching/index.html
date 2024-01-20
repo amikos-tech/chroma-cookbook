@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://cookbook.chromadb.dev/core/concepts/">
+        <link rel="canonical" href="https://cookbook.chromadb.dev/strategies/batching/">
       
       
-        <link rel="prev" href="../collections/">
+        <link rel="prev" href="../backup/">
       
       
-        <link rel="next" href="../databases/">
+        <link rel="next" href="../keyword-search/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Chroma Core Concepts - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+        <title>Batching - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chroma-core-concepts" class="md-skip">
+        <a href="#batching" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chroma Core Concepts
+              Batching
             
           </span>
         </div>
@@ -342,8 +342,6 @@
       
   
   
-    
-  
   
   
     
@@ -373,17 +371,17 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../core/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -400,7 +398,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Core
@@ -416,7 +414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../clients/" class="md-nav__link">
+      <a href="../../core/clients/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -437,7 +435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../collections/" class="md-nav__link">
+      <a href="../../core/collections/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -455,30 +453,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Chroma Core Concepts
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../core/concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -487,136 +465,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tenancy-and-db-hierarchies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tenancy and DB Hierarchies
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tenants" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tenants
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#databases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Databases
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#collections" class="md-nav__link">
-    <span class="md-ellipsis">
-      Collections
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      Documents
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      Metadata
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#embedding-function" class="md-nav__link">
-    <span class="md-ellipsis">
-      Embedding Function
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#distance-function" class="md-nav__link">
-    <span class="md-ellipsis">
-      Distance Function
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#embedding-vector" class="md-nav__link">
-    <span class="md-ellipsis">
-      Embedding Vector
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#embedding-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      Embedding Model
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#document-and-metadata-index" class="md-nav__link">
-    <span class="md-ellipsis">
-      Document and Metadata Index
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vector-index-hnsw-index" class="md-nav__link">
-    <span class="md-ellipsis">
-      Vector Index (HNSW Index)
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -629,7 +477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../databases/" class="md-nav__link">
+      <a href="../../core/databases/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -650,7 +498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../document-ids/" class="md-nav__link">
+      <a href="../../core/document-ids/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -671,7 +519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
+      <a href="../../core/install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -692,7 +540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system_constraints/" class="md-nav__link">
+      <a href="../../core/system_constraints/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -756,7 +604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/wal-pruning/" class="md-nav__link">
+      <a href="../../core/advanced/wal-pruning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -777,7 +625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/wal/" class="md-nav__link">
+      <a href="../../core/advanced/wal/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1184,8 +1032,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1203,12 +1053,12 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1222,7 +1072,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Strategies
@@ -1236,7 +1086,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/backup/" class="md-nav__link">
+      <a href="../backup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1254,10 +1104,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../strategies/batching/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Batching
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1266,6 +1136,37 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creating-batches" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating Batches
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1278,7 +1179,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/keyword-search/" class="md-nav__link">
+      <a href="../keyword-search/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1299,7 +1200,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/privacy/" class="md-nav__link">
+      <a href="../privacy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1320,7 +1221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/time-based-queries/" class="md-nav__link">
+      <a href="../time-based-queries/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1370,108 +1271,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tenancy-and-db-hierarchies" class="md-nav__link">
+  <a href="#creating-batches" class="md-nav__link">
     <span class="md-ellipsis">
-      Tenancy and DB Hierarchies
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tenants" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tenants
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#databases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Databases
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#collections" class="md-nav__link">
-    <span class="md-ellipsis">
-      Collections
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      Documents
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      Metadata
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#embedding-function" class="md-nav__link">
-    <span class="md-ellipsis">
-      Embedding Function
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#distance-function" class="md-nav__link">
-    <span class="md-ellipsis">
-      Distance Function
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#embedding-vector" class="md-nav__link">
-    <span class="md-ellipsis">
-      Embedding Vector
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#embedding-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      Embedding Model
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#document-and-metadata-index" class="md-nav__link">
-    <span class="md-ellipsis">
-      Document and Metadata Index
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vector-index-hnsw-index" class="md-nav__link">
-    <span class="md-ellipsis">
-      Vector Index (HNSW Index)
+      Creating Batches
     </span>
   </a>
   
@@ -1495,65 +1297,29 @@
   
 
 
-<h1 id="chroma-core-concepts">Chroma Core Concepts<a class="headerlink" href="#chroma-core-concepts" title="Permanent link">&para;</a></h1>
-<h2 id="tenancy-and-db-hierarchies">Tenancy and DB Hierarchies<a class="headerlink" href="#tenancy-and-db-hierarchies" title="Permanent link">&para;</a></h2>
-<p>The following picture illustrates the tenancy and DB hierarchy in Chroma:</p>
-<p><img alt="Tenancy and DB Hierarchy" src="../../assets/images/chroma-tenancy-hierarchy.png" /></p>
-<div class="admonition warn">
-<p class="admonition-title">Storage</p>
-<p>In Chroma single-node, all data about tenancy, databases, collections and documents is stored in a single SQLite database.</p>
-</div>
-<h2 id="tenants">Tenants<a class="headerlink" href="#tenants" title="Permanent link">&para;</a></h2>
-<p>A tenant is a logical grouping for a set of databases. A tenant is designed to model a single organization or user. A
-tenant can have multiple databases.</p>
-<h2 id="databases">Databases<a class="headerlink" href="#databases" title="Permanent link">&para;</a></h2>
-<p>A database is a logical grouping for a set of collections. A database is designed to model a single application or
-project. A database can have multiple collections.</p>
-<h2 id="collections">Collections<a class="headerlink" href="#collections" title="Permanent link">&para;</a></h2>
-<p>Collections are the grouping mechanism for embeddings, documents, and metadata.</p>
-<h2 id="documents">Documents<a class="headerlink" href="#documents" title="Permanent link">&para;</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Chunks of text</p>
-<p>Documents in ChromaDB lingo are chunks of text that fits within the embedding model's context window. 
-Unlike other frameworks that use the term "document" to mean a file, 
-ChromaDB uses the term "document" to mean a chunk of text.</p>
-</div>
-<p>Documents are raw chunks of text that are associated with an embedding. Documents are stored in the database and can be
-queried for.</p>
-<h2 id="metadata">Metadata<a class="headerlink" href="#metadata" title="Permanent link">&para;</a></h2>
-<p>Metadata is a dictionary of key-value pairs that can be associated with an embedding. Metadata is stored in the
-database and can be queried for.</p>
-<p>Metadata values can be of the following types:</p>
-<ul>
-<li>strings</li>
-<li>integers</li>
-<li>floats</li>
-<li>booleans</li>
-</ul>
-<h2 id="embedding-function">Embedding Function<a class="headerlink" href="#embedding-function" title="Permanent link">&para;</a></h2>
-<p>Also referred to as embedding model, embedding functions in ChromaDB are wrappers that expose a consistent interface for
-generating embedding vectors from documents or text queries.</p>
-<p>For a list of supported embedding functions see Chroma's
-official <a href="https://docs.trychroma.com/embeddings">documentation</a>.</p>
-<h2 id="distance-function">Distance Function<a class="headerlink" href="#distance-function" title="Permanent link">&para;</a></h2>
-<p>Distance functions help in calculating the difference (distance) between two embedding vectors. ChromaDB supports the
-following distance functions:</p>
-<ul>
-<li>cosine - Useful for text similarity</li>
-<li>euclidean (L2) - useful for text similarity, more sensitive to noise than <code>cosine</code></li>
-<li>Inner Product (IP) - recommender systems</li>
-</ul>
-<h2 id="embedding-vector">Embedding Vector<a class="headerlink" href="#embedding-vector" title="Permanent link">&para;</a></h2>
-<p>A representation of a document in the embedding space in te form of a vector, list of 32-bit floats (or ints).</p>
-<h2 id="embedding-model">Embedding Model<a class="headerlink" href="#embedding-model" title="Permanent link">&para;</a></h2>
-<h2 id="document-and-metadata-index">Document and Metadata Index<a class="headerlink" href="#document-and-metadata-index" title="Permanent link">&para;</a></h2>
-<h2 id="vector-index-hnsw-index">Vector Index (HNSW Index)<a class="headerlink" href="#vector-index-hnsw-index" title="Permanent link">&para;</a></h2>
-<p>Under the hood (ca. v0.4.22) Chroma uses its
-own <a href="https://github.com/chroma-core/hnswlib">fork</a> <a href="https://github.com/nmslib/hnswlib">HNSW lib</a> for indexing and
-searching vectors.</p>
-<p>In a single-node mode, Chroma will create a single HNSW index for each collection. The index is stored in a subdir of
-your persistent dir, named after the collection id (UUID-based).</p>
-<p>The HNSW lib uses <a href="https://arxiv.org/abs/1603.09320">fast ANN</a> algo to search the vectors in the index.</p>
+<h1 id="batching">Batching<a class="headerlink" href="#batching" title="Permanent link">&para;</a></h1>
+<p>It is often that you may need to ingest a large number of documents into Chroma. The problem you may face is related to
+the underlying SQLite version of the machine running Chroma which imposes a maximum number of statements and parameters
+which Chroma translates into a batchable record size, exposed via the <code>max_batch_size</code> parameter of the <code>ChromaClient</code>
+class.</p>
+<h2 id="creating-batches">Creating Batches<a class="headerlink" href="#creating-batches" title="Permanent link">&para;</a></h2>
+<p>Due to consistency and data integrity reasons, Chroma does not offer, yet, out-of-the-box batching support. The below code snippet
+shows how to create batches of documents and ingest them into Chroma.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">chromadb.utils.batch_utils</span> <span class="kn">import</span> <span class="n">create_batches</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span> <span class="nn">uuid</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">large_batch</span> <span class="o">=</span> <span class="p">[(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;document </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1536</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)]</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">ids</span><span class="p">,</span> <span class="n">documents</span><span class="p">,</span> <span class="n">embeddings</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">large_batch</span><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">batches</span> <span class="o">=</span> <span class="n">create_batches</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="n">ids</span><span class="p">,</span> <span class="n">documents</span><span class="o">=</span><span class="n">documents</span><span class="p">,</span> <span class="n">embeddings</span><span class="o">=</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">max_batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">collection</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">batches</span><span class="p">:</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>                   <span class="n">documents</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>                   <span class="n">embeddings</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>                   <span class="n">metadatas</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span></code></pre></div>
 
 
 
