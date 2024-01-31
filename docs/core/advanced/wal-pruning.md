@@ -5,6 +5,20 @@ obviously not ideal. Here we provide a small script + a few steps how to prune y
 size. Pruning the WAL is particularly important if you have many writes to Chroma (e.g. documents are added, updated or
 deleted frequently).
 
+## Tooling
+
+We have worked on a tooling to provide users with a way to prune their WAL - [chroma-ops](https://github.com/amikos-tech/chromadb-ops).
+
+To prune your WAL you can run the following command:
+
+```shell
+pip install chroma-ops
+chops cleanup-wal /path/to/persist_dir
+```
+
+> ⚠️ IMPORTANT: It is always a good thing to backup your data before you prune the WAL.
+
+## Manual
 Steps:
 
 !!! danger "Stop Chroma"
