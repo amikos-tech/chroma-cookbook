@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://cookbook.chromadb.dev/core/collections/">
+        <link rel="canonical" href="https://cookbook.chromadb.dev/strategies/memory-management/">
       
       
-        <link rel="prev" href="../clients/">
+        <link rel="prev" href="../keyword-search/">
       
       
-        <link rel="next" href="../concepts/">
+        <link rel="next" href="../multi-tenancy/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Collections - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+        <title>Memory Management - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#collections" class="md-skip">
+        <a href="#memory-management" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Collections
+              Memory Management
             
           </span>
         </div>
@@ -342,8 +342,6 @@
       
   
   
-    
-  
   
   
     
@@ -373,17 +371,17 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../core/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -400,7 +398,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Core
@@ -416,7 +414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../clients/" class="md-nav__link">
+      <a href="../../core/clients/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -434,30 +432,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Collections
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../core/collections/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -466,130 +444,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#collection-basics" class="md-nav__link">
-    <span class="md-ellipsis">
-      Collection Basics
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Collection Basics">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#collection-properties" class="md-nav__link">
-    <span class="md-ellipsis">
-      Collection Properties
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#creating-a-collection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating a collection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deleting-a-collection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deleting a collection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#listing-all-collections" class="md-nav__link">
-    <span class="md-ellipsis">
-      Listing all collections
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#getting-a-collection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Getting a collection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#modifying-a-collection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Modifying a collection
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#collection-utilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Collection Utilities
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Collection Utilities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cloning-a-collection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cloning a collection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#updating-documentrecord-metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      Updating Document/Record Metadata
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -602,7 +456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../concepts/" class="md-nav__link">
+      <a href="../../core/concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -623,7 +477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../databases/" class="md-nav__link">
+      <a href="../../core/databases/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -644,7 +498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../document-ids/" class="md-nav__link">
+      <a href="../../core/document-ids/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -665,7 +519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
+      <a href="../../core/install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -686,7 +540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system_constraints/" class="md-nav__link">
+      <a href="../../core/system_constraints/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -750,7 +604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/wal-pruning/" class="md-nav__link">
+      <a href="../../core/advanced/wal-pruning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -771,7 +625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/wal/" class="md-nav__link">
+      <a href="../../core/advanced/wal/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1178,8 +1032,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1201,12 +1057,12 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1220,7 +1076,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Strategies
@@ -1234,7 +1090,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/backup/" class="md-nav__link">
+      <a href="../backup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1255,7 +1111,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/batching/" class="md-nav__link">
+      <a href="../batching/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1276,7 +1132,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/keyword-search/" class="md-nav__link">
+      <a href="../keyword-search/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1294,10 +1150,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../strategies/memory-management/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Memory Management
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1306,6 +1182,37 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#persistentclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      PersistentClient
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1318,7 +1225,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/multi-tenancy/" class="md-nav__link">
+      <a href="../multi-tenancy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1339,7 +1246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/privacy/" class="md-nav__link">
+      <a href="../privacy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1360,7 +1267,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/time-based-queries/" class="md-nav__link">
+      <a href="../time-based-queries/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1410,104 +1317,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#collection-basics" class="md-nav__link">
+  <a href="#persistentclient" class="md-nav__link">
     <span class="md-ellipsis">
-      Collection Basics
+      PersistentClient
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Collection Basics">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#collection-properties" class="md-nav__link">
-    <span class="md-ellipsis">
-      Collection Properties
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#creating-a-collection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating a collection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deleting-a-collection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deleting a collection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#listing-all-collections" class="md-nav__link">
-    <span class="md-ellipsis">
-      Listing all collections
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#getting-a-collection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Getting a collection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#modifying-a-collection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Modifying a collection
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#collection-utilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Collection Utilities
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Collection Utilities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cloning-a-collection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cloning a collection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#updating-documentrecord-metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      Updating Document/Record Metadata
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1529,104 +1343,35 @@
   
 
 
-<h1 id="collections">Collections<a class="headerlink" href="#collections" title="Permanent link">&para;</a></h1>
-<p>Collections are the grouping mechanism for embeddings, documents, and metadata.</p>
-<h2 id="collection-basics">Collection Basics<a class="headerlink" href="#collection-basics" title="Permanent link">&para;</a></h2>
-<h3 id="collection-properties">Collection Properties<a class="headerlink" href="#collection-properties" title="Permanent link">&para;</a></h3>
-<p>Each collection is characterized by the following properties:</p>
-<ul>
-<li><code>name</code>: The name of the collection</li>
-<li><code>metadata</code>: A dictionary of metadata associated with the collection. The metadata is a dictionary of key-value pairs.</li>
-</ul>
-<h3 id="creating-a-collection">Creating a collection<a class="headerlink" href="#creating-a-collection" title="Permanent link">&para;</a></h3>
+<h1 id="memory-management">Memory Management<a class="headerlink" href="#memory-management" title="Permanent link">&para;</a></h1>
+<h2 id="persistentclient">PersistentClient<a class="headerlink" href="#persistentclient" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Note: The below code snippets assume you are working with a <code>PersistentClient</code></p>
+</blockquote>
+<p>At the time of writing (Chroma v0.4.22), Chroma does not allow you to manually unloading of collections from memory.</p>
+<p>Here we provide a simple utility function to help users unload collections from memory.</p>
+<blockquote>
+<p>Note: The function relies on Chroma internal APIs which may change. While we try to keep this documentation
+up-to-date, there may be versions of Chroma for which the below code won't work.</p>
+</blockquote>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>  <span class="c1"># or HttpClient()</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">col</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-</span></code></pre></div>
-<p>Alternatively you can use the <code>get_or_create_collection</code> method to create a collection if it doesn't exist already.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>  <span class="c1"># or HttpClient()</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">col</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-</span></code></pre></div>
-<h3 id="deleting-a-collection">Deleting a collection<a class="headerlink" href="#deleting-a-collection" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>  <span class="c1"># or HttpClient()</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">client</span><span class="o">.</span><span class="n">delete_collection</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-</span></code></pre></div>
-<h3 id="listing-all-collections">Listing all collections<a class="headerlink" href="#listing-all-collections" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>  <span class="c1"># or HttpClient()</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">collections</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">list_collections</span><span class="p">()</span>
-</span></code></pre></div>
-<h3 id="getting-a-collection">Getting a collection<a class="headerlink" href="#getting-a-collection" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>  <span class="c1"># or HttpClient()</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">col</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_collection</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-</span></code></pre></div>
-<h3 id="modifying-a-collection">Modifying a collection<a class="headerlink" href="#modifying-a-collection" title="Permanent link">&para;</a></h3>
-<p>Both collection properties (<code>name</code> and <code>metadata</code>) can be modified.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>  <span class="c1"># or HttpClient()</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">col</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_collection</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">col</span><span class="o">.</span><span class="n">modify</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;test2&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">})</span>
-</span></code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Metadata</p>
-<p>Metadata is always overwritten when modified. If you want to add a new key-value pair to the metadata, you must
-first get the existing metadata and then add the new key-value pair to it.</p>
-</div>
-<h2 id="collection-utilities">Collection Utilities<a class="headerlink" href="#collection-utilities" title="Permanent link">&para;</a></h2>
-<h3 id="cloning-a-collection">Cloning a collection<a class="headerlink" href="#cloning-a-collection" title="Permanent link">&para;</a></h3>
-<p>Here are some reasons why you might want to clone a collection:</p>
-<ul>
-<li>Change distance function (via metadata - <code>hnsw:space</code>)</li>
-<li>Change HNSW hyper parameters (<code>hnsw:M</code>, <code>hnsw:construction_ef</code>, <code>hnsw:search_ef</code>)</li>
-</ul>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>  <span class="c1"># or HttpClient()</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">col</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>  <span class="c1"># create a new collection with L2 (default)</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">col</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)],</span> <span class="n">documents</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;document </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)])</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">newCol</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;test1&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="s2">&quot;hnsw:space&quot;</span><span class="p">:</span> <span class="s2">&quot;cosine&quot;</span><span class="p">})</span>  <span class="c1"># let&#39;s change the distance function to cosine</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">existing_count</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">existing_count</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>    <span class="n">batch</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;metadatas&quot;</span><span class="p">,</span> <span class="s2">&quot;documents&quot;</span><span class="p">,</span> <span class="s2">&quot;embeddings&quot;</span><span class="p">],</span> <span class="n">limit</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>    <span class="n">newCol</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;ids&quot;</span><span class="p">],</span> <span class="n">documents</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;documents&quot;</span><span class="p">],</span> <span class="n">metadatas</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;metadatas&quot;</span><span class="p">],</span>
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>               <span class="n">embeddings</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;embeddings&quot;</span><span class="p">])</span>
-</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">newCol</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
-</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="nb">print</span><span class="p">(</span><span class="n">newCol</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>  <span class="c1"># get first 10 documents</span>
-</span></code></pre></div>
-<h3 id="updating-documentrecord-metadata">Updating Document/Record Metadata<a class="headerlink" href="#updating-documentrecord-metadata" title="Permanent link">&para;</a></h3>
-<p>In this example we loop through all documents of a collection and strip all metadata fields of leading and trailing
-whitespace.
-Change the <code>update_metadata</code> function to suit your needs.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span> <span class="nn">chromadb</span> <span class="kn">import</span> <span class="n">Settings</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">Settings</span><span class="p">(</span><span class="n">allow_reset</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">client</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>  <span class="c1"># reset the database so we can run this script multiple times</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">col</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">count</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="k">def</span> <span class="nf">update_metadata</span><span class="p">(</span><span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">metadata</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>
-</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>    <span class="n">batch</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;metadatas&quot;</span><span class="p">],</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
-</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>    <span class="n">col</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;ids&quot;</span><span class="p">],</span> <span class="n">metadatas</span><span class="o">=</span><span class="p">[</span><span class="n">update_metadata</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span> <span class="k">for</span> <span class="n">metadata</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;metadatas&quot;</span><span class="p">]])</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">chromadb.segment</span> <span class="kn">import</span> <span class="n">VectorReader</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span> <span class="nn">chromadb.types</span> <span class="kn">import</span> <span class="n">SegmentScope</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">def</span> <span class="nf">unload_index</span><span class="p">(</span><span class="n">collection_name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">chroma_client</span><span class="p">:</span><span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">):</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="sd">    Unloads binary hnsw index from memory and removes both segments (binary and metadata) from the segment cache.</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">collection</span> <span class="o">=</span> <span class="n">chroma_client</span><span class="o">.</span><span class="n">get_collection</span><span class="p">(</span><span class="n">collection_name</span><span class="p">)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">segment_manager</span> <span class="o">=</span> <span class="n">chroma_client</span><span class="o">.</span><span class="n">_server</span><span class="o">.</span><span class="n">_manager</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">segment</span> <span class="o">=</span> <span class="n">segment_manager</span><span class="o">.</span><span class="n">get_segment</span><span class="p">(</span><span class="n">collection</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">VectorReader</span><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">segment</span><span class="o">.</span><span class="n">close_persistent_index</span><span class="p">()</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="k">if</span> <span class="n">collection</span><span class="o">.</span><span class="n">id</span> <span class="ow">in</span> <span class="n">segment_manager</span><span class="o">.</span><span class="n">_segment_cache</span><span class="p">:</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="k">for</span> <span class="n">scope</span> <span class="ow">in</span> <span class="p">[</span><span class="n">SegmentScope</span><span class="o">.</span><span class="n">VECTOR</span><span class="p">,</span> <span class="n">SegmentScope</span><span class="o">.</span><span class="n">METADATA</span><span class="p">]:</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>            <span class="k">if</span> <span class="n">scope</span> <span class="ow">in</span> <span class="n">segment_manager</span><span class="o">.</span><span class="n">_segment_cache</span><span class="p">[</span><span class="n">collection</span><span class="o">.</span><span class="n">id</span><span class="p">]:</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>                <span class="k">del</span> <span class="n">segment_manager</span><span class="o">.</span><span class="n">_segment_cache</span><span class="p">[</span><span class="n">collection</span><span class="o">.</span><span class="n">id</span><span class="p">][</span><span class="n">segment</span><span class="p">[</span><span class="s2">&quot;scope&quot;</span><span class="p">]]</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="k">del</span> <span class="n">segment_manager</span><span class="o">.</span><span class="n">_segment_cache</span><span class="p">[</span><span class="n">collection</span><span class="o">.</span><span class="n">id</span><span class="p">]</span>
 </span></code></pre></div>
 
 
