@@ -89,21 +89,32 @@ client = chromadb.PersistentClient(path="my_local_data")
 remote_client = chromadb.HttpClient()
 
 collection = client.get_or_create_collection("local_collection")
-collection.add(ids=["1","2"],documents=["hello world","hello ChromaDB"],metadatas=[{"a":1},{"b":2}])
-remote_collection = remote_client.get_or_create_collection("remote_collection",metadata=collection.metadata)
+collection.add(
+    ids=["1","2"],
+    documents=["hello world","hello ChromaDB"],
+    metadatas=[{"a":1},{"b":2}])
+remote_collection = remote_client.get_or_create_collection("remote_collection",
+                                                           metadata=collection.metadata)
 existing_count = collection.count()
 batch_size = 10
 for i in range(0, existing_count, batch_size):
-    batch = collection.get(include=["metadatas", "documents", "embeddings"], limit=batch_size, offset=i)
-    remote_collection.add(ids=batch["ids"], documents=batch["documents"], metadatas=batch["metadatas"],
-                          embeddings=batch["embeddings"])
+    batch = collection.get(
+        include=["metadatas", "documents", "embeddings"], 
+        limit=batch_size, 
+        offset=i)
+    remote_collection.add(
+        ids=batch["ids"], 
+        documents=batch["documents"], 
+        metadatas=batch["metadatas"],
+        embeddings=batch["embeddings"])
 ```
 
 !!! note "Using ChromaDB Data Pipes"
     There is a more efficient way to copy data between local and remote collections using ChromaDB Data Pipes package.
     ```bash
     pip install chromadb-data-pipes
-    cdp export "file://path/to_local_data/local_collection" | cdp import "http://remote_chromadb:port/remote_collection" --create
+    cdp export "file://path/to_local_data/local_collection" | \
+    cdp import "http://remote_chromadb:port/remote_collection" --create
     ```
 
 ### Cloning a collection
