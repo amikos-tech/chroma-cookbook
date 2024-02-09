@@ -520,6 +520,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ephemeral-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ephemeral Client
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environmental-variable-configured-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environmental Variable Configured Client
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1421,6 +1439,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ephemeral-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ephemeral Client
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environmental-variable-configured-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environmental Variable Configured Client
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1490,6 +1526,55 @@ important to note that there are trade-offs associated with using HTTP client:</
 <p>The <code>host</code> parameter supports a more advanced syntax than just the hostname. You can specify the whole endpoint ULR (
 without the API paths), e.g. <code>https://chromadb.example.com:8000/my_server/path/</code>. This is useful when you want to use a
 reverse proxy or load balancer in front of your ChromaDB server.</p>
+<h2 id="ephemeral-client">Ephemeral Client<a class="headerlink" href="#ephemeral-client" title="Permanent link">&para;</a></h2>
+<p>Ephemeral client is a client that does not store any data on disk. It is useful for fast prototyping and testing. To get
+started with an ephemeral client, use the <code>EphemeralClient</code> class.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">EphemeralClient</span><span class="p">()</span>
+</span></code></pre></div>
+<h2 id="environmental-variable-configured-client">Environmental Variable Configured Client<a class="headerlink" href="#environmental-variable-configured-client" title="Permanent link">&para;</a></h2>
+<p>You can also configure the client using environmental variables. This is useful when you want to configure any of the
+client configurations listed above via environmental variables.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+</span></code></pre></div>
+<p>Short list of env variables that can be used to configure the client:</p>
+<blockquote>
+<p><strong>Note</strong>: For complete list of available settings check (<a href="https://github.com/chroma-core/chroma/blob/c665838b0d143e2c2ceb82c4ade7404dc98124ff/chromadb/config.py#L83"><code>chromadb.config.Settings</code></a>).</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Env Variable</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chroma_api_impl</td>
+<td>The API implementation to use. There are two options:<br/> <code>chromadb.api.segment.SegmentAPI</code> (persistent client) <br/> <code>chromadb.api.fastapi.FastAPI</code> (Http client)</td>
+<td><code>chromadb.api.segment.SegmentAPI</code></td>
+</tr>
+<tr>
+<td>chroma_server_host</td>
+<td>The host of the remote server. This is required for HttpClient only.</td>
+<td><code>None</code>/<code>null</code></td>
+</tr>
+<tr>
+<td>chroma_server_http_port</td>
+<td>The port of the remote server. This is required for HttpClient only.</td>
+<td><code>8000</code></td>
+</tr>
+<tr>
+<td>chroma_server_headers</td>
+<td>The headers to be sent to the server. This is required for HttpClient only.</td>
+<td><code>None</code>/<code>null</code></td>
+</tr>
+</tbody>
+</table>
 
 
 
