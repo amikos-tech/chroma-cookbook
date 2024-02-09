@@ -62,3 +62,36 @@ important to note that there are trade-offs associated with using HTTP client:
 The `host` parameter supports a more advanced syntax than just the hostname. You can specify the whole endpoint ULR (
 without the API paths), e.g. `https://chromadb.example.com:8000/my_server/path/`. This is useful when you want to use a
 reverse proxy or load balancer in front of your ChromaDB server.
+
+## Ephemeral Client
+
+Ephemeral client is a client that does not store any data on disk. It is useful for fast prototyping and testing. To get
+started with an ephemeral client, use the `EphemeralClient` class.
+
+```python
+import chromadb
+
+client = chromadb.EphemeralClient()
+```
+
+## Environmental Variable Configured Client
+
+You can also configure the client using environmental variables. This is useful when you want to configure any of the
+client configurations listed above via environmental variables.
+
+```python
+import chromadb
+
+client = chromadb.Client()
+```
+
+Short list of env variables that can be used to configure the client:
+
+> **Note**: For complete list of available settings check ([`chromadb.config.Settings`](https://github.com/chroma-core/chroma/blob/c665838b0d143e2c2ceb82c4ade7404dc98124ff/chromadb/config.py#L83)).
+
+| Env Variable            | Description                                                                                                                                                         | Default                           |
+|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
+| chroma_api_impl         | The API implementation to use. There are two options:<br/> `chromadb.api.segment.SegmentAPI` (persistent client) <br/> `chromadb.api.fastapi.FastAPI` (Http client) | `chromadb.api.segment.SegmentAPI` |
+| chroma_server_host      | The host of the remote server. This is required for HttpClient only.                                                                                                | `None`/`null`                     |
+| chroma_server_http_port | The port of the remote server. This is required for HttpClient only.                                                                                                | `8000`                            |
+| chroma_server_headers   | The headers to be sent to the server. This is required for HttpClient only.                                                                                         | `None`/`null`                     |
