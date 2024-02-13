@@ -60,9 +60,9 @@ official [documentation](https://docs.trychroma.com/embeddings).
 Distance functions help in calculating the difference (distance) between two embedding vectors. ChromaDB supports the
 following distance functions:
 
-- cosine - Useful for text similarity
-- euclidean (L2) - useful for text similarity, more sensitive to noise than `cosine`
-- Inner Product (IP) - recommender systems
+- Cosine - Useful for text similarity
+- Euclidean (L2) - Useful for text similarity, more sensitive to noise than `cosine`
+- Inner Product (IP) - Recommender systems
 
 ## Embedding Vector
 
