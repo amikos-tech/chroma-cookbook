@@ -50,3 +50,74 @@ volumes:
   chroma-data:
     driver: local
 ```
+
+## Kubernetes
+
+In kubernetes you can use the `livenessProbe` and `readinessProbe` to check the health of the server. This is useful if
+you are deploying Chroma in a kubernetes cluster.
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chroma
+  labels:
+    app: chroma
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+          app: chroma
+    template:
+        metadata:
+            labels:
+                app: chroma
+        spec:
+            containers:
+              - name: chroma
+                image: <chroma-image>
+                ports:
+                - containerPort: 8000
+                livenessProbe:
+                    httpGet:
+                        path: /api/v1
+                        port: 8000
+                    initialDelaySeconds: 5
+                    periodSeconds: 5
+                readinessProbe:
+                    httpGet:
+                        path: /api/v1
+                        port: 8000
+                    initialDelaySeconds: 5
+                    periodSeconds: 5
+                startupProbe:
+                    httpGet:
+                      path: /api/v1
+                      port: 8000
+                    failureThreshold: 3
+                    periodSeconds: 60
+                    initialDelaySeconds: 60
+```
+
+Alternative to the `httpGet` you can also use `tcpSocket`:
+    
+```yaml
+          readinessProbe:
+            tcpSocket:
+              port: 8000
+            failureThreshold: 3
+            timeoutSeconds: 30
+            periodSeconds: 60
+          livenessProbe:
+            tcpSocket:
+              port: 8000
+            failureThreshold: 3
+            timeoutSeconds: 30
+            periodSeconds: 60
+          startupProbe:
+            tcpSocket:
+              port: 8000
+            failureThreshold: 3
+            periodSeconds: 60
+            initialDelaySeconds: 60
+```
