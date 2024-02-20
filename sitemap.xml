@@ -2,137 +2,142 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://cookbook.chromadb.dev/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/contributing/getting-started/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/contributing/useful-shortcuts/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/core/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/core/clients/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/core/collections/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/core/concepts/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/core/document-ids/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/core/install/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/core/system_constraints/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/core/tenants-and-databases/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/core/advanced/wal-pruning/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/core/advanced/wal/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/embeddings/bring-your-own-embeddings/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/embeddings/gpu-support/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/integrations/langchain/embeddings/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/integrations/langchain/retrievers/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/integrations/llamaindex/embeddings/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/running/health-checks/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/running/running-chroma/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/strategies/backup/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/strategies/batching/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/strategies/keyword-search/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/strategies/memory-management/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/strategies/multi-tenancy/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/strategies/privacy/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://cookbook.chromadb.dev/strategies/rebuilding/</loc>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/strategies/time-based-queries/</loc>
-         <lastmod>2024-02-14</lastmod>
+         <lastmod>2024-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

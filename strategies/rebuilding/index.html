@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://cookbook.chromadb.dev/embeddings/bring-your-own-embeddings/">
+        <link rel="canonical" href="https://cookbook.chromadb.dev/strategies/rebuilding/">
       
       
-        <link rel="prev" href="../../core/advanced/wal/">
+        <link rel="prev" href="../privacy/">
       
       
-        <link rel="next" href="../gpu-support/">
+        <link rel="next" href="../time-based-queries/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Creating your own embedding function - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+        <title>Rebuilding Chroma DB - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#creating-your-own-embedding-function" class="md-skip">
+        <a href="#rebuilding-chroma-db" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Creating your own embedding function
+              Rebuilding Chroma DB
             
           </span>
         </div>
@@ -652,10 +652,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -666,11 +664,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -684,7 +682,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Embeddings
@@ -695,19 +693,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../embeddings/bring-your-own-embeddings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -716,7 +705,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -729,7 +717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../gpu-support/" class="md-nav__link">
+      <a href="../../embeddings/gpu-support/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1051,8 +1039,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1075,11 +1065,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1093,7 +1083,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Strategies
@@ -1107,7 +1097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/backup/" class="md-nav__link">
+      <a href="../backup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1128,7 +1118,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/batching/" class="md-nav__link">
+      <a href="../batching/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1149,7 +1139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/keyword-search/" class="md-nav__link">
+      <a href="../keyword-search/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1170,7 +1160,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/memory-management/" class="md-nav__link">
+      <a href="../memory-management/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1191,7 +1181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/multi-tenancy/" class="md-nav__link">
+      <a href="../multi-tenancy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1212,7 +1202,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/privacy/" class="md-nav__link">
+      <a href="../privacy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1230,10 +1220,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../strategies/rebuilding/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Rebuilding Chroma DB
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1242,6 +1252,37 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rebuilding-a-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rebuilding a Collection
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1254,7 +1295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/time-based-queries/" class="md-nav__link">
+      <a href="../time-based-queries/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1297,6 +1338,23 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rebuilding-a-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rebuilding a Collection
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1313,26 +1371,38 @@
   
 
 
-<h1 id="creating-your-own-embedding-function">Creating your own embedding function<a class="headerlink" href="#creating-your-own-embedding-function" title="Permanent link">&para;</a></h1>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">chromadb.api.types</span> <span class="kn">import</span> <span class="p">(</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">Documents</span><span class="p">,</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">EmbeddingFunction</span><span class="p">,</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">Embeddings</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">)</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">class</span> <span class="nc">MyCustomEmbeddingFunction</span><span class="p">(</span><span class="n">EmbeddingFunction</span><span class="p">[</span><span class="n">Documents</span><span class="p">]):</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="bp">self</span><span class="p">,</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="n">my_ef_param</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="p">):</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the embedding function.&quot;&quot;&quot;</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Documents</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Embeddings</span><span class="p">:</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Embed the input documents.&quot;&quot;&quot;</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_my_ef</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<h1 id="rebuilding-chroma-db">Rebuilding Chroma DB<a class="headerlink" href="#rebuilding-chroma-db" title="Permanent link">&para;</a></h1>
+<h2 id="rebuilding-a-collection">Rebuilding a Collection<a class="headerlink" href="#rebuilding-a-collection" title="Permanent link">&para;</a></h2>
+<p>Here are several reasons you might want to rebuild a collection:</p>
+<ul>
+<li>Your metadata or binary index is corrupted or even deleted</li>
+<li>Optimize performance of HNSW index after a large number of updates</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">WAL Consistency and Backups</p>
+<p>Before you proceed, make sure to backup your data. Secondly make sure that your WAL contains all the data to allow 
+the proper rebuilding of the collection. For instance, after v0.4.22 you should not have run optimizations or WAL 
+cleanup.</p>
+</div>
+<div class="admonition warn">
+<p class="admonition-title">IMPORTANT</p>
+<p>Only do this on a stopped Chroma instance.</p>
+</div>
+<p>Find the UUID of the target binary index directory to remove. Typically, the binary index directory is located in the
+persistent directory and is named after the collection vector segment (in <code>segments</code> table). You can find the UUID by
+running the following SQL query:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sqlite3<span class="w"> </span>/path/to/db/chroma.sqlite3<span class="w"> </span><span class="s2">&quot;select s.id, c.name from segments s join collections c on  s.collection=c.id where s.scope=&#39;VECTOR&#39;;&quot;</span>
 </span></code></pre></div>
-<p>Now let's break the above down.</p>
-<p>First you create a class that inherits from <code>EmbeddingFunction[Documents]</code>. The <code>Documents</code> type is a list of <code>Document</code> objects. Each <code>Document</code> object has a <code>text</code> attribute that contains the text of the document. Chroma also supports multi-modal</p>
+<p>The above should print UUID dir and collection names.</p>
+<p>Once you remove/rename the UUID dir, restart Chroma and query your collection like so:</p>
+<p>import chromadb
+client = chromadb.HttpClient() # Adjust as per your client
+res = client.get_collection("my_collection").get(limit=1,include=['embeddings'])</p>
+<p>Your collection will be recreated.</p>
+<div class="admonition note">
+<p class="admonition-title">Rebuilding the collection</p>
+<p>Depending on how large your collection is, this process can take a while.</p>
+</div>
 
 
 
