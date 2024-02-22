@@ -1581,9 +1581,27 @@
 <h3 id="collection-properties">Collection Properties<a class="headerlink" href="#collection-properties" title="Permanent link">&para;</a></h3>
 <p>Each collection is characterized by the following properties:</p>
 <ul>
-<li><code>name</code>: The name of the collection</li>
-<li><code>metadata</code>: A dictionary of metadata associated with the collection. The metadata is a dictionary of key-value pairs.</li>
+<li><code>name</code>: The name of the collection. The name can be changed as long as it is unique within the database (
+  use <code>collection.modify(new_name="new_name")</code> to change the name of the collection</li>
+<li><code>metadata</code>: A dictionary of metadata associated with the collection. The metadata is a dictionary of key-value pairs.
+  Keys can be strings, values can be strings, integers, floats, or booleans. Metadata can be changed
+  using <code>collection.modify(new_metadata={"key": "value"})</code> (Note: Metadata is always overwritten when modified)</li>
 </ul>
+<p>Defaults:</p>
+<ul>
+<li>distance metric - by default Chroma use L2 distance metric for newly created collection. You can change it at creation
+  time using <code>hnsw:space</code> metadata key. Possible values are <code>l2</code>, <code>cosine</code>, and 'ip' (inner product)</li>
+<li>Batch size, defined by <code>hnsw:batch_size</code> metadata key. Default is 100. The batch size defines the size of the
+  in-memory bruteforce index. Once the threshold is reached, vectors are added to the HNSW index and the bruteforce
+  index is cleared. Greater values may improve ingest performance. When updating also consider changing sync threshold</li>
+<li>Sync threshold, defined by <code>hnsw:sync_threshold</code> metadata key. Default 1000. The sync threshold defines the limit at
+  which the HNSW index is synced to disk. This limit only applies to newly added vectors.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Keep in Mind</p>
+<p>Collection distance metric cannot be changed after the collection is created. 
+To change the distance metric see #cloning-a-collection</p>
+</div>
 <h3 id="creating-a-collection">Creating a collection<a class="headerlink" href="#creating-a-collection" title="Permanent link">&para;</a></h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -1629,7 +1647,8 @@ first get the existing metadata and then add the new key-value pair to it.</p>
 </div>
 <h2 id="collection-utilities">Collection Utilities<a class="headerlink" href="#collection-utilities" title="Permanent link">&para;</a></h2>
 <h3 id="copying-local-collection-to-remote">Copying Local Collection to Remote<a class="headerlink" href="#copying-local-collection-to-remote" title="Permanent link">&para;</a></h3>
-<p>The following example demonstrates how to copy a local collection to a remote ChromaDB server. (it also works in reverse)</p>
+<p>The following example demonstrates how to copy a local collection to a remote ChromaDB server. (it also works in
+reverse)</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;my_local_data&quot;</span><span class="p">)</span>
@@ -1637,32 +1656,32 @@ first get the existing metadata and then add the new key-value pair to it.</p>
 </span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">collection</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;local_collection&quot;</span><span class="p">)</span>
 </span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="s2">&quot;2&quot;</span><span class="p">],</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="n">documents</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span><span class="s2">&quot;hello ChromaDB&quot;</span><span class="p">],</span>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="n">metadatas</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">},{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">}])</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">],</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="n">documents</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="s2">&quot;hello ChromaDB&quot;</span><span class="p">],</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="n">metadatas</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}])</span>
 </span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="n">remote_collection</span> <span class="o">=</span> <span class="n">remote_client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;remote_collection&quot;</span><span class="p">,</span>
 </span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>                                                           <span class="n">metadata</span><span class="o">=</span><span class="n">collection</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
 </span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="n">existing_count</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
 </span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">existing_count</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
 </span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>    <span class="n">batch</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>        <span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;metadatas&quot;</span><span class="p">,</span> <span class="s2">&quot;documents&quot;</span><span class="p">,</span> <span class="s2">&quot;embeddings&quot;</span><span class="p">],</span> 
-</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>        <span class="n">limit</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> 
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>        <span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;metadatas&quot;</span><span class="p">,</span> <span class="s2">&quot;documents&quot;</span><span class="p">,</span> <span class="s2">&quot;embeddings&quot;</span><span class="p">],</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>        <span class="n">limit</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
 </span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>        <span class="n">offset</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
 </span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>    <span class="n">remote_collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>        <span class="n">ids</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;ids&quot;</span><span class="p">],</span> 
-</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>        <span class="n">documents</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;documents&quot;</span><span class="p">],</span> 
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>        <span class="n">ids</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;ids&quot;</span><span class="p">],</span>
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>        <span class="n">documents</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;documents&quot;</span><span class="p">],</span>
 </span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>        <span class="n">metadatas</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;metadatas&quot;</span><span class="p">],</span>
 </span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>        <span class="n">embeddings</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;embeddings&quot;</span><span class="p">])</span>
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Using ChromaDB Data Pipes</p>
-<p>There is a more efficient way to copy data between local and remote collections using ChromaDB Data Pipes package.
+</div>
+<p>There is a more efficient way to copy data between local and remote collections using ChromaDB Data Pipes package.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pip<span class="w"> </span>install<span class="w"> </span>chromadb-data-pipes
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>cdp<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="s2">&quot;file://path/to_local_data/local_collection&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>cdp<span class="w"> </span>import<span class="w"> </span><span class="s2">&quot;http://remote_chromadb:port/remote_collection&quot;</span><span class="w"> </span>--create
-</span></code></pre></div></p>
-</div>
+</span></code></pre></div>
 <h3 id="cloning-a-collection">Cloning a collection<a class="headerlink" href="#cloning-a-collection" title="Permanent link">&para;</a></h3>
 <p>Here are some reasons why you might want to clone a collection:</p>
 <ul>
