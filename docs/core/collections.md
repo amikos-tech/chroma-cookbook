@@ -8,8 +8,26 @@ Collections are the grouping mechanism for embeddings, documents, and metadata.
 
 Each collection is characterized by the following properties:
 
-- `name`: The name of the collection
+- `name`: The name of the collection. The name can be changed as long as it is unique within the database (
+  use `collection.modify(new_name="new_name")` to change the name of the collection
 - `metadata`: A dictionary of metadata associated with the collection. The metadata is a dictionary of key-value pairs.
+  Keys can be strings, values can be strings, integers, floats, or booleans. Metadata can be changed
+  using `collection.modify(new_metadata={"key": "value"})` (Note: Metadata is always overwritten when modified)
+
+Defaults:
+
+- distance metric - by default Chroma use L2 distance metric for newly created collection. You can change it at creation
+  time using `hnsw:space` metadata key. Possible values are `l2`, `cosine`, and 'ip' (inner product)
+- Batch size, defined by `hnsw:batch_size` metadata key. Default is 100. The batch size defines the size of the
+  in-memory bruteforce index. Once the threshold is reached, vectors are added to the HNSW index and the bruteforce
+  index is cleared. Greater values may improve ingest performance. When updating also consider changing sync threshold
+- Sync threshold, defined by `hnsw:sync_threshold` metadata key. Default 1000. The sync threshold defines the limit at
+  which the HNSW index is synced to disk. This limit only applies to newly added vectors.
+
+!!! note "Keep in Mind"
+
+    Collection distance metric cannot be changed after the collection is created. 
+    To change the distance metric see #cloning-a-collection
 
 ### Creating a collection
 
@@ -75,12 +93,12 @@ col.modify(name="test2", metadata={"key": "value"})
     Metadata is always overwritten when modified. If you want to add a new key-value pair to the metadata, you must
     first get the existing metadata and then add the new key-value pair to it.
 
-
 ## Collection Utilities
 
 ### Copying Local Collection to Remote
 
-The following example demonstrates how to copy a local collection to a remote ChromaDB server. (it also works in reverse)
+The following example demonstrates how to copy a local collection to a remote ChromaDB server. (it also works in
+reverse)
 
 ```python
 import chromadb
@@ -90,32 +108,33 @@ remote_client = chromadb.HttpClient()
 
 collection = client.get_or_create_collection("local_collection")
 collection.add(
-    ids=["1","2"],
-    documents=["hello world","hello ChromaDB"],
-    metadatas=[{"a":1},{"b":2}])
+    ids=["1", "2"],
+    documents=["hello world", "hello ChromaDB"],
+    metadatas=[{"a": 1}, {"b": 2}])
 remote_collection = remote_client.get_or_create_collection("remote_collection",
                                                            metadata=collection.metadata)
 existing_count = collection.count()
 batch_size = 10
 for i in range(0, existing_count, batch_size):
     batch = collection.get(
-        include=["metadatas", "documents", "embeddings"], 
-        limit=batch_size, 
+        include=["metadatas", "documents", "embeddings"],
+        limit=batch_size,
         offset=i)
     remote_collection.add(
-        ids=batch["ids"], 
-        documents=batch["documents"], 
+        ids=batch["ids"],
+        documents=batch["documents"],
         metadatas=batch["metadatas"],
         embeddings=batch["embeddings"])
 ```
 
 !!! note "Using ChromaDB Data Pipes"
-    There is a more efficient way to copy data between local and remote collections using ChromaDB Data Pipes package.
-    ```bash
-    pip install chromadb-data-pipes
-    cdp export "file://path/to_local_data/local_collection" | \
-    cdp import "http://remote_chromadb:port/remote_collection" --create
-    ```
+There is a more efficient way to copy data between local and remote collections using ChromaDB Data Pipes package.
+
+```bash
+pip install chromadb-data-pipes
+cdp export "file://path/to_local_data/local_collection" | \
+cdp import "http://remote_chromadb:port/remote_collection" --create
+```
 
 ### Cloning a collection
 
