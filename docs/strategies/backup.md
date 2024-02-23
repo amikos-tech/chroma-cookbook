@@ -1,6 +1,6 @@
 # ChromaDB Backups
 
-Depending on your use case there are a few different ways to backup your ChromaDB data.
+Depending on your use case there are a few different ways to back up your ChromaDB data.
 
 - API export - this approach is relatively simple, slow for large datasets and may result in a backup that is missing
   some updates, should your data change frequently.
@@ -15,7 +15,26 @@ Depending on your use case there are a few different ways to backup your ChromaD
 
 ## API Export
 
-TBD
+### With Chroma Datapipes
+
+One way to export via the API is to use Tooling like Chroma Data Pipes. Chroma Data Pipes is a command-line tool that
+provides a simple way import/export/transform ChromaDB data.
+
+Exporting from local filesystem:
+
+```bash
+cdp export "file:///absolute/path/to/chroma-data/my-collection-name" > my_chroma_data.jsonl
+```
+
+Exporting from remote server:
+
+```bash
+cdp export "http://remote-chroma-server:8000/my-collection-name" > my_chroma_data.jsonl
+```
+
+!!! note "Get Help"
+
+    Read more about Chroma Data Pipes [here](https://datapipes.chromadb.dev)
 
 ## Disk Snapshot
 
