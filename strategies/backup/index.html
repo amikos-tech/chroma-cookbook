@@ -1151,6 +1151,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="API Export">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#with-chroma-datapipes" class="md-nav__link">
+    <span class="md-ellipsis">
+      With Chroma Datapipes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1369,6 +1384,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="API Export">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#with-chroma-datapipes" class="md-nav__link">
+    <span class="md-ellipsis">
+      With Chroma Datapipes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1408,7 +1438,7 @@
 
 
 <h1 id="chromadb-backups">ChromaDB Backups<a class="headerlink" href="#chromadb-backups" title="Permanent link">&para;</a></h1>
-<p>Depending on your use case there are a few different ways to backup your ChromaDB data.</p>
+<p>Depending on your use case there are a few different ways to back up your ChromaDB data.</p>
 <ul>
 <li>API export - this approach is relatively simple, slow for large datasets and may result in a backup that is missing
   some updates, should your data change frequently.</li>
@@ -1422,7 +1452,19 @@
 <p>Have another option in mind, feel free to <a href="https://github.com/amikos-tech/chroma-cookbook">add</a> it to the above list.</p>
 </div>
 <h2 id="api-export">API Export<a class="headerlink" href="#api-export" title="Permanent link">&para;</a></h2>
-<p>TBD</p>
+<h3 id="with-chroma-datapipes">With Chroma Datapipes<a class="headerlink" href="#with-chroma-datapipes" title="Permanent link">&para;</a></h3>
+<p>One way to export via the API is to use Tooling like Chroma Data Pipes. Chroma Data Pipes is a command-line tool that
+provides a simple way import/export/transform ChromaDB data.</p>
+<p>Exporting from local filesystem:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cdp<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="s2">&quot;file:///absolute/path/to/chroma-data/my-collection-name&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>my_chroma_data.jsonl
+</span></code></pre></div>
+<p>Exporting from remote server:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cdp<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="s2">&quot;http://remote-chroma-server:8000/my-collection-name&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>my_chroma_data.jsonl
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Get Help</p>
+<p>Read more about Chroma Data Pipes <a href="https://datapipes.chromadb.dev">here</a></p>
+</div>
 <h2 id="disk-snapshot">Disk Snapshot<a class="headerlink" href="#disk-snapshot" title="Permanent link">&para;</a></h2>
 <p>TBD</p>
 <h2 id="filesystem-backup">Filesystem Backup<a class="headerlink" href="#filesystem-backup" title="Permanent link">&para;</a></h2>
