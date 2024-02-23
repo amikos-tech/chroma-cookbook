@@ -2,7 +2,7 @@
 
 This is a collection of small guides and recipes to help you get started with ChromaDB.
 
-Latest ChromaDB version: [0.4.22](https://github.com/chroma-core/chroma/releases/tag/0.4.22)
+Latest ChromaDB version: [0.4.23](https://github.com/chroma-core/chroma/releases/tag/0.4.23)
 
 ## Getting Started
 
