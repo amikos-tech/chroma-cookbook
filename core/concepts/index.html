@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.10">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.11">
     
     
       
@@ -367,6 +367,8 @@
       
         
       
+        
+      
     
     
     
@@ -646,6 +648,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../filters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Filters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../install/" class="md-nav__link">
         
   
@@ -722,10 +745,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
         
           
-          <label class="md-nav__link" for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -736,8 +759,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
             <span class="md-nav__icon md-icon"></span>
             Advanced
           </label>
@@ -1601,7 +1624,7 @@ database and can be queried for.</p>
 <ul>
 <li>strings</li>
 <li>integers</li>
-<li>floats</li>
+<li>floats (float32)</li>
 <li>booleans</li>
 </ul>
 <h2 id="embedding-function">Embedding Function<a class="headerlink" href="#embedding-function" title="Permanent link">&para;</a></h2>
@@ -1621,6 +1644,7 @@ following distance functions:</p>
 <p>A representation of a document in the embedding space in te form of a vector, list of 32-bit floats (or ints).</p>
 <h2 id="embedding-model">Embedding Model<a class="headerlink" href="#embedding-model" title="Permanent link">&para;</a></h2>
 <h2 id="document-and-metadata-index">Document and Metadata Index<a class="headerlink" href="#document-and-metadata-index" title="Permanent link">&para;</a></h2>
+<p>The document and metadata index is stored in SQLite database.</p>
 <h2 id="vector-index-hnsw-index">Vector Index (HNSW Index)<a class="headerlink" href="#vector-index-hnsw-index" title="Permanent link">&para;</a></h2>
 <p>Under the hood (ca. v0.4.22) Chroma uses its
 own <a href="https://github.com/chroma-core/hnswlib">fork</a> <a href="https://github.com/nmslib/hnswlib">HNSW lib</a> for indexing and

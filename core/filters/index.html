@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://cookbook.chromadb.dev/core/clients/">
+        <link rel="canonical" href="https://cookbook.chromadb.dev/core/filters/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../document-ids/">
       
       
-        <link rel="next" href="../collections/">
+        <link rel="next" href="../install/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Chroma Clients - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+        <title>Filters - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chroma-clients" class="md-skip">
+        <a href="#filters" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chroma Clients
+              Filters
             
           </span>
         </div>
@@ -411,30 +411,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Chroma Clients
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../clients/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -443,103 +423,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#persistent-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Persistent Client
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Persistent Client">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#uses-of-persistent-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Uses of Persistent Client
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#http-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      HTTP Client
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="HTTP Client">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#uses-of-http-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Uses of HTTP Client
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#host-parameter-special-cases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Host parameter special cases
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ephemeral-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ephemeral Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#environmental-variable-configured-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Environmental Variable Configured Client
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -612,10 +495,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../filters/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Filters
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -624,6 +527,184 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metadata-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metadata Filters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Metadata Filters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#equality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Equality
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inequality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inequality
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#greater-than" class="md-nav__link">
+    <span class="md-ellipsis">
+      Greater Than
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#greater-than-or-equal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Greater Than or Equal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#less-than" class="md-nav__link">
+    <span class="md-ellipsis">
+      Less Than
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#less-than-or-equal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Less Than or Equal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in" class="md-nav__link">
+    <span class="md-ellipsis">
+      In
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      Not In
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logical-operator-and" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logical Operator: And
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logical-operator-or" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logical Operator: Or
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Filters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Document Filters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contains" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contains
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-contains" class="md-nav__link">
+    <span class="md-ellipsis">
+      Not Contains
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logical-operator-and_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logical Operator: And
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logical-operator-or_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logical Operator: Or
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1434,19 +1515,100 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#persistent-client" class="md-nav__link">
+  <a href="#metadata-filters" class="md-nav__link">
     <span class="md-ellipsis">
-      Persistent Client
+      Metadata Filters
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Persistent Client">
+    <nav class="md-nav" aria-label="Metadata Filters">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#uses-of-persistent-client" class="md-nav__link">
+  <a href="#equality" class="md-nav__link">
     <span class="md-ellipsis">
-      Uses of Persistent Client
+      Equality
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inequality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inequality
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#greater-than" class="md-nav__link">
+    <span class="md-ellipsis">
+      Greater Than
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#greater-than-or-equal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Greater Than or Equal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#less-than" class="md-nav__link">
+    <span class="md-ellipsis">
+      Less Than
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#less-than-or-equal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Less Than or Equal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in" class="md-nav__link">
+    <span class="md-ellipsis">
+      In
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      Not In
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logical-operator-and" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logical Operator: And
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logical-operator-or" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logical Operator: Or
     </span>
   </a>
   
@@ -1458,28 +1620,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#http-client" class="md-nav__link">
+  <a href="#document-filters" class="md-nav__link">
     <span class="md-ellipsis">
-      HTTP Client
+      Document Filters
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="HTTP Client">
+    <nav class="md-nav" aria-label="Document Filters">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#uses-of-http-client" class="md-nav__link">
+  <a href="#contains" class="md-nav__link">
     <span class="md-ellipsis">
-      Uses of HTTP Client
+      Contains
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#host-parameter-special-cases" class="md-nav__link">
+  <a href="#not-contains" class="md-nav__link">
     <span class="md-ellipsis">
-      Host parameter special cases
+      Not Contains
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logical-operator-and_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logical Operator: And
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logical-operator-or_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logical Operator: Or
     </span>
   </a>
   
@@ -1487,24 +1667,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ephemeral-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ephemeral Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#environmental-variable-configured-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Environmental Variable Configured Client
-    </span>
-  </a>
   
 </li>
       
@@ -1526,106 +1688,160 @@
   
 
 
-<h1 id="chroma-clients">Chroma Clients<a class="headerlink" href="#chroma-clients" title="Permanent link">&para;</a></h1>
-<h2 id="persistent-client">Persistent Client<a class="headerlink" href="#persistent-client" title="Permanent link">&para;</a></h2>
-<p>To create your a local persistent client use the <code>PersistentClient</code> class. This client will store all data locally in a
-directory on your machine at the path you specify.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-</span></code></pre></div>
-<p><code>path</code> parameter must be a local path on the machine where Chroma is running. If the path does not exist, it will be
-created. The path can be relative or absolute. If the path is not specified, the default is <code>chroma/</code> in the current
-working directory.</p>
-<h3 id="uses-of-persistent-client">Uses of Persistent Client<a class="headerlink" href="#uses-of-persistent-client" title="Permanent link">&para;</a></h3>
-<p>The persistent client is useful for:</p>
+<h1 id="filters">Filters<a class="headerlink" href="#filters" title="Permanent link">&para;</a></h1>
+<p>Chroma provides two types of filters:</p>
 <ul>
-<li><strong>Local development</strong>: You can use the persistent client to develop locally and test out ChromaDB.</li>
-<li><strong>Embedded applications</strong>: You can use the persistent client to embed ChromaDB in your application. For example, if
-  you are building a web application, you can use the persistent client to store data locally on the server.</li>
+<li>Metadata - filter documents based on metadata using <code>where</code> clause in either <code>Collection.query()</code> or <code>Collection.get()</code></li>
+<li>Document - filter documents based on document content using <code>where_document</code> in <code>Collection.query()</code> or `Collection.get().</li>
 </ul>
-<h2 id="http-client">HTTP Client<a class="headerlink" href="#http-client" title="Permanent link">&para;</a></h2>
-<p>Chroma also provides HTTP Client, suitable for use in a client-server mode. This client can be used to connect to a
-remote ChromaDB server.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">HttpClient</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s2">&quot;8000&quot;</span><span class="p">)</span>
+<p>Those familiar with MongoDB queries will find Chroma's filters very similar.</p>
+<h2 id="metadata-filters">Metadata Filters<a class="headerlink" href="#metadata-filters" title="Permanent link">&para;</a></h2>
+<h3 id="equality">Equality<a class="headerlink" href="#equality" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;metadata_field&quot;</span><span class="p">:</span> <span class="s2">&quot;is_equal_to_this&quot;</span><span class="p">}</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">)</span>
 </span></code></pre></div>
-<p>HTTP client takes two optional parameters:</p>
-<ul>
-<li><code>host</code>: The host of the remote server. If not specified, the default is <code>localhost</code>.</li>
-<li><code>port</code>: The port of the remote server. If not specified, the default is <code>8000</code>.</li>
-<li><code>ssl</code>: If <code>True</code>, the client will use HTTPS. If not specified, the default is <code>False</code>.</li>
-</ul>
-<h3 id="uses-of-http-client">Uses of HTTP Client<a class="headerlink" href="#uses-of-http-client" title="Permanent link">&para;</a></h3>
-<p>The HTTP client is ideal for when you want to scale your application or move off of local machine storage. It is
-important to note that there are trade-offs associated with using HTTP client:</p>
-<ul>
-<li>Network latency - The time it takes to send a request to the server and receive a response.</li>
-<li>Serialization and deserialization overhead - The time it takes to convert data to a format that can be sent over the
-  network and then convert it back to its original format.</li>
-<li>Security - The data is sent over the network, so it is important to ensure that the connection is secure (we recommend
-  using both HTTPS and authentication).</li>
-<li>Availability - The server must be available for the client to connect to it.</li>
-<li>Bandwidth usage - The amount of data sent over the network.</li>
-<li>Data privacy and compliance - Storing data on a remote server may require compliance with data protection laws and
-  regulations.</li>
-<li>Difficulty in debugging - Debugging network issues can be more difficult than debugging local issues. The same applies
-  to server-side issues.</li>
-</ul>
-<h3 id="host-parameter-special-cases">Host parameter special cases<a class="headerlink" href="#host-parameter-special-cases" title="Permanent link">&para;</a></h3>
-<p>The <code>host</code> parameter supports a more advanced syntax than just the hostname. You can specify the whole endpoint ULR (
-without the API paths), e.g. <code>https://chromadb.example.com:8000/my_server/path/</code>. This is useful when you want to use a
-reverse proxy or load balancer in front of your ChromaDB server.</p>
-<h2 id="ephemeral-client">Ephemeral Client<a class="headerlink" href="#ephemeral-client" title="Permanent link">&para;</a></h2>
-<p>Ephemeral client is a client that does not store any data on disk. It is useful for fast prototyping and testing. To get
-started with an ephemeral client, use the <code>EphemeralClient</code> class.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">EphemeralClient</span><span class="p">()</span>
+<p>Alternative syntax:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;metadata_field&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$eq&quot;</span><span class="p">:</span> <span class="s2">&quot;is_equal_to_this&quot;</span><span class="p">}}</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">)</span>
 </span></code></pre></div>
-<h2 id="environmental-variable-configured-client">Environmental Variable Configured Client<a class="headerlink" href="#environmental-variable-configured-client" title="Permanent link">&para;</a></h2>
-<p>You can also configure the client using environmental variables. This is useful when you want to configure any of the
-client configurations listed above via environmental variables.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+<h3 id="inequality">Inequality<a class="headerlink" href="#inequality" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;metadata_field&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$ne&quot;</span><span class="p">:</span> <span class="s2">&quot;is_not_equal_to_this&quot;</span><span class="p">}}</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">)</span>
 </span></code></pre></div>
-<p>Short list of env variables that can be used to configure the client:</p>
-<blockquote>
-<p><strong>Note</strong>: For complete list of available settings check (<a href="https://github.com/chroma-core/chroma/blob/c665838b0d143e2c2ceb82c4ade7404dc98124ff/chromadb/config.py#L83"><code>chromadb.config.Settings</code></a>).</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>Env Variable</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>chroma_api_impl</td>
-<td>The API implementation to use. There are two options:<br/> <code>chromadb.api.segment.SegmentAPI</code> (persistent client) <br/> <code>chromadb.api.fastapi.FastAPI</code> (Http client)</td>
-<td><code>chromadb.api.segment.SegmentAPI</code></td>
-</tr>
-<tr>
-<td>chroma_server_host</td>
-<td>The host of the remote server. This is required for HttpClient only.</td>
-<td><code>None</code>/<code>null</code></td>
-</tr>
-<tr>
-<td>chroma_server_http_port</td>
-<td>The port of the remote server. This is required for HttpClient only.</td>
-<td><code>8000</code></td>
-</tr>
-<tr>
-<td>chroma_server_headers</td>
-<td>The headers to be sent to the server. This is required for HttpClient only.</td>
-<td><code>None</code>/<code>null</code></td>
-</tr>
-</tbody>
-</table>
+<h3 id="greater-than">Greater Than<a class="headerlink" href="#greater-than" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Greater Than</p>
+<p>The <code>$gt</code> operator is only supported for numerical values - int or float values.</p>
+</div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;metadata_field&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$gt&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}}</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="greater-than-or-equal">Greater Than or Equal<a class="headerlink" href="#greater-than-or-equal" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Greater Than or Equal</p>
+<p>The <code>$gte</code> operator is only supported for numerical values - int or float values.</p>
+</div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;metadata_field&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$gte&quot;</span><span class="p">:</span> <span class="mf">5.1</span><span class="p">}}</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="less-than">Less Than<a class="headerlink" href="#less-than" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Less Than</p>
+<p>The <code>$lt</code> operator is only supported for numerical values - int or float values.</p>
+</div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;metadata_field&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$lt&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}}</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="less-than-or-equal">Less Than or Equal<a class="headerlink" href="#less-than-or-equal" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Less Than or Equal</p>
+<p>The <code>$lte</code> operator is only supported for numerical values - int or float values.</p>
+</div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;metadata_field&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$lte&quot;</span><span class="p">:</span> <span class="mf">5.1</span><span class="p">}}</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="in">In<a class="headerlink" href="#in" title="Permanent link">&para;</a></h3>
+<p>In works on all data types - string, int, float, and bool.</p>
+<div class="admonition note">
+<p class="admonition-title">In</p>
+<p>The <code>$in</code> operator is only supported for list of values of the same type.</p>
+</div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;metadata_field&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$in&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;value1&quot;</span><span class="p">,</span> <span class="s2">&quot;value2&quot;</span><span class="p">]}}</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="not-in">Not In<a class="headerlink" href="#not-in" title="Permanent link">&para;</a></h3>
+<p>Not In works on all data types - string, int, float, and bool.</p>
+<div class="admonition note">
+<p class="admonition-title">Not In</p>
+<p>The <code>$nin</code> operator is only supported for list of values of the same type.</p>
+</div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;metadata_field&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$nin&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;value1&quot;</span><span class="p">,</span> <span class="s2">&quot;value2&quot;</span><span class="p">]}}</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="logical-operator-and">Logical Operator: And<a class="headerlink" href="#logical-operator-and" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;$and&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;metadata_field1&quot;</span><span class="p">:</span> <span class="s2">&quot;value1&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;metadata_field2&quot;</span><span class="p">:</span> <span class="s2">&quot;value2&quot;</span><span class="p">}]}</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>Logical Operators can be nested.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;$and&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;metadata_field1&quot;</span><span class="p">:</span> <span class="s2">&quot;value1&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;$or&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;metadata_field2&quot;</span><span class="p">:</span> <span class="s2">&quot;value2&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;metadata_field3&quot;</span><span class="p">:</span> <span class="s2">&quot;value3&quot;</span><span class="p">}]}]}</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="logical-operator-or">Logical Operator: Or<a class="headerlink" href="#logical-operator-or" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;$or&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;metadata_field1&quot;</span><span class="p">:</span> <span class="s2">&quot;value1&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;metadata_field2&quot;</span><span class="p">:</span> <span class="s2">&quot;value2&quot;</span><span class="p">}]}</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="document-filters">Document Filters<a class="headerlink" href="#document-filters" title="Permanent link">&para;</a></h2>
+<h3 id="contains">Contains<a class="headerlink" href="#contains" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="n">where_document</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;$contains&quot;</span><span class="p">:</span> <span class="s2">&quot;search_string&quot;</span><span class="p">}</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="not-contains">Not Contains<a class="headerlink" href="#not-contains" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="n">where_document</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;$not_contains&quot;</span><span class="p">:</span> <span class="s2">&quot;search_string&quot;</span><span class="p">}</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="logical-operator-and_1">Logical Operator: And<a class="headerlink" href="#logical-operator-and_1" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="n">where_document</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;$and&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;$contains&quot;</span><span class="p">:</span> <span class="s2">&quot;search_string1&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;$contains&quot;</span><span class="p">:</span> <span class="s2">&quot;search_string2&quot;</span><span class="p">}]}</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>Logical Operators can be nested.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="n">where_document</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;$and&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;$contains&quot;</span><span class="p">:</span> <span class="s2">&quot;search_string1&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;$or&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;$not_contains&quot;</span><span class="p">:</span> <span class="s2">&quot;search_string2&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;$not_contains&quot;</span><span class="p">:</span> <span class="s2">&quot;search_string3&quot;</span><span class="p">}]}]}</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="logical-operator-or_1">Logical Operator: Or<a class="headerlink" href="#logical-operator-or_1" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="n">where_document</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;$or&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;$not_contains&quot;</span><span class="p">:</span> <span class="s2">&quot;search_string1&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;$not_contains&quot;</span><span class="p">:</span> <span class="s2">&quot;search_string2&quot;</span><span class="p">}]}</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="p">)</span>
+</span></code></pre></div>
 
 
 
