@@ -44,7 +44,7 @@ Metadata values can be of the following types:
 
 - strings
 - integers
-- floats
+- floats (float32)
 - booleans
 
 ## Embedding Function
@@ -71,6 +71,8 @@ A representation of a document in the embedding space in te form of a vector, li
 ## Embedding Model
 
 ## Document and Metadata Index
+
+The document and metadata index is stored in SQLite database.
 
 ## Vector Index (HNSW Index)
 

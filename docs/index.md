@@ -12,6 +12,10 @@ Documents, Metadata, Embeddings, etc.
 Once you're comfortable with the concepts, you can jump to the [Installation](core/install.md) section to install
 ChromaDB.
 
+**Core Topics:**
+
+- [Filters](core/filters.md) - Learn to filter data in ChromaDB using metadata and document filters
+
 ## Running ChromaDB
 
 - [CLI](running/running-chroma.md#chroma-cli) - Running ChromaDB via the CLI
