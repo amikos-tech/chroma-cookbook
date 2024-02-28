@@ -164,6 +164,39 @@ print(newCol.count())
 print(newCol.get(offset=0, limit=10))  # get first 10 documents
 ```
 
+#### Cloning a subset of a collection with query
+
+The below example demonstrates how to select a slice of an existing collection by using `where` and `where_document`
+query and creating a new collection with the selected slice.
+
+!!! note "Race Condition"
+
+    The below example is not atomic and if data is changed between the initial selection query (`select_ids = col.get(...)`
+    and the subsequent insertion query (`batch = col.get(...)`) the new collection may not contain the expected data.
+
+```python
+import chromadb
+
+client = chromadb.PersistentClient(path="test")  # or HttpClient()
+col = client.get_or_create_collection("test")  # create a new collection with L2 (default)
+
+col.add(ids=[f"{i}" for i in range(1000)], documents=[f"document {i}" for i in range(1000)])
+newCol = client.get_or_create_collection("test1", metadata={
+    "hnsw:space": "cosine", "hnsw:M": 32})  # let's change the distance function to cosine and M to 32
+query_where = {"metadata_key": "value"}
+query_where_document = {"$contains": "document"}
+select_ids = col.get(where_document=query_where_document, where=query_where, include=[])  # get only IDs
+batch_size = 10
+for i in range(0, len(select_ids["ids"]), batch_size):
+    batch = col.get(include=["metadatas", "documents", "embeddings"], limit=batch_size, offset=i, where=query_where,
+                    where_document=query_where_document)
+    newCol.add(ids=batch["ids"], documents=batch["documents"], metadatas=batch["metadatas"],
+               embeddings=batch["embeddings"])
+
+print(newCol.count())
+print(newCol.get(offset=0, limit=10))  # get first 10 documents
+```
+
 ### Updating Document/Record Metadata
 
 In this example we loop through all documents of a collection and strip all metadata fields of leading and trailing
