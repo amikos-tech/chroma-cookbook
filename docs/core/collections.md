@@ -169,7 +169,7 @@ print(newCol.get(offset=0, limit=10))  # get first 10 documents
 The below example demonstrates how to select a slice of an existing collection by using `where` and `where_document`
 query and creating a new collection with the selected slice.
 
-!!! note "Race Condition"
+!!! warn "Race Condition"
 
     The below example is not atomic and if data is changed between the initial selection query (`select_ids = col.get(...)`
     and the subsequent insertion query (`batch = col.get(...)`) the new collection may not contain the expected data.
