@@ -1733,7 +1733,7 @@ reverse)</p>
 <h4 id="cloning-a-subset-of-a-collection-with-query">Cloning a subset of a collection with query<a class="headerlink" href="#cloning-a-subset-of-a-collection-with-query" title="Permanent link">&para;</a></h4>
 <p>The below example demonstrates how to select a slice of an existing collection by using <code>where</code> and <code>where_document</code>
 query and creating a new collection with the selected slice.</p>
-<div class="admonition note">
+<div class="admonition warn">
 <p class="admonition-title">Race Condition</p>
 <p>The below example is not atomic and if data is changed between the initial selection query (<code>select_ids = col.get(...)</code>
 and the subsequent insertion query (<code>batch = col.get(...)</code>) the new collection may not contain the expected data.</p>
