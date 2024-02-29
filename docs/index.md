@@ -31,3 +31,10 @@ ChromaDB.
 - [Keyword Search](strategies/keyword-search.md) - Searching for keywords in ChromaDB
 - [Memory Management](strategies/memory-management.md) - Managing memory in ChromaDB
 - [Time-based Queries](strategies/time-based-queries.md) - Querying data based on timestamps
+
+
+## Get Help
+
+Missing something? Let us know by [opening an issue](https://github.com/amikos-tech/chroma-cookbook/issues/new). Or filling the form below.
+
+<iframe class="airtable-embed" src="https://airtable.com/embed/app3cuVTqpgEQTu8c/pagzxhmjuELguLXEJ/form" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>

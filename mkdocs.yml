@@ -47,6 +47,7 @@ markdown_extensions:
   - admonition
   - attr_list
   - md_in_html
+  - markdown.extensions.extra
   - toc:
       permalink: true
       title: On this page
