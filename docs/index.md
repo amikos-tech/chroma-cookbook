@@ -35,6 +35,6 @@ ChromaDB.
 
 ## Get Help
 
-Missing something? Let us know by [opening an issue](https://github.com/amikos-tech/chroma-cookbook/issues/new). Or filling the form below.
+Missing something? Let us know by [opening an issue](https://github.com/amikos-tech/chroma-cookbook/issues/new), reach out on [Discord](https://discord.gg/MMeYNTmh3x) (look for `@taz`), or filling the form below.
 
 <iframe class="airtable-embed" src="https://airtable.com/embed/app3cuVTqpgEQTu8c/pagzxhmjuELguLXEJ/form" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
