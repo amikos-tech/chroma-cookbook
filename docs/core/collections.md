@@ -93,6 +93,28 @@ col.modify(name="test2", metadata={"key": "value"})
     Metadata is always overwritten when modified. If you want to add a new key-value pair to the metadata, you must
     first get the existing metadata and then add the new key-value pair to it.
 
+## Iterating over a Collection
+
+```python
+import chromadb
+
+client = chromadb.PersistentClient(path="my_local_data") # or HttpClient()
+
+collection = client.get_or_create_collection("local_collection")
+collection.add(
+    ids=[f"i" for i in range(1000)],
+    documents=[f"document {i}" for i in range(1000)],
+    metadatas=[{"doc_id": i} for i in range(1000)])
+existing_count = collection.count()
+batch_size = 10
+for i in range(0, existing_count, batch_size):
+    batch = collection.get(
+        include=["metadatas", "documents", "embeddings"],
+        limit=batch_size,
+        offset=i)
+    print(batch) # do something with the batch
+```
+
 ## Collection Utilities
 
 ### Copying Local Collection to Remote
