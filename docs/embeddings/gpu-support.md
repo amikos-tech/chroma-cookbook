@@ -68,3 +68,41 @@ print(f"Elapsed time: {end_time - start_time} seconds")
 
 > Note: You can run the above example in google Colab - see
 > the [notebook](../recipes/embeddings/google-colab-hf-sentence-transformers-gpu.ipynb)
+
+## OpenCLIP
+
+
+Prior to [PR #1806](https://github.com/chroma-core/chroma/pull/1806), we simply used the `torch` package to load the
+model and run it on the GPU.
+
+```python
+import chromadb
+from chromadb.utils.embedding_functions import OpenCLIPEmbeddingFunction
+from chromadb.utils.data_loaders import ImageLoader
+import toch
+import os
+
+IMAGE_FOLDER = "images"
+toch.device("cuda")
+
+embedding_function = OpenCLIPEmbeddingFunction()
+image_loader = ImageLoader()
+
+client = chromadb.PersistentClient(path="my_local_data")
+collection = client.create_collection(
+    name='multimodal_collection',
+    embedding_function=embedding_function,
+    data_loader=image_loader)
+
+image_uris = sorted([os.path.join(IMAGE_FOLDER, image_name) for image_name in os.listdir(IMAGE_FOLDER)])
+ids = [str(i) for i in range(len(image_uris))]
+collection.add(ids=ids, uris=image_uris)
+```
+
+
+After [PR #1806](https://github.com/chroma-core/chroma/pull/1806):
+
+```python
+from chromadb.utils.embedding_functions import OpenCLIPEmbeddingFunction
+embedding_function = OpenCLIPEmbeddingFunction(device="cuda")
+```
