@@ -3,8 +3,8 @@
 ## Local Server
 
 !!! note "Article Link"
-        
-        This article is also available on Medium [Running ChromaDB — Part 1: Local Server](https://medium.com/@amikostech/running-chromadb-part-1-local-server-2c61cb1c9f2c).
+
+    This article is also available on Medium [Running ChromaDB — Part 1: Local Server](https://medium.com/@amikostech/running-chromadb-part-1-local-server-2c61cb1c9f2c).
 
 ### Chroma CLI
 
@@ -19,7 +19,7 @@ pip install chromadb
 chroma run --host localhost --port 8000 --path ./my_chroma_data
 ```
 
-`--host` The host to which to listen to, by default it is `[localhost](http://localhost)` , but if you want to expose it to your entire network then you can specify `0.0.0.0``
+`--host` The host to which to listen to, by default it is `[localhost](http://localhost:8000/docs)` , but if you want to expose it to your entire network then you can specify `0.0.0.0``
 
 `--port` The port on which to listen to, by default this is `8000`.
 
@@ -104,12 +104,10 @@ curl -s https://gist.githubusercontent.com/tazarov/4fd933274bbacb3b9f286b15c01e9
 ### Minikube With Helm Chart
 
 > Note: This deployment can just as well be done with `KinD` depending on your preference.
->
 
 A more advanced approach to running Chroma locally (but also on a remote cluster) is to deploy it using a Helm chart.
 
 > Disclaimer: The chart used here is not a 1st party chart, but is contributed by a core contributor to Chroma.
->
 
 Prerequisites:
 
@@ -157,7 +155,6 @@ http://127.0.0.1:61892
 ```
 
 > Note: Depending on your OS the message might be slightly different.
->
 
 Test it out (`pip install chromadb`):
 
