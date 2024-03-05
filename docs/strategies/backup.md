@@ -42,4 +42,21 @@ TBD
 
 ## Filesystem Backup
 
-TBD
+### From Docker Container
+
+Sometimes you have been running Chroma in a Docker container without a host mount, intentionally or unintentionally. So
+all your data is now stored in the container's filesystem. Here's how you can back up your data:
+
+1. Stop the container:
+
+```bash
+docker stop <chroma-container-id/name>
+```
+
+2. Create a backup of the container's filesystem:
+
+```bash
+docker cp <chroma-container-id/name>:/chroma/chroma /path/to/backup
+```
+
+`/path/to/backup` is the directory where you want to store the backup on your host machine.
