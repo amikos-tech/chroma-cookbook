@@ -1207,6 +1207,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Filesystem Backup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-docker-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      From Docker Container
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1440,6 +1455,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Filesystem Backup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-docker-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      From Docker Container
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1491,7 +1521,20 @@ provides a simple way import/export/transform ChromaDB data.</p>
 <h2 id="disk-snapshot">Disk Snapshot<a class="headerlink" href="#disk-snapshot" title="Permanent link">&para;</a></h2>
 <p>TBD</p>
 <h2 id="filesystem-backup">Filesystem Backup<a class="headerlink" href="#filesystem-backup" title="Permanent link">&para;</a></h2>
-<p>TBD</p>
+<h3 id="from-docker-container">From Docker Container<a class="headerlink" href="#from-docker-container" title="Permanent link">&para;</a></h3>
+<p>Sometimes you have been running Chroma in a Docker container without a host mount, intentionally or unintentionally. So
+all your data is now stored in the container's filesystem. Here's how you can back up your data:</p>
+<ol>
+<li>Stop the container:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>stop<span class="w"> </span>&lt;chroma-container-id/name&gt;
+</span></code></pre></div>
+<ol>
+<li>Create a backup of the container's filesystem:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>cp<span class="w"> </span>&lt;chroma-container-id/name&gt;:/chroma/chroma<span class="w"> </span>/path/to/backup
+</span></code></pre></div>
+<p><code>/path/to/backup</code> is the directory where you want to store the backup on your host machine.</p>
 
 
 
