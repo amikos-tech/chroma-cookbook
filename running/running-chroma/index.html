@@ -1500,8 +1500,7 @@
 <h2 id="local-server">Local Server<a class="headerlink" href="#local-server" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Article Link</p>
-<div class="language-text highlight"><pre><span></span><code>This article is also available on Medium [Running ChromaDB — Part 1: Local Server](https://medium.com/@amikostech/running-chromadb-part-1-local-server-2c61cb1c9f2c).
-</code></pre></div>
+<p>This article is also available on Medium <a href="https://medium.com/@amikostech/running-chromadb-part-1-local-server-2c61cb1c9f2c">Running ChromaDB — Part 1: Local Server</a>.</p>
 </div>
 <h3 id="chroma-cli">Chroma CLI<a class="headerlink" href="#chroma-cli" title="Permanent link">&para;</a></h3>
 <p>The simplest way to run Chroma locally is via the Chroma <code>cli</code> which is part of the core Chroma package.</p>
@@ -1512,7 +1511,7 @@
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>chromadb
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>chroma<span class="w"> </span>run<span class="w"> </span>--host<span class="w"> </span>localhost<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--path<span class="w"> </span>./my_chroma_data
 </span></code></pre></div>
-<p><code>--host</code> The host to which to listen to, by default it is <code>[localhost](http://localhost)</code> , but if you want to expose it to your entire network then you can specify `0.0.0.0``</p>
+<p><code>--host</code> The host to which to listen to, by default it is <code>[localhost](http://localhost:8000/docs)</code> , but if you want to expose it to your entire network then you can specify `0.0.0.0``</p>
 <p><code>--port</code> The port on which to listen to, by default this is <code>8000</code>.</p>
 <p><code>--path</code> The path where to persist your Chroma data locally.</p>
 <h3 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h3>
@@ -1574,13 +1573,11 @@
 </span></code></pre></div>
 <h3 id="minikube-with-helm-chart">Minikube With Helm Chart<a class="headerlink" href="#minikube-with-helm-chart" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>Note: This deployment can just as well be done with <code>KinD</code> depending on your preference.
-</p>
+<p>Note: This deployment can just as well be done with <code>KinD</code> depending on your preference.</p>
 </blockquote>
 <p>A more advanced approach to running Chroma locally (but also on a remote cluster) is to deploy it using a Helm chart.</p>
 <blockquote>
-<p>Disclaimer: The chart used here is not a 1st party chart, but is contributed by a core contributor to Chroma.
-</p>
+<p>Disclaimer: The chart used here is not a 1st party chart, but is contributed by a core contributor to Chroma.</p>
 </blockquote>
 <p>Prerequisites:</p>
 <ul>
@@ -1612,8 +1609,7 @@
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>❗<span class="w">  </span>Because<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>using<span class="w"> </span>a<span class="w"> </span>Docker<span class="w"> </span>driver<span class="w"> </span>on<span class="w"> </span>darwin,<span class="w"> </span>the<span class="w"> </span>terminal<span class="w"> </span>needs<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>open<span class="w"> </span>to<span class="w"> </span>run<span class="w"> </span>it.
 </span></code></pre></div>
 <blockquote>
-<p>Note: Depending on your OS the message might be slightly different.
-</p>
+<p>Note: Depending on your OS the message might be slightly different.</p>
 </blockquote>
 <p>Test it out (<code>pip install chromadb</code>):</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
