@@ -1,4 +1,4 @@
-# Chroma Clients
+# Chroma Ecosystem Clients
 
 ## Python
 
