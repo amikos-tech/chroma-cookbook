@@ -27,21 +27,32 @@ ChromaDB.
 
 ### Clients
 
-- Python Client (Official Chroma client)
-- JavaScript Client (Official Chroma client)
-- Rust Client (Community maintained)
-- Go Client (Community maintained)
-- Java Client (Community maintained)
-- 
+Below is a list of available clients for ChromaDB.
+
+- [Python Client](ecosystem/clients.md#python) (Official Chroma client)
+- [JavaScript Client](ecosystem/clients.md#javascript) (Official Chroma client)
+- [Ruby Client](ecosystem/clients.md#ruby-client) (Community maintained)
+- [Java Client](ecosystem/clients.md#java-client) (Community maintained)
+- [Go Client](ecosystem/clients.md#go-client) (Community maintained)
+- [C# Client](ecosystem/clients.md#c-client) (Microsoft maintained)
+- [Rust Client](ecosystem/clients.md#rust-client) (Community maintained)
+- [Elixir Client](ecosystem/clients.md#elixir-client) (Community maintained)
+- [Dart Client](ecosystem/clients.md#dart-client) (Community maintained)
+- [PHP Client](ecosystem/clients.md#php-client) (Community maintained)
+- [PHP (Laravel)](ecosystem/clients.md#php-laravel-client) Client (Community maintained)
 
 ### User Interfaces
 
-### Tooling
+- [VectorAdmin](https://github.com/Mintplex-Labs/vector-admin) (MintPlex Labs) - An open-source web-based admin
+  interface for vector databases, including ChromaDB
+- [ChromaDB UI](https://github.com/thakkaryash94/chroma-ui) (Community maintained) - A web-based UI for ChromaDB
 
-- CDP
-- CLI
+### CLI Tooling
 
-
+- [Chroma CLI](https://github.com/amikos-tech/chroma-cli) (Community maintained) - Early Alpha
+- [Chroma Data Pipes](https://github.com/amikos-tech/chromadb-data-pipes) (Community maintained) - A CLI tool for
+  importing and exporting data from ChromaDB
+- [Chroma Ops](https://github.com/amikos-tech/chromadb-ops) (Community maintained) - A maintenance CLI tool for ChromaDB
 
 ## Strategies
 
@@ -52,7 +63,7 @@ ChromaDB.
 - [Memory Management](strategies/memory-management.md) - Managing memory in ChromaDB
 - [Time-based Queries](strategies/time-based-queries.md) - Querying data based on timestamps
 
-
 ## Get Help
 
-Missing something? Let us know by [opening an issue](https://github.com/amikos-tech/chroma-cookbook/issues/new), reach out on [Discord](https://discord.gg/MMeYNTmh3x) (look for `@taz`).
+Missing something? Let us know by [opening an issue](https://github.com/amikos-tech/chroma-cookbook/issues/new), reach
+out on [Discord](https://discord.gg/MMeYNTmh3x) (look for `@taz`).
