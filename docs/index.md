@@ -23,6 +23,26 @@ ChromaDB.
 - [Docker Compose](running/running-chroma.md#docker-compose-cloned-repo) - Running ChromaDB in Docker Compose
 - [Kubernetes](running/running-chroma.md#minikube-with-helm-chart) - Running ChromaDB in Kubernetes (Minikube)
 
+## The Ecosystem
+
+### Clients
+
+- Python Client (Official Chroma client)
+- JavaScript Client (Official Chroma client)
+- Rust Client (Community maintained)
+- Go Client (Community maintained)
+- Java Client (Community maintained)
+- 
+
+### User Interfaces
+
+### Tooling
+
+- CDP
+- CLI
+
+
+
 ## Strategies
 
 - [Backup](strategies/backup.md) - Backing up ChromaDB data
@@ -35,6 +55,4 @@ ChromaDB.
 
 ## Get Help
 
-Missing something? Let us know by [opening an issue](https://github.com/amikos-tech/chroma-cookbook/issues/new), reach out on [Discord](https://discord.gg/MMeYNTmh3x) (look for `@taz`), or filling the form below.
-
-<iframe class="airtable-embed" src="https://airtable.com/embed/app3cuVTqpgEQTu8c/pagzxhmjuELguLXEJ/form" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
+Missing something? Let us know by [opening an issue](https://github.com/amikos-tech/chroma-cookbook/issues/new), reach out on [Discord](https://discord.gg/MMeYNTmh3x) (look for `@taz`).
