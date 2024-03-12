@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://cookbook.chromadb.dev/core/concepts/">
+        <link rel="canonical" href="https://cookbook.chromadb.dev/core/api/">
       
       
-        <link rel="prev" href="../collections/">
+        <link rel="prev" href="../">
       
       
-        <link rel="next" href="../document-ids/">
+        <link rel="next" href="../clients/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Chroma Core Concepts - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+        <title>Chroma API - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chroma-core-concepts" class="md-skip">
+        <a href="#chroma-api" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chroma Core Concepts
+              Chroma API
             
           </span>
         </div>
@@ -413,10 +413,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chroma API
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -425,6 +445,79 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-the-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing the API
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Endpoints
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generating Clients
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generating Clients">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-openapi-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using OpenAPI Generator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manually-creating-a-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manually Creating a Client
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -476,30 +569,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Chroma Core Concepts
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -508,136 +581,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#tenancy-and-db-hierarchies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tenancy and DB Hierarchies
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tenants" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tenants
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#databases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Databases
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#collections" class="md-nav__link">
-    <span class="md-ellipsis">
-      Collections
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      Documents
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      Metadata
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#embedding-function" class="md-nav__link">
-    <span class="md-ellipsis">
-      Embedding Function
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#distance-function" class="md-nav__link">
-    <span class="md-ellipsis">
-      Distance Function
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#embedding-vector" class="md-nav__link">
-    <span class="md-ellipsis">
-      Embedding Vector
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#embedding-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      Embedding Model
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#document-and-metadata-index" class="md-nav__link">
-    <span class="md-ellipsis">
-      Document and Metadata Index
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vector-index-hnsw-index" class="md-nav__link">
-    <span class="md-ellipsis">
-      Vector Index (HNSW Index)
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1490,110 +1433,53 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tenancy-and-db-hierarchies" class="md-nav__link">
+  <a href="#accessing-the-api" class="md-nav__link">
     <span class="md-ellipsis">
-      Tenancy and DB Hierarchies
+      Accessing the API
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tenants" class="md-nav__link">
+  <a href="#api-endpoints" class="md-nav__link">
     <span class="md-ellipsis">
-      Tenants
+      API Endpoints
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#databases" class="md-nav__link">
+  <a href="#generating-clients" class="md-nav__link">
     <span class="md-ellipsis">
-      Databases
+      Generating Clients
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generating Clients">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-openapi-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using OpenAPI Generator
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#collections" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#manually-creating-a-client" class="md-nav__link">
     <span class="md-ellipsis">
-      Collections
+      Manually Creating a Client
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      Documents
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      Metadata
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#embedding-function" class="md-nav__link">
-    <span class="md-ellipsis">
-      Embedding Function
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#distance-function" class="md-nav__link">
-    <span class="md-ellipsis">
-      Distance Function
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#embedding-vector" class="md-nav__link">
-    <span class="md-ellipsis">
-      Embedding Vector
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#embedding-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      Embedding Model
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#document-and-metadata-index" class="md-nav__link">
-    <span class="md-ellipsis">
-      Document and Metadata Index
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vector-index-hnsw-index" class="md-nav__link">
-    <span class="md-ellipsis">
-      Vector Index (HNSW Index)
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1615,66 +1501,40 @@
   
 
 
-<h1 id="chroma-core-concepts">Chroma Core Concepts<a class="headerlink" href="#chroma-core-concepts" title="Permanent link">&para;</a></h1>
-<h2 id="tenancy-and-db-hierarchies">Tenancy and DB Hierarchies<a class="headerlink" href="#tenancy-and-db-hierarchies" title="Permanent link">&para;</a></h2>
-<p>The following picture illustrates the tenancy and DB hierarchy in Chroma:</p>
-<p><img alt="Tenancy and DB Hierarchy" src="../../assets/images/chroma-tenancy-hierarchy.png" /></p>
-<div class="admonition warn">
-<p class="admonition-title">Storage</p>
-<p>In Chroma single-node, all data about tenancy, databases, collections and documents is stored in a single SQLite database.</p>
-</div>
-<h2 id="tenants">Tenants<a class="headerlink" href="#tenants" title="Permanent link">&para;</a></h2>
-<p>A tenant is a logical grouping for a set of databases. A tenant is designed to model a single organization or user. A
-tenant can have multiple databases.</p>
-<h2 id="databases">Databases<a class="headerlink" href="#databases" title="Permanent link">&para;</a></h2>
-<p>A database is a logical grouping for a set of collections. A database is designed to model a single application or
-project. A database can have multiple collections.</p>
-<h2 id="collections">Collections<a class="headerlink" href="#collections" title="Permanent link">&para;</a></h2>
-<p>Collections are the grouping mechanism for embeddings, documents, and metadata.</p>
-<h2 id="documents">Documents<a class="headerlink" href="#documents" title="Permanent link">&para;</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Chunks of text</p>
-<p>Documents in ChromaDB lingo are chunks of text that fits within the embedding model's context window. 
-Unlike other frameworks that use the term "document" to mean a file, 
-ChromaDB uses the term "document" to mean a chunk of text.</p>
-</div>
-<p>Documents are raw chunks of text that are associated with an embedding. Documents are stored in the database and can be
-queried for.</p>
-<h2 id="metadata">Metadata<a class="headerlink" href="#metadata" title="Permanent link">&para;</a></h2>
-<p>Metadata is a dictionary of key-value pairs that can be associated with an embedding. Metadata is stored in the
-database and can be queried for.</p>
-<p>Metadata values can be of the following types:</p>
+<h1 id="chroma-api">Chroma API<a class="headerlink" href="#chroma-api" title="Permanent link">&para;</a></h1>
+<p>In this article we will cover the Chroma API in an indepth details.</p>
+<h2 id="accessing-the-api">Accessing the API<a class="headerlink" href="#accessing-the-api" title="Permanent link">&para;</a></h2>
+<p>If you are running a Chroma server you can access its API at - <code>http://&lt;chroma_server_host&gt;:&lt;chroma_server_port&gt;/docs</code> (
+e.g. <code>http://localhost:8000/docs</code>).</p>
+<h2 id="api-endpoints">API Endpoints<a class="headerlink" href="#api-endpoints" title="Permanent link">&para;</a></h2>
+<p>TBD</p>
+<h2 id="generating-clients">Generating Clients<a class="headerlink" href="#generating-clients" title="Permanent link">&para;</a></h2>
+<p>While Chroma ecosystem has client implementations for many languages, it may be the case you want to roll out your own.
+Below we explain some of the options available to you:</p>
+<h3 id="using-openapi-generator">Using OpenAPI Generator<a class="headerlink" href="#using-openapi-generator" title="Permanent link">&para;</a></h3>
+<p>The fastest way to build a client is to use the OpenAPI Generator the API spec.</p>
+<h3 id="manually-creating-a-client">Manually Creating a Client<a class="headerlink" href="#manually-creating-a-client" title="Permanent link">&para;</a></h3>
+<p>If you more control over things, you can create your own client by using the API spec as guideline.</p>
+<p>For your convenience we provide some data structures in various languages to help you get started. The important
+structures are:</p>
 <ul>
-<li>strings</li>
-<li>integers</li>
-<li>floats (float32)</li>
-<li>booleans</li>
+<li>Client</li>
+<li>Collection</li>
+<li>Embedding</li>
+<li>Document</li>
+<li>ID</li>
+<li>Metadata</li>
+<li>QueryRequest/QueryResponse</li>
+<li>Include</li>
+<li>Where Filter</li>
+<li>WhereDocument Filter</li>
 </ul>
-<h2 id="embedding-function">Embedding Function<a class="headerlink" href="#embedding-function" title="Permanent link">&para;</a></h2>
-<p>Also referred to as embedding model, embedding functions in ChromaDB are wrappers that expose a consistent interface for
-generating embedding vectors from documents or text queries.</p>
-<p>For a list of supported embedding functions see Chroma's
-official <a href="https://docs.trychroma.com/embeddings">documentation</a>.</p>
-<h2 id="distance-function">Distance Function<a class="headerlink" href="#distance-function" title="Permanent link">&para;</a></h2>
-<p>Distance functions help in calculating the difference (distance) between two embedding vectors. ChromaDB supports the
-following distance functions:</p>
-<ul>
-<li>Cosine - Useful for text similarity</li>
-<li>Euclidean (L2) - Useful for text similarity, more sensitive to noise than <code>cosine</code></li>
-<li>Inner Product (IP) - Recommender systems</li>
-</ul>
-<h2 id="embedding-vector">Embedding Vector<a class="headerlink" href="#embedding-vector" title="Permanent link">&para;</a></h2>
-<p>A representation of a document in the embedding space in te form of a vector, list of 32-bit floats (or ints).</p>
-<h2 id="embedding-model">Embedding Model<a class="headerlink" href="#embedding-model" title="Permanent link">&para;</a></h2>
-<h2 id="document-and-metadata-index">Document and Metadata Index<a class="headerlink" href="#document-and-metadata-index" title="Permanent link">&para;</a></h2>
-<p>The document and metadata index is stored in SQLite database.</p>
-<h2 id="vector-index-hnsw-index">Vector Index (HNSW Index)<a class="headerlink" href="#vector-index-hnsw-index" title="Permanent link">&para;</a></h2>
-<p>Under the hood (ca. v0.4.22) Chroma uses its
-own <a href="https://github.com/chroma-core/hnswlib">fork</a> <a href="https://github.com/nmslib/hnswlib">HNSW lib</a> for indexing and
-searching vectors.</p>
-<p>In a single-node mode, Chroma will create a single HNSW index for each collection. The index is stored in a subdir of
-your persistent dir, named after the collection id (UUID-based).</p>
-<p>The HNSW lib uses <a href="https://arxiv.org/abs/1603.09320">fast ANN</a> algo to search the vectors in the index.</p>
+<h5 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h5>
+<h5 id="typescript">Typescript<a class="headerlink" href="#typescript" title="Permanent link">&para;</a></h5>
+<h5 id="golang">Golang<a class="headerlink" href="#golang" title="Permanent link">&para;</a></h5>
+<h5 id="java">Java<a class="headerlink" href="#java" title="Permanent link">&para;</a></h5>
+<h5 id="rust">Rust<a class="headerlink" href="#rust" title="Permanent link">&para;</a></h5>
+<h5 id="elixir">Elixir<a class="headerlink" href="#elixir" title="Permanent link">&para;</a></h5>
 
 
 
