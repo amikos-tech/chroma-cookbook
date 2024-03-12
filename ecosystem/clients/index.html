@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://cookbook.chromadb.dev/strategies/keyword-search/">
+        <link rel="canonical" href="https://cookbook.chromadb.dev/ecosystem/clients/">
       
       
-        <link rel="prev" href="../batching/">
+        <link rel="prev" href="../../core/advanced/wal/">
       
       
-        <link rel="next" href="../memory-management/">
+        <link rel="next" href="../../embeddings/bring-your-own-embeddings/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Keyword Search - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+        <title>Clients - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
       
     
     
@@ -81,11 +81,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#keyword-search" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -117,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Keyword Search
+              Clients
             
           </span>
         </div>
@@ -698,8 +693,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -708,11 +705,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -726,7 +723,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Ecosystem
@@ -737,10 +734,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../ecosystem/clients/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -749,6 +753,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1152,10 +1157,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -1178,11 +1181,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -1196,7 +1199,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Strategies
@@ -1210,7 +1213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../backup/" class="md-nav__link">
+      <a href="../../strategies/backup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1231,7 +1234,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../batching/" class="md-nav__link">
+      <a href="../../strategies/batching/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1249,19 +1252,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../strategies/keyword-search/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1270,7 +1264,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1283,7 +1276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../memory-management/" class="md-nav__link">
+      <a href="../../strategies/memory-management/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1304,7 +1297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../multi-tenancy/" class="md-nav__link">
+      <a href="../../strategies/multi-tenancy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1325,7 +1318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../privacy/" class="md-nav__link">
+      <a href="../../strategies/privacy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1346,7 +1339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rebuilding/" class="md-nav__link">
+      <a href="../../strategies/rebuilding/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1367,7 +1360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../time-based-queries/" class="md-nav__link">
+      <a href="../../strategies/time-based-queries/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1407,8 +1400,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -1426,29 +1417,9 @@
   
 
 
-<h1 id="keyword-search">Keyword Search<a class="headerlink" href="#keyword-search" title="Permanent link">&para;</a></h1>
-<p>Chroma uses SQLite for storing metadata and documents. Additionally documents are indexed using <a href="https://www.sqlite.org/fts5.html">SQLite FTS5</a> for fast text search.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">chromadb.config</span> <span class="kn">import</span> <span class="n">Settings</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">Settings</span><span class="p">(</span><span class="n">allow_reset</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">client</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">col</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">col</span><span class="o">.</span><span class="n">upsert</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">],</span> <span class="n">documents</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;He is a technology freak and he loves AI topics&quot;</span><span class="p">,</span> <span class="s2">&quot;AI technology are advancing at a fast pace&quot;</span><span class="p">,</span> <span class="s2">&quot;Innovation in LLMs is a hot topic&quot;</span><span class="p">],</span><span class="n">metadatas</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;John Doe&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;Jane Doe&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;John Doe&quot;</span><span class="p">}])</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">col</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;technology&quot;</span><span class="p">],</span> <span class="n">where_document</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;$or&quot;</span><span class="p">:[{</span><span class="s2">&quot;$contains&quot;</span><span class="p">:</span><span class="s2">&quot;technology&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;$contains&quot;</span><span class="p">:</span><span class="s2">&quot;freak&quot;</span><span class="p">}]})</span>
-</span></code></pre></div>
-<p>The above should return:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span><span class="s1">&#39;ids&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">]],</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a> <span class="s1">&#39;distances&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mf">1.052205477809135</span><span class="p">,</span> <span class="mf">1.3074231535113972</span><span class="p">]],</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a> <span class="s1">&#39;metadatas&#39;</span><span class="p">:</span> <span class="p">[[{</span><span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="s1">&#39;Jane Doe&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="s1">&#39;John Doe&#39;</span><span class="p">}]],</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a> <span class="s1">&#39;embeddings&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a> <span class="s1">&#39;documents&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="s1">&#39;AI technology are advancing at a fast pace&#39;</span><span class="p">,</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>   <span class="s1">&#39;He is a technology freak and he loves AI topics&#39;</span><span class="p">]],</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a> <span class="s1">&#39;uris&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a> <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
-</span></code></pre></div>
+  <h1>Clients</h1>
+
+
 
 
 
