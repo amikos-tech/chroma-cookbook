@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://cookbook.chromadb.dev/core/clients/">
+        <link rel="canonical" href="https://cookbook.chromadb.dev/core/resources/">
       
       
-        <link rel="prev" href="../api/">
+        <link rel="prev" href="../install/">
       
       
-        <link rel="next" href="../collections/">
+        <link rel="next" href="../system_constraints/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Chroma Clients - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+        <title>How Much Resources Do you Need to Run Chroma - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chroma-clients" class="md-skip">
+        <a href="#how-much-resources-do-you-need-to-run-chroma" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chroma Clients
+              How Much Resources Do you Need to Run Chroma
             
           </span>
         </div>
@@ -436,30 +436,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Chroma Clients
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../clients/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -468,103 +448,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#persistent-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Persistent Client
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Persistent Client">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#uses-of-persistent-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Uses of Persistent Client
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#http-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      HTTP Client
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="HTTP Client">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#uses-of-http-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Uses of HTTP Client
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#host-parameter-special-cases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Host parameter special cases
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ephemeral-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ephemeral Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#environmental-variable-configured-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Environmental Variable Configured Client
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -679,10 +562,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../resources/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    How Much Resources Do you Need to Run Chroma
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -691,6 +594,55 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ram" class="md-nav__link">
+    <span class="md-ellipsis">
+      RAM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disk
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      CPU
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1547,75 +1499,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#persistent-client" class="md-nav__link">
+  <a href="#ram" class="md-nav__link">
     <span class="md-ellipsis">
-      Persistent Client
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Persistent Client">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#uses-of-persistent-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Uses of Persistent Client
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#http-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      HTTP Client
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="HTTP Client">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#uses-of-http-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Uses of HTTP Client
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#host-parameter-special-cases" class="md-nav__link">
-    <span class="md-ellipsis">
-      Host parameter special cases
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ephemeral-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ephemeral Client
+      RAM
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#environmental-variable-configured-client" class="md-nav__link">
+  <a href="#disk" class="md-nav__link">
     <span class="md-ellipsis">
-      Environmental Variable Configured Client
+      Disk
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      CPU
     </span>
   </a>
   
@@ -1639,106 +1543,39 @@
   
 
 
-<h1 id="chroma-clients">Chroma Clients<a class="headerlink" href="#chroma-clients" title="Permanent link">&para;</a></h1>
-<h2 id="persistent-client">Persistent Client<a class="headerlink" href="#persistent-client" title="Permanent link">&para;</a></h2>
-<p>To create your a local persistent client use the <code>PersistentClient</code> class. This client will store all data locally in a
-directory on your machine at the path you specify.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-</span></code></pre></div>
-<p><code>path</code> parameter must be a local path on the machine where Chroma is running. If the path does not exist, it will be
-created. The path can be relative or absolute. If the path is not specified, the default is <code>chroma/</code> in the current
-working directory.</p>
-<h3 id="uses-of-persistent-client">Uses of Persistent Client<a class="headerlink" href="#uses-of-persistent-client" title="Permanent link">&para;</a></h3>
-<p>The persistent client is useful for:</p>
+<h1 id="how-much-resources-do-you-need-to-run-chroma">How Much Resources Do you Need to Run Chroma<a class="headerlink" href="#how-much-resources-do-you-need-to-run-chroma" title="Permanent link">&para;</a></h1>
+<p>Chroma makes use of the following compute resources:</p>
 <ul>
-<li><strong>Local development</strong>: You can use the persistent client to develop locally and test out ChromaDB.</li>
-<li><strong>Embedded applications</strong>: You can use the persistent client to embed ChromaDB in your application. For example, if
-  you are building a web application, you can use the persistent client to store data locally on the server.</li>
+<li>RAM - Chroma stores the vector HNSW index in-memory. This allows it to perform blazing fast semantic searches.</li>
+<li>Disk - Chroma persists all data to disk. This includes the vector HNSW index, metadata index, system DB, and the
+  write-ahead log (WAL).</li>
+<li>CPU - Chroma uses CPU for indexing and searching vectors.</li>
 </ul>
-<h2 id="http-client">HTTP Client<a class="headerlink" href="#http-client" title="Permanent link">&para;</a></h2>
-<p>Chroma also provides HTTP Client, suitable for use in a client-server mode. This client can be used to connect to a
-remote ChromaDB server.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">HttpClient</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s2">&quot;8000&quot;</span><span class="p">)</span>
-</span></code></pre></div>
-<p>HTTP client takes two optional parameters:</p>
+<p>Here are some formulas and heuristics to help you estimate the resources you need to run Chroma.</p>
+<h2 id="ram">RAM<a class="headerlink" href="#ram" title="Permanent link">&para;</a></h2>
+<p>Once you select your embedding model, use the following formula for calculating RAM storage requirements for the vector
+HNSW index:</p>
+<p><code>number of vectors</code> * <code>dimensionality of vectors</code> * <code>4 bytes</code> = <code>RAM required</code></p>
 <ul>
-<li><code>host</code>: The host of the remote server. If not specified, the default is <code>localhost</code>.</li>
-<li><code>port</code>: The port of the remote server. If not specified, the default is <code>8000</code>.</li>
-<li><code>ssl</code>: If <code>True</code>, the client will use HTTPS. If not specified, the default is <code>False</code>.</li>
+<li><code>number of vectors</code> - This is the number of vectors you plan to index. These are the documents in your Chroma
+  collection (or chunks if you use LlamaIndex or LangChain terminology).</li>
+<li><code>dimensionality of vectors</code> - This is the dimensionality of the vectors output by your embedding model. For example,
+  if you use the <code>sentence-transformers/paraphrase-MiniLM-L6-v2</code> model, the dimensionality of the vectors is 384.</li>
+<li><code>4 bytes</code> - This is the size of each component of a vector. Chroma relies on HNSW lib implementation that uses 32bit
+  floats.</li>
 </ul>
-<h3 id="uses-of-http-client">Uses of HTTP Client<a class="headerlink" href="#uses-of-http-client" title="Permanent link">&para;</a></h3>
-<p>The HTTP client is ideal for when you want to scale your application or move off of local machine storage. It is
-important to note that there are trade-offs associated with using HTTP client:</p>
-<ul>
-<li>Network latency - The time it takes to send a request to the server and receive a response.</li>
-<li>Serialization and deserialization overhead - The time it takes to convert data to a format that can be sent over the
-  network and then convert it back to its original format.</li>
-<li>Security - The data is sent over the network, so it is important to ensure that the connection is secure (we recommend
-  using both HTTPS and authentication).</li>
-<li>Availability - The server must be available for the client to connect to it.</li>
-<li>Bandwidth usage - The amount of data sent over the network.</li>
-<li>Data privacy and compliance - Storing data on a remote server may require compliance with data protection laws and
-  regulations.</li>
-<li>Difficulty in debugging - Debugging network issues can be more difficult than debugging local issues. The same applies
-  to server-side issues.</li>
-</ul>
-<h3 id="host-parameter-special-cases">Host parameter special cases<a class="headerlink" href="#host-parameter-special-cases" title="Permanent link">&para;</a></h3>
-<p>The <code>host</code> parameter supports a more advanced syntax than just the hostname. You can specify the whole endpoint ULR (
-without the API paths), e.g. <code>https://chromadb.example.com:8000/my_server/path/</code>. This is useful when you want to use a
-reverse proxy or load balancer in front of your ChromaDB server.</p>
-<h2 id="ephemeral-client">Ephemeral Client<a class="headerlink" href="#ephemeral-client" title="Permanent link">&para;</a></h2>
-<p>Ephemeral client is a client that does not store any data on disk. It is useful for fast prototyping and testing. To get
-started with an ephemeral client, use the <code>EphemeralClient</code> class.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">EphemeralClient</span><span class="p">()</span>
-</span></code></pre></div>
-<h2 id="environmental-variable-configured-client">Environmental Variable Configured Client<a class="headerlink" href="#environmental-variable-configured-client" title="Permanent link">&para;</a></h2>
-<p>You can also configure the client using environmental variables. This is useful when you want to configure any of the
-client configurations listed above via environmental variables.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
-</span></code></pre></div>
-<p>Short list of env variables that can be used to configure the client:</p>
-<blockquote>
-<p><strong>Note</strong>: For complete list of available settings check (<a href="https://github.com/chroma-core/chroma/blob/c665838b0d143e2c2ceb82c4ade7404dc98124ff/chromadb/config.py#L83"><code>chromadb.config.Settings</code></a>).</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>Env Variable</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>chroma_api_impl</td>
-<td>The API implementation to use. There are two options:<br/> <code>chromadb.api.segment.SegmentAPI</code> (persistent client) <br/> <code>chromadb.api.fastapi.FastAPI</code> (Http client)</td>
-<td><code>chromadb.api.segment.SegmentAPI</code></td>
-</tr>
-<tr>
-<td>chroma_server_host</td>
-<td>The host of the remote server. This is required for HttpClient only.</td>
-<td><code>None</code>/<code>null</code></td>
-</tr>
-<tr>
-<td>chroma_server_http_port</td>
-<td>The port of the remote server. This is required for HttpClient only.</td>
-<td><code>8000</code></td>
-</tr>
-<tr>
-<td>chroma_server_headers</td>
-<td>The headers to be sent to the server. This is required for HttpClient only.</td>
-<td><code>None</code>/<code>null</code></td>
-</tr>
-</tbody>
-</table>
+<h2 id="disk">Disk<a class="headerlink" href="#disk" title="Permanent link">&para;</a></h2>
+<p>Disk storage requirements mainly depend on what metadata you store and the number of vectors you index. The heuristics
+is at least 2-4x the RAM required for the vector HNSW index.</p>
+<div class="admonition note">
+<p class="admonition-title">WAL Cleanup</p>
+<p>Chroma does not currently clean the WAL so your sqlite3 metadata file will grow over time. In the meantime feel free
+to use available tooling to periodically clean your WAL -
+see <a href="https://github.com/amikos-tech/chromadb-ops">chromadb-ops</a> for more information.</p>
+</div>
+<h2 id="cpu">CPU<a class="headerlink" href="#cpu" title="Permanent link">&para;</a></h2>
+<p>There are no hard requirements for the CPU, but it is recommended to use as much CPU as you can spare as it directly
+relates to index and search speeds.</p>
 
 
 
