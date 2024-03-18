@@ -1,4 +1,4 @@
-# How Much Resources Do you Need to Run Chroma
+# Resource Requirements
 
 Chroma makes use of the following compute resources:
 
