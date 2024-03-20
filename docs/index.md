@@ -15,6 +15,7 @@ ChromaDB.
 **Core Topics:**
 
 - [Filters](core/filters.md) - Learn to filter data in ChromaDB using metadata and document filters
+- ✨[Resource Requirements](core/resources.md) - Understand the resource requirements for running ChromaDB
 
 ## Running ChromaDB
 
