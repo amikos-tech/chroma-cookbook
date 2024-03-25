@@ -19,7 +19,8 @@ pip install chromadb
 chroma run --host localhost --port 8000 --path ./my_chroma_data
 ```
 
-`--host` The host to which to listen to, by default it is `[localhost](http://localhost:8000/docs)` , but if you want to expose it to your entire network then you can specify `0.0.0.0``
+`--host` The host to which to listen to, by default it is `[localhost](http://localhost:8000/docs)` , but if you want to
+expose it to your entire network then you can specify `0.0.0.0``
 
 `--port` The port on which to listen to, by default this is `8000`.
 
@@ -39,14 +40,20 @@ docker run -d --rm --name chromadb -v ./chroma:/chroma/chroma -e IS_PERSISTENT=T
 
 Options:
 
-- `-v` specifies a local dir which is where Chroma will store its data so when the container is destroyed the data remains
+- `-v` specifies a local dir which is where Chroma will store its data so when the container is destroyed the data
+  remains. Note: If you are using `-e PERSIST_DIRECTORY` then you need to point the volume to that directory.
 - `-e` `IS_PERSISTENT=TRUE` let’s Chroma know to persist data
-- `-e ANONYMIZED_TELEMETRY=TRUE` allows you to turn on (`TRUE`) or off (`FALSE`) anonymous product telemetry which helps the Chroma team in making informed decisions about Chroma OSS and commercial direction.
-- `chromadb/chroma:latest` indicates the latest Chroma version but can be replaced with any valid tag if a prior version is needed (e.g. `chroma:0.4.18`)
+- `-e` `PERSIST_DIRECTORY=/path/in/container` specifies the path in the container where the data will be stored, by
+  default it is `/chroma/chroma`
+- `-e ANONYMIZED_TELEMETRY=TRUE` allows you to turn on (`TRUE`) or off (`FALSE`) anonymous product telemetry which helps
+  the Chroma team in making informed decisions about Chroma OSS and commercial direction.
+- `chromadb/chroma:latest` indicates the latest Chroma version but can be replaced with any valid tag if a prior version
+  is needed (e.g. `chroma:0.4.24`)
 
 ### Docker Compose (Cloned Repo)
 
-If you are feeling adventurous you can also use the Chroma `main` branch to run a local Chroma server with the latest changes:
+If you are feeling adventurous you can also use the Chroma `main` branch to run a local Chroma server with the latest
+changes:
 
 Prerequisites:
 
@@ -61,12 +68,13 @@ docker compose up -d --build
 If you want to run a specific version of Chroma you can checkout the version tag you need:
 
 ```shell
-git checkout release/0.4.20
+git checkout release/0.4.24
 ```
 
 ### Docker Compose (Without Cloning the Repo)
 
-If you do not wish or are able to clone the repo locally, Chroma server can also be run with docker compose by creating (or using a gist) a `docker-compose.yaml`
+If you do not wish or are able to clone the repo locally, Chroma server can also be run with docker compose by
+creating (or using a gist) a `docker-compose.yaml`
 
 Prerequisites:
 
@@ -86,6 +94,7 @@ services:
       - ./chromadb:/chroma/chroma
     environment:
       - IS_PERSISTENT=TRUE
+      - PERSIST_DIRECTORY=/chroma/chroma # this is the default path, change it as needed
       - ANONYMIZED_TELEMETRY=${ANONYMIZED_TELEMETRY:-TRUE}
     ports:
       - 8000:8000
@@ -93,7 +102,8 @@ services:
       - net
 ```
 
-The above will create a container with the latest Chroma (`chromadb/chroma:latest`), will expose it to port `8000` on the local machine and will persist data in `./chromadb` relative path from where the `docker-compose.yaml` has been ran.
+The above will create a container with the latest Chroma (`chromadb/chroma:latest`), will expose it to port `8000` on
+the local machine and will persist data in `./chromadb` relative path from where the `docker-compose.yaml` has been ran.
 
 We have also created a small gist with the above file for convenience:
 
@@ -130,7 +140,7 @@ Get and install the chart:
 ```bash
 helm repo add chroma https://amikos-tech.github.io/chromadb-chart/
 helm repo update
-helm install chroma chroma/chromadb --set chromadb.apiVersion="0.4.20"
+helm install chroma chroma/chromadb --set chromadb.apiVersion="0.4.24"
 ```
 
 By default the chart will enable authentication in Chroma. To get the token run the following:
@@ -163,8 +173,9 @@ import chromadb
 from chromadb.config import Settings
 
 client = chromadb.HttpClient(host="http://127.0.0.1:61892",
-    settings=Settings(chroma_client_auth_provider="chromadb.auth.token.TokenAuthClientProvider",
-                      chroma_client_auth_credentials="<your_chroma_token>"))
+                             settings=Settings(
+                                 chroma_client_auth_provider="chromadb.auth.token.TokenAuthClientProvider",
+                                 chroma_client_auth_credentials="<your_chroma_token>"))
 client.heartbeat()  # this should work with or without authentication - it is a public endpoint
 
 client.get_version()  # this should work with or without authentication - it is a public endpoint
