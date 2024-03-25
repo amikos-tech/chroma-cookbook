@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.14">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.15">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.10ba22f1.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -1624,7 +1624,8 @@
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>chromadb
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>chroma<span class="w"> </span>run<span class="w"> </span>--host<span class="w"> </span>localhost<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--path<span class="w"> </span>./my_chroma_data
 </span></code></pre></div>
-<p><code>--host</code> The host to which to listen to, by default it is <code>[localhost](http://localhost:8000/docs)</code> , but if you want to expose it to your entire network then you can specify `0.0.0.0``</p>
+<p><code>--host</code> The host to which to listen to, by default it is <code>[localhost](http://localhost:8000/docs)</code> , but if you want to
+expose it to your entire network then you can specify `0.0.0.0``</p>
 <p><code>--port</code> The port on which to listen to, by default this is <code>8000</code>.</p>
 <p><code>--path</code> The path where to persist your Chroma data locally.</p>
 <h3 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h3>
@@ -1637,13 +1638,19 @@
 </span></code></pre></div>
 <p>Options:</p>
 <ul>
-<li><code>-v</code> specifies a local dir which is where Chroma will store its data so when the container is destroyed the data remains</li>
+<li><code>-v</code> specifies a local dir which is where Chroma will store its data so when the container is destroyed the data
+  remains. Note: If you are using <code>-e PERSIST_DIRECTORY</code> then you need to point the volume to that directory.</li>
 <li><code>-e</code> <code>IS_PERSISTENT=TRUE</code> let’s Chroma know to persist data</li>
-<li><code>-e ANONYMIZED_TELEMETRY=TRUE</code> allows you to turn on (<code>TRUE</code>) or off (<code>FALSE</code>) anonymous product telemetry which helps the Chroma team in making informed decisions about Chroma OSS and commercial direction.</li>
-<li><code>chromadb/chroma:latest</code> indicates the latest Chroma version but can be replaced with any valid tag if a prior version is needed (e.g. <code>chroma:0.4.18</code>)</li>
+<li><code>-e</code> <code>PERSIST_DIRECTORY=/path/in/container</code> specifies the path in the container where the data will be stored, by
+  default it is <code>/chroma/chroma</code></li>
+<li><code>-e ANONYMIZED_TELEMETRY=TRUE</code> allows you to turn on (<code>TRUE</code>) or off (<code>FALSE</code>) anonymous product telemetry which helps
+  the Chroma team in making informed decisions about Chroma OSS and commercial direction.</li>
+<li><code>chromadb/chroma:latest</code> indicates the latest Chroma version but can be replaced with any valid tag if a prior version
+  is needed (e.g. <code>chroma:0.4.24</code>)</li>
 </ul>
 <h3 id="docker-compose-cloned-repo">Docker Compose (Cloned Repo)<a class="headerlink" href="#docker-compose-cloned-repo" title="Permanent link">&para;</a></h3>
-<p>If you are feeling adventurous you can also use the Chroma <code>main</code> branch to run a local Chroma server with the latest changes:</p>
+<p>If you are feeling adventurous you can also use the Chroma <code>main</code> branch to run a local Chroma server with the latest
+changes:</p>
 <p>Prerequisites:</p>
 <ul>
 <li>Docker - <a href="https://docs.docker.com/desktop/">Overview of Docker Desktop | Docker Docs</a></li>
@@ -1653,10 +1660,11 @@
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
 </span></code></pre></div>
 <p>If you want to run a specific version of Chroma you can checkout the version tag you need:</p>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>release/0.4.20
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>release/0.4.24
 </span></code></pre></div>
 <h3 id="docker-compose-without-cloning-the-repo">Docker Compose (Without Cloning the Repo)<a class="headerlink" href="#docker-compose-without-cloning-the-repo" title="Permanent link">&para;</a></h3>
-<p>If you do not wish or are able to clone the repo locally, Chroma server can also be run with docker compose by creating (or using a gist) a <code>docker-compose.yaml</code></p>
+<p>If you do not wish or are able to clone the repo locally, Chroma server can also be run with docker compose by
+creating (or using a gist) a <code>docker-compose.yaml</code></p>
 <p>Prerequisites:</p>
 <ul>
 <li>Docker - <a href="https://docs.docker.com/desktop/">Overview of Docker Desktop | Docker Docs</a></li>
@@ -1674,13 +1682,15 @@
 </span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./chromadb:/chroma/chroma</span>
 </span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
 </span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_PERSISTENT=TRUE</span>
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ANONYMIZED_TELEMETRY=${ANONYMIZED_TELEMETRY:-TRUE}</span>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8000:8000</span>
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">net</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PERSIST_DIRECTORY=/chroma/chroma</span><span class="w"> </span><span class="c1"># this is the default path, change it as needed</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ANONYMIZED_TELEMETRY=${ANONYMIZED_TELEMETRY:-TRUE}</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8000:8000</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">net</span>
 </span></code></pre></div>
-<p>The above will create a container with the latest Chroma (<code>chromadb/chroma:latest</code>), will expose it to port <code>8000</code> on the local machine and will persist data in <code>./chromadb</code> relative path from where the <code>docker-compose.yaml</code> has been ran.</p>
+<p>The above will create a container with the latest Chroma (<code>chromadb/chroma:latest</code>), will expose it to port <code>8000</code> on
+the local machine and will persist data in <code>./chromadb</code> relative path from where the <code>docker-compose.yaml</code> has been ran.</p>
 <p>We have also created a small gist with the above file for convenience:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>https://gist.githubusercontent.com/tazarov/4fd933274bbacb3b9f286b15c01e904b/raw/87268142d64d8ee0f7f98c27a62a5d089923a1df/docker-compose.yaml<span class="w"> </span><span class="p">|</span><span class="w"> </span>docker-compose<span class="w"> </span>-f<span class="w"> </span>-<span class="w"> </span>up
 </span></code></pre></div>
@@ -1707,7 +1717,7 @@
 <p>Get and install the chart:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>chroma<span class="w"> </span>https://amikos-tech.github.io/chromadb-chart/
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>helm<span class="w"> </span>repo<span class="w"> </span>update
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>helm<span class="w"> </span>install<span class="w"> </span>chroma<span class="w"> </span>chroma/chromadb<span class="w"> </span>--set<span class="w"> </span>chromadb.apiVersion<span class="o">=</span><span class="s2">&quot;0.4.20&quot;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>helm<span class="w"> </span>install<span class="w"> </span>chroma<span class="w"> </span>chroma/chromadb<span class="w"> </span>--set<span class="w"> </span>chromadb.apiVersion<span class="o">=</span><span class="s2">&quot;0.4.24&quot;</span>
 </span></code></pre></div>
 <p>By default the chart will enable authentication in Chroma. To get the token run the following:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>default<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>chromadb-auth<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.data.token}&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>--decode
@@ -1729,13 +1739,14 @@
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kn">from</span> <span class="nn">chromadb.config</span> <span class="kn">import</span> <span class="n">Settings</span>
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
 </span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">HttpClient</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;http://127.0.0.1:61892&quot;</span><span class="p">,</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="n">settings</span><span class="o">=</span><span class="n">Settings</span><span class="p">(</span><span class="n">chroma_client_auth_provider</span><span class="o">=</span><span class="s2">&quot;chromadb.auth.token.TokenAuthClientProvider&quot;</span><span class="p">,</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>                      <span class="n">chroma_client_auth_credentials</span><span class="o">=</span><span class="s2">&quot;&lt;your_chroma_token&gt;&quot;</span><span class="p">))</span>
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="n">client</span><span class="o">.</span><span class="n">heartbeat</span><span class="p">()</span>  <span class="c1"># this should work with or without authentication - it is a public endpoint</span>
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="n">client</span><span class="o">.</span><span class="n">get_version</span><span class="p">()</span>  <span class="c1"># this should work with or without authentication - it is a public endpoint</span>
-</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
-</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="n">client</span><span class="o">.</span><span class="n">list_collections</span><span class="p">()</span>  <span class="c1"># this is a protected endpoint and requires authentication</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>                             <span class="n">settings</span><span class="o">=</span><span class="n">Settings</span><span class="p">(</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>                                 <span class="n">chroma_client_auth_provider</span><span class="o">=</span><span class="s2">&quot;chromadb.auth.token.TokenAuthClientProvider&quot;</span><span class="p">,</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>                                 <span class="n">chroma_client_auth_credentials</span><span class="o">=</span><span class="s2">&quot;&lt;your_chroma_token&gt;&quot;</span><span class="p">))</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="n">client</span><span class="o">.</span><span class="n">heartbeat</span><span class="p">()</span>  <span class="c1"># this should work with or without authentication - it is a public endpoint</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="n">client</span><span class="o">.</span><span class="n">get_version</span><span class="p">()</span>  <span class="c1"># this should work with or without authentication - it is a public endpoint</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="n">client</span><span class="o">.</span><span class="n">list_collections</span><span class="p">()</span>  <span class="c1"># this is a protected endpoint and requires authentication</span>
 </span></code></pre></div>
 <p>For more information about the helm chart consult - https://github.com/amikos-tech/chromadb-chart</p>
 
