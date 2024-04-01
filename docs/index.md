@@ -25,6 +25,12 @@ ChromaDB.
 - [Docker Compose](running/running-chroma.md#docker-compose-cloned-repo) - Running ChromaDB in Docker Compose
 - [Kubernetes](running/running-chroma.md#minikube-with-helm-chart) - Running ChromaDB in Kubernetes (Minikube)
 
+## Integrations
+
+- ✨[LangChain](integrations/langchain/index.md) - Integrating ChromaDB with LangChain
+- ✨[LlamaIndex](integrations/llamaindex/index.md) - Integrating ChromaDB with LlamaIndex
+- ✨[Ollama](integrations/ollama/index.md) - Integrating ChromaDB with Ollama
+
 ## The Ecosystem
 
 ### Clients
