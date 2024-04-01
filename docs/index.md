@@ -16,6 +16,7 @@ ChromaDB.
 
 - [Filters](core/filters.md) - Learn to filter data in ChromaDB using metadata and document filters
 - ✨[Resource Requirements](core/resources.md) - Understand the resource requirements for running ChromaDB
+- ✨'`Coming Soon` Authentication - Learn how to secure your ChromaDB instance with authentication.
 
 ## Running ChromaDB
 
