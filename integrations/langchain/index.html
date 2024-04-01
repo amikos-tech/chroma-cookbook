@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://cookbook.chromadb.dev/ecosystem/clients/">
+        <link rel="canonical" href="https://cookbook.chromadb.dev/integrations/langchain/">
       
       
-        <link rel="prev" href="../../core/advanced/wal/">
+        <link rel="prev" href="../../embeddings/gpu-support/">
       
       
-        <link rel="next" href="../../embeddings/bring-your-own-embeddings/">
+        <link rel="next" href="embeddings/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Chroma Ecosystem Clients - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+        <title>Chroma Integrations With LangChain - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chroma-ecosystem-clients" class="md-skip">
+        <a href="#chroma-integrations-with-langchain" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chroma Ecosystem Clients
+              Chroma Integrations With LangChain
             
           </span>
         </div>
@@ -721,8 +721,6 @@
       
   
   
-    
-  
   
   
     
@@ -733,11 +731,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -751,7 +749,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Ecosystem
@@ -762,30 +760,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Chroma Ecosystem Clients
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../ecosystem/clients/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -794,127 +772,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
-    <span class="md-ellipsis">
-      Python
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#javascript" class="md-nav__link">
-    <span class="md-ellipsis">
-      JavaScript
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ruby-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ruby Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#java-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Java Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#go-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Go Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#c-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      C# Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rust-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Rust Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#elixir-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Elixir Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dart-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dart Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#php-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      PHP Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#php-laravel-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      PHP (Laravel) Client
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1021,8 +878,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1035,11 +894,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -1053,7 +912,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Integrations
@@ -1064,6 +923,8 @@
                 
   
   
+    
+  
   
   
     
@@ -1080,16 +941,16 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../integrations/langchain/" class="md-nav__link ">
+            <a href="./" class="md-nav__link md-nav__link--active">
               
   
   <span class="md-ellipsis">
@@ -1100,13 +961,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+              <label class="md-nav__link md-nav__link--active" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6_1">
             <span class="md-nav__icon md-icon"></span>
             Langchain
@@ -1122,7 +983,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/langchain/embeddings/" class="md-nav__link">
+      <a href="embeddings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1143,7 +1004,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/langchain/retrievers/" class="md-nav__link">
+      <a href="retrievers/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1192,7 +1053,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../integrations/llamaindex/" class="md-nav__link ">
+            <a href="../llamaindex/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1225,7 +1086,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/llamaindex/embeddings/" class="md-nav__link">
+      <a href="../llamaindex/embeddings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1274,7 +1135,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../integrations/ollama/" class="md-nav__link ">
+            <a href="../ollama/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1307,7 +1168,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../integrations/ollama/embeddings/" class="md-nav__link">
+      <a href="../ollama/embeddings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1676,113 +1537,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
-    <span class="md-ellipsis">
-      Python
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#javascript" class="md-nav__link">
-    <span class="md-ellipsis">
-      JavaScript
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ruby-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ruby Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#java-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Java Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#go-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Go Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#c-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      C# Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rust-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Rust Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#elixir-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Elixir Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dart-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dart Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#php-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      PHP Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#php-laravel-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      PHP (Laravel) Client
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1799,347 +1553,11 @@
   
 
 
-<h1 id="chroma-ecosystem-clients">Chroma Ecosystem Clients<a class="headerlink" href="#chroma-ecosystem-clients" title="Permanent link">&para;</a></h1>
-<h2 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Maintainer</td>
-<td>Chroma Core team</td>
-</tr>
-<tr>
-<td>Repo</td>
-<td><a href="https://github.com/chroma-core/chroma">https://github.com/chroma-core/chroma</a></td>
-</tr>
-<tr>
-<td>Status</td>
-<td>✅ Stable</td>
-</tr>
-<tr>
-<td>Version</td>
-<td><code>0.4.25.dev0</code> (<a href="https://pypi.org/project/chromadb-client/">PyPi Link</a>)</td>
-</tr>
-<tr>
-<td>Docs</td>
-<td><a href="https://docs.trychroma.com/api">https://docs.trychroma.com/api</a></td>
-</tr>
-<tr>
-<td>Compatibility</td>
-<td>Python: <code>3.7+</code>, Chroma API Version: <code>0.4.15+</code></td>
-</tr>
-</tbody>
-</table>
-<p>Feature Support:</p>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Supported</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Create Tenant</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get Tenant</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Create DB</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get DB</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Create Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>List Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Count Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Delete Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Add Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Delete Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Update Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Query Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get Document</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Count Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Auth - Basic</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Auth - Token</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Reset</td>
-<td>✅</td>
-</tr>
-</tbody>
-</table>
-<p>Embedding Function Support:</p>
-<table>
-<thead>
-<tr>
-<th>Embedding Function</th>
-<th>Supported</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OpenAI</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Sentence Transformers</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>HuggingFace Inference API</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Cohere</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Google Vertex AI</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Google Generative AI (Gemini)</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>OpenCLIP (Multi-modal)</td>
-<td>✅</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="admonition-title">Embedding Functions</p>
-<p>The list above is not exhaustive. Check  <a href="https://docs.trychroma.com/embeddings">official docs</a> for up-to-date information.</p>
-</div>
-<h2 id="javascript">JavaScript<a class="headerlink" href="#javascript" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Maintainer</td>
-<td>Chroma Core team</td>
-</tr>
-<tr>
-<td>Repo</td>
-<td><a href="https://github.com/chroma-core/chroma">https://github.com/chroma-core/chroma</a></td>
-</tr>
-<tr>
-<td>Status</td>
-<td>✅ Stable</td>
-</tr>
-<tr>
-<td>Version</td>
-<td><code>1.8.1</code> (<a href="https://www.npmjs.com/package/chromadb">NPM Link</a>)</td>
-</tr>
-<tr>
-<td>Docs</td>
-<td><a href="https://docs.trychroma.com/api">https://docs.trychroma.com/api</a></td>
-</tr>
-<tr>
-<td>Compatibility</td>
-<td>Python: <code>3.7+</code>, Chroma API Version: <code>TBD</code></td>
-</tr>
-</tbody>
-</table>
-<p>Feature Support:</p>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Supported</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Create Tenant</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get Tenant</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Create DB</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get DB</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Create Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>List Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Count Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Delete Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Add Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Delete Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Update Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Query Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get Document</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Count Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Auth - Basic</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Auth - Token</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Reset</td>
-<td>✅</td>
-</tr>
-</tbody>
-</table>
-<p>Embedding Function Support:</p>
-<table>
-<thead>
-<tr>
-<th>Embedding Function</th>
-<th>Supported</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OpenAI</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Sentence Transformers</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>HuggingFace Inference API</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Cohere</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Google Vertex AI</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Google Generative AI (Gemini)</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>OpenCLIP (Multi-modal)</td>
-<td>✅</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="admonition-title">Embedding Functions</p>
-<p>The list above is not exhaustive. Check  <a href="https://docs.trychroma.com/embeddings">official docs</a> for up-to-date information.</p>
-</div>
-<h2 id="ruby-client">Ruby Client<a class="headerlink" href="#ruby-client" title="Permanent link">&para;</a></h2>
-<p>https://github.com/mariochavez/chroma</p>
-<h2 id="java-client">Java Client<a class="headerlink" href="#java-client" title="Permanent link">&para;</a></h2>
-<p>https://github.com/amikos-tech/chromadb-java-client</p>
-<h2 id="go-client">Go Client<a class="headerlink" href="#go-client" title="Permanent link">&para;</a></h2>
-<p>https://github.com/amikos-tech/chroma-go</p>
-<h2 id="c-client">C# Client<a class="headerlink" href="#c-client" title="Permanent link">&para;</a></h2>
-<p>https://github.com/microsoft/semantic-kernel/tree/main/dotnet/src/Connectors/Connectors.Memory.Chroma</p>
-<h2 id="rust-client">Rust Client<a class="headerlink" href="#rust-client" title="Permanent link">&para;</a></h2>
-<p>https://crates.io/crates/chromadb</p>
-<h2 id="elixir-client">Elixir Client<a class="headerlink" href="#elixir-client" title="Permanent link">&para;</a></h2>
-<p>https://hex.pm/packages/chroma/</p>
-<h2 id="dart-client">Dart Client<a class="headerlink" href="#dart-client" title="Permanent link">&para;</a></h2>
-<p>https://pub.dev/packages/chromadb</p>
-<h2 id="php-client">PHP Client<a class="headerlink" href="#php-client" title="Permanent link">&para;</a></h2>
-<p>https://github.com/CodeWithKyrian/chromadb-php</p>
-<h2 id="php-laravel-client">PHP (Laravel) Client<a class="headerlink" href="#php-laravel-client" title="Permanent link">&para;</a></h2>
-<p>https://github.com/helgeSverre/chromadb</p>
+<h1 id="chroma-integrations-with-langchain">Chroma Integrations With LangChain<a class="headerlink" href="#chroma-integrations-with-langchain" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="embeddings/">Embeddings</a> - learn how to use Chroma Embedding functions with LC and vice versa</li>
+<li><a href="retrievers/">Retrievers</a> - learn how to use LangChain retrievers with Chroma</li>
+</ul>
 
 
 
