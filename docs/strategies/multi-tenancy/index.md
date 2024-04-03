@@ -1,0 +1,14 @@
+# Multi-Tenancy Strategies
+
+## Introduction
+
+Some deployment settings of Chroma may require multi-tenancy support. This document outlines the strategies for
+multi-tenancy approaches in Chroma.
+
+## Approaches
+
+- [Naive approach](naive-multi-tenancy.md) - This is a simple approach puts the onus of enforcing multi-tenancy on the
+  application. It is the simplest approach to implement, but is not very well suited for production environments.
+- [Multi-User Basic Auth](multi-user-basic-auth.md) - This article provides a stepping stone to more advanced multi-tenancy where the Chroma
+  authentication allows for multiple users to access the same Chroma instance with their own credentials.
+- `Coming Soon` ✨ [Authorization Model with OpenFGA](TBD) - Implement an advanced authorization model with OpenFGA.

@@ -1,9 +1,10 @@
-# Multi-tenancy Strategies
+# Naive Multi-tenancy Strategies
 
 !!! note "Single-note Chroma"
 
     The below strategies are applicable to single-node Chroma only. The strategies require your app to act as both PEP (Policy Enforcement Point) 
-    and PDP (Policy Decision Point) for authorization.
+    and PDP (Policy Decision Point) for authorization. This is a naive approach to multi-tenancy and is probably not suited for production environments,
+    however it is a good and simple way to get started with multi-tenancy in Chroma.
 
 !!! warn "Authorization"
 
