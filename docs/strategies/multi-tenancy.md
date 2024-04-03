@@ -2,7 +2,15 @@
 
 !!! note "Single-note Chroma"
 
-    The below strategies are applicable to single-node Chroma only.
+    The below strategies are applicable to single-node Chroma only. The strategies require your app to act as both PEP (Policy Enforcement Point) 
+    and PDP (Policy Decision Point) for authorization.
+
+!!! warn "Authorization"
+
+    We are in the process of creating a list of articles on how to implement proper authorization in Chroma, 
+    leveraging the an external service and Chroma's auth plugins. The first article of the series is available in 
+    [Medium](https://medium.com/@amikostech/implementing-multi-tenancy-in-chroma-part-1-multi-user-basic-auth-a4e790f1254d) 
+    and will also be made available here soon.
 
 ## Introduction
 
@@ -10,16 +18,19 @@ There are several multi-tenancy strategies available to users of Chroma. The act
 the user and the application. The strategies below apply to multi-user environments, but do no factor in partly-shared
 resources like groups or teams.
 
-- **Doc-Per-User**: In this scenario, the app maintains multiple collections and each collection document is associated
+- **User-Per-Doc**: In this scenario, the app maintains multiple collections and each collection document is associated
   with a single user.
-- **Doc-Per-Collection**: In this scenario, the app maintains multiple collections and each collection is
+- **User-Per-Collection**: In this scenario, the app maintains multiple collections and each collection is
   associated with a single user.
-- **Doc-Per-Database**: In this scenario, the app maintains multiple databases with a single tenant and each database is
+- **User-Per-Database**: In this scenario, the app maintains multiple databases with a single tenant and each database
+  is
   associated with a single user.
-- **Doc-Per-Tenant**: In this scenario, the app maintains multiple tenants and each tenant is associated with a single
+- **User-Per-Tenant**: In this scenario, the app maintains multiple tenants and each tenant is associated with a single
   user.
 
-## Doc-Per-User
+## User-Per-Doc
+
+The goal of this strategy is to grant user permissions to access individual documents.
 
 ![multi-tenancy-user-per-doc.png](../assets/images/multi-tenancy-user-per-doc.png)
 
@@ -55,7 +66,9 @@ ensure separation of data.
 - Error-prone: Messing up the filtering can lead to data being leaked across users.
 - Scalability: As the number of users and documents grow, doing filtering on metadata can become slow.
 
-## Doc-Per-Collection
+## User-Per-Collection
+
+The goal of this strategy is to grant a user access to all documents in a collection.
 
 ![multi-tenancy-user-per-collection.png](../assets/images/multi-tenancy-user-per-collection.png)
 
@@ -93,7 +106,10 @@ user.
 - Shared document search: If you want to maintain some documents shared then you will have to create a separate
   collection for those documents and allow users to query the shared collection as well.
 
-## Doc-Per-Database
+## User-Per-Database
+
+The goal of this strategy is to associate a user with a single database thus granting them access to all collections and
+documents within the database.
 
 ![multi-tenancy-user-per-db.png](../assets/images/multi-tenancy-user-per-db.png)
 
@@ -143,12 +159,14 @@ In the above code we do the following:
 - We then create a `PersistentClient` for each user with the `tenant` and `database` we got from the `AdminClient`.
 - We then create or get collection and add data to it.
 
-
 **Drawbacks**:
 
 - This strategy requires consistent management of tenants and databases and their use in the client application.
 
-## Doc-Per-Tenant
+## User-Per-Tenant
+
+The goal of this strategy is to associate a user with a single tenant thus granting them access to all databases,
+collections, and documents within the tenant.
 
 ![multi-tenancy-user-per-tenant.png](../assets/images/multi-tenancy-user-per-tenant.png)
 
