@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.16">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
     
     
       
@@ -1486,36 +1486,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#doc-per-user" class="md-nav__link">
+  <a href="#user-per-doc" class="md-nav__link">
     <span class="md-ellipsis">
-      Doc-Per-User
+      User-Per-Doc
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#doc-per-collection" class="md-nav__link">
+  <a href="#user-per-collection" class="md-nav__link">
     <span class="md-ellipsis">
-      Doc-Per-Collection
+      User-Per-Collection
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#doc-per-database" class="md-nav__link">
+  <a href="#user-per-database" class="md-nav__link">
     <span class="md-ellipsis">
-      Doc-Per-Database
+      User-Per-Database
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#doc-per-tenant" class="md-nav__link">
+  <a href="#user-per-tenant" class="md-nav__link">
     <span class="md-ellipsis">
-      Doc-Per-Tenant
+      User-Per-Tenant
     </span>
   </a>
   
@@ -1638,36 +1638,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#doc-per-user" class="md-nav__link">
+  <a href="#user-per-doc" class="md-nav__link">
     <span class="md-ellipsis">
-      Doc-Per-User
+      User-Per-Doc
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#doc-per-collection" class="md-nav__link">
+  <a href="#user-per-collection" class="md-nav__link">
     <span class="md-ellipsis">
-      Doc-Per-Collection
+      User-Per-Collection
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#doc-per-database" class="md-nav__link">
+  <a href="#user-per-database" class="md-nav__link">
     <span class="md-ellipsis">
-      Doc-Per-Database
+      User-Per-Database
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#doc-per-tenant" class="md-nav__link">
+  <a href="#user-per-tenant" class="md-nav__link">
     <span class="md-ellipsis">
-      Doc-Per-Tenant
+      User-Per-Tenant
     </span>
   </a>
   
@@ -1694,23 +1694,33 @@
 <h1 id="multi-tenancy-strategies">Multi-tenancy Strategies<a class="headerlink" href="#multi-tenancy-strategies" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Single-note Chroma</p>
-<p>The below strategies are applicable to single-node Chroma only.</p>
+<p>The below strategies are applicable to single-node Chroma only. The strategies require your app to act as both PEP (Policy Enforcement Point) 
+and PDP (Policy Decision Point) for authorization.</p>
+</div>
+<div class="admonition warn">
+<p class="admonition-title">Authorization</p>
+<p>We are in the process of creating a list of articles on how to implement proper authorization in Chroma, 
+leveraging the an external service and Chroma's auth plugins. The first article of the series is available in 
+<a href="https://medium.com/@amikostech/implementing-multi-tenancy-in-chroma-part-1-multi-user-basic-auth-a4e790f1254d">Medium</a> 
+and will also be made available here soon.</p>
 </div>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>There are several multi-tenancy strategies available to users of Chroma. The actual strategy will depend on the needs of
 the user and the application. The strategies below apply to multi-user environments, but do no factor in partly-shared
 resources like groups or teams.</p>
 <ul>
-<li><strong>Doc-Per-User</strong>: In this scenario, the app maintains multiple collections and each collection document is associated
+<li><strong>User-Per-Doc</strong>: In this scenario, the app maintains multiple collections and each collection document is associated
   with a single user.</li>
-<li><strong>Doc-Per-Collection</strong>: In this scenario, the app maintains multiple collections and each collection is
+<li><strong>User-Per-Collection</strong>: In this scenario, the app maintains multiple collections and each collection is
   associated with a single user.</li>
-<li><strong>Doc-Per-Database</strong>: In this scenario, the app maintains multiple databases with a single tenant and each database is
+<li><strong>User-Per-Database</strong>: In this scenario, the app maintains multiple databases with a single tenant and each database
+  is
   associated with a single user.</li>
-<li><strong>Doc-Per-Tenant</strong>: In this scenario, the app maintains multiple tenants and each tenant is associated with a single
+<li><strong>User-Per-Tenant</strong>: In this scenario, the app maintains multiple tenants and each tenant is associated with a single
   user.</li>
 </ul>
-<h2 id="doc-per-user">Doc-Per-User<a class="headerlink" href="#doc-per-user" title="Permanent link">&para;</a></h2>
+<h2 id="user-per-doc">User-Per-Doc<a class="headerlink" href="#user-per-doc" title="Permanent link">&para;</a></h2>
+<p>The goal of this strategy is to grant user permissions to access individual documents.</p>
 <p><img alt="multi-tenancy-user-per-doc.png" src="../../assets/images/multi-tenancy-user-per-doc.png" /></p>
 <p>To implement this strategy you need to add some sort of user identification to each document that belongs to a user.
 For this example we will assume it is <code>user_id</code>.</p>
@@ -1737,7 +1747,8 @@ ensure separation of data.</p>
 <li>Error-prone: Messing up the filtering can lead to data being leaked across users.</li>
 <li>Scalability: As the number of users and documents grow, doing filtering on metadata can become slow.</li>
 </ul>
-<h2 id="doc-per-collection">Doc-Per-Collection<a class="headerlink" href="#doc-per-collection" title="Permanent link">&para;</a></h2>
+<h2 id="user-per-collection">User-Per-Collection<a class="headerlink" href="#user-per-collection" title="Permanent link">&para;</a></h2>
+<p>The goal of this strategy is to grant a user access to all documents in a collection.</p>
 <p><img alt="multi-tenancy-user-per-collection.png" src="../../assets/images/multi-tenancy-user-per-collection.png" /></p>
 <p>To implement this strategy you need to create a collection for each user. For this example we will assume it is
 <code>user_id</code>.</p>
@@ -1766,7 +1777,9 @@ user.</p>
 <li>Shared document search: If you want to maintain some documents shared then you will have to create a separate
   collection for those documents and allow users to query the shared collection as well.</li>
 </ul>
-<h2 id="doc-per-database">Doc-Per-Database<a class="headerlink" href="#doc-per-database" title="Permanent link">&para;</a></h2>
+<h2 id="user-per-database">User-Per-Database<a class="headerlink" href="#user-per-database" title="Permanent link">&para;</a></h2>
+<p>The goal of this strategy is to associate a user with a single database thus granting them access to all collections and
+documents within the database.</p>
 <p><img alt="multi-tenancy-user-per-db.png" src="../../assets/images/multi-tenancy-user-per-db.png" /></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span> <span class="nn">chromadb</span> <span class="kn">import</span> <span class="n">DEFAULT_TENANT</span>
@@ -1816,7 +1829,9 @@ user.</p>
 <ul>
 <li>This strategy requires consistent management of tenants and databases and their use in the client application.</li>
 </ul>
-<h2 id="doc-per-tenant">Doc-Per-Tenant<a class="headerlink" href="#doc-per-tenant" title="Permanent link">&para;</a></h2>
+<h2 id="user-per-tenant">User-Per-Tenant<a class="headerlink" href="#user-per-tenant" title="Permanent link">&para;</a></h2>
+<p>The goal of this strategy is to associate a user with a single tenant thus granting them access to all databases,
+collections, and documents within the tenant.</p>
 <p><img alt="multi-tenancy-user-per-tenant.png" src="../../assets/images/multi-tenancy-user-per-tenant.png" /></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span> <span class="nn">chromadb</span> <span class="kn">import</span> <span class="n">DEFAULT_DATABASE</span>
@@ -2035,7 +2050,7 @@ user.</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.bd41221c.min.js"></script>
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
       
         <script src="../../javascripts/gtag.js"></script>
       
