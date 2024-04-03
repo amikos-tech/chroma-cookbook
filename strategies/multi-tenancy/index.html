@@ -11,10 +11,10 @@
         <link rel="canonical" href="https://cookbook.chromadb.dev/strategies/multi-tenancy/">
       
       
-        <link rel="prev" href="../memory-management/">
+        <link rel="prev" href="../time-based-queries/">
       
       
-        <link rel="next" href="../privacy/">
+        <link rel="next" href="multi-user-basic-auth/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Multi-tenancy Strategies - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+        <title>Multi-Tenancy Strategies - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
       
     
     
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Multi-tenancy Strategies
+              Multi-Tenancy Strategies
             
           </span>
         </div>
@@ -1426,114 +1426,6 @@
                 
   
   
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Multi-tenancy Strategies
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Multi-tenancy Strategies
-  </span>
-  
-
-      </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    <span class="md-ellipsis">
-      Introduction
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#user-per-doc" class="md-nav__link">
-    <span class="md-ellipsis">
-      User-Per-Doc
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#user-per-collection" class="md-nav__link">
-    <span class="md-ellipsis">
-      User-Per-Collection
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#user-per-database" class="md-nav__link">
-    <span class="md-ellipsis">
-      User-Per-Database
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#user-per-tenant" class="md-nav__link">
-    <span class="md-ellipsis">
-      User-Per-Tenant
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
   
   
     <li class="md-nav__item">
@@ -1593,6 +1485,113 @@
 
               
             
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_8" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="./" class="md-nav__link md-nav__link--active">
+              
+  
+  <span class="md-ellipsis">
+    Multi tenancy
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link md-nav__link--active" for="__nav_8_8" id="__nav_8_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_8">
+            <span class="md-nav__icon md-icon"></span>
+            Multi tenancy
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="multi-user-basic-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-User Basic Auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="naive-multi-tenancy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Naive Multi-tenancy Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1638,36 +1637,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#user-per-doc" class="md-nav__link">
+  <a href="#approaches" class="md-nav__link">
     <span class="md-ellipsis">
-      User-Per-Doc
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#user-per-collection" class="md-nav__link">
-    <span class="md-ellipsis">
-      User-Per-Collection
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#user-per-database" class="md-nav__link">
-    <span class="md-ellipsis">
-      User-Per-Database
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#user-per-tenant" class="md-nav__link">
-    <span class="md-ellipsis">
-      User-Per-Tenant
+      Approaches
     </span>
   </a>
   
@@ -1691,197 +1663,17 @@
   
 
 
-<h1 id="multi-tenancy-strategies">Multi-tenancy Strategies<a class="headerlink" href="#multi-tenancy-strategies" title="Permanent link">&para;</a></h1>
-<div class="admonition note">
-<p class="admonition-title">Single-note Chroma</p>
-<p>The below strategies are applicable to single-node Chroma only. The strategies require your app to act as both PEP (Policy Enforcement Point) 
-and PDP (Policy Decision Point) for authorization.</p>
-</div>
-<div class="admonition warn">
-<p class="admonition-title">Authorization</p>
-<p>We are in the process of creating a list of articles on how to implement proper authorization in Chroma, 
-leveraging the an external service and Chroma's auth plugins. The first article of the series is available in 
-<a href="https://medium.com/@amikostech/implementing-multi-tenancy-in-chroma-part-1-multi-user-basic-auth-a4e790f1254d">Medium</a> 
-and will also be made available here soon.</p>
-</div>
+<h1 id="multi-tenancy-strategies">Multi-Tenancy Strategies<a class="headerlink" href="#multi-tenancy-strategies" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>There are several multi-tenancy strategies available to users of Chroma. The actual strategy will depend on the needs of
-the user and the application. The strategies below apply to multi-user environments, but do no factor in partly-shared
-resources like groups or teams.</p>
+<p>Some deployment settings of Chroma may require multi-tenancy support. This document outlines the strategies for
+multi-tenancy approaches in Chroma.</p>
+<h2 id="approaches">Approaches<a class="headerlink" href="#approaches" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>User-Per-Doc</strong>: In this scenario, the app maintains multiple collections and each collection document is associated
-  with a single user.</li>
-<li><strong>User-Per-Collection</strong>: In this scenario, the app maintains multiple collections and each collection is
-  associated with a single user.</li>
-<li><strong>User-Per-Database</strong>: In this scenario, the app maintains multiple databases with a single tenant and each database
-  is
-  associated with a single user.</li>
-<li><strong>User-Per-Tenant</strong>: In this scenario, the app maintains multiple tenants and each tenant is associated with a single
-  user.</li>
-</ul>
-<h2 id="user-per-doc">User-Per-Doc<a class="headerlink" href="#user-per-doc" title="Permanent link">&para;</a></h2>
-<p>The goal of this strategy is to grant user permissions to access individual documents.</p>
-<p><img alt="multi-tenancy-user-per-doc.png" src="../../assets/images/multi-tenancy-user-per-doc.png" /></p>
-<p>To implement this strategy you need to add some sort of user identification to each document that belongs to a user.
-For this example we will assume it is <code>user_id</code>.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">()</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">collection</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;my-collection&quot;</span><span class="p">)</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">documents</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is document1&quot;</span><span class="p">,</span> <span class="s2">&quot;This is document2&quot;</span><span class="p">],</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">metadatas</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="s2">&quot;user1&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="s2">&quot;user2&quot;</span><span class="p">}],</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;doc1&quot;</span><span class="p">,</span> <span class="s2">&quot;doc2&quot;</span><span class="p">],</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">)</span>
-</span></code></pre></div>
-<p>At query time you will have to provide the <code>user_id</code> as a filter to your query like so:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">where</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="s2">&quot;user1&quot;</span><span class="p">}],</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span>
-</span></code></pre></div>
-<p>To successfully implement this strategy your code needs to consistently add and filter on the <code>user_id</code> metadata to
-ensure separation of data.</p>
-<p><strong>Drawbacks</strong>:</p>
-<ul>
-<li>Error-prone: Messing up the filtering can lead to data being leaked across users.</li>
-<li>Scalability: As the number of users and documents grow, doing filtering on metadata can become slow.</li>
-</ul>
-<h2 id="user-per-collection">User-Per-Collection<a class="headerlink" href="#user-per-collection" title="Permanent link">&para;</a></h2>
-<p>The goal of this strategy is to grant a user access to all documents in a collection.</p>
-<p><img alt="multi-tenancy-user-per-collection.png" src="../../assets/images/multi-tenancy-user-per-collection.png" /></p>
-<p>To implement this strategy you need to create a collection for each user. For this example we will assume it is
-<code>user_id</code>.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">()</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">user_id</span> <span class="o">=</span> <span class="s2">&quot;user1&quot;</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">collection</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;user-collection:</span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">documents</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is document1&quot;</span><span class="p">,</span> <span class="s2">&quot;This is document2&quot;</span><span class="p">],</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;doc1&quot;</span><span class="p">,</span> <span class="s2">&quot;doc2&quot;</span><span class="p">],</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">)</span>
-</span></code></pre></div>
-<p>At query time you will have to provide the <code>user_id</code> as a filter to your query like so:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">user_id</span> <span class="o">=</span> <span class="s2">&quot;user1&quot;</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">user_collection</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_collection</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;user-collection:</span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">results</span> <span class="o">=</span> <span class="n">user_collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">)</span>
-</span></code></pre></div>
-<p>To successfully implement this strategy your code needs to consistently create and query the correct collection for the
-user.</p>
-<p><strong>Drawbacks</strong>:</p>
-<ul>
-<li>Error-prone: Messing up the collection name can lead to data being leaked across users.</li>
-<li>Shared document search: If you want to maintain some documents shared then you will have to create a separate
-  collection for those documents and allow users to query the shared collection as well.</li>
-</ul>
-<h2 id="user-per-database">User-Per-Database<a class="headerlink" href="#user-per-database" title="Permanent link">&para;</a></h2>
-<p>The goal of this strategy is to associate a user with a single database thus granting them access to all collections and
-documents within the database.</p>
-<p><img alt="multi-tenancy-user-per-db.png" src="../../assets/images/multi-tenancy-user-per-db.png" /></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span> <span class="nn">chromadb</span> <span class="kn">import</span> <span class="n">DEFAULT_TENANT</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kn">from</span> <span class="nn">chromadb</span> <span class="kn">import</span> <span class="n">Settings</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">adminClient</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">AdminClient</span><span class="p">(</span><span class="n">Settings</span><span class="p">(</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">is_persistent</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="n">persist_directory</span><span class="o">=</span><span class="s2">&quot;multitenant&quot;</span><span class="p">,</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">))</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="c1"># For Remote Chroma server:</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="c1"># </span>
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="c1"># adminClient= chromadb.AdminClient(Settings(</span>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="c1">#   chroma_api_impl=&quot;chromadb.api.fastapi.FastAPI&quot;,</span>
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="c1">#   chroma_server_host=&quot;localhost&quot;,</span>
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="c1">#   chroma_server_http_port=&quot;8000&quot;,</span>
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="c1"># ))</span>
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>
-</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="k">def</span> <span class="nf">get_or_create_db_for_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
-</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>    <span class="n">database</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;db:</span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>        <span class="n">adminClient</span><span class="o">.</span><span class="n">get_database</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
-</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>        <span class="n">adminClient</span><span class="o">.</span><span class="n">create_database</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">DEFAULT_TENANT</span><span class="p">)</span>
-</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>    <span class="k">return</span> <span class="n">DEFAULT_TENANT</span><span class="p">,</span> <span class="n">database</span>
-</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>
-</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>
-</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="n">user_id</span> <span class="o">=</span> <span class="s2">&quot;user_John&quot;</span>
-</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>
-</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="n">tenant</span><span class="p">,</span> <span class="n">database</span> <span class="o">=</span> <span class="n">get_or_create_db_for_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
-</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="c1"># replace with chromadb.HttpClient for remote Chroma server</span>
-</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;multitenant&quot;</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="n">tenant</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">)</span>
-</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="n">collection</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;user_collection&quot;</span><span class="p">)</span>
-</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>    <span class="n">documents</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is document1&quot;</span><span class="p">,</span> <span class="s2">&quot;This is document2&quot;</span><span class="p">],</span>
-</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;doc1&quot;</span><span class="p">,</span> <span class="s2">&quot;doc2&quot;</span><span class="p">],</span>
-</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="p">)</span>
-</span></code></pre></div>
-<p>In the above code we do the following:</p>
-<ul>
-<li>We create or get a database for each user in the <code>DEFAULT_TENANT</code> using the <code>chromadb.AdminClient</code>.</li>
-<li>We then create a <code>PersistentClient</code> for each user with the <code>tenant</code> and <code>database</code> we got from the <code>AdminClient</code>.</li>
-<li>We then create or get collection and add data to it.</li>
-</ul>
-<p><strong>Drawbacks</strong>:</p>
-<ul>
-<li>This strategy requires consistent management of tenants and databases and their use in the client application.</li>
-</ul>
-<h2 id="user-per-tenant">User-Per-Tenant<a class="headerlink" href="#user-per-tenant" title="Permanent link">&para;</a></h2>
-<p>The goal of this strategy is to associate a user with a single tenant thus granting them access to all databases,
-collections, and documents within the tenant.</p>
-<p><img alt="multi-tenancy-user-per-tenant.png" src="../../assets/images/multi-tenancy-user-per-tenant.png" /></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span> <span class="nn">chromadb</span> <span class="kn">import</span> <span class="n">DEFAULT_DATABASE</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kn">from</span> <span class="nn">chromadb</span> <span class="kn">import</span> <span class="n">Settings</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">adminClient</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">AdminClient</span><span class="p">(</span><span class="n">Settings</span><span class="p">(</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="n">chroma_api_impl</span><span class="o">=</span><span class="s2">&quot;chromadb.api.segment.SegmentAPI&quot;</span><span class="p">,</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="n">is_persistent</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="n">persist_directory</span><span class="o">=</span><span class="s2">&quot;multitenant&quot;</span><span class="p">,</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">))</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="c1"># For Remote Chroma server:</span>
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="c1"># </span>
-</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="c1"># adminClient= chromadb.AdminClient(Settings(</span>
-</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="c1">#   chroma_api_impl=&quot;chromadb.api.fastapi.FastAPI&quot;,</span>
-</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="c1">#   chroma_server_host=&quot;localhost&quot;,</span>
-</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="c1">#   chroma_server_http_port=&quot;8000&quot;,</span>
-</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="c1"># ))</span>
-</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>
-</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="k">def</span> <span class="nf">get_or_create_tenant_for_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
-</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>    <span class="n">tenant_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;tenant_user:</span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>        <span class="n">adminClient</span><span class="o">.</span><span class="n">get_tenant</span><span class="p">(</span><span class="n">tenant_id</span><span class="p">)</span>
-</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>        <span class="n">adminClient</span><span class="o">.</span><span class="n">create_tenant</span><span class="p">(</span><span class="n">tenant_id</span><span class="p">)</span>
-</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>        <span class="n">adminClient</span><span class="o">.</span><span class="n">create_database</span><span class="p">(</span><span class="n">DEFAULT_DATABASE</span><span class="p">,</span> <span class="n">tenant_id</span><span class="p">)</span>
-</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>    <span class="k">return</span> <span class="n">tenant_id</span><span class="p">,</span> <span class="n">DEFAULT_DATABASE</span>
-</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>
-</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>
-</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="n">user_id</span> <span class="o">=</span> <span class="s2">&quot;user1&quot;</span>
-</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>
-</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="n">tenant</span><span class="p">,</span> <span class="n">database</span> <span class="o">=</span> <span class="n">get_or_create_tenant_for_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
-</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="c1"># replace with chromadb.HttpClient for remote Chroma server</span>
-</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;multitenant&quot;</span><span class="p">,</span> <span class="n">tenant</span><span class="o">=</span><span class="n">tenant</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">)</span>
-</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="n">collection</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;user_collection&quot;</span><span class="p">)</span>
-</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>    <span class="n">documents</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is document1&quot;</span><span class="p">,</span> <span class="s2">&quot;This is document2&quot;</span><span class="p">],</span>
-</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;doc1&quot;</span><span class="p">,</span> <span class="s2">&quot;doc2&quot;</span><span class="p">],</span>
-</span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a><span class="p">)</span>
-</span></code></pre></div>
-<p>In the above code we do the following:</p>
-<ul>
-<li>We create or get a tenant for each user with <code>DEFAULT_DATABASE</code> using the <code>chromadb.AdminClient</code>.</li>
-<li>We then create a <code>PersistentClient</code> for each user with the <code>tenant</code> and <code>database</code> we got from the <code>AdminClient</code>.</li>
-<li>We then create or get collection and add data to it.</li>
-</ul>
-<p><strong>Drawbacks</strong>:</p>
-<ul>
-<li>This strategy requires consistent management of tenants and databases and their use in the client application.</li>
+<li><a href="naive-multi-tenancy/">Naive approach</a> - This is a simple approach puts the onus of enforcing multi-tenancy on the
+  application. It is the simplest approach to implement, but is not very well suited for production environments.</li>
+<li><a href="multi-user-basic-auth/">Multi-User Basic Auth</a> - This article provides a stepping stone to more advanced multi-tenancy where the Chroma
+  authentication allows for multiple users to access the same Chroma instance with their own credentials.</li>
+<li><code>Coming Soon</code> ✨ <a href="TBD">Authorization Model with OpenFGA</a> - Implement an advanced authorization model with OpenFGA.</li>
 </ul>
 
 

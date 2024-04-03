@@ -161,11 +161,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://cookbook.chromadb.dev/strategies/multi-tenancy/</loc>
-         <lastmod>2024-04-03</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://cookbook.chromadb.dev/strategies/privacy/</loc>
          <lastmod>2024-04-03</lastmod>
          <changefreq>daily</changefreq>
@@ -177,6 +172,21 @@
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/strategies/time-based-queries/</loc>
+         <lastmod>2024-04-03</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://cookbook.chromadb.dev/strategies/multi-tenancy/</loc>
+         <lastmod>2024-04-03</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://cookbook.chromadb.dev/strategies/multi-tenancy/multi-user-basic-auth/</loc>
+         <lastmod>2024-04-03</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://cookbook.chromadb.dev/strategies/multi-tenancy/naive-multi-tenancy/</loc>
          <lastmod>2024-04-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
