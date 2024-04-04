@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://cookbook.chromadb.dev/strategies/privacy/">
+        <link rel="canonical" href="https://cookbook.chromadb.dev/embeddings/embedding-models/">
       
       
-        <link rel="prev" href="../memory-management/">
+        <link rel="prev" href="../bring-your-own-embeddings/">
       
       
-        <link rel="next" href="../rebuilding/">
+        <link rel="next" href="../gpu-support/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Privacy Strategies - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+        <title>Embedding Models - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#privacy-strategies" class="md-skip">
+        <a href="#embedding-models" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Privacy Strategies
+              Embedding Models
             
           </span>
         </div>
@@ -788,8 +788,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -802,11 +804,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -820,7 +822,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Embeddings
@@ -834,7 +836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../embeddings/bring-your-own-embeddings/" class="md-nav__link">
+      <a href="../bring-your-own-embeddings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -852,10 +854,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../embeddings/embedding-models/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -864,6 +875,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -876,7 +888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../embeddings/gpu-support/" class="md-nav__link">
+      <a href="../gpu-support/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1310,10 +1322,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -1336,11 +1346,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -1354,7 +1364,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Strategies
@@ -1368,7 +1378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../backup/" class="md-nav__link">
+      <a href="../../strategies/backup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1389,7 +1399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../batching/" class="md-nav__link">
+      <a href="../../strategies/batching/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1410,7 +1420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../keyword-search/" class="md-nav__link">
+      <a href="../../strategies/keyword-search/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1431,7 +1441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../memory-management/" class="md-nav__link">
+      <a href="../../strategies/memory-management/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1449,30 +1459,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Privacy Strategies
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../strategies/privacy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1481,61 +1471,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#encryption" class="md-nav__link">
-    <span class="md-ellipsis">
-      Encryption
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Encryption">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#document-encryption" class="md-nav__link">
-    <span class="md-ellipsis">
-      Document Encryption
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1548,7 +1483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rebuilding/" class="md-nav__link">
+      <a href="../../strategies/rebuilding/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1569,7 +1504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../time-based-queries/" class="md-nav__link">
+      <a href="../../strategies/time-based-queries/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1612,7 +1547,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../multi-tenancy/" class="md-nav__link ">
+            <a href="../../strategies/multi-tenancy/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1645,7 +1580,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../multi-tenancy/multi-user-basic-auth/" class="md-nav__link">
+      <a href="../../strategies/multi-tenancy/multi-user-basic-auth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1666,7 +1601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../multi-tenancy/naive-multi-tenancy/" class="md-nav__link">
+      <a href="../../strategies/multi-tenancy/naive-multi-tenancy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1717,47 +1652,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#encryption" class="md-nav__link">
-    <span class="md-ellipsis">
-      Encryption
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Encryption">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#document-encryption" class="md-nav__link">
-    <span class="md-ellipsis">
-      Document Encryption
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1774,13 +1668,8 @@
   
 
 
-<h1 id="privacy-strategies">Privacy Strategies<a class="headerlink" href="#privacy-strategies" title="Permanent link">&para;</a></h1>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>TBD</p>
-<h2 id="encryption">Encryption<a class="headerlink" href="#encryption" title="Permanent link">&para;</a></h2>
-<h3 id="document-encryption">Document Encryption<a class="headerlink" href="#document-encryption" title="Permanent link">&para;</a></h3>
-<h4 id="client-side-document-encryption">Client-side Document Encryption<a class="headerlink" href="#client-side-document-encryption" title="Permanent link">&para;</a></h4>
-<p>See the <a href="../../examples/advanced/encryption/client_side_encryption_example.ipynb">notebook</a> on client-side document encryption.</p>
+<h1 id="embedding-models">Embedding Models<a class="headerlink" href="#embedding-models" title="Permanent link">&para;</a></h1>
+<p>This is a placeholder for a list of embedding models and how they can be leveraged in Chroma.</p>
 
 
 
