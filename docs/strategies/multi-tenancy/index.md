@@ -11,4 +11,4 @@ multi-tenancy approaches in Chroma.
   application. It is the simplest approach to implement, but is not very well suited for production environments.
 - [Multi-User Basic Auth](multi-user-basic-auth.md) - This article provides a stepping stone to more advanced multi-tenancy where the Chroma
   authentication allows for multiple users to access the same Chroma instance with their own credentials.
-- `Coming Soon` ✨ [Authorization Model with OpenFGA](TBD) - Implement an advanced authorization model with OpenFGA.
+- [Authorization Model with OpenFGA](authorization-model-with-openfga.md) - Implement an advanced authorization model with OpenFGA.
