@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://cookbook.chromadb.dev/strategies/multi-tenancy/authorization-model-with-openfga/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../authorization-model-impl-with-openfga/">
       
       
         <link rel="next" href="../multi-user-basic-auth/">
@@ -1529,6 +1529,8 @@
       
         
       
+        
+      
     
     
     
@@ -1565,6 +1567,27 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authorization-model-impl-with-openfga/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Implementing OpenFGA Authorization Model In Chroma
+  </span>
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1908,6 +1931,10 @@
 
 
 <h1 id="chroma-authorization-model-with-openfga">Chroma Authorization Model with OpenFGA<a class="headerlink" href="#chroma-authorization-model-with-openfga" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Source Code</p>
+<p>The source code for this article can be found <a href="https://github.com/amikos-tech/chromadb-auth">here</a>.</p>
+</div>
 <p>This article will not provide any code that you can use immediately but will set the stage for our next article, which
 will introduce the actual Chroma-OpenFGA integration.</p>
 <p>With that in mind, let’s get started.</p>
@@ -2154,21 +2181,22 @@ permissions. In our case we can group our users into <code>team</code> and in ea
 </span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="nb">type</span><span class="w"> </span>database
 </span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="w">  </span>relations
 </span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="w">    </span>define<span class="w"> </span>can_create_collection:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer<span class="o">]</span>
-</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="w">    </span>define<span class="w"> </span>can_delete_collection:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer<span class="o">]</span>
-</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="w">    </span>define<span class="w"> </span>can_list_collections:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer,<span class="w"> </span>team#reader<span class="o">]</span>
-</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="w">    </span>define<span class="w"> </span>can_get_collection:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer,<span class="w"> </span>team#reader<span class="o">]</span>
-</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="w">    </span>define<span class="w"> </span>can_get_or_create_collection:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer<span class="o">]</span>
-</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="w">    </span>define<span class="w"> </span>can_count_collections:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer,<span class="w"> </span>team#reader<span class="o">]</span>
-</span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a>
-</span><span id="__span-7-32"><a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a><span class="nb">type</span><span class="w"> </span>collection
-</span><span id="__span-7-33"><a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a><span class="w">  </span>relations
-</span><span id="__span-7-34"><a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a><span class="w">    </span>define<span class="w"> </span>can_add_records:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer<span class="o">]</span>
-</span><span id="__span-7-35"><a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a><span class="w">    </span>define<span class="w"> </span>can_delete_records:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer<span class="o">]</span>
-</span><span id="__span-7-36"><a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a><span class="w">    </span>define<span class="w"> </span>can_update_records:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer<span class="o">]</span>
-</span><span id="__span-7-37"><a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a><span class="w">    </span>define<span class="w"> </span>can_get_records:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer,<span class="w"> </span>team#reader<span class="o">]</span>
-</span><span id="__span-7-38"><a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a><span class="w">    </span>define<span class="w"> </span>can_upsert_records:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer<span class="o">]</span>
-</span><span id="__span-7-39"><a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a><span class="w">    </span>define<span class="w"> </span>can_count_records:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer,<span class="w"> </span>team#reader<span class="o">]</span>
-</span><span id="__span-7-40"><a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a><span class="w">    </span>define<span class="w"> </span>can_query_records:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer,<span class="w"> </span>team#reader<span class="o">]</span>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="w">    </span>define<span class="w"> </span>can_list_collections:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer,<span class="w"> </span>team#reader<span class="o">]</span>
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="w">    </span>define<span class="w"> </span>can_get_or_create_collection:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer<span class="o">]</span>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="w">    </span>define<span class="w"> </span>can_count_collections:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer,<span class="w"> </span>team#reader<span class="o">]</span>
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="nb">type</span><span class="w"> </span>collection
+</span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a><span class="w">  </span>relations
+</span><span id="__span-7-32"><a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a><span class="w">    </span>define<span class="w"> </span>can_delete_collection:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer<span class="o">]</span>
+</span><span id="__span-7-33"><a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a><span class="w">    </span>define<span class="w"> </span>can_get_collection:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer,<span class="w"> </span>team#reader<span class="o">]</span>
+</span><span id="__span-7-34"><a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a><span class="w">    </span>define<span class="w"> </span>can_update_collection:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer<span class="o">]</span>
+</span><span id="__span-7-35"><a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a><span class="w">    </span>define<span class="w"> </span>can_add_records:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer<span class="o">]</span>
+</span><span id="__span-7-36"><a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a><span class="w">    </span>define<span class="w"> </span>can_delete_records:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer<span class="o">]</span>
+</span><span id="__span-7-37"><a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a><span class="w">    </span>define<span class="w"> </span>can_update_records:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer<span class="o">]</span>
+</span><span id="__span-7-38"><a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a><span class="w">    </span>define<span class="w"> </span>can_get_records:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer,<span class="w"> </span>team#reader<span class="o">]</span>
+</span><span id="__span-7-39"><a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a><span class="w">    </span>define<span class="w"> </span>can_upsert_records:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer<span class="o">]</span>
+</span><span id="__span-7-40"><a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a><span class="w">    </span>define<span class="w"> </span>can_count_records:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer,<span class="w"> </span>team#reader<span class="o">]</span>
+</span><span id="__span-7-41"><a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a><span class="w">    </span>define<span class="w"> </span>can_query_records:<span class="w"> </span><span class="o">[</span>user,<span class="w"> </span>team#owner,<span class="w"> </span>team#writer,<span class="w"> </span>team#reader<span class="o">]</span>
 </span></code></pre></div>
 <p>That is arguably more readable.</p>
 <p>As you will observe we have also added <code>[user]</code> in the permissions of each object, why is that you may ask. The reason
