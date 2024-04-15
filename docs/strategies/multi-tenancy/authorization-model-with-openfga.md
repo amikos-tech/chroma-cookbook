@@ -1,5 +1,9 @@
 # Chroma Authorization Model with OpenFGA
 
+!!! note "Source Code"
+
+    The source code for this article can be found [here](https://github.com/amikos-tech/chromadb-auth).
+
 This article will not provide any code that you can use immediately but will set the stage for our next article, which
 will introduce the actual Chroma-OpenFGA integration.
 
@@ -295,14 +299,15 @@ type tenant
 type database
   relations
     define can_create_collection: [user, team#owner, team#writer]
-    define can_delete_collection: [user, team#owner, team#writer]
     define can_list_collections: [user, team#owner, team#writer, team#reader]
-    define can_get_collection: [user, team#owner, team#writer, team#reader]
     define can_get_or_create_collection: [user, team#owner, team#writer]
     define can_count_collections: [user, team#owner, team#writer, team#reader]
 
 type collection
   relations
+    define can_delete_collection: [user, team#owner, team#writer]
+    define can_get_collection: [user, team#owner, team#writer, team#reader]
+    define can_update_collection: [user, team#owner, team#writer]
     define can_add_records: [user, team#owner, team#writer]
     define can_delete_records: [user, team#owner, team#writer]
     define can_update_records: [user, team#owner, team#writer]

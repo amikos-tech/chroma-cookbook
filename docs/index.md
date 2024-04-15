@@ -15,8 +15,8 @@ ChromaDB.
 **Core Topics:**
 
 - [Filters](core/filters.md) - Learn to filter data in ChromaDB using metadata and document filters
-- ✨[Resource Requirements](core/resources.md) - Understand the resource requirements for running ChromaDB
-- ✨ [Multi-Tenancy](strategies/multi-tenancy/index.md) - Learn how to implement multi-tenancy in ChromaDB
+- [Resource Requirements](core/resources.md) - Understand the resource requirements for running ChromaDB
+- ✨[Multi-Tenancy](strategies/multi-tenancy/index.md) - Learn how to implement multi-tenancy in ChromaDB
 
 ## Running ChromaDB
 
@@ -73,6 +73,8 @@ Below is a list of available clients for ChromaDB.
 - ✨'`Coming Soon` Testing with Chroma - learn how to test your GenAI apps that include Chroma.
 - ✨'`Coming Soon` Monitoring Chroma - learn how to monitor your Chroma instance.
 - ✨'`Coming Soon` Building Chroma clients - learn how to build clients for Chroma.
+- ✨'`Coming Soon` Creating the perfect Embedding Function (wrapper) - learn the best practices for creating your own
+  embedding function.
 - ✨ [Multi-User Basic Auth Plugin](strategies/multi-tenancy/multi-user-basic-auth.md) - learn how to build a multi-user
   basic authentication plugin for Chroma.
 
