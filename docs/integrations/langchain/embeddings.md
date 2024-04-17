@@ -6,7 +6,6 @@ Chroma and Langchain both offer embedding functions which are wrappers on top of
 
 Unfortunately Chroma and LC's embedding functions are not compatible with each other. Below we offer two adapters to convert Chroma's embedding functions to LC's and vice versa.
 
-
 Here is the adapter to convert Chroma's embedding functions to LC's:
 
 ```python
@@ -40,4 +39,22 @@ class LangChainEmbeddingAdapter(EmbeddingFunction):
     # TODO: better type checking
     return self.ef.embed_documents(input)
 
+```
+
+### Example Usage
+
+Using Chroma Embedding Functions with Langchain:
+
+```python
+from langchain.vectorstores.chroma import Chroma
+from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
+
+from langchain_core.embeddings import Embeddings
+from chromadb.api.types import EmbeddingFunction
+
+docs_vectorstore = Chroma.from_texts(
+    texts=splits,
+    collection_name="docs_store",
+    embedding=ef,
+)
 ```

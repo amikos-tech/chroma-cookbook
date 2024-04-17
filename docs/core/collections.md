@@ -13,10 +13,17 @@ Each collection is characterized by the following properties:
 - `metadata`: A dictionary of metadata associated with the collection. The metadata is a dictionary of key-value pairs.
   Keys can be strings, values can be strings, integers, floats, or booleans. Metadata can be changed
   using `collection.modify(new_metadata={"key": "value"})` (Note: Metadata is always overwritten when modified)
+- `embedding_function`: The embedding function used to embed documents in the collection.
 
 Defaults:
 
-- distance metric - by default Chroma use L2 distance metric for newly created collection. You can change it at creation
+- Embedding Function - by default if `embedding_function` parameter is not provided at `get()` or `create_collection()`
+  or `get_or_create_collection()` time, Chroma uses `chromadb.utils.embedding_functions.DefaultEmbeddingFunction` which
+  uses the `chromadb.utils.embedding_functions.DefaultEmbeddingFunction` to embed documents. The default embedding
+  function uses [Onnx Runtime](https://onnxruntime.ai/)
+  with [`all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) model.
+- distance metric - by default Chroma use L2 (Euclidean Distance Squared) distance metric for newly created collection.
+  You can change it at creation
   time using `hnsw:space` metadata key. Possible values are `l2`, `cosine`, and 'ip' (inner product)
 - Batch size, defined by `hnsw:batch_size` metadata key. Default is 100. The batch size defines the size of the
   in-memory bruteforce index. Once the threshold is reached, vectors are added to the HNSW index and the bruteforce
@@ -29,7 +36,29 @@ Defaults:
     Collection distance metric cannot be changed after the collection is created. 
     To change the distance metric see #cloning-a-collection
 
+!!! warn "Name Restrictions"
+
+    Collection names in Chroma must adhere to the following restrictions:
+  
+    (1) contains 3-63 characters
+    (2) starts and ends with an alphanumeric character
+    (3) otherwise contains only alphanumeric characters, underscores or hyphens (-)
+    (4) contains no two consecutive periods (..)
+    (5) is not a valid IPv4 address
+
 ### Creating a collection
+
+??? tip "Official Docs"
+
+    For more information on the `create_collection` or `get_or_create_collection` methods, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Client#get_or_create_collection).
+
+Parameters:
+
+| Name                 | Description                                                                 | Default Value                                                 | Type              |
+|----------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------|-------------------|
+| `name`               | Name of the collection to create. Parameter is required                     | N/A                                                           | String            |
+| `metadata`           | Metadata associated with the collection. This is an optional parameter      | `None`                                                        | Dictionary        |
+| `embedding_function` | Embedding function to use for the collection. This is an optional parameter | `chromadb.utils.embedding_functions.DefaultEmbeddingFunction` | EmbeddingFunction |
 
 ```python
 
@@ -45,10 +74,26 @@ Alternatively you can use the `get_or_create_collection` method to create a coll
 import chromadb
 
 client = chromadb.PersistentClient(path="test")  # or HttpClient()
-col = client.get_or_create_collection("test")
+col = client.get_or_create_collection("test", metadata={"key": "value"})
 ```
 
+!!! warn "Metadata with `get_or_create_collection()`"
+
+    If the collection exists and metadata is provided in the method it will attempt to overwrite the existing metadata.
+
 ### Deleting a collection
+
+
+??? tip "Official Docs"
+
+    For more information on the `delete_collection` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Client#delete_collection).
+
+
+Parameters:
+
+| Name   | Description                                             | Default Value | Type   |
+|--------|---------------------------------------------------------|---------------|--------|
+| `name` | Name of the collection to delete. Parameter is required | N/A           | String |
 
 ```python
 import chromadb
@@ -58,6 +103,18 @@ client.delete_collection("test")
 ```
 
 ### Listing all collections
+
+??? tip "Official Docs"
+
+    For more information on the `list_collections` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Client#list_collections).
+
+
+Parameters:
+
+| Name     | Description                                                                                                                                                                           | Default Value | Type             |
+|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|------------------|
+| `offset` | The starting offset for listing collections. This is an optional parameter                                                                                                            | `None`        | Positive Integer |
+| `limit`  | The number of collections to return. If the remaining collections from `offset` are fewer than this number then returned collection will also be fewer. This is an optional parameter | `None`        | Positive Integer |
 
 ```python
 
@@ -69,6 +126,17 @@ collections = client.list_collections()
 
 ### Getting a collection
 
+??? tip "Official Docs"
+
+    For more information on the `get_collection` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Client#get_collection).
+
+Parameters:
+
+| Name                 | Description                                                                 | Default Value                                                 | Type              |
+|----------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------|-------------------|
+| `name`               | Name of the collection to get. Parameter is required                        | N/A                                                           | String            |
+| `embedding_function` | Embedding function to use for the collection. This is an optional parameter | `chromadb.utils.embedding_functions.DefaultEmbeddingFunction` | EmbeddingFunction |
+
 ```python
 import chromadb
 
@@ -78,7 +146,27 @@ col = client.get_collection("test")
 
 ### Modifying a collection
 
-Both collection properties (`name` and `metadata`) can be modified.
+??? tip "Official Docs"
+
+    For more information on the `modify` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Collection#modify).
+
+!!! tip "Modify method on collection"
+
+    As the reader will observe `modify` method is called on the collection and node on the client as the rest of the collection lifecycle methods.
+
+!!! note "Metadata Overwrite"
+
+    Metadata is always overwritten when modified. If you want to add a new key-value pair to the metadata, you must
+    first get the existing metadata and then add the new key-value pair to it.
+
+Parameters:
+
+| Name                 | Description                                                                 | Default Value                                                 | Type              |
+|----------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------|-------------------|
+| `new_name`           | The new name of the collection. Parameter is required                       | N/A                                                           | String            |
+| `metadata`           | Metadata associated with the collection. This is an optional parameter      | `None`                                                        | Dictionary        |
+
+Both collection properties (`name` and `metadata`) can be modified, separately ot together.
 
 ```python
 import chromadb
@@ -88,17 +176,27 @@ col = client.get_collection("test")
 col.modify(name="test2", metadata={"key": "value"})
 ```
 
-!!! note "Metadata"
+### Counting Collections
 
-    Metadata is always overwritten when modified. If you want to add a new key-value pair to the metadata, you must
-    first get the existing metadata and then add the new key-value pair to it.
+??? tip "Official Docs"
+
+    N/A
+
+```python
+import chromadb
+
+client = chromadb.PersistentClient(path="test")  # or HttpClient()
+col = client.get_or_create_collection("test")  # create a new collection
+
+client.count_collections()
+```
 
 ## Iterating over a Collection
 
 ```python
 import chromadb
 
-client = chromadb.PersistentClient(path="my_local_data") # or HttpClient()
+client = chromadb.PersistentClient(path="my_local_data")  # or HttpClient()
 
 collection = client.get_or_create_collection("local_collection")
 collection.add(
@@ -112,7 +210,7 @@ for i in range(0, existing_count, batch_size):
         include=["metadatas", "documents", "embeddings"],
         limit=batch_size,
         offset=i)
-    print(batch) # do something with the batch
+    print(batch)  # do something with the batch
 ```
 
 ## Collection Utilities
@@ -150,13 +248,14 @@ for i in range(0, existing_count, batch_size):
 ```
 
 !!! note "Using ChromaDB Data Pipes"
-There is a more efficient way to copy data between local and remote collections using ChromaDB Data Pipes package.
 
-```bash
-pip install chromadb-data-pipes
-cdp export "file://path/to_local_data/local_collection" | \
-cdp import "http://remote_chromadb:port/remote_collection" --create
-```
+    There is a more efficient way to copy data between local and remote collections using [ChromaDB Data Pipes](https://datapipes.chromadb.dev) package.
+
+    ```bash
+    pip install chromadb-data-pipes
+    cdp export "file://path/to_local_data/local_collection" | \
+    cdp import "http://remote_chromadb:port/remote_collection" --create
+    ```
 
 ### Cloning a collection
 
