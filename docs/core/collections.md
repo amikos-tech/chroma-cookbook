@@ -48,7 +48,7 @@ Defaults:
 
 ### Creating a collection
 
-??? tip "Official Docs"
+!!! tip "Official Docs"
 
     For more information on the `create_collection` or `get_or_create_collection` methods, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Client#get_or_create_collection).
 
@@ -84,7 +84,7 @@ col = client.get_or_create_collection("test", metadata={"key": "value"})
 ### Deleting a collection
 
 
-??? tip "Official Docs"
+!!! tip "Official Docs"
 
     For more information on the `delete_collection` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Client#delete_collection).
 
@@ -104,7 +104,7 @@ client.delete_collection("test")
 
 ### Listing all collections
 
-??? tip "Official Docs"
+!!! tip "Official Docs"
 
     For more information on the `list_collections` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Client#list_collections).
 
@@ -126,7 +126,7 @@ collections = client.list_collections()
 
 ### Getting a collection
 
-??? tip "Official Docs"
+!!! tip "Official Docs"
 
     For more information on the `get_collection` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Client#get_collection).
 
@@ -146,7 +146,7 @@ col = client.get_collection("test")
 
 ### Modifying a collection
 
-??? tip "Official Docs"
+!!! tip "Official Docs"
 
     For more information on the `modify` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Collection#modify).
 
@@ -178,7 +178,7 @@ col.modify(name="test2", metadata={"key": "value"})
 
 ### Counting Collections
 
-??? tip "Official Docs"
+!!! tip "Official Docs"
 
     N/A
 
