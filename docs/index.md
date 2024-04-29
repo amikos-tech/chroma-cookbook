@@ -77,6 +77,7 @@ Below is a list of available clients for ChromaDB.
   embedding function.
 - ✨ [Multi-User Basic Auth Plugin](strategies/multi-tenancy/multi-user-basic-auth.md) - learn how to build a multi-user
   basic authentication plugin for Chroma.
+- ✨ [CORS Configuration For JS Browser apps](strategies/cors.md) - learn how to configure CORS for Chroma.
 
 ## Get Help
 
