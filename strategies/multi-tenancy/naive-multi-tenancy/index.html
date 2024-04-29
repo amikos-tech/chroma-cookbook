@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.20">
     
     
       
@@ -1875,7 +1875,7 @@ resources like groups or teams.</p>
 </ul>
 <h2 id="user-per-doc">User-Per-Doc<a class="headerlink" href="#user-per-doc" title="Permanent link">&para;</a></h2>
 <p>The goal of this strategy is to grant user permissions to access individual documents.</p>
-<p><img alt="multi-tenancy-user-per-doc.png" src="../assets/images/multi-tenancy-user-per-doc.png" /></p>
+<p><img alt="multi-tenancy-user-per-doc.png" src="../../../assets/images/multi-tenancy-user-per-doc.png" /></p>
 <p>To implement this strategy you need to add some sort of user identification to each document that belongs to a user.
 For this example we will assume it is <code>user_id</code>.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
@@ -1903,7 +1903,7 @@ ensure separation of data.</p>
 </ul>
 <h2 id="user-per-collection">User-Per-Collection<a class="headerlink" href="#user-per-collection" title="Permanent link">&para;</a></h2>
 <p>The goal of this strategy is to grant a user access to all documents in a collection.</p>
-<p><img alt="multi-tenancy-user-per-collection.png" src="../assets/images/multi-tenancy-user-per-collection.png" /></p>
+<p><img alt="multi-tenancy-user-per-collection.png" src="../../../assets/images/multi-tenancy-user-per-collection.png" /></p>
 <p>To implement this strategy you need to create a collection for each user. For this example we will assume it is
 <code>user_id</code>.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
@@ -1934,7 +1934,7 @@ user.</p>
 <h2 id="user-per-database">User-Per-Database<a class="headerlink" href="#user-per-database" title="Permanent link">&para;</a></h2>
 <p>The goal of this strategy is to associate a user with a single database thus granting them access to all collections and
 documents within the database.</p>
-<p><img alt="multi-tenancy-user-per-db.png" src="../assets/images/multi-tenancy-user-per-db.png" /></p>
+<p><img alt="multi-tenancy-user-per-db.png" src="../../../assets/images/multi-tenancy-user-per-db.png" /></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span> <span class="nn">chromadb</span> <span class="kn">import</span> <span class="n">DEFAULT_TENANT</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kn">from</span> <span class="nn">chromadb</span> <span class="kn">import</span> <span class="n">Settings</span>
@@ -1986,7 +1986,7 @@ documents within the database.</p>
 <h2 id="user-per-tenant">User-Per-Tenant<a class="headerlink" href="#user-per-tenant" title="Permanent link">&para;</a></h2>
 <p>The goal of this strategy is to associate a user with a single tenant thus granting them access to all databases,
 collections, and documents within the tenant.</p>
-<p><img alt="multi-tenancy-user-per-tenant.png" src="../assets/images/multi-tenancy-user-per-tenant.png" /></p>
+<p><img alt="multi-tenancy-user-per-tenant.png" src="../../../assets/images/multi-tenancy-user-per-tenant.png" /></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span> <span class="nn">chromadb</span> <span class="kn">import</span> <span class="n">DEFAULT_DATABASE</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kn">from</span> <span class="nn">chromadb</span> <span class="kn">import</span> <span class="n">Settings</span>
@@ -2204,7 +2204,7 @@ collections, and documents within the tenant.</p>
     <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.code.copy", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.dd8806f2.min.js"></script>
       
         <script src="../../../javascripts/gtag.js"></script>
       
