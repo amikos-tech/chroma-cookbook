@@ -1805,10 +1805,10 @@ the <code>CHROMA_SERVER_CORS_ALLOW_ORIGINS</code>. The <code>CHROMA_SERVER_CORS_
 which are allowed to access your Chroma instance.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-</div>
 <p>The <code>CHROMA_SERVER_CORS_ALLOW_ORIGINS</code> environment variable is a list of strings. Each string is a URL that is allowed
 to access your Chroma instance. If you want to allow all hosts to access your Chroma instance, you can set
 <code>CHROMA_SERVER_CORS_ALLOW_ORIGINS</code> to <code>["*"]</code>. This is not recommended for production environments.</p>
+</div>
 <p>The below examples assume that your web app is running on <code>http://localhost:3000</code>. You can find an example of NextJS and
 Langchain <a href="https://github.com/amikos-tech/chroma-langchain-nextjs">here</a>.</p>
 <p>Using Chroma run:</p>
@@ -1863,6 +1863,7 @@ Langchain <a href="https://github.com/amikos-tech/chroma-langchain-nextjs">here<
 </span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="w">  </span><span class="nt">chroma-data</span><span class="p">:</span>
 </span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
 </span></code></pre></div>
+<p>Run <code>docker compose up</code> to start your Chroma instance.</p>
 
 
 
