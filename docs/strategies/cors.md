@@ -11,9 +11,10 @@ the `CHROMA_SERVER_CORS_ALLOW_ORIGINS`. The `CHROMA_SERVER_CORS_ALLOW_ORIGINS` e
 which are allowed to access your Chroma instance.
 
 !!! note "Note"
-The `CHROMA_SERVER_CORS_ALLOW_ORIGINS` environment variable is a list of strings. Each string is a URL that is allowed
-to access your Chroma instance. If you want to allow all hosts to access your Chroma instance, you can set
-`CHROMA_SERVER_CORS_ALLOW_ORIGINS` to `["*"]`. This is not recommended for production environments.
+
+    The `CHROMA_SERVER_CORS_ALLOW_ORIGINS` environment variable is a list of strings. Each string is a URL that is allowed
+    to access your Chroma instance. If you want to allow all hosts to access your Chroma instance, you can set
+    `CHROMA_SERVER_CORS_ALLOW_ORIGINS` to `["*"]`. This is not recommended for production environments.
 
 The below examples assume that your web app is running on `http://localhost:3000`. You can find an example of NextJS and
 Langchain [here](https://github.com/amikos-tech/chroma-langchain-nextjs).
@@ -78,3 +79,5 @@ volumes:
   chroma-data:
     driver: local
 ```
+
+Run `docker compose up` to start your Chroma instance.
