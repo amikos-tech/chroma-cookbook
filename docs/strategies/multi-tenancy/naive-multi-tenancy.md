@@ -33,7 +33,7 @@ resources like groups or teams.
 
 The goal of this strategy is to grant user permissions to access individual documents.
 
-![multi-tenancy-user-per-doc.png](../assets/images/multi-tenancy-user-per-doc.png)
+![multi-tenancy-user-per-doc.png](../../assets/images/multi-tenancy-user-per-doc.png)
 
 To implement this strategy you need to add some sort of user identification to each document that belongs to a user.
 For this example we will assume it is `user_id`.
@@ -71,7 +71,7 @@ ensure separation of data.
 
 The goal of this strategy is to grant a user access to all documents in a collection.
 
-![multi-tenancy-user-per-collection.png](../assets/images/multi-tenancy-user-per-collection.png)
+![multi-tenancy-user-per-collection.png](../../assets/images/multi-tenancy-user-per-collection.png)
 
 To implement this strategy you need to create a collection for each user. For this example we will assume it is
 `user_id`.
@@ -112,7 +112,7 @@ user.
 The goal of this strategy is to associate a user with a single database thus granting them access to all collections and
 documents within the database.
 
-![multi-tenancy-user-per-db.png](../assets/images/multi-tenancy-user-per-db.png)
+![multi-tenancy-user-per-db.png](../../assets/images/multi-tenancy-user-per-db.png)
 
 ```python
 import chromadb
@@ -169,7 +169,7 @@ In the above code we do the following:
 The goal of this strategy is to associate a user with a single tenant thus granting them access to all databases,
 collections, and documents within the tenant.
 
-![multi-tenancy-user-per-tenant.png](../assets/images/multi-tenancy-user-per-tenant.png)
+![multi-tenancy-user-per-tenant.png](../../assets/images/multi-tenancy-user-per-tenant.png)
 
 ```python
 import chromadb
