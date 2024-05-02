@@ -83,11 +83,9 @@ col = client.get_or_create_collection("test", metadata={"key": "value"})
 
 ### Deleting a collection
 
-
 !!! tip "Official Docs"
 
     For more information on the `delete_collection` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Client#delete_collection).
-
 
 Parameters:
 
@@ -107,7 +105,6 @@ client.delete_collection("test")
 !!! tip "Official Docs"
 
     For more information on the `list_collections` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Client#list_collections).
-
 
 Parameters:
 
@@ -161,10 +158,10 @@ col = client.get_collection("test")
 
 Parameters:
 
-| Name                 | Description                                                                 | Default Value                                                 | Type              |
-|----------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------|-------------------|
-| `new_name`           | The new name of the collection. Parameter is required                       | N/A                                                           | String            |
-| `metadata`           | Metadata associated with the collection. This is an optional parameter      | `None`                                                        | Dictionary        |
+| Name       | Description                                                            | Default Value | Type       |
+|------------|------------------------------------------------------------------------|---------------|------------|
+| `new_name` | The new name of the collection. Parameter is required                  | N/A           | String     |
+| `metadata` | Metadata associated with the collection. This is an optional parameter | `None`        | Dictionary |
 
 Both collection properties (`name` and `metadata`) can be modified, separately ot together.
 
@@ -180,7 +177,7 @@ col.modify(name="test2", metadata={"key": "value"})
 
 !!! tip "Official Docs"
 
-    N/A
+    For more information on the `count_collections` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Client#count_collections).
 
 ```python
 import chromadb
@@ -341,4 +338,21 @@ def update_metadata(metadata: dict):
 for i in range(0, count, 10):
     batch = col.get(include=["metadatas"], limit=10, offset=i)
     col.update(ids=batch["ids"], metadatas=[update_metadata(metadata) for metadata in batch["metadatas"]])
+```
+
+## Tips and Tricks
+
+### Getting IDs Only
+
+The below example demonstrates how to get only the IDs of a collection. This is useful if you need to work with IDs
+without the need to fetch any additional data. Chroma will accept and empty `include` array indicating that no other
+data than the IDs is returned.
+
+```python
+import chromadb
+
+client = chromadb.PersistentClient(path="test")
+col = client.get_or_create_collection("my_collection")
+ids_only_result = col.get(include=[])
+print(ids_only_result['ids'])
 ```
