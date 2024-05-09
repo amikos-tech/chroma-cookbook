@@ -2,7 +2,7 @@
 
 This is a collection of small guides and recipes to help you get started with ChromaDB.
 
-Latest ChromaDB version: [0.4.24](https://github.com/chroma-core/chroma/releases/tag/0.4.24)
+Latest ChromaDB version: [0.5.0](https://github.com/chroma-core/chroma/releases/tag/0.5.0)
 
 ## Getting Started
 
@@ -15,7 +15,7 @@ ChromaDB.
 **New and Noteworthy:**
 
 - 🔥[Ollama Embeddings](integrations/ollama/embeddings.md) - We've enhanced the content to include information about
-  Ollama embedding models.
+  Ollama embedding models with recommendations which models to use - 📅`9-May-2024`
 
 **Core Topics:**
 
