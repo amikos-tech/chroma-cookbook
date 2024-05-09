@@ -6,6 +6,7 @@ Latest ChromaDB version: [0.5.0](https://github.com/chroma-core/chroma/releases/
 
 ## New and Noteworthy
 
+- ⁉️[FAQs](faq/index.md) - Our brand new FAQ and Commonly Encountered Issues section - 📅`9-May-2024`
 - 🔥[Ollama Embeddings](integrations/ollama/embeddings.md) - We've enhanced the content to include information about
   Ollama embedding models with recommendations which models to use - 📅`9-May-2024`
 
