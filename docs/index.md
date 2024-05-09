@@ -12,6 +12,11 @@ Documents, Metadata, Embeddings, etc.
 Once you're comfortable with the concepts, you can jump to the [Installation](core/install.md) section to install
 ChromaDB.
 
+**New and Noteworthy:**
+
+- 🔥[Ollama Embeddings](integrations/ollama/embeddings.md) - We've enhanced the content to include information about
+  Ollama embedding models.
+
 **Core Topics:**
 
 - [Filters](core/filters.md) - Learn to filter data in ChromaDB using metadata and document filters
