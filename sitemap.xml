@@ -101,6 +101,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://cookbook.chromadb.dev/faq/</loc>
+         <lastmod>2024-05-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://cookbook.chromadb.dev/integrations/langchain/</loc>
          <lastmod>2024-05-09</lastmod>
          <changefreq>daily</changefreq>
