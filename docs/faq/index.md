@@ -5,9 +5,37 @@ with Chroma. These information below is based on interactions with the Chroma co
 
 ## Frequently Asked Questions
 
-!!! note "Coming Soon"
+### What does Chroma use to index embedding vectors?
 
-    This section is under construction and will be available soon.
+Chroma uses its own [fork]() of HNSW lib for indexing and searching embeddings.
+
+**Alternative Questions:**
+
+- What library does Chroma use for vector index and search?
+- What algorithm does Chroma use for vector search?
+
+### How to set dimensionality of my collections?
+
+When creating a collection, its dimensionality is determined by the dimensionality of the first embedding added to it.
+Once the dimensionality is set, it cannot be changed. Therefore, it is important to consistently use embeddings of the
+same dimensionality when adding or querying a collection.
+
+
+**Example:**
+
+```python
+import chromadb
+client = chromadb.Client()
+
+collection = client.create_collection("name") # dimensionality is not set yet
+
+# add an embedding to the collection
+collection.add(ids=["id1"], embeddings=[[1,2,3]]) # dimensionality is set to 3
+```
+
+**Alternative Questions:**
+
+- Can I change the dimensionality of a collection?
 
 ## Commonly Encountered Problems
 
@@ -21,7 +49,8 @@ This error usually exhibits in the following error message:
 
 **Context:**
 
-When adding/upserting or querying Chroma collection. This error is more visible/pronounced when using the Python APIs, but will
+When adding/upserting or querying Chroma collection. This error is more visible/pronounced when using the Python APIs,
+but will
 also show up in also surface in other clients.
 
 **Cause:**
