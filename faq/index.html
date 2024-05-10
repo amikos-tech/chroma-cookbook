@@ -1777,6 +1777,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Frequently Asked Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-does-chroma-use-to-index-embedding-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      What does Chroma use to index embedding vectors?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-set-dimensionality-of-my-collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to set dimensionality of my collections?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1825,17 +1849,38 @@
 <p>This section provides answers to frequently asked questions and information on commonly encountered problem when working
 with Chroma. These information below is based on interactions with the Chroma community.</p>
 <h2 id="frequently-asked-questions">Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permanent link">&para;</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Coming Soon</p>
-<p>This section is under construction and will be available soon.</p>
-</div>
+<h3 id="what-does-chroma-use-to-index-embedding-vectors">What does Chroma use to index embedding vectors?<a class="headerlink" href="#what-does-chroma-use-to-index-embedding-vectors" title="Permanent link">&para;</a></h3>
+<p>Chroma uses its own <a href="">fork</a> of HNSW lib for indexing and searching embeddings.</p>
+<p><strong>Alternative Questions:</strong></p>
+<ul>
+<li>What library does Chroma use for vector index and search?</li>
+<li>What algorithm does Chroma use for vector search?</li>
+</ul>
+<h3 id="how-to-set-dimensionality-of-my-collections">How to set dimensionality of my collections?<a class="headerlink" href="#how-to-set-dimensionality-of-my-collections" title="Permanent link">&para;</a></h3>
+<p>When creating a collection, its dimensionality is determined by the dimensionality of the first embedding added to it.
+Once the dimensionality is set, it cannot be changed. Therefore, it is important to consistently use embeddings of the
+same dimensionality when adding or querying a collection.</p>
+<p><strong>Example:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">collection</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span> <span class="c1"># dimensionality is not set yet</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># add an embedding to the collection</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id1&quot;</span><span class="p">],</span> <span class="n">embeddings</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]])</span> <span class="c1"># dimensionality is set to 3</span>
+</span></code></pre></div>
+<p><strong>Alternative Questions:</strong></p>
+<ul>
+<li>Can I change the dimensionality of a collection?</li>
+</ul>
 <h2 id="commonly-encountered-problems">Commonly Encountered Problems<a class="headerlink" href="#commonly-encountered-problems" title="Permanent link">&para;</a></h2>
 <h3 id="collection-dimensionality-mismatch">Collection Dimensionality Mismatch<a class="headerlink" href="#collection-dimensionality-mismatch" title="Permanent link">&para;</a></h3>
 <p><strong>Symptoms:</strong></p>
 <p>This error usually exhibits in the following error message:</p>
 <p><code>chromadb.errors.InvalidDimensionException: Embedding dimension XXX does not match collection dimensionality YYY</code></p>
 <p><strong>Context:</strong></p>
-<p>When adding/upserting or querying Chroma collection. This error is more visible/pronounced when using the Python APIs, but will
+<p>When adding/upserting or querying Chroma collection. This error is more visible/pronounced when using the Python APIs,
+but will
 also show up in also surface in other clients.</p>
 <p><strong>Cause:</strong></p>
 <p>You are trying to add or query a collection with vectors of a different dimensionality than the collection was created
