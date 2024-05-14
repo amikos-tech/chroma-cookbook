@@ -1836,7 +1836,8 @@ crashes.</p>
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">[Install]</span>
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="na">WantedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">multi-user.target</span>
 </span></code></pre></div>
-<p>Replace <code>/home/admin/chroma</code> with the path to your docker compose is.</p>
+<p>Replace <code>/home/admin/chroma</code> with the path to your docker compose is. You may also need to replace <code>/usr/bin/docker</code>
+with the path to your docker binary.</p>
 <p>Loading, enabling and starting the service:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>chroma
