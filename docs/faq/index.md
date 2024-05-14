@@ -20,22 +20,47 @@ When creating a collection, its dimensionality is determined by the dimensionali
 Once the dimensionality is set, it cannot be changed. Therefore, it is important to consistently use embeddings of the
 same dimensionality when adding or querying a collection.
 
-
 **Example:**
 
 ```python
 import chromadb
+
 client = chromadb.Client()
 
-collection = client.create_collection("name") # dimensionality is not set yet
+collection = client.create_collection("name")  # dimensionality is not set yet
 
 # add an embedding to the collection
-collection.add(ids=["id1"], embeddings=[[1,2,3]]) # dimensionality is set to 3
+collection.add(ids=["id1"], embeddings=[[1, 2, 3]])  # dimensionality is set to 3
 ```
 
 **Alternative Questions:**
 
 - Can I change the dimensionality of a collection?
+
+### Can I use `transformers` models with Chroma?
+
+Generally, yes you can use `transformers` models with Chroma. Although Chroma does not provide a wrapper for this, you
+can use `SentenceTransformerEmbeddingFunction` to achieve the same result. The sentence-transformer library will
+implicitly do mean-pooling on the last hidden layer, and you'll get a warning about
+it - `No sentence-transformers model found with name [model name]. Creating a new one with MEAN pooling.`
+
+**Example:**
+
+```python
+from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
+
+ef = SentenceTransformerEmbeddingFunction(model_name="FacebookAI/xlm-roberta-large-finetuned-conll03-english")
+
+print(ef(["test"]))
+```
+
+!!! warn "Warning" 
+
+    Not all models will work with the above method. Also mean pooling may not be the best strategy for the model. 
+    Read the model card and try to understand what if any pooling the creators recommend. You may also want to normalize
+    the embeddings before adding them to Chroma (pass `normalize_embeddings=True` to the `SentenceTransformerEmbeddingFunction` 
+    EF constructor).
+
 
 ## Commonly Encountered Problems
 

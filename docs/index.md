@@ -6,7 +6,8 @@ Latest ChromaDB version: [0.5.0](https://github.com/chroma-core/chroma/releases/
 
 ## New and Noteworthy
 
-- ⁉️[FAQs](faq/index.md) - Our brand new FAQ and Commonly Encountered Issues section - 📅`9-May-2024`
+- 💻 [SystemD Service](strategies/systemd-service.md) - Learn how to start Chroma upon system boot - 📅`14-May-2024`
+- ⁉️[FAQs](faq/index.md) - Our brand-new FAQ and Commonly Encountered Issues section - 📅`9-May-2024`
 - 🔥[Ollama Embeddings](integrations/ollama/embeddings.md) - We've enhanced the content to include information about
   Ollama embedding models with recommendations which models to use - 📅`9-May-2024`
 
@@ -84,6 +85,7 @@ Below is a list of available clients for ChromaDB.
 - ✨ [Multi-User Basic Auth Plugin](strategies/multi-tenancy/multi-user-basic-auth.md) - learn how to build a multi-user
   basic authentication plugin for Chroma.
 - ✨ [CORS Configuration For JS Browser apps](strategies/cors.md) - learn how to configure CORS for Chroma.
+- ✨ [Running Chroma with SystemD](strategies/systemd-service.md) - learn how to start Chroma upon system boot.
 
 ## Get Help
 
