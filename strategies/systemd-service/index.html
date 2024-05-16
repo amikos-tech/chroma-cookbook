@@ -1928,9 +1928,9 @@ crashes.</p>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="na">Requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">docker.service</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">[Service]</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="na">Type</span><span class="o">=</span><span class="s">forking</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="na">User</span><span class="o">=</span><span class="s">root</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="na">Group</span><span class="o">=</span><span class="s">root</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="na">Type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">forking</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="na">User</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">root</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="na">Group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">root</span>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="na">WorkingDirectory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/home/admin/chroma</span>
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="na">ExecStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/usr/bin/docker compose up -d</span>
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="na">ExecStop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/usr/bin/docker compose down</span>
@@ -1941,10 +1941,14 @@ crashes.</p>
 </span></code></pre></div>
 <p>Replace <code>WorkingDirectory</code> with the path to your docker compose is. You may also need to replace <code>/usr/bin/docker</code>
 with the path to your docker binary.</p>
+<p>Alternatively you can install directly from a gist:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>wget<span class="w"> </span>https://gist.githubusercontent.com/tazarov/9c46966de0b32a4962dcc79dce8b2646/raw/7cf8c471f33fba8a51d6f808f9b1af6ca1b0923c/chroma-docker.service<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-O<span class="w"> </span>/etc/systemd/system/chroma.service
+</span></code></pre></div>
 <p>Loading, enabling and starting the service:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>chroma
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>chroma
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>chroma
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>chroma
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Type=forking</p>
@@ -1958,25 +1962,34 @@ command that runs in the foreground, you may need to use <code>Type=simple</code
 <p class="admonition-title">Example assumptions</p>
 <p>The below example assumes that Chroma is installed in Python <code>site-packages</code> package.</p>
 </div>
-<div class="language-ini highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">[Unit]</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="na">Description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Chroma Service</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="na">After</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">network.target</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">[Service]</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="na">User</span><span class="o">=</span><span class="s">root</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="na">Group</span><span class="o">=</span><span class="s">root</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="na">WorkingDirectory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/chroma</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/bin/chroma run --host 127.0.0.1 --port 8000 --path /chroma/data --log-path /var/log/chroma.log</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="k">[Install]</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="na">WantedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">multi-user.target</span>
+<div class="language-ini highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">[Unit]</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="na">Description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Chroma Service</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="na">After</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">network.target</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">[Service]</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="na">Type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">simple</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="na">User</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">root</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="na">Group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">root</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="na">WorkingDirectory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/chroma</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/bin/chroma run --host 127.0.0.1 --port 8000 --path /chroma/data --log-path /var/log/chroma.log</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="k">[Install]</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="na">WantedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">multi-user.target</span>
 </span></code></pre></div>
 <p>Replace the <code>WorkingDirectory</code>, <code>/chroma/data</code> and <code>/var/log/chroma.log</code> with the appropriate paths.</p>
+<div class="admonition note">
+<p class="admonition-title">Safe Config</p>
+<p>The above example service listens and <code>localhost</code> which may not work if you are looking to expose Chroma to outside world.
+Adjust the <code>--host</code> and <code>--port</code> flags as needed.</p>
+</div>
+<p>Alternatively you can install from a gist:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>wget<span class="w"> </span>https://gist.githubusercontent.com/tazarov/5e10ce892c06757d8188a8a34cd6d26d/raw/327a9d0b07afeb0b0cb77453aa9171fdd190984f/chroma-cli.service<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>-O<span class="w"> </span>/etc/systemd/system/chroma.service
+</span></code></pre></div>
 <p>Loading, enabling and starting the service:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>chroma
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>chroma
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>chroma
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>chroma
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Type=simple</p>
