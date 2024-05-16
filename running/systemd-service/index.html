@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://cookbook.chromadb.dev/strategies/systemd-service/">
+        <link rel="canonical" href="https://cookbook.chromadb.dev/running/systemd-service/">
       
       
-        <link rel="prev" href="../rebuilding/">
+        <link rel="prev" href="../running-chroma/">
       
       
-        <link rel="next" href="../time-based-queries/">
+        <link rel="next" href="../../strategies/backup/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Running Chroma as a systemd service - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+        <title>Systemd service - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#running-chroma-as-a-systemd-service" class="md-skip">
+        <a href="#systemd-service" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Running Chroma as a systemd service
+              Systemd service
             
           </span>
         </div>
@@ -1296,8 +1296,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1305,14 +1307,16 @@
       
         
       
+        
+      
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -1326,7 +1330,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Running
@@ -1340,7 +1344,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../running/health-checks/" class="md-nav__link">
+      <a href="../health-checks/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1361,224 +1365,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../running/running-chroma/" class="md-nav__link">
+      <a href="../running-chroma/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Running Chroma
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Strategies
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            Strategies
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../backup/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    ChromaDB Backups
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../batching/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Batching
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../cors/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    CORS Configuration for Browser-Based Access
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../keyword-search/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Keyword Search
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../memory-management/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Memory Management
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../privacy/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Privacy Strategies
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../rebuilding/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Rebuilding Chroma DB
   </span>
   
 
@@ -1608,7 +1399,7 @@
           
   
   <span class="md-ellipsis">
-    Running Chroma as a systemd service
+    Systemd service
   </span>
   
 
@@ -1619,7 +1410,7 @@
         
   
   <span class="md-ellipsis">
-    Running Chroma as a systemd service
+    Systemd service
   </span>
   
 
@@ -1669,6 +1460,68 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Strategies
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Strategies
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -1676,7 +1529,154 @@
   
   
     <li class="md-nav__item">
-      <a href="../time-based-queries/" class="md-nav__link">
+      <a href="../../strategies/backup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ChromaDB Backups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/batching/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Batching
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/cors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CORS Configuration for Browser-Based Access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/keyword-search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Keyword Search
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/memory-management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Memory Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/privacy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Privacy Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/rebuilding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rebuilding Chroma DB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/time-based-queries/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1718,12 +1718,12 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_9" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../multi-tenancy/" class="md-nav__link ">
+            <a href="../../strategies/multi-tenancy/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1734,14 +1734,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_9_10" id="__nav_9_10_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_9_9" id="__nav_9_9_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9_10">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_9">
             <span class="md-nav__icon md-icon"></span>
             Multi tenancy
           </label>
@@ -1756,7 +1756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../multi-tenancy/authorization-model-impl-with-openfga/" class="md-nav__link">
+      <a href="../../strategies/multi-tenancy/authorization-model-impl-with-openfga/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1777,7 +1777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../multi-tenancy/authorization-model-with-openfga/" class="md-nav__link">
+      <a href="../../strategies/multi-tenancy/authorization-model-with-openfga/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1798,7 +1798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../multi-tenancy/multi-user-basic-auth/" class="md-nav__link">
+      <a href="../../strategies/multi-tenancy/multi-user-basic-auth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1819,7 +1819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../multi-tenancy/naive-multi-tenancy/" class="md-nav__link">
+      <a href="../../strategies/multi-tenancy/naive-multi-tenancy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1912,7 +1912,7 @@
   
 
 
-<h1 id="running-chroma-as-a-systemd-service">Running Chroma as a systemd service<a class="headerlink" href="#running-chroma-as-a-systemd-service" title="Permanent link">&para;</a></h1>
+<h1 id="systemd-service">Systemd service<a class="headerlink" href="#systemd-service" title="Permanent link">&para;</a></h1>
 <p>You can run Chroma as a systemd service which wil allow you to automatically start Chroma on boot and restart it if it
 crashes.</p>
 <h2 id="docker-compose">Docker Compose<a class="headerlink" href="#docker-compose" title="Permanent link">&para;</a></h2>

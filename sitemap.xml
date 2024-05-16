@@ -156,6 +156,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://cookbook.chromadb.dev/running/systemd-service/</loc>
+         <lastmod>2024-05-16</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://cookbook.chromadb.dev/strategies/backup/</loc>
          <lastmod>2024-05-16</lastmod>
          <changefreq>daily</changefreq>
@@ -187,11 +192,6 @@
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/strategies/rebuilding/</loc>
-         <lastmod>2024-05-16</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://cookbook.chromadb.dev/strategies/systemd-service/</loc>
          <lastmod>2024-05-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
