@@ -41,6 +41,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://cookbook.chromadb.dev/core/configuration/</loc>
+         <lastmod>2024-05-16</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://cookbook.chromadb.dev/core/document-ids/</loc>
          <lastmod>2024-05-16</lastmod>
          <changefreq>daily</changefreq>
