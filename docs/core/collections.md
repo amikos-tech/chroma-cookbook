@@ -282,6 +282,31 @@ print(newCol.count())
 print(newCol.get(offset=0, limit=10))  # get first 10 documents
 ```
 
+#### Changing the embedding function
+
+To change the embedding function of a collection, it must be cloned to a new collection with the desired embedding function.
+
+```python
+import os
+import chromadb
+from chromadb.utils.embedding_functions import OpenAIEmbeddingFunction, DefaultEmbeddingFunction
+
+client = chromadb.PersistentClient(path="test")  # or HttpClient()
+default_ef = DefaultEmbeddingFunction()
+col = client.create_collection("default_ef_collection",embedding_function=default_ef)
+openai_ef = OpenAIEmbeddingFunction(api_key=os.getenv("OPENAI_API_KEY"), model_name="text-embedding-3-small")
+col.add(ids=[f"{i}" for i in range(1000)], documents=[f"document {i}" for i in range(1000)])
+newCol = client.get_or_create_collection("openai_ef_collection", embedding_function=openai_ef)
+
+existing_count = col.count()
+batch_size = 10
+for i in range(0, existing_count, batch_size):
+  batch = col.get(include=["metadatas", "documents"], limit=batch_size, offset=i)
+  newCol.add(ids=batch["ids"], documents=batch["documents"], metadatas=batch["metadatas"])
+# get first 10 documents with their OpenAI embeddings
+print(newCol.get(offset=0, limit=10,include=["metadatas", "documents", "embeddings"])) 
+```
+
 #### Cloning a subset of a collection with query
 
 The below example demonstrates how to select a slice of an existing collection by using `where` and `where_document`
