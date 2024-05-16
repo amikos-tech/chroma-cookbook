@@ -3,6 +3,10 @@
 You can run Chroma as a systemd service which wil allow you to automatically start Chroma on boot and restart it if it
 crashes.
 
+## Docker Compose
+
+The following is an examples systemd service for running Chroma using Docker Compose.
+
 Create a file `/etc/systemd/system/chroma.service` with the following content:
 
 !!! note "Example assumptions"
@@ -16,7 +20,9 @@ After = network.target docker.service
 Requires = docker.service
 
 [Service]
-Type = oneshot
+Type=forking
+User=root
+Group=root
 WorkingDirectory = /home/admin/chroma
 ExecStart = /usr/bin/docker compose up -d
 ExecStop = /usr/bin/docker compose down
@@ -26,7 +32,7 @@ RemainAfterExit = true
 WantedBy = multi-user.target
 ```
 
-Replace `/home/admin/chroma` with the path to your docker compose is. You may also need to replace `/usr/bin/docker`
+Replace `WorkingDirectory` with the path to your docker compose is. You may also need to replace `/usr/bin/docker`
 with the path to your docker binary.
 
 Loading, enabling and starting the service:
@@ -36,3 +42,50 @@ sudo systemctl daemon-reload
 sudo systemctl enable chroma
 sudo systemctl start chroma
 ```
+
+!!! tip "Type=forking"
+
+    In the above example, we use `Type=forking` because Docker Compose runs in the background (`-d`). If you are using a different
+    command that runs in the foreground, you may need to use `Type=simple` instead.
+
+
+## Chroma CLI
+
+The following is an examples systemd service for running Chroma using the Chroma CLI.
+
+Create a file `/etc/systemd/system/chroma.service` with the following content:
+
+!!! note "Example assumptions"
+
+    The below example assumes that Chroma is installed in Python `site-packages` package.
+
+```ini
+[Unit]
+Description = Chroma Service
+After = network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory = /chroma
+ExecStart=/usr/local/bin/chroma run --host 127.0.0.1 --port 8000 --path /chroma/data --log-path /var/log/chroma.log
+
+[Install]
+WantedBy = multi-user.target
+```
+
+Replace the `WorkingDirectory`, `/chroma/data` and `/var/log/chroma.log` with the appropriate paths.
+
+Loading, enabling and starting the service:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable chroma
+sudo systemctl start chroma
+```
+
+!!! tip "Type=simple"
+
+    In the above example, we use `Type=simple` because the Chroma CLI runs in the foreground. If you are using a different
+    command that runs in the background, you may need to use `Type=forking` instead.
