@@ -1995,7 +1995,6 @@ HNSW for your use case. All HNSW parameters are configured as metadata on the co
 <th>Parameter Name</th>
 <th>Description and Use</th>
 <th>Values</th>
-<th></th>
 </tr>
 </thead>
 <tbody>
@@ -2003,49 +2002,41 @@ HNSW for your use case. All HNSW parameters are configured as metadata on the co
 <td><code>hnsw:space</code></td>
 <td>Controls the distance metric of the HNSW index. The space cannot be changed after index creation.</td>
 <td><strong>Possible values</strong>:<br/> - <code>l2</code><br/> - <code>cosine</code><br/> - <code>ip</code> <br/><strong>Default</strong>: <code>l2</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>hnsw:construction_ef</code></td>
 <td>Controls the number of neighbours in the HNSW graph to explore when adding new vectors. The more neighbours HNSW explores the better and more exhaustive the results will be. Increasing the value will also increase memory consumption. This parameter cannot be changed after index creation.</td>
 <td><strong>Possible values</strong>: <em>Positive Integers</em><br/><strong>Default</strong>: <code>100</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>hnsw:M</code></td>
 <td>Controls to how many neighbour nodes (M), a newly inserted vector. A higher value results in a mode densely connected graph. The impact on this is slower but more accurate searches with increased memory consumption. This parameter cannot be changed after index creation.</td>
 <td><strong>Possible values</strong>: <em>Positive Integers</em><br/><strong>Default</strong>: <code>16</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>hnsw:search_ef</code></td>
 <td>Controls the number of neighbours in the HNSW graph to explore when searching. Increasing this requires more memory for the HNSW algo to explore the nodes during knn search. This parameter can be changed after index creation.</td>
 <td><strong>Possible values</strong>: <em>Positive Integers</em><br/><strong>Default</strong>: <code>10</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>hnsw:num_threads</code></td>
 <td>Controls how many threads HNSW algo use. This parameter can be changed after index creation.</td>
 <td><strong>Possible values</strong>: <em>Positive Integers</em><br/><strong>Default</strong>: <code>&lt;number of CPU cores&gt;</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>hnsw:resize_factor</code></td>
 <td>Controls the rate of growth of the graph (e.g. how many node capacity will be added) whenever the current graph capacity is reached. This parameter can be changed after index creation.</td>
 <td><strong>Possible values</strong>: <em>Positive Floating Point</em><br/><strong>Default</strong>: <code>1.2</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>hnsw:batch_size</code></td>
 <td>Controls the size of the Bruteforce (in-memory) index. Once this threshold is crossed vectors from BF gets transferred to HNSW index. This value can be changed after index creation. The value must be less than <code>hnsw:sync_threshold</code>.</td>
 <td><strong>Possible values</strong>: <em>Positive Integers</em><br/><strong>Default</strong>: <code>100</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>hnsw:sync_threshold</code></td>
 <td>Controls the threshold when using HNSW index is written to disk.</td>
 <td><strong>Possible values</strong>: <em>Positive Integers</em><br/><strong>Default</strong>: <code>1000</code></td>
-<td></td>
 </tr>
 </tbody>
 </table>
