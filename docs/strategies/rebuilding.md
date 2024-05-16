@@ -29,12 +29,14 @@ The above should print UUID dir and collection names.
 
 Once you remove/rename the UUID dir, restart Chroma and query your collection like so:
 
+```python
 import chromadb
 client = chromadb.HttpClient() # Adjust as per your client
 res = client.get_collection("my_collection").get(limit=1,include=['embeddings'])
+```
 
-Your collection will be recreated.
+Chroma will recreate your collection from the WAL.
 
-!!! note "Rebuilding the collection"
+!!! tip "Rebuilding the collection"
 
     Depending on how large your collection is, this process can take a while.
