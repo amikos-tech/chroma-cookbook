@@ -1,4 +1,4 @@
-# Running Chroma as a systemd service
+# Systemd service
 
 You can run Chroma as a systemd service which wil allow you to automatically start Chroma on boot and restart it if it
 crashes.
