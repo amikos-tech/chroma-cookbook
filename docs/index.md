@@ -6,7 +6,8 @@ Latest ChromaDB version: [0.5.0](https://github.com/chroma-core/chroma/releases/
 
 ## New and Noteworthy
 
-- 💻 [SystemD Service](strategies/systemd-service.md) - Learn how to start Chroma upon system boot - 📅`14-May-2024`
+- ⚙️ [Chroma Configuration](core/configuration.md) - Learn about all the levers that Chroma offers for configuring the client, server and HNSW indices - 📅`16-May-2024`
+- 💻 [SystemD Service](strategies/systemd-service.md) - Learn how to start Chroma upon system boot - 📅`15-May-2024`
 - ⁉️[FAQs](faq/index.md) - Our brand-new FAQ and Commonly Encountered Issues section - 📅`9-May-2024`
 - 🔥[Ollama Embeddings](integrations/ollama/embeddings.md) - We've enhanced the content to include information about
   Ollama embedding models with recommendations which models to use - 📅`9-May-2024`
@@ -73,7 +74,7 @@ Below is a list of available clients for ChromaDB.
 
 - [Backup](strategies/backup.md) - Backing up ChromaDB data
 - [Batch Imports](strategies/batching.md) - Importing data in batches
-- [Multi-Tenancy](strategies/multi-tenancy.md) - Running multiple ChromaDB instances
+- [Multi-Tenancy](strategies/multi-tenancy/index.md) - Running multiple ChromaDB instances
 - [Keyword Search](strategies/keyword-search.md) - Searching for keywords in ChromaDB
 - [Memory Management](strategies/memory-management.md) - Managing memory in ChromaDB
 - [Time-based Queries](strategies/time-based-queries.md) - Querying data based on timestamps
