@@ -1997,6 +1997,16 @@
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">documents</span><span class="p">))],</span> <span class="n">documents</span><span class="o">=</span><span class="n">my_documents</span><span class="p">)</span>
 </span></code></pre></div>
+<h4 id="caveats">Caveats<a class="headerlink" href="#caveats" title="Permanent link">&para;</a></h4>
+<div class="admonition tip">
+<p class="admonition-title">Predictable Ordering</p>
+<p>UUIDs especially v4 are not lexicographically sortable. In its current version (0.4.x-0.5.0) Chroma orders responses 
+of <code>get()</code> by the ID of the documents. Therefore, if you need predictable ordering, you may want to consider a different ID strategy.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Storage Overhead</p>
+<p>UUIDs are 128 bits long, which can be a lot of overhead if you have a large number of documents. If you are concerned about storage overhead, you may want to consider a different ID strategy.</p>
+</div>
 <h3 id="hashes">Hashes<a class="headerlink" href="#hashes" title="Permanent link">&para;</a></h3>
 <p>Hashes are another common choice for document IDs. They are unique, and can be generated in a distributed fashion. They are also opaque, which means that they do not contain any information about the document itself. This can be a good thing, as it allows you to change the document without changing the ID.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">hashlib</span>
