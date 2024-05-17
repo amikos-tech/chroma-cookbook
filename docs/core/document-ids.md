@@ -35,7 +35,8 @@ collection.add(ids=[uuid.uuid4() for _ in range(len(documents))], documents=my_d
 
 !!! tip "Storage Overhead"
 
-    UUIDs are 128 bits long, which can be a lot of overhead if you have a large number of documents. If you are concerned about storage overhead, you may want to consider a different ID strategy.
+    UUIDs are 128 bits long, which can be a lot of overhead if you have a large number of documents. If you are concerned 
+    about storage overhead, you may want to consider a different ID strategy.
 
 ### Hashes
 
