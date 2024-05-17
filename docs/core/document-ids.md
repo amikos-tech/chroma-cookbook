@@ -26,6 +26,17 @@ client = chromadb.Client()
 collection.add(ids=[uuid.uuid4() for _ in range(len(documents))], documents=my_documents)
 ```
 
+#### Caveats
+
+!!! tip "Predictable Ordering" 
+
+    UUIDs especially v4 are not lexicographically sortable. In its current version (0.4.x-0.5.0) Chroma orders responses 
+    of `get()` by the ID of the documents. Therefore, if you need predictable ordering, you may want to consider a different ID strategy.
+
+!!! tip "Storage Overhead"
+
+    UUIDs are 128 bits long, which can be a lot of overhead if you have a large number of documents. If you are concerned about storage overhead, you may want to consider a different ID strategy.
+
 ### Hashes
 
 Hashes are another common choice for document IDs. They are unique, and can be generated in a distributed fashion. They are also opaque, which means that they do not contain any information about the document itself. This can be a good thing, as it allows you to change the document without changing the ID.
