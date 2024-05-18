@@ -1,16 +1,20 @@
 # Document IDs
 
-Chroma is unopinionated about document IDs and delegates those decisions to the user. This frees users to build semantics around their IDs.
+Chroma is unopinionated about document IDs and delegates those decisions to the user. This frees users to build
+semantics around their IDs.
 
 ## Note on Compound IDs
 
-While you can choose to use IDs that are composed of multiple sub-IDs (e.g. `user_id` + `document_id`), it is important to highlight that Chroma does not support querying by partial ID.
+While you can choose to use IDs that are composed of multiple sub-IDs (e.g. `user_id` + `document_id`), it is important
+to highlight that Chroma does not support querying by partial ID.
 
 ## Common Practices
 
 ### UUIDs
 
-UUIDs are a common choice for document IDs. They are unique, and can be generated in a distributed fashion. They are also opaque, which means that they do not contain any information about the document itself. This can be a good thing, as it allows you to change the document without changing the ID.
+UUIDs are a common choice for document IDs. They are unique, and can be generated in a distributed fashion. They are
+also opaque, which means that they do not contain any information about the document itself. This can be a good thing,
+as it allows you to change the document without changing the ID.
 
 ```python
 import uuid
@@ -22,13 +26,13 @@ my_documents = [
 ]
 
 client = chromadb.Client()
-
-collection.add(ids=[uuid.uuid4() for _ in range(len(documents))], documents=my_documents)
+collection = client.get_or_create_collection("collection")
+collection.add(ids=[f"{uuid.uuid4()}" for _ in range(len(my_documents))], documents=my_documents)
 ```
 
 #### Caveats
 
-!!! tip "Predictable Ordering" 
+!!! tip "Predictable Ordering"
 
     UUIDs especially v4 are not lexicographically sortable. In its current version (0.4.x-0.5.0) Chroma orders responses 
     of `get()` by the ID of the documents. Therefore, if you need predictable ordering, you may want to consider a different ID strategy.
@@ -38,16 +42,54 @@ collection.add(ids=[uuid.uuid4() for _ in range(len(documents))], documents=my_d
     UUIDs are 128 bits long, which can be a lot of overhead if you have a large number of documents. If you are concerned 
     about storage overhead, you may want to consider a different ID strategy.
 
+### ULIDs
+
+ULIDs are a variant of UUIDs that are lexicographically sortable. They are also 128 bits long, like UUIDs, but they are
+encoded in a way that makes them sortable. This can be useful if you need predictable ordering of your documents.
+
+ULIDs are also shorter than UUIDs, which can save you some storage space. They are also opaque, like UUIDs, which means
+that they do not contain any information about the document itself.
+
+Install the `ulid-py` package to generate ULIDs.
+
+```bash
+pip install py-ulid
+```
+
+```python
+from ulid import ULID
+import chromadb
+
+my_documents = [
+    "Hello, world!",
+    "Hello, Chroma!"
+]
+_ulid = ULID()
+
+client = chromadb.Client()
+
+collection = client.get_or_create_collection("name")
+
+collection.add(ids=[f"{_ulid.generate()}" for _ in range(len(my_documents))], documents=my_documents)
+```
+
+### NanoIDs
+
+Coming soon.
+
 ### Hashes
 
-Hashes are another common choice for document IDs. They are unique, and can be generated in a distributed fashion. They are also opaque, which means that they do not contain any information about the document itself. This can be a good thing, as it allows you to change the document without changing the ID.
+Hashes are another common choice for document IDs. They are unique, and can be generated in a distributed fashion. They
+are also opaque, which means that they do not contain any information about the document itself. This can be a good
+thing, as it allows you to change the document without changing the ID.
 
 ```python
 import hashlib
 import os
 import chromadb
 
-def generate_sha256_hash():
+
+def generate_sha256_hash() -> str:
     # Generate a random number
     random_data = os.urandom(16)
     # Create a SHA256 hash object
@@ -64,31 +106,36 @@ my_documents = [
 ]
 
 client = chromadb.Client()
-
-collection.add(ids=[generate_sha256_hash() for _ in range(len(documents))], documents=my_documents)
+collection = client.get_or_create_collection("collection")
+collection.add(ids=[generate_sha256_hash() for _ in range(len(my_documents))], documents=my_documents)
 ```
 
-It is also possible to use the document as basis for the hash, the downside of that is that when the document changes and you have a semantic around the text as relating to the hash, you may need to update the hash.
+It is also possible to use the document as basis for the hash, the downside of that is that when the document changes
+and you have a semantic around the text as relating to the hash, you may need to update the hash.
 
 ```python
 import hashlib
 import chromadb
 
-def generate_sha256_hash_from_text(text):
+
+def generate_sha256_hash_from_text(text) -> str:
     # Create a SHA256 hash object
     sha256_hash = hashlib.sha256()
     # Update the hash object with the text encoded to bytes
     sha256_hash.update(text.encode('utf-8'))
     # Return the hexadecimal representation of the hash
     return sha256_hash.hexdigest()
+
+
 my_documents = [
     "Hello, world!",
     "Hello, Chroma!"
 ]
 
 client = chromadb.Client()
-
-collection.add(ids=[generate_sha256_hash_from_text(documents[i]) for i in range(len(documents))], documents=my_documents)
+collection = client.get_or_create_collection("collection")
+collection.add(ids=[generate_sha256_hash_from_text(my_documents[i]) for i in range(len(my_documents))],
+               documents=my_documents)
 ```
 
 ## Semantic Strategies

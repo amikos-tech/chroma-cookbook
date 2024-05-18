@@ -66,10 +66,12 @@ class TransformerEmbeddingFunction(EmbeddingFunction[Documents]):
             )
 
     @staticmethod
-    def _normalize(v: npt.NDArray) -> npt.NDArray:
-        norm = np.linalg.norm(v, axis=1)
-        norm[norm == 0] = 1e-12
-        return cast(npt.NDArray, v / norm[:, np.newaxis])
+    def _normalize(vector: npt.NDArray) -> npt.NDArray:
+        """Normalizes a vector to unit length using L2 norm."""
+        norm = np.linalg.norm(vector)
+        if norm == 0:
+            return vector
+        return vector / norm
 
     def __call__(self, input: Documents) -> Embeddings:
         inputs = self._tokenizer(

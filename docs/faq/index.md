@@ -54,13 +54,12 @@ ef = SentenceTransformerEmbeddingFunction(model_name="FacebookAI/xlm-roberta-lar
 print(ef(["test"]))
 ```
 
-!!! warn "Warning" 
+!!! warn "Warning"
 
     Not all models will work with the above method. Also mean pooling may not be the best strategy for the model. 
     Read the model card and try to understand what if any pooling the creators recommend. You may also want to normalize
     the embeddings before adding them to Chroma (pass `normalize_embeddings=True` to the `SentenceTransformerEmbeddingFunction` 
     EF constructor).
-
 
 ## Commonly Encountered Problems
 
@@ -97,4 +96,60 @@ use the same EmbeddingFunction when adding or querying a collection.
     If you do not specify an `embedding_function` when creating (`client.create_collection`) or getting
     (`client.get_or_create_collection`) a collection, Chroma wil use its default [embedding function](https://docs.trychroma.com/embeddings#default-all-minilm-l6-v2).
 
+### Large Distances in Search Results
 
+**Symptoms:**
+
+When querying a collection, you get results that are in the 10s or 100s.
+
+**Context:**
+
+Frequently when using you own embedding function.
+
+**Cause:**
+
+The embeddings are not normalized.
+
+**Explanation/Solution:**
+
+`L2` (Euclidean distance) and `IP` (inner product) distance metrics are sensitive to the magnitude of the vectors.
+Chroma uses `L2` by
+default. Therefore, it is recommended to normalize the embeddings before adding them to Chroma.
+
+Here is an example how to normalize embeddings using L2 norm:
+
+```python
+import numpy as np
+
+
+def normalize_L2(vector):
+    """Normalizes a vector to unit length using L2 norm."""
+    norm = np.linalg.norm(vector)
+    if norm == 0:
+        return vector
+    return vector / norm
+```
+
+### `OperationalError: no such column: collections.topic`
+
+**Symptoms:**
+
+The error `OperationalError: no such column: collections.topic` is raised when trying to access Chroma locally or
+remotely.
+
+**Context:**
+
+After upgrading to Chroma `0.5.0` or accessing your Chroma persistent data with Chroma client version `0.5.0`.
+
+**Cause:**
+
+In version `0.5.x` Chroma has made some SQLite3 schema changes that are not backwards compatible with the previous
+versions. Once you access your persistent data on the server or locally with the new Chroma version it will
+automatically migrate to the new schema. This operation is not reversible.
+
+**Explanation/Solution:**
+
+To resolve this issue you will need to upgrade all your clients accessing the Chroma data to version `0.5.x`.
+
+Here's a link to the migration performed by
+Chroma - https://github.com/chroma-core/chroma/blob/main/chromadb/migrations/sysdb/00005-remove-topic.sqlite.sql
