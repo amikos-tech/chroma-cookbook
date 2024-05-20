@@ -936,6 +936,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#model-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Categories
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution Environment
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1876,6 +1894,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#model-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Categories
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execution Environment
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1897,19 +1933,44 @@
 <h1 id="embedding-models">Embedding Models<a class="headerlink" href="#embedding-models" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Work in Progress</p>
-<p>This page is a work in progress.</p>
 </div>
+<p>This page is a work in progress.</p>
 <p>Embedding Models are your best friends in the world of Chroma, and vector databases in general. They take something you
-understand in the form of text, images, audio etc. and turn it into a list of numbers (embeddings), which a machine learning
+understand in the form of text, images, audio etc. and turn it into a list of numbers (embeddings), which a machine
+learning
 model can understand. This process makes documents interpretable by a machine learning model.</p>
+<p>The goal of this page is to arm you with enough knowledge to make an informed decision about which embedding model to
+choose for your use case.</p>
+<div class="admonition tip">
+<p class="admonition-title">The importance of a model</p>
+<p>GenAI moves pretty fast therefore we recommend not to over-rely on models too much. When creating your
+solution create the necessary abstractions and tests to be able to quickly experiment and change things up
+(don't overdo it on the abstraction though).</p>
+</div>
 <p><img alt="Functioning of an Embedding Model" src="../../assets/images/embedding-model-basic.png" /></p>
 <h2 id="characteristics-of-an-embedding-model">Characteristics of an Embedding Model<a class="headerlink" href="#characteristics-of-an-embedding-model" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Modality</li>
-<li>Context</li>
-<li>Tokenization</li>
-<li>Dimensionality</li>
+<li>Modality - the type of data each model is designed to work with. For example, text, images, audio, video. Note: Some
+  models can work with multiple modalities (e.g. <a href="https://github.com/openai/CLIP">OpenAI's CLIP</a>).</li>
+<li>Context - The maximum number of tokens the model can process at once.</li>
+<li>Tokenization - The model's tokenizer or the way a model turns text into tokens to process.</li>
+<li>Dimensionality - The number of dimensions in the output embeddings/vectors.</li>
+<li>Training Data - The data the model was trained on.</li>
+<li>Execution Environment - How the model is run (e.g. local, cloud, API).</li>
+<li>Loss Function - The function used to train the model e.g. how well the model is doing in predicting the embeddings,
+  compared to the actual embeddings.</li>
 </ul>
+<h2 id="model-categories">Model Categories<a class="headerlink" href="#model-categories" title="Permanent link">&para;</a></h2>
+<p>There are several ways to categorize embedding models other than the above characteristics:</p>
+<ul>
+<li>Execution environment e.g. API vs local</li>
+<li>Licensing e.g. open-source vs proprietary</li>
+<li>Privacy e.g. on-premises vs cloud</li>
+</ul>
+<h2 id="execution-environment">Execution Environment<a class="headerlink" href="#execution-environment" title="Permanent link">&para;</a></h2>
+<p>The execution environment is probably the first choice you should consider when creating your GenAI solution.
+Can I afford my data to leave the confines of my computer, cluster, organization? If the answer is yes and you are still
+in the experimentation phase of your GenAI journey we recommend using API-based embedding models.</p>
 
 
 
