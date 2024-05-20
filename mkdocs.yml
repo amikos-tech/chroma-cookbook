@@ -68,5 +68,4 @@ markdown_extensions:
 plugins:
   - tags
   - search
-  - sitemap
   - git-revision-date-localized
