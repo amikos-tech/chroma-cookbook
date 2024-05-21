@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://cookbook.chromadb.dev/integrations/ollama/">
+        <link rel="canonical" href="https://cookbook.chromadb.dev/core/storage-layout/">
       
       
-        <link rel="prev" href="../llamaindex/embeddings/">
+        <link rel="prev" href="../resources/">
       
       
-        <link rel="next" href="embeddings/">
+        <link rel="next" href="../system_constraints/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Chroma Integrations With Ollama - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+        <title>Storage Layout - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chroma-integrations-with-ollama" class="md-skip">
+        <a href="#storage-layout" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chroma Integrations With Ollama
+              Storage Layout
             
           </span>
         </div>
@@ -340,6 +340,8 @@
       
   
   
+    
+  
   
   
     
@@ -378,16 +380,16 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../core/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -404,7 +406,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Core
@@ -420,7 +422,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/api/" class="md-nav__link">
+      <a href="../api/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -441,7 +443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/clients/" class="md-nav__link">
+      <a href="../clients/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -462,7 +464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/collections/" class="md-nav__link">
+      <a href="../collections/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -483,7 +485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/concepts/" class="md-nav__link">
+      <a href="../concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -504,7 +506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/configuration/" class="md-nav__link">
+      <a href="../configuration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -525,7 +527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/document-ids/" class="md-nav__link">
+      <a href="../document-ids/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -546,7 +548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/filters/" class="md-nav__link">
+      <a href="../filters/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -567,7 +569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/install/" class="md-nav__link">
+      <a href="../install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -588,7 +590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/resources/" class="md-nav__link">
+      <a href="../resources/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -606,10 +608,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../core/storage-layout/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Storage Layout
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -618,6 +640,61 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directory Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Directory Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chromasqlite3" class="md-nav__link">
+    <span class="md-ellipsis">
+      chroma.sqlite3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collection-subdirectories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Collection Subdirectories
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -630,7 +707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/system_constraints/" class="md-nav__link">
+      <a href="../system_constraints/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -651,7 +728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/tenants-and-databases/" class="md-nav__link">
+      <a href="../tenants-and-databases/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -713,7 +790,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/advanced/wal-pruning/" class="md-nav__link">
+      <a href="../advanced/wal-pruning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -734,7 +811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/advanced/wal/" class="md-nav__link">
+      <a href="../advanced/wal/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1000,10 +1077,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -1016,11 +1091,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1034,7 +1109,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Integrations
@@ -1070,7 +1145,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../langchain/" class="md-nav__link ">
+            <a href="../../integrations/langchain/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1103,7 +1178,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../langchain/embeddings/" class="md-nav__link">
+      <a href="../../integrations/langchain/embeddings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1124,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../langchain/retrievers/" class="md-nav__link">
+      <a href="../../integrations/langchain/retrievers/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1173,7 +1248,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../llamaindex/" class="md-nav__link ">
+            <a href="../../integrations/llamaindex/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1206,7 +1281,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../llamaindex/embeddings/" class="md-nav__link">
+      <a href="../../integrations/llamaindex/embeddings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1232,8 +1307,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1248,16 +1321,16 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
+            <a href="../../integrations/ollama/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1268,13 +1341,13 @@
             </a>
             
               
-              <label class="md-nav__link md-nav__link--active" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7_3">
             <span class="md-nav__icon md-icon"></span>
             Ollama
@@ -1290,7 +1363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="embeddings/" class="md-nav__link">
+      <a href="../../integrations/ollama/embeddings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1835,6 +1908,47 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directory Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Directory Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chromasqlite3" class="md-nav__link">
+    <span class="md-ellipsis">
+      chroma.sqlite3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collection-subdirectories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Collection Subdirectories
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1851,11 +1965,73 @@
   
 
 
-<h1 id="chroma-integrations-with-ollama">Chroma Integrations With Ollama<a class="headerlink" href="#chroma-integrations-with-ollama" title="Permanent link">&para;</a></h1>
+<h1 id="storage-layout">Storage Layout<a class="headerlink" href="#storage-layout" title="Permanent link">&para;</a></h1>
+<p>When configured as <code>PersistentClient</code> or running as a server, Chroma persists its data under the
+provided <code>persist_directory</code>.</p>
+<p>For <code>PersistentClient</code> the persistent directory is usually passed as <code>path</code> parameter when creating the client, if not
+passed the default is <code>./chroma/</code> (relative path to where the client is started from).</p>
+<p>For the server, the persistent directory can be passed as environment variable <code>PERSIST_DIRECTORY</code> or as a command line
+argument <code>--path</code>. If not passed, the default is <code>./chroma/</code> (relative path to where the server is started).</p>
+<p>Once the client or the server is started a basic directory structure is created under the persistent directory
+containing the <code>chroma.sqlite3</code> file. Once collections are created and data is added, subdirectories are created for
+each collection. The subdirectories are UUID-named and refer to the vector segment.</p>
+<h2 id="directory-structure">Directory Structure<a class="headerlink" href="#directory-structure" title="Permanent link">&para;</a></h2>
+<p>The following diagram represents a typical Chroma persistent directory structure:</p>
+<p><img alt="Persistent Directory Layout" src="../../assets/images/persistent-dir-layout.png" /></p>
+<h3 id="chromasqlite3"><code>chroma.sqlite3</code><a class="headerlink" href="#chromasqlite3" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note about the tables</p>
+<p>While we try to make it as accurate as possible chroma data layout inside the <code>slite3</code> database is subject to change.
+The following description is valid as of version <code>0.5.0</code>. The tables are also not representative of the distributed
+architecture of Chroma.</p>
+</div>
+<p>The <code>chroma.sqlite3</code> is typical for Chroma single-node. The file contains the following four types of data:</p>
 <ul>
-<li><a href="embeddings/">Embeddings</a> - learn how to use Ollama as embedder for Chroma documents</li>
-<li>✨<code>Coming soon</code> RAG with Ollama - a primer on how to build a simple RAG app with Ollama and Chroma</li>
+<li>Sysdb - Chroma system database, responsible for storing tenant, database, collection and segment information.</li>
+<li>WAL - the write-ahead log, which is used to ensure durability of the data.</li>
+<li>Metadata Segment - all metadata and documents stored in Chroma.</li>
+<li>Migrations - the database schema migration scripts.</li>
 </ul>
+<h4 id="sysdb">Sysdb<a class="headerlink" href="#sysdb" title="Permanent link">&para;</a></h4>
+<p>The system database comprises the following tables:</p>
+<ul>
+<li>tenants - contains all the tenants in the system. Usually gets initialized with a single tenant - <code>default_tenant</code>.</li>
+<li>databases - contains all the databases per tenant. Usually gets initialized with a single
+  database - <code>default_database</code> related to the <code>default_tenant</code>.</li>
+<li>collections - contains all the collections per database.</li>
+<li>collection_metadata - contains all the metadata associated with each collection. The metadata for a collection
+  consists of any user-specified key-value pairs and the <a href="../configuration/#hnsw-configuration"><code>hnsw:*</code> keys</a> that store
+  the HNSW index parameters.</li>
+<li>segments - contains all the segments per collection. Each collection gets two segments - <code>metadata</code> and <code>vector</code>.</li>
+<li>segment_metadata - contains all the metadata associated with each segment. This table
+  contains <a href="../configuration/#hnsw-configuration"><code>hnsw:*</code> keys</a> that store the HNSW index parameters for the vector
+  segment.</li>
+</ul>
+<h4 id="wal">WAL<a class="headerlink" href="#wal" title="Permanent link">&para;</a></h4>
+<p>The write-ahead log is a table that stores all the changes made to the database. It is used to ensure that the data is
+durable and can be recovered in case of a crash. The WAL is composed of the following tables:</p>
+<ul>
+<li>embeddings_queue - contains all data ingested into Chroma. Each row of the table represents an operation upon a
+  collection (add, update, delete, upsert). The row contains all the necessary information (embedding, document,
+  metadata and associated relationship to a collection) to replay the operation and ensure data consistency.</li>
+<li>max_seq_id - maintains the maximum sequence ID of the metadata segment that is used as a WAL replay starting point for
+  the metadata segment.</li>
+</ul>
+<h4 id="metadata-segment">Metadata Segment<a class="headerlink" href="#metadata-segment" title="Permanent link">&para;</a></h4>
+<p>The metadata segment is a table that stores all the metadata and documents stored in Chroma. The metadata segment is
+composed of the following tables:</p>
+<ul>
+<li>embeddings -</li>
+<li>embedding_metadata - contains all the metadata associated with each document and its embedding.</li>
+<li>embedding_fulltext_search - document full-text search index. This is a virtual table and upon inspection of the sqlite
+  will appear as a series of tables starting with <code>embedding_fulltext_search_</code>. This is an FTS5 table and is used for
+  full-text search queries on documents stored in Chroma (via <code>where_document</code> filter in <code>query</code> and <code>get</code> methods).</li>
+</ul>
+<h4 id="migrations">Migrations<a class="headerlink" href="#migrations" title="Permanent link">&para;</a></h4>
+<p>The migrations table contains all schema migrations applied to the <code>chroma.sqlite3</code> database. The table is used to track
+the schema version and ensure that the database schema is up-to-date.</p>
+<h3 id="collection-subdirectories">Collection Subdirectories<a class="headerlink" href="#collection-subdirectories" title="Permanent link">&para;</a></h3>
+<p>TBD</p>
 
 
 
@@ -1876,7 +2052,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 1, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 21, 2024</span>
   </span>
 
     
