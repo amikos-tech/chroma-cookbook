@@ -19,7 +19,7 @@
 ## HNSW Configuration
 
 HNSW is the underlying library for Chroma vector indexing and search. Chroma exposes a number of parameters to configure
-HNSW for your use case. All HNSW parameters are configured as metadata on the collection level.
+HNSW for your use case. All HNSW parameters are configured as metadata for a collection.
 
 !!! tip "Changing HNSW parameters"
 

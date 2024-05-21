@@ -6,6 +6,7 @@ Latest ChromaDB version: [0.5.0](https://github.com/chroma-core/chroma/releases/
 
 ## New and Noteworthy
 
+- 💾 [Chroma Storage Layout](core/storage-layout.md) - Understand how Chroma stores persistent data - 📅`21-May-2024`
 - ⚙️ [Chroma Configuration](core/configuration.md) - Learn about all the levers that Chroma offers for configuring the client, server and HNSW indices - 📅`16-May-2024`
 - 💻 [Systemd Service](running/systemd-service.md) - Learn how to start Chroma upon system boot - 📅`15-May-2024`
 - ⁉️[FAQs](faq/index.md) - Our brand-new FAQ and Commonly Encountered Issues section - 📅`9-May-2024`

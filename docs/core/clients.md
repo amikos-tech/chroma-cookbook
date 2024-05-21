@@ -31,7 +31,7 @@ remote ChromaDB server.
 ```python
 import chromadb
 
-client = chromadb.HttpClient(host="localhost", port="8000")
+client = chromadb.HttpClient(host="localhost", port=8000)
 ```
 
 HTTP client takes two optional parameters:
@@ -87,11 +87,13 @@ client = chromadb.Client()
 
 Short list of env variables that can be used to configure the client:
 
-> **Note**: For complete list of available settings check ([`chromadb.config.Settings`](https://github.com/chroma-core/chroma/blob/c665838b0d143e2c2ceb82c4ade7404dc98124ff/chromadb/config.py#L83)).
+> **Note**: For complete list of available settings
+>
+check ([`chromadb.config.Settings`](https://github.com/chroma-core/chroma/blob/c665838b0d143e2c2ceb82c4ade7404dc98124ff/chromadb/config.py#L83)).
 
 | Env Variable            | Description                                                                                                                                                         | Default                           |
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
 | chroma_api_impl         | The API implementation to use. There are two options:<br/> `chromadb.api.segment.SegmentAPI` (persistent client) <br/> `chromadb.api.fastapi.FastAPI` (Http client) | `chromadb.api.segment.SegmentAPI` |
-| chroma_server_host      | The host of the remote server. This is required for HttpClient only.                                                                                                | `None`/`null`                     |
+| chroma_server_host      | The host of the remote server. This is required for HttpClient only.                                                                                                | `None`                            |
 | chroma_server_http_port | The port of the remote server. This is required for HttpClient only.                                                                                                | `8000`                            |
-| chroma_server_headers   | The headers to be sent to the server. This is required for HttpClient only.                                                                                         | `None`/`null`                     |
+| chroma_server_headers   | The headers to be sent to the server. The setting can be used to pass additional headers to the server. An example of this can be auth headers.                     | `None`                            |
