@@ -101,6 +101,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://cookbook.chromadb.dev/embeddings/cross-encoders/</loc>
+         <lastmod>2024-05-23</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://cookbook.chromadb.dev/embeddings/embedding-models/</loc>
          <lastmod>2024-05-23</lastmod>
          <changefreq>daily</changefreq>
