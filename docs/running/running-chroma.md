@@ -26,6 +26,11 @@ expose it to your entire network then you can specify `0.0.0.0``
 
 `--path` The path where to persist your Chroma data locally.
 
+!!! tip "Target Path Install"
+
+    It is possible to install Chroma in a specific directory by running `pip install chromadb -t /path/to/dir`.
+    To run Chroma CLI from the installation dir expor the Python Path `export PYTHONPATH=$PYTHONPATH:/path/to/dir`.
+
 ### Docker
 
 Running Chroma server locally can be achieved via a simple docker command as shown below.
