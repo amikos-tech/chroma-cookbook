@@ -1,5 +1,12 @@
 # Chroma Clients
 
+!!! tip "Chroma Settings Object"
+
+    The below is only a partial list of Chroma configuration options. For full list check the code
+    [`chromadb.config.Settings`](https://github.com/chroma-core/chroma/blob/c665838b0d143e2c2ceb82c4ade7404dc98124ff/chromadb/config.py#L83) or
+    the [ChromaDB Configuration](configuration.md) page.
+
+
 ## Persistent Client
 
 To create your a local persistent client use the `PersistentClient` class. This client will store all data locally in a
@@ -7,13 +14,29 @@ directory on your machine at the path you specify.
 
 ```python
 import chromadb
+from chromadb.config import DEFAULT_TENANT, DEFAULT_DATABASE, Settings
 
-client = chromadb.PersistentClient(path="test")
+client = chromadb.PersistentClient(
+    path="test",
+    settings=Settings(),
+    tenant=DEFAULT_TENANT,
+    database=DEFAULT_DATABASE,
+)
 ```
 
-`path` parameter must be a local path on the machine where Chroma is running. If the path does not exist, it will be
-created. The path can be relative or absolute. If the path is not specified, the default is `chroma/` in the current
-working directory.
+**Parameters**:
+
+1. `path` - parameter must be a local path on the machine where Chroma is running. If the path does not exist, it will
+   be
+   created. The path can be relative or absolute. If the path is not specified, the default is `./chroma` in the current
+   working directory.
+2. `settings` - Chroma settings object.
+3. `tenant` - the tenant to use. Default is `default_tenant`.
+4. `database` - the database to use. Default is `default_database`.
+
+!!! tip "Positional Parameters"
+
+    Chroma `PersistentClient` parameters are positional, unless keyword arguments are used.
 
 ### Uses of Persistent Client
 
@@ -30,15 +53,34 @@ remote ChromaDB server.
 
 ```python
 import chromadb
+from chromadb.config import DEFAULT_TENANT, DEFAULT_DATABASE, Settings
 
-client = chromadb.HttpClient(host="localhost", port=8000)
+client = chromadb.HttpClient(
+    host="localhost",
+    port=8000,
+    ssl=False,
+    headers=None,
+    settings=Settings(),
+    tenant=DEFAULT_TENANT,
+    database=DEFAULT_DATABASE,
+)
 ```
 
 HTTP client takes two optional parameters:
 
-- `host`: The host of the remote server. If not specified, the default is `localhost`.
-- `port`: The port of the remote server. If not specified, the default is `8000`.
-- `ssl`: If `True`, the client will use HTTPS. If not specified, the default is `False`.
+1. `host` - The host of the remote server. If not specified, the default is `localhost`.
+2. `port` - The port of the remote server. If not specified, the default is `8000`.
+3. `ssl` - If `True`, the client will use HTTPS. If not specified, the default is `False`.
+4. `headers` - (optional): The headers to be sent to the server. The setting can be used to pass additional headers to
+   the
+   server. An example of this can be auth headers.
+5. `settings` - Chroma settings object.
+6. `tenant` - the tenant to use. Default is `default_tenant`.
+7. `database` - the database to use. Default is `default_database`.
+
+!!! tip "Positional Parameters"
+
+    Chroma `PersistentClient` parameters are positional, unless keyword arguments are used.
 
 ### Uses of HTTP Client
 
@@ -70,9 +112,24 @@ started with an ephemeral client, use the `EphemeralClient` class.
 
 ```python
 import chromadb
+from chromadb.config import DEFAULT_TENANT, DEFAULT_DATABASE, Settings
 
-client = chromadb.EphemeralClient()
+client = chromadb.EphemeralClient(
+    settings=Settings(),
+    tenant=DEFAULT_TENANT,
+    database=DEFAULT_DATABASE,
+)
 ```
+
+**Parameters**:
+
+1. `settings` - Chroma settings object.
+2. `tenant` - the tenant to use. Default is `default_tenant`.
+3. `database`  - the database to use. Default is `default_database`.
+
+!!! tip "Positional Parameters"
+
+    Chroma `PersistentClient` parameters are positional, unless keyword arguments are used.
 
 ## Environmental Variable Configured Client
 
@@ -81,19 +138,21 @@ client configurations listed above via environmental variables.
 
 ```python
 import chromadb
+from chromadb.config import DEFAULT_TENANT, DEFAULT_DATABASE, Settings
 
-client = chromadb.Client()
+client = chromadb.Client(
+    settings=Settings(),
+    tenant=DEFAULT_TENANT,
+    database=DEFAULT_DATABASE,
+)
 ```
 
-Short list of env variables that can be used to configure the client:
+**Parameters**:
 
-> **Note**: For complete list of available settings
->
-check ([`chromadb.config.Settings`](https://github.com/chroma-core/chroma/blob/c665838b0d143e2c2ceb82c4ade7404dc98124ff/chromadb/config.py#L83)).
+1. `settings` - Chroma settings object.
+2. `tenant` - the tenant to use. Default is `default_tenant`.
+3. `database` - the database to use. Default is `default_database`.
 
-| Env Variable            | Description                                                                                                                                                         | Default                           |
-|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
-| chroma_api_impl         | The API implementation to use. There are two options:<br/> `chromadb.api.segment.SegmentAPI` (persistent client) <br/> `chromadb.api.fastapi.FastAPI` (Http client) | `chromadb.api.segment.SegmentAPI` |
-| chroma_server_host      | The host of the remote server. This is required for HttpClient only.                                                                                                | `None`                            |
-| chroma_server_http_port | The port of the remote server. This is required for HttpClient only.                                                                                                | `8000`                            |
-| chroma_server_headers   | The headers to be sent to the server. The setting can be used to pass additional headers to the server. An example of this can be auth headers.                     | `None`                            |
+!!! tip "Positional Parameters"
+
+    Chroma `PersistentClient` parameters are positional, unless keyword arguments are used.
