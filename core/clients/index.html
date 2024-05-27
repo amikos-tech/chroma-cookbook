@@ -2177,22 +2177,20 @@ remote ChromaDB server.</p>
 </span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">database</span><span class="o">=</span><span class="n">DEFAULT_DATABASE</span><span class="p">,</span>
 </span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">)</span>
 </span></code></pre></div>
-<p>HTTP client takes two optional parameters:</p>
+<p><strong>Parameters</strong>:</p>
 <ol>
 <li><code>host</code> - The host of the remote server. If not specified, the default is <code>localhost</code>.</li>
 <li><code>port</code> - The port of the remote server. If not specified, the default is <code>8000</code>.</li>
 <li><code>ssl</code> - If <code>True</code>, the client will use HTTPS. If not specified, the default is <code>False</code>.</li>
-<li><code>headers</code> - (optional): The headers to be sent to the server. The setting can be used to pass additional headers to
-      the
-      server. An example of this can be auth headers.</li>
+<li><code>headers</code> - (optional): The headers to be sent to the server. The setting can be used to pass additional headers to the
+    server. An example of this can be auth headers.</li>
 <li><code>settings</code> - Chroma settings object.</li>
 <li><code>tenant</code> - the tenant to use. Default is <code>default_tenant</code>.</li>
 <li><code>database</code> - the database to use. Default is <code>default_database</code>.</li>
 </ol>
-<div class="admonition tip">
-<p class="admonition-title">Positional Parameters</p>
-<p>Chroma <code>PersistentClient</code> parameters are positional, unless keyword arguments are used.</p>
-</div>
+<p>!!! tip "Positional Parameters"</p>
+<div class="language-text highlight"><pre><span></span><code>   Chroma `PersistentClient` parameters are positional, unless keyword arguments are used.
+</code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="language-javascript highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">ChromaClient</span><span class="p">}</span><span class="w">  </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;chromadb&quot;</span><span class="p">;</span>
