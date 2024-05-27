@@ -1,4 +1,4 @@
-# Chroma Core Concepts
+# Concepts
 
 ## Tenancy and DB Hierarchies
 
@@ -53,7 +53,7 @@ Also referred to as embedding model, embedding functions in ChromaDB are wrapper
 generating embedding vectors from documents or text queries.
 
 For a list of supported embedding functions see Chroma's
-official [documentation](https://docs.trychroma.com/embeddings).
+official [documentation](https://docs.trychroma.com/integrations#%F0%9F%A7%AC-embedding-integrations).
 
 ## Distance Function
 
