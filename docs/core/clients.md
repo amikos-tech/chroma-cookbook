@@ -12,17 +12,28 @@
 To create your a local persistent client use the `PersistentClient` class. This client will store all data locally in a
 directory on your machine at the path you specify.
 
-```python
-import chromadb
-from chromadb.config import DEFAULT_TENANT, DEFAULT_DATABASE, Settings
+=== "Python"
 
-client = chromadb.PersistentClient(
-    path="test",
-    settings=Settings(),
-    tenant=DEFAULT_TENANT,
-    database=DEFAULT_DATABASE,
-)
-```
+    ```python
+    import chromadb
+    from chromadb.config import DEFAULT_TENANT, DEFAULT_DATABASE, Settings
+    
+    client = chromadb.PersistentClient(
+        path="test",
+        settings=Settings(),
+        tenant=DEFAULT_TENANT,
+        database=DEFAULT_DATABASE,
+    )
+    ```
+
+=== "JavaScript"
+
+    ```javascript
+    import {ChromaClient}  from "chromadb";
+    const client = new ChromaClient({
+        path: "http://localhost:8000"
+    });
+    ```
 
 **Parameters**:
 
