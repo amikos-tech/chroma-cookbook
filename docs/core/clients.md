@@ -6,41 +6,28 @@
     [`chromadb.config.Settings`](https://github.com/chroma-core/chroma/blob/c665838b0d143e2c2ceb82c4ade7404dc98124ff/chromadb/config.py#L83) or
     the [ChromaDB Configuration](configuration.md) page.
 
-
 ## Persistent Client
 
 To create your a local persistent client use the `PersistentClient` class. This client will store all data locally in a
 directory on your machine at the path you specify.
 
-=== "Python"
+```python
+import chromadb
+from chromadb.config import DEFAULT_TENANT, DEFAULT_DATABASE, Settings
 
-    ```python
-    import chromadb
-    from chromadb.config import DEFAULT_TENANT, DEFAULT_DATABASE, Settings
-    
-    client = chromadb.PersistentClient(
-        path="test",
-        settings=Settings(),
-        tenant=DEFAULT_TENANT,
-        database=DEFAULT_DATABASE,
-    )
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    import {ChromaClient}  from "chromadb";
-    const client = new ChromaClient({
-        path: "http://localhost:8000"
-    });
-    ```
+client = chromadb.PersistentClient(
+    path="test",
+    settings=Settings(),
+    tenant=DEFAULT_TENANT,
+    database=DEFAULT_DATABASE,
+)
+```
 
 **Parameters**:
 
 1. `path` - parameter must be a local path on the machine where Chroma is running. If the path does not exist, it will
-   be
-   created. The path can be relative or absolute. If the path is not specified, the default is `./chroma` in the current
-   working directory.
+   be created. The path can be relative or absolute. If the path is not specified, the default is `./chroma` in the
+   current working directory.
 2. `settings` - Chroma settings object.
 3. `tenant` - the tenant to use. Default is `default_tenant`.
 4. `database` - the database to use. Default is `default_database`.
@@ -62,36 +49,61 @@ The persistent client is useful for:
 Chroma also provides HTTP Client, suitable for use in a client-server mode. This client can be used to connect to a
 remote ChromaDB server.
 
-```python
-import chromadb
-from chromadb.config import DEFAULT_TENANT, DEFAULT_DATABASE, Settings
+=== "Python"
 
-client = chromadb.HttpClient(
-    host="localhost",
-    port=8000,
-    ssl=False,
-    headers=None,
-    settings=Settings(),
-    tenant=DEFAULT_TENANT,
-    database=DEFAULT_DATABASE,
-)
-```
+    ```python
+    import chromadb
+    from chromadb.config import DEFAULT_TENANT, DEFAULT_DATABASE, Settings
+    
+    client = chromadb.HttpClient(
+        host="localhost",
+        port=8000,
+        ssl=False,
+        headers=None,
+        settings=Settings(),
+        tenant=DEFAULT_TENANT,
+        database=DEFAULT_DATABASE,
+    )
+    ```
+    
+    HTTP client takes two optional parameters:
+    
+    1. `host` - The host of the remote server. If not specified, the default is `localhost`.
+       2. `port` - The port of the remote server. If not specified, the default is `8000`.
+       3. `ssl` - If `True`, the client will use HTTPS. If not specified, the default is `False`.
+       4. `headers` - (optional): The headers to be sent to the server. The setting can be used to pass additional headers to
+          the
+          server. An example of this can be auth headers.
+       5. `settings` - Chroma settings object.
+       6. `tenant` - the tenant to use. Default is `default_tenant`.
+       7. `database` - the database to use. Default is `default_database`.
+    
+    !!! tip "Positional Parameters"
+    
+        Chroma `PersistentClient` parameters are positional, unless keyword arguments are used.
 
-HTTP client takes two optional parameters:
+=== "JavaScript"
 
-1. `host` - The host of the remote server. If not specified, the default is `localhost`.
-2. `port` - The port of the remote server. If not specified, the default is `8000`.
-3. `ssl` - If `True`, the client will use HTTPS. If not specified, the default is `False`.
-4. `headers` - (optional): The headers to be sent to the server. The setting can be used to pass additional headers to
-   the
-   server. An example of this can be auth headers.
-5. `settings` - Chroma settings object.
-6. `tenant` - the tenant to use. Default is `default_tenant`.
-7. `database` - the database to use. Default is `default_database`.
+    ```javascript
+    import {ChromaClient}  from "chromadb";
+    const client = new ChromaClient({
+        path: "http://localhost:8000",
+        auth: {
+            provider: "token",
+            credentials: "your_token_here",
+            tokenHeaderType: "AUTHORIZATION",
+        },
+        tenant: "default_tenant",
+        database: "default_database",
+    });
+    ```
 
-!!! tip "Positional Parameters"
-
-    Chroma `PersistentClient` parameters are positional, unless keyword arguments are used.
+    **Parameters**:
+    
+    - `path` - The Chroma endpoint
+    - `auth` - Chroma authentication object
+    - `tenant` - the tenant to use. Default is `default_tenant`.
+    - `database` - the database to use. Default is `default_database`.
 
 ### Uses of HTTP Client
 
@@ -110,7 +122,7 @@ important to note that there are trade-offs associated with using HTTP client:
 - Difficulty in debugging - Debugging network issues can be more difficult than debugging local issues. The same applies
   to server-side issues.
 
-### Host parameter special cases
+### Host parameter special cases (Python-only)
 
 The `host` parameter supports a more advanced syntax than just the hostname. You can specify the whole endpoint ULR (
 without the API paths), e.g. `https://chromadb.example.com:8000/my_server/path/`. This is useful when you want to use a
