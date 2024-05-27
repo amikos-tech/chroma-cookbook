@@ -66,21 +66,20 @@ remote ChromaDB server.
     )
     ```
     
-    HTTP client takes two optional parameters:
+    **Parameters**:
     
     1. `host` - The host of the remote server. If not specified, the default is `localhost`.
-       2. `port` - The port of the remote server. If not specified, the default is `8000`.
-       3. `ssl` - If `True`, the client will use HTTPS. If not specified, the default is `False`.
-       4. `headers` - (optional): The headers to be sent to the server. The setting can be used to pass additional headers to
-          the
-          server. An example of this can be auth headers.
-       5. `settings` - Chroma settings object.
-       6. `tenant` - the tenant to use. Default is `default_tenant`.
-       7. `database` - the database to use. Default is `default_database`.
+    2. `port` - The port of the remote server. If not specified, the default is `8000`.
+    3. `ssl` - If `True`, the client will use HTTPS. If not specified, the default is `False`.
+    4. `headers` - (optional): The headers to be sent to the server. The setting can be used to pass additional headers to the
+        server. An example of this can be auth headers.
+    5. `settings` - Chroma settings object.
+    6. `tenant` - the tenant to use. Default is `default_tenant`.
+    7. `database` - the database to use. Default is `default_database`.
     
-    !!! tip "Positional Parameters"
+       !!! tip "Positional Parameters"
     
-        Chroma `PersistentClient` parameters are positional, unless keyword arguments are used.
+           Chroma `PersistentClient` parameters are positional, unless keyword arguments are used.
 
 === "JavaScript"
 
