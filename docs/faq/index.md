@@ -3,6 +3,11 @@
 This section provides answers to frequently asked questions and information on commonly encountered problem when working
 with Chroma. These information below is based on interactions with the Chroma community.
 
+!!! warn "404 Answer Not Found"
+
+    If you have a question that is not answered here, please reach out to us on our [Discord @taz](https://discord.gg/MMeYNTmh3x)
+    or [GitHub Issues](https://github.com/chroma-core/chroma/issues)
+
 ## Frequently Asked Questions
 
 ### What does Chroma use to index embedding vectors?

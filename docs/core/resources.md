@@ -36,7 +36,7 @@ is at least 2-4x the RAM required for the vector HNSW index.
 
 ### Temporary Disk Space
 
-Chroma uses temporary storage for its sqlite3 related operations - sorting and buffering large queries. By default,
+Chroma uses temporary storage for its SQLite3 related operations - sorting and buffering large queries. By default,
 SQLite3 uses `/tmp` for temporary storage.
 
 There are two guidelines to follow:
