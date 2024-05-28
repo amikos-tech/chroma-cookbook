@@ -34,6 +34,22 @@ is at least 2-4x the RAM required for the vector HNSW index.
     to use available tooling to periodically clean your WAL -
     see [chromadb-ops](https://github.com/amikos-tech/chromadb-ops) for more information.
 
+### Temporary Disk Space
+
+Chroma uses temporary storage for its sqlite3 related operations - sorting and buffering large queries. By default,
+SQLite3 uses `/tmp` for temporary storage.
+
+There are two guidelines to follow:
+
+- Have enough space if your application intends to make large queries or has multiple concurrent queries.
+- Ensure temporary storage is on a fast disk to avoid performance bottlenecks.
+
+You can configure the location of sqlite temp files with the `SQLITE_TMPDIR` environment variable.
+
+!!! tip "SQLite3 Temporary Storage"
+
+    You can read more about SQLite3 temporary storage in the [SQLite3 documentation](https://www.sqlite.org/tempfiles.html).
+
 ## CPU
 
 There are no hard requirements for the CPU, but it is recommended to use as much CPU as you can spare as it directly

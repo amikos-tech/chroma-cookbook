@@ -153,3 +153,35 @@ To resolve this issue you will need to upgrade all your clients accessing the Ch
 
 Here's a link to the migration performed by
 Chroma - https://github.com/chroma-core/chroma/blob/main/chromadb/migrations/sysdb/00005-remove-topic.sqlite.sql
+
+### `sqlite3.OperationalError: database or disk is full`
+
+**Symptoms:**
+
+The error `sqlite3.OperationalError: database or disk is full` is raised when trying to access Chroma locally or
+remotely. The error can occur in any of the Chroma API calls.
+
+**Context:**
+
+There are two contexts in which this error can occur:
+
+- When the persistent disk space is full or the disk quota is reached - This is where your `PERSIST_DIRECTORY` points
+  to.
+- When there is not enough space in the temporary director - frequently `/tmp` on your system or container.
+
+**Cause:**
+
+When inserting new data and your Chroma persistent disk space is full or the disk quota is reached, the database will
+not be able to write metadata to SQLite3 db thus raising the error.
+
+When performing large queries or multiple concurrent queries, the temporary disk space may be exhausted.
+
+**Explanation/Solution:**
+
+To work around the first issue, you can increase the disk space or clean up the disk space. To work around the second
+issue, you can increase the temporary disk space (works fine for containers but might be a problem for VMs) or point
+SQLite3 to a different temporary directory by using `SQLITE_TMPDIR` environment variable.
+
+!!! tip "SQLite Temp File"
+
+    More information on sqlite3 temp files can be found [here](https://www.sqlite.org/tempfiles.html).
