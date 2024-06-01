@@ -187,9 +187,9 @@ To work around the first issue, you can increase the disk space or clean up the 
 issue, you can increase the temporary disk space (works fine for containers but might be a problem for VMs) or point
 SQLite3 to a different temporary directory by using `SQLITE_TMPDIR` environment variable.
 
-!!! tip "SQLite Temp File"
+??? tip "SQLite Temp File"
 
-    More information on sqlite3 temp files can be found [here](https://www.sqlite.org/tempfiles.html).
+    More information on how sqlite3 uses temp files can be found [here](https://www.sqlite.org/tempfiles.html).
 
 ### `RuntimeError: Chroma is running in http-only client mode, and can only be run with 'chromadb.api.fastapi.FastAPI'`
 
@@ -211,7 +211,7 @@ There are two possible causes for this error:
 
 **Explanation/Solution:**
 
-Chroma comes in two packages - `chromadb` and `chromadb-client`. The `chromadb-client` package is used to interact with
+Chroma (python) comes in two packages - `chromadb` and `chromadb-client`. The `chromadb-client` package is used to interact with
 a remote Chroma server. If you are trying to work with a local client, you should use the `chromadb` package. If you are
 planning to interact with remote server only it is recommended to use the `chromadb-client` package.
 
