@@ -190,3 +190,60 @@ SQLite3 to a different temporary directory by using `SQLITE_TMPDIR` environment 
 !!! tip "SQLite Temp File"
 
     More information on sqlite3 temp files can be found [here](https://www.sqlite.org/tempfiles.html).
+
+### `RuntimeError: Chroma is running in http-only client mode, and can only be run with 'chromadb.api.fastapi.FastAPI'`
+
+**Symptoms and Context:**
+
+The following error is raised when trying to create a new `PersistentClient`, `EphemeralClient`, or `Client`:
+
+```text
+RuntimeError: Chroma is running in http-only client mode, and can only be run with 'chromadb.api.fastapi.FastAPI' 
+as the chroma_api_impl. see https://docs.trychroma.com/usage-guide?lang=py#using-the-python-http-only-client for more information.
+```
+
+**Cause:**
+
+There are two possible causes for this error:
+
+- `chromadb-client` is installed and you are trying to work with a local client.
+- Dependency conflict with `chromadb-client` and `chromadb` packages.
+
+**Explanation/Solution:**
+
+Chroma comes in two packages - `chromadb` and `chromadb-client`. The `chromadb-client` package is used to interact with
+a remote Chroma server. If you are trying to work with a local client, you should use the `chromadb` package. If you are
+planning to interact with remote server only it is recommended to use the `chromadb-client` package.
+
+If you intend to work locally with Chroma (e.g. embed in your app) then we suggest that you uninstall
+the `chromadb-client` package and install the `chromadb` package.
+
+To check which package you have installed:
+
+```bash
+pip list | grep chromadb
+```
+
+To uninstall the `chromadb-client` package:
+
+```bash
+pip uninstall chromadb-client
+```
+
+??? tip "Working with virtual environments"
+
+    It is recommended to work with virtual environments to avoid dependency conflicts. To create a virtual environment 
+    you can use the following snippet:
+    
+    ```bash
+    pip install virtualenv
+    python -m venv myenv
+    source myenv/bin/activate
+    pip install chromadb # and other packages you need
+    ```
+    Alternatively you can use `conda` or `poetry` to manage your environments.
+
+??? tip "Default Embedding Function"
+
+    Default embedding function - `chromadb.utils.embedding_functions.DefaultEmbeddingFunction` - can only be used with
+    `chromadb` package.
