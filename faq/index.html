@@ -2160,10 +2160,10 @@ not be able to write metadata to SQLite3 db thus raising the error.</p>
 <p>To work around the first issue, you can increase the disk space or clean up the disk space. To work around the second
 issue, you can increase the temporary disk space (works fine for containers but might be a problem for VMs) or point
 SQLite3 to a different temporary directory by using <code>SQLITE_TMPDIR</code> environment variable.</p>
-<div class="admonition tip">
-<p class="admonition-title">SQLite Temp File</p>
-<p>More information on sqlite3 temp files can be found <a href="https://www.sqlite.org/tempfiles.html">here</a>.</p>
-</div>
+<details class="tip">
+<summary>SQLite Temp File</summary>
+<p>More information on how sqlite3 uses temp files can be found <a href="https://www.sqlite.org/tempfiles.html">here</a>.</p>
+</details>
 <h3 id="runtimeerror-chroma-is-running-in-http-only-client-mode-and-can-only-be-run-with-chromadbapifastapifastapi"><code>RuntimeError: Chroma is running in http-only client mode, and can only be run with 'chromadb.api.fastapi.FastAPI'</code><a class="headerlink" href="#runtimeerror-chroma-is-running-in-http-only-client-mode-and-can-only-be-run-with-chromadbapifastapifastapi" title="Permanent link">&para;</a></h3>
 <p><strong>Symptoms and Context:</strong></p>
 <p>The following error is raised when trying to create a new <code>PersistentClient</code>, <code>EphemeralClient</code>, or <code>Client</code>:</p>
@@ -2177,7 +2177,7 @@ SQLite3 to a different temporary directory by using <code>SQLITE_TMPDIR</code> e
 <li>Dependency conflict with <code>chromadb-client</code> and <code>chromadb</code> packages.</li>
 </ul>
 <p><strong>Explanation/Solution:</strong></p>
-<p>Chroma comes in two packages - <code>chromadb</code> and <code>chromadb-client</code>. The <code>chromadb-client</code> package is used to interact with
+<p>Chroma (python) comes in two packages - <code>chromadb</code> and <code>chromadb-client</code>. The <code>chromadb-client</code> package is used to interact with
 a remote Chroma server. If you are trying to work with a local client, you should use the <code>chromadb</code> package. If you are
 planning to interact with remote server only it is recommended to use the <code>chromadb-client</code> package.</p>
 <p>If you intend to work locally with Chroma (e.g. embed in your app) then we suggest that you uninstall
