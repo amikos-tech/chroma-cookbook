@@ -8,9 +8,96 @@
 
 ## Server Configuration
 
+### Core
+
+#### `is_persistent`
+
+#### `persist_directory`
+
+#### `allow_reset`
+
+#### `chroma_memory_limit_bytes`
+
+#### `chroma_segment_cache_policy`
+
+### Telemetry and Observability
+
+#### `chroma_otel_collection_endpoint`
+
+#### `chroma_otel_service_name`
+
+#### `chroma_otel_collection_headers`
+
+#### `chroma_otel_granularity`
+
+#### `chroma_product_telemetry_impl`
+
+#### `chroma_telemetry_impl`
+
+#### `anonymized_telemetry`
+
+### Maintenance
+
+#### `migrations`
+
+#### `migrations_hash_algorithm`
+
+### Operations and Distributed
+
+#### `chroma_sysdb_impl`
+
+#### `chroma_producer_impl`
+
+#### `chroma_consumer_impl`
+
+#### `chroma_segment_manager_impl`
+
+#### `chroma_segment_directory_impl`
+
+#### `chroma_memberlist_provider_impl`
+
+#### `worker_memberlist_name`
+
+#### `chroma_coordinator_host`
+
+#### `chroma_server_grpc_port`
+
+#### `chroma_logservice_host`
+
+#### `chroma_logservice_port`
+
+#### `chroma_quota_provider_impl`
+
+#### `chroma_rate_limiting_provider_impl`
+
 ### Authentication
 
+#### `chroma_auth_token_transport_header`
+
+#### `chroma_client_auth_provider`
+
+#### `chroma_client_auth_credentials`
+
+#### `chroma_server_auth_ignore_paths`
+
+#### `chroma_overwrite_singleton_tenant_database_access_from_auth`
+
+#### `chroma_server_authn_provider`
+
+#### `chroma_server_authn_credentials`
+
+#### `chroma_server_authn_credentials_file`
+
+
+
+
 ### Authorization
+
+#### `chroma_server_authz_provider`
+
+#### `chroma_server_authz_config`
+
+#### `chroma_server_authz_config_file`
 
 ## Client Configuration
 

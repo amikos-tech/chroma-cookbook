@@ -48,6 +48,7 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - markdown.extensions.extra
+  - pymdownx.details
   - toc:
       permalink: true
       title: On this page
