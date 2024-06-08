@@ -6,6 +6,7 @@ Latest ChromaDB version: [0.5.0](https://github.com/chroma-core/chroma/releases/
 
 ## New and Noteworthy
 
+- 🔧 [Installation](core/install.md) - Learn about the different ways to install Chroma - 📅`08-Jun-2024`
 - 🧠 [Memory Management](strategies/memory-management.md) - Learn how to manage memory in ChromaDB - 📅`30-May-2024`
 - 📐 [Resource Requirements](core/resources.md) - Recently updated with temporary storage requirements - 📅`28-May-2024`
 - ⁉️[FAQs](faq/index.md) - Facing an issue, check out our FAQ section for answers. - 📅`28-May-2024`
