@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
     
     
       
@@ -154,7 +154,7 @@
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -617,9 +617,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-chromadb" class="md-nav__link">
+  <a href="#core-python-single-node" class="md-nav__link">
     <span class="md-ellipsis">
-      Core ChromaDB
+      Core (Python) - Single Node
     </span>
   </a>
   
@@ -629,6 +629,15 @@
   <a href="#chromadb-python-client" class="md-nav__link">
     <span class="md-ellipsis">
       ChromaDB Python Client
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chroma-jsts-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chroma JS/TS Client
     </span>
   </a>
   
@@ -1969,9 +1978,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-chromadb" class="md-nav__link">
+  <a href="#core-python-single-node" class="md-nav__link">
     <span class="md-ellipsis">
-      Core ChromaDB
+      Core (Python) - Single Node
     </span>
   </a>
   
@@ -1981,6 +1990,15 @@
   <a href="#chromadb-python-client" class="md-nav__link">
     <span class="md-ellipsis">
       ChromaDB Python Client
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chroma-jsts-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chroma JS/TS Client
     </span>
   </a>
   
@@ -2005,24 +2023,99 @@
 
 
 <h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
-<h2 id="core-chromadb">Core ChromaDB<a class="headerlink" href="#core-chromadb" title="Permanent link">&para;</a></h2>
-<p>To install the latest version of chromadb, run:</p>
+<p>Chroma single node is split into two packages: <code>chromadb</code> and <code>chromadb-client</code>. The <code>chromadb</code> package is the core
+package that provides the database functionality, while the <code>chromadb-client</code> package provides the Python client for
+interacting with the database.</p>
+<p>In addition to the python packages Chroma also provides a JS/TS client package.</p>
+<h2 id="core-python-single-node">Core (Python) - Single Node<a class="headerlink" href="#core-python-single-node" title="Permanent link">&para;</a></h2>
+<p>The core Chroma package installs the full Chroma version which can be uses for local development and testing.</p>
+<details class="note">
+<summary>Backward compatibility</summary>
+<p>While Chroma strives to be as compatible with older versions as possible, certain releases introduce breaking changes
+and most importantly database migrations. All database migrations are irreversible and once upgraded to a new version
+of Chroma, you cannot downgrade to an older version.</p>
+</details>
+<details class="tip">
+<summary>Releases</summary>
+<p>You can find Chroma releases in PyPI <a href="https://pypi.org/project/chromadb-client/#history">here</a>.</p>
+</details>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Latest Release</label><label for="__tabbed_1_2">Latest main branch</label><label for="__tabbed_1_3">Specific Version</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>chromadb
 </span></code></pre></div>
-<p>To install a specific version of chromadb, run:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">chromadb</span><span class="o">==</span>&lt;x.y.z&gt;
+</div>
+<div class="tabbed-block">
+<p>Directly from  Github:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/chroma-core/chroma.git@main
 </span></code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Releases</p>
-<p>You can find Chroma releases in PyPI <a href="https://pypi.org/project/chromadb/#history">here</a>.</p>
+<p>From test PyPI:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--index-url<span class="w"> </span>https://test.pypi.org/simple/<span class="w"> </span>chromadb
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Installing a specific version of Chroma is useful when you want to ensure that your code works with a specific 
+version of Chroma. To install a specific version of Chroma, run:</p>
+<p>From PyPI:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">chromadb</span><span class="o">==</span>&lt;x.y.z&gt;
+</span></code></pre></div>
+<p>Directly from  Github (replace <code>x.y.z</code> with the <a href="https://github.com/chroma-core/chroma/tags">tag</a> of the version you want to install):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/chroma-core/chroma.git@x.y.z
+</span></code></pre></div>
+</div>
+</div>
 </div>
 <h2 id="chromadb-python-client">ChromaDB Python Client<a class="headerlink" href="#chromadb-python-client" title="Permanent link">&para;</a></h2>
-<p>To install the latest version of the ChromaDB Python client, run:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pip<span class="w"> </span>install<span class="w"> </span>chromadb-client
-</span></code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Releases</p>
+<p>Chroma python client package <code>chromadb-client</code> provides a thin client for interacting with the Chroma database. The
+client interface is fully compatible with the core Chroma package so it can be interchangeably used with the core
+package.</p>
+<details class="tip">
+<summary>Releases</summary>
 <p>You can find Chroma releases in PyPI <a href="https://pypi.org/project/chromadb-client/#history">here</a>.</p>
+</details>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Latest Release</label><label for="__tabbed_2_2">Latest main branch</label><label for="__tabbed_2_3">Specific Version</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pip<span class="w"> </span>install<span class="w"> </span>chromadb-client
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>From test PyPI:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--index-url<span class="w"> </span>https://test.pypi.org/simple/<span class="w"> </span>chromadb-client
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Installing a specific version of Chroma is useful when you want to ensure that your code works with a specific 
+version of Chroma. To install a specific version of Chroma, run:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">chromadb</span><span class="o">==</span>&lt;x.y.z&gt;
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<details class="tip">
+<summary>Default Embedding Function</summary>
+<p>The thin client is light-weight in terms of dependencies and as such the Default Embedding Function is not supported.
+It is possible to install <code>onnxruntime</code> dependency and use the <code>chromadb.utils.embedding_functions.ONNXMiniLM_L6_V2</code> 
+EF in place of <code>chromadb.utils.embedding_functions.DefaultEmbeddingFunction</code>. It is not recommended to run inference
+(local EFs like the default EF) in resource constrained environments.</p>
+</details>
+<h2 id="chroma-jsts-client">Chroma JS/TS Client<a class="headerlink" href="#chroma-jsts-client" title="Permanent link">&para;</a></h2>
+<p>To install the Chroma JS/TS client package, use the following command depending on your package manager.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Yarn</label><label for="__tabbed_3_2">NPM</label><label for="__tabbed_3_3">PNPM</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>yarn<span class="w"> </span>install<span class="w"> </span>chromadb<span class="w"> </span>chromadb-default-embed
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>npm<span class="w"> </span>install<span class="w"> </span>--save<span class="w"> </span>chromadb<span class="w"> </span>chromadb-default-embed
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>pnpm<span class="w"> </span>install<span class="w"> </span>chromadb<span class="w"> </span>chromadb-default-embed
+</span></code></pre></div>
+</div>
+</div>
 </div>
 
 
@@ -2044,7 +2137,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 12, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 8, 2024</span>
   </span>
 
     
@@ -2212,7 +2305,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
       
         <script src="../../javascripts/gtag.js"></script>
       
