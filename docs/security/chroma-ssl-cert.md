@@ -28,7 +28,7 @@ You will also need to create a `openssl.cnf` file in the same directory with the
 
     You can set the `CHROMA_DOMAIN` environment variable to the domain you want to use for the certificate. 
 
---- "OpenSSL"
+=== "OpenSSL"
 
     To run the following you will need to have `openssl` installed on your system.
     
@@ -43,7 +43,7 @@ You will also need to create a `openssl.cnf` file in the same directory with the
 
     This will create a self-signed certificate and key in the `certs` directory.
 
---- "Docker"
+=== "Docker"
 
     If you are using Docker, you can use the following command to generate the certificates:
     
@@ -69,7 +69,7 @@ You will also need to create a `openssl.cnf` file in the same directory with the
 
 You can run Chroma with the SSL/TLS certificate generate above or any other certificate you have.
 
---- "Docker"
+=== "Docker"
 
     To run Chroma with the self-signed certificate, you can use the following command:
 
@@ -87,7 +87,7 @@ You can run Chroma with the SSL/TLS certificate generate above or any other cert
       --ssl-certfile /chroma/certs/servercert.pem
     ```
 
---- "Docker Compose"
+=== "Docker Compose"
 
     To run Chroma with the self-signed certificate using Docker Compose, you can use the following `docker-compose.yml` file:
 
