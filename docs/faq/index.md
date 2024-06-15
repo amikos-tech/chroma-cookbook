@@ -211,7 +211,8 @@ There are two possible causes for this error:
 
 **Explanation/Solution:**
 
-Chroma (python) comes in two packages - `chromadb` and `chromadb-client`. The `chromadb-client` package is used to interact with
+Chroma (python) comes in two packages - `chromadb` and `chromadb-client`. The `chromadb-client` package is used to
+interact with
 a remote Chroma server. If you are trying to work with a local client, you should use the `chromadb` package. If you are
 planning to interact with remote server only it is recommended to use the `chromadb-client` package.
 
@@ -247,3 +248,22 @@ pip uninstall chromadb-client
 
     Default embedding function - `chromadb.utils.embedding_functions.DefaultEmbeddingFunction` - can only be used with
     `chromadb` package.
+
+### `ValueError: You must provide an embedding function to compute embeddings`
+
+**Symptoms and Context:**
+
+The
+error `ValueError: You must provide an embedding function to compute embeddings.https://docs.trychroma.com/embeddings"`
+is frequently raised when trying to add embeddings to a collection using Python thin client (`chromadb-client` package).
+
+**Cause:**
+
+To reduce the size of the `chromadb-client` package the default embedding function which requires `onnxruntime` package
+is not included and is instead aliased to `None`.
+
+**Explanation/Solution:**
+
+To resolve this issue you must always provide an embedding function when you call `get_collection`
+or `get_or_create_collection` methods to provide the Http client with the necessary information to compute embeddings.
+
