@@ -2086,6 +2086,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#valueerror-you-must-provide-an-embedding-function-to-compute-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      ValueError: You must provide an embedding function to compute embeddings
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2258,7 +2267,8 @@ SQLite3 to a different temporary directory by using <code>SQLITE_TMPDIR</code> e
 <li>Dependency conflict with <code>chromadb-client</code> and <code>chromadb</code> packages.</li>
 </ul>
 <p><strong>Explanation/Solution:</strong></p>
-<p>Chroma (python) comes in two packages - <code>chromadb</code> and <code>chromadb-client</code>. The <code>chromadb-client</code> package is used to interact with
+<p>Chroma (python) comes in two packages - <code>chromadb</code> and <code>chromadb-client</code>. The <code>chromadb-client</code> package is used to
+interact with
 a remote Chroma server. If you are trying to work with a local client, you should use the <code>chromadb</code> package. If you are
 planning to interact with remote server only it is recommended to use the <code>chromadb-client</code> package.</p>
 <p>If you intend to work locally with Chroma (e.g. embed in your app) then we suggest that you uninstall
@@ -2285,6 +2295,17 @@ Alternatively you can use <code>conda</code> or <code>poetry</code> to manage yo
 <p>Default embedding function - <code>chromadb.utils.embedding_functions.DefaultEmbeddingFunction</code> - can only be used with
 <code>chromadb</code> package.</p>
 </details>
+<h3 id="valueerror-you-must-provide-an-embedding-function-to-compute-embeddings"><code>ValueError: You must provide an embedding function to compute embeddings</code><a class="headerlink" href="#valueerror-you-must-provide-an-embedding-function-to-compute-embeddings" title="Permanent link">&para;</a></h3>
+<p><strong>Symptoms and Context:</strong></p>
+<p>The
+error <code>ValueError: You must provide an embedding function to compute embeddings.https://docs.trychroma.com/embeddings"</code>
+is frequently raised when trying to add embeddings to a collection using Python thin client (<code>chromadb-client</code> package).</p>
+<p><strong>Cause:</strong></p>
+<p>To reduce the size of the <code>chromadb-client</code> package the default embedding function which requires <code>onnxruntime</code> package
+is not included and is instead aliased to <code>None</code>.</p>
+<p><strong>Explanation/Solution:</strong></p>
+<p>To resolve this issue you must always provide an embedding function when you call <code>get_collection</code>
+or <code>get_or_create_collection</code> methods to provide the Http client with the necessary information to compute embeddings.</p>
 
 
 
@@ -2305,7 +2326,7 @@ Alternatively you can use <code>conda</code> or <code>poetry</code> to manage yo
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 1, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 15, 2024</span>
   </span>
 
     
