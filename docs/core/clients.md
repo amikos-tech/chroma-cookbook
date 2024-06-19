@@ -47,9 +47,10 @@ The persistent client is useful for:
 ## HTTP Client
 
 Chroma also provides HTTP Client, suitable for use in a client-server mode. This client can be used to connect to a
-remote ChromaDB server.
+remote ChromaDB server. The HTTP client can operate in synchronous or asynchronous mode (see examples below)
 
-=== "Python"
+
+=== "Python Sync"
 
     ```python
     import chromadb
@@ -79,7 +80,47 @@ remote ChromaDB server.
     
        !!! tip "Positional Parameters"
     
-           Chroma `PersistentClient` parameters are positional, unless keyword arguments are used.
+           Chroma `HttpClient` parameters are positional, unless keyword arguments are used.
+
+=== "Python Async"
+
+    ```python
+    import asyncio
+    import chromadb
+    # Apply nest_asyncio to allow running nested event loops in jupyter notebook
+    # import nest_asyncio # import this if running in jupyter notebook
+    # nest_asyncio.apply() # apply this if running in jupyter notebook
+    async def list_collections():
+    client = await chromadb.AsyncHttpClient(
+        host="localhost",
+        port=8000,
+        ssl=False,
+        headers=None,
+        settings=Settings(),
+        tenant=DEFAULT_TENANT,
+        database=DEFAULT_DATABASE,
+    )
+    return await client.list_collections()
+    
+    result = asyncio.get_event_loop().run_until_complete(list_collections())
+    print(result)
+    ```
+
+    **Parameters**:
+    
+    1. `host` - The host of the remote server. If not specified, the default is `localhost`.
+    2. `port` - The port of the remote server. If not specified, the default is `8000`.
+    3. `ssl` - If `True`, the client will use HTTPS. If not specified, the default is `False`.
+    4. `headers` - (optional): The headers to be sent to the server. The setting can be used to pass additional headers to the
+        server. An example of this can be auth headers.
+    5. `settings` - Chroma settings object.
+    6. `tenant` - the tenant to use. Default is `default_tenant`.
+    7. `database` - the database to use. Default is `default_database`.
+    
+       !!! tip "Positional Parameters"
+    
+           Chroma `AsyncHttpClient` parameters are positional, unless keyword arguments are used.
+
 
 === "JavaScript"
 
