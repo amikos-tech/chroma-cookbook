@@ -78,9 +78,9 @@ remote ChromaDB server. The HTTP client can operate in synchronous or asynchrono
     6. `tenant` - the tenant to use. Default is `default_tenant`.
     7. `database` - the database to use. Default is `default_database`.
     
-       !!! tip "Positional Parameters"
+    !!! tip "Positional Parameters"
     
-           Chroma `HttpClient` parameters are positional, unless keyword arguments are used.
+        Chroma `HttpClient` parameters are positional, unless keyword arguments are used.
 
 === "Python Async"
 
@@ -117,9 +117,9 @@ remote ChromaDB server. The HTTP client can operate in synchronous or asynchrono
     6. `tenant` - the tenant to use. Default is `default_tenant`.
     7. `database` - the database to use. Default is `default_database`.
     
-       !!! tip "Positional Parameters"
+    !!! tip "Positional Parameters"
     
-           Chroma `AsyncHttpClient` parameters are positional, unless keyword arguments are used.
+        Chroma `AsyncHttpClient` parameters are positional, unless keyword arguments are used.
 
 
 === "JavaScript"
