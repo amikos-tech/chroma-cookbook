@@ -119,3 +119,23 @@ To install the Chroma JS/TS client package, use the following command depending 
     ```bash
     pnpm install chromadb chromadb-default-embed
     ```
+
+=== "GitHub"
+
+    To install from GitHub, visit https://github.com/chroma-core/chroma/pkgs/npm/chromadb.
+
+    ??? warn "NPM Auth"
+
+        GitHub requires npm authentication to fetch packages. To authenticate with the GitHub NPM registry, you need to create a `.npmrc` file in your project directory with
+        the following content:
+
+        ```bash
+        //npm.pkg.github.com/:_authToken=TOKEN
+        @chroma-core:registry=https://npm.pkg.github.com
+        ```
+
+        Replace `TOKEN` with your GitHub token. More info can be found [here](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token).
+
+    ```bash
+    npm install --save @chroma-core/chromadb
+    ```
