@@ -80,6 +80,7 @@ col = client.get_or_create_collection("test", metadata={"key": "value"})
 !!! warn "Metadata with `get_or_create_collection()`"
 
     If the collection exists and metadata is provided in the method it will attempt to overwrite the existing metadata.
+    This behaviour may be fixed by this [GH issue](https://github.com/chroma-core/chroma/issues/2390)
 
 ### Deleting a collection
 

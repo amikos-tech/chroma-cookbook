@@ -6,6 +6,12 @@ Chroma uses uvicorn as an ASGI server, which can be configured to use SSL/TLS ce
 
     Using certificates with Chroma CLI is not yet supported.
 
+??? tip "Performance Impact"
+
+    Using certificates within Chroma will have a performance impact as `uvicorn` will need to hnadle 
+    the encryption and decryption of the data. If performance is of concern, 
+    consider using a reverse proxy like `nginx` or `envoy` to handle the SSL/TLS termination.
+
 ## Self-Signed Certificates
 
 ### Creating a self-signed certificate
