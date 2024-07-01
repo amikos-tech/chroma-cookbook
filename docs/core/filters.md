@@ -3,7 +3,7 @@
 Chroma provides two types of filters:
 
 - Metadata - filter documents based on metadata using `where` clause in either `Collection.query()` or `Collection.get()`
-- Document - filter documents based on document content using `where_document` in `Collection.query()` or `Collection.get().
+- Document - filter documents based on document content using `where_document` in `Collection.query()` or `Collection.get()`.
 
 Those familiar with MongoDB queries will find Chroma's filters very similar.
 
