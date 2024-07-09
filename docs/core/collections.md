@@ -9,7 +9,7 @@ Collections are the grouping mechanism for embeddings, documents, and metadata.
 Each collection is characterized by the following properties:
 
 - `name`: The name of the collection. The name can be changed as long as it is unique within the database (
-  use `collection.modify(new_name="new_name")` to change the name of the collection
+  use `collection.modify(name="new_name")` to change the name of the collection
 - `metadata`: A dictionary of metadata associated with the collection. The metadata is a dictionary of key-value pairs.
   Keys can be strings, values can be strings, integers, floats, or booleans. Metadata can be changed
   using `collection.modify(new_metadata={"key": "value"})` (Note: Metadata is always overwritten when modified)
@@ -161,7 +161,7 @@ Parameters:
 
 | Name       | Description                                                            | Default Value | Type       |
 |------------|------------------------------------------------------------------------|---------------|------------|
-| `new_name` | The new name of the collection. Parameter is required                  | N/A           | String     |
+| `name`     | The new name of the collection. Parameter is required                  | N/A           | String     |
 | `metadata` | Metadata associated with the collection. This is an optional parameter | `None`        | Dictionary |
 
 Both collection properties (`name` and `metadata`) can be modified, separately ot together.
