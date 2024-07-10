@@ -2377,7 +2377,7 @@
   with <a href="https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"><code>all-MiniLM-L6-v2</code></a> model.</li>
 <li>distance metric - by default Chroma use L2 (Euclidean Distance Squared) distance metric for newly created collection.
   You can change it at creation
-  time using <code>hnsw:space</code> metadata key. Possible values are <code>l2</code>, <code>cosine</code>, and 'ip' (inner product)</li>
+  time using <code>hnsw:space</code> metadata key. Possible values are <code>l2</code>, <code>cosine</code>, and 'ip' (inner product). (Note: <code>cosine</code> value returns <code>cosine distance</code> rather then <code>cosine similarity</code>. Ie. values close to 0 means the embeddings are more similar.)</li>
 <li>Batch size, defined by <code>hnsw:batch_size</code> metadata key. Default is 100. The batch size defines the size of the
   in-memory bruteforce index. Once the threshold is reached, vectors are added to the HNSW index and the bruteforce
   index is cleared. Greater values may improve ingest performance. When updating also consider changing sync threshold</li>
