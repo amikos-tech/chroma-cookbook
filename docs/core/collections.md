@@ -198,7 +198,7 @@ client = chromadb.PersistentClient(path="my_local_data")  # or HttpClient()
 
 collection = client.get_or_create_collection("local_collection")
 collection.add(
-    ids=[f"i" for i in range(1000)],
+    ids=[f"{i}" for i in range(1000)],
     documents=[f"document {i}" for i in range(1000)],
     metadatas=[{"doc_id": i} for i in range(1000)])
 existing_count = collection.count()
