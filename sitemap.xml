@@ -186,6 +186,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://cookbook.chromadb.dev/security/auth/</loc>
+         <lastmod>2024-07-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://cookbook.chromadb.dev/security/chroma-ssl-cert/</loc>
          <lastmod>2024-07-11</lastmod>
          <changefreq>daily</changefreq>

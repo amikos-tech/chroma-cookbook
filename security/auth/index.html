@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://cookbook.chromadb.dev/strategies/multi-tenancy/">
+        <link rel="canonical" href="https://cookbook.chromadb.dev/security/auth/">
       
       
-        <link rel="prev" href="../time-based-queries/">
+        <link rel="prev" href="../">
       
       
-        <link rel="next" href="authorization-model-impl-with-openfga/">
+        <link rel="next" href="../chroma-ssl-cert/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Multi-Tenancy Strategies - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+        <title>Chroma-native Auth - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#multi-tenancy-strategies" class="md-skip">
+        <a href="#chroma-native-auth" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Multi-Tenancy Strategies
+              Chroma-native Auth
             
           </span>
         </div>
@@ -1501,6 +1501,8 @@
       
   
   
+    
+  
   
   
     
@@ -1517,16 +1519,16 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../security/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1543,7 +1545,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             Security
@@ -1556,10 +1558,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../security/auth/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chroma-native Auth
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1568,6 +1590,70 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Authentication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token Authentication
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authorization
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1580,7 +1666,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../security/chroma-ssl-cert/" class="md-nav__link">
+      <a href="../chroma-ssl-cert/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1605,10 +1691,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -1633,11 +1717,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
         
           
           <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
@@ -1651,7 +1735,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             Strategies
@@ -1665,7 +1749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../backup/" class="md-nav__link">
+      <a href="../../strategies/backup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1686,7 +1770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../batching/" class="md-nav__link">
+      <a href="../../strategies/batching/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1707,7 +1791,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cors/" class="md-nav__link">
+      <a href="../../strategies/cors/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1728,7 +1812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../keyword-search/" class="md-nav__link">
+      <a href="../../strategies/keyword-search/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1749,7 +1833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../memory-management/" class="md-nav__link">
+      <a href="../../strategies/memory-management/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1770,7 +1854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../privacy/" class="md-nav__link">
+      <a href="../../strategies/privacy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1791,7 +1875,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rebuilding/" class="md-nav__link">
+      <a href="../../strategies/rebuilding/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1812,7 +1896,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../time-based-queries/" class="md-nav__link">
+      <a href="../../strategies/time-based-queries/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1830,8 +1914,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1852,16 +1934,16 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_9" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_9" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
+            <a href="../../strategies/multi-tenancy/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1872,13 +1954,13 @@
             </a>
             
               
-              <label class="md-nav__link md-nav__link--active" for="__nav_10_9" id="__nav_10_9_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_10_9" id="__nav_10_9_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_9_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_10_9">
             <span class="md-nav__icon md-icon"></span>
             Multi tenancy
@@ -1894,7 +1976,7 @@
   
   
     <li class="md-nav__item">
-      <a href="authorization-model-impl-with-openfga/" class="md-nav__link">
+      <a href="../../strategies/multi-tenancy/authorization-model-impl-with-openfga/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1915,7 +1997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="authorization-model-with-openfga/" class="md-nav__link">
+      <a href="../../strategies/multi-tenancy/authorization-model-with-openfga/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1936,7 +2018,7 @@
   
   
     <li class="md-nav__item">
-      <a href="multi-user-basic-auth/" class="md-nav__link">
+      <a href="../../strategies/multi-tenancy/multi-user-basic-auth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1957,7 +2039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="naive-multi-tenancy/" class="md-nav__link">
+      <a href="../../strategies/multi-tenancy/naive-multi-tenancy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2015,18 +2097,42 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
+  <a href="#authentication" class="md-nav__link">
     <span class="md-ellipsis">
-      Introduction
+      Authentication
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Authentication
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#token-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token Authentication
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#approaches" class="md-nav__link">
+  <a href="#authorization" class="md-nav__link">
     <span class="md-ellipsis">
-      Approaches
+      Authorization
     </span>
   </a>
   
@@ -2050,22 +2156,132 @@
   
 
 
-<h1 id="multi-tenancy-strategies">Multi-Tenancy Strategies<a class="headerlink" href="#multi-tenancy-strategies" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>Some deployment settings of Chroma may require multi-tenancy support. This document outlines the strategies for
-multi-tenancy approaches in Chroma.</p>
-<h2 id="approaches">Approaches<a class="headerlink" href="#approaches" title="Permanent link">&para;</a></h2>
+<h1 id="chroma-native-auth">Chroma-native Auth<a class="headerlink" href="#chroma-native-auth" title="Permanent link">&para;</a></h1>
+<p>Chroma offers built in authentication and authorization mechanisms to secure your Chroma instance.</p>
+<div class="admonition warn">
+<p class="admonition-title">Auth Disabled by Default</p>
+<p>By default, Chroma does not require authentication. You must enable it manually. If you are deploying Chroma in a public-facing 
+environment, it is <strong>highly</strong> recommended to enable authentication.</p>
+</div>
+<h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
+<p>Chroma supports two types of authentication:</p>
 <ul>
-<li><a href="naive-multi-tenancy/">Naive approach</a> - This is a simple approach puts the onus of enforcing multi-tenancy on the
-  application. It is the simplest approach to implement, but is not very well suited for production environments.</li>
-<li><a href="multi-user-basic-auth/">Multi-User Basic Auth</a> - This article provides a stepping stone to more advanced
-  multi-tenancy where the Chroma
-  authentication allows for multiple users to access the same Chroma instance with their own credentials.</li>
-<li><a href="authorization-model-with-openfga/">Authorization Model with OpenFGA</a> - Implement an advanced authorization model
-  with OpenFGA.</li>
-<li><a href="authorization-model-impl-with-openfga/">Implementing OpenFGA Authorization Model In Chroma</a> - Learn how to
-  implement OpenFGA authorization model in Chroma with full code example.</li>
+<li>Basic Auth - RFC 7617 compliant pre-emptive authentication with username and password credentials in Authorization header.</li>
+<li>Token Auth - Standard token-based auth with <code>Authorization</code> or <code>X-Chroma-Token</code> headers.</li>
 </ul>
+<p>For each authentication method there are configurations in both client and server.</p>
+<h3 id="basic-authentication">Basic Authentication<a class="headerlink" href="#basic-authentication" title="Permanent link">&para;</a></h3>
+<p><strong>Server</strong></p>
+<p>Generate a password file with bcrypt hashed password:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--entrypoint<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>httpd:2<span class="w"> </span><span class="s2">&quot;change_this_password&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>htpasswd<span class="w"> </span>-iBc<span class="w"> </span>server.htpasswd<span class="w"> </span>user1
+</span></code></pre></div>
+<details class="tip">
+<summary>Multiple users</summary>
+<p>Chroma supports multiple users in the htpasswd file. You can add multiple users by running the command multiple 
+times WITHOUT <code>-c</code> flag.</p>
+</details>
+<p>Export the necessary variables:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CHROMA_SERVER_AUTHN_CREDENTIALS_FILE</span><span class="o">=</span><span class="s2">&quot;server.htpasswd&quot;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CHROMA_SERVER_AUTHN_PROVIDER</span><span class="o">=</span><span class="s2">&quot;chromadb.auth.basic_authn.BasicAuthenticationServerProvider&quot;</span>
+</span></code></pre></div>
+<p>Running the server:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CLI</label><label for="__tabbed_1_2">Docker</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>chroma<span class="w"> </span>run<span class="w"> </span>--path<span class="w"> </span>/chroma-data
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span>./server.htpasswd:/chroma/server.htpasswd<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w"> </span>-e<span class="w"> </span><span class="nv">CHROMA_SERVER_AUTHN_CREDENTIALS_FILE</span><span class="o">=</span><span class="s2">&quot;server.htpasswd&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w"> </span>-e<span class="w"> </span><span class="nv">CHROMA_SERVER_AUTHN_PROVIDER</span><span class="o">=</span><span class="s2">&quot;chromadb.auth.basic_authn.BasicAuthenticationServerProvider&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w"> </span>chromadb/chroma:latest
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<details class="info">
+<summary>Is my config right?</summary>
+<p>If you have correctly configured the server you should see the following line in the server logs:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Starting<span class="w"> </span>component<span class="w"> </span>BasicAuthenticationServerProvider
+</span></code></pre></div>
+</details>
+<p><strong>Client</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span> <span class="nn">chromadb.config</span> <span class="kn">import</span> <span class="n">Settings</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">HttpClient</span><span class="p">(</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>  <span class="n">settings</span><span class="o">=</span><span class="n">Settings</span><span class="p">(</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>      <span class="n">chroma_client_auth_provider</span><span class="o">=</span><span class="s2">&quot;chromadb.auth.basic_authn.BasicAuthClientProvider&quot;</span><span class="p">,</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>      <span class="n">chroma_client_auth_credentials</span><span class="o">=</span><span class="s2">&quot;admin:admin&quot;</span><span class="p">)</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="p">)</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># if everything is correctly configured the below should list all collections</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="n">client</span><span class="o">.</span><span class="n">list_collections</span><span class="p">()</span>
+</span></code></pre></div>
+<details class="tip">
+<summary>Testing with cURL</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>curl<span class="w"> </span>-v<span class="w"> </span>http://localhost:8000/api/v1/collections<span class="w"> </span>-u<span class="w"> </span>user1:change_this_password
+</span></code></pre></div>
+</details>
+<h3 id="token-authentication">Token Authentication<a class="headerlink" href="#token-authentication" title="Permanent link">&para;</a></h3>
+<p><strong>Server</strong></p>
+<p>Export the necessary variables:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CHROMA_SERVER_AUTHN_CREDENTIALS</span><span class="o">=</span><span class="s2">&quot;chr0ma-t0k3n&quot;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CHROMA_SERVER_AUTHN_PROVIDER</span><span class="o">=</span><span class="s2">&quot;chromadb.auth.token_authn.TokenAuthenticationServerProvider&quot;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CHROMA_AUTH_TOKEN_TRANSPORT_HEADER</span><span class="o">=</span><span class="s2">&quot;Authorization&quot;</span><span class="w"> </span><span class="c1"># or X-Chroma-Token</span>
+</span></code></pre></div>
+<p><em>Auth Headers</em></p>
+<p>Chroma supports two token transport headers:</p>
+<ul>
+<li><code>Authorization</code> (default) - the clients are expected to pass <code>Authorization: Bearer &lt;token&gt;</code> header</li>
+<li><code>X-Chroma-Token</code> - the clients are expected to pass <code>X-Chroma-Token: &lt;token&gt;</code> header</li>
+</ul>
+<p>The header can be configured via <code>CHROMA_AUTH_TOKEN_TRANSPORT_HEADER</code> environment variable.</p>
+<p>Running the server:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">CLI</label><label for="__tabbed_2_2">Docker</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>chroma<span class="w"> </span>run<span class="w"> </span>--path<span class="w"> </span>/chroma-data
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-e<span class="w"> </span><span class="nv">CHROMA_SERVER_AUTHN_CREDENTIALS</span><span class="o">=</span><span class="s2">&quot;chr0ma-t0k3n&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w"> </span>-e<span class="w"> </span><span class="nv">CHROMA_SERVER_AUTHN_PROVIDER</span><span class="o">=</span><span class="s2">&quot;chromadb.auth.token_authn.TokenAuthenticationServerProvider&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w"> </span>-e<span class="w"> </span><span class="nv">CHROMA_AUTH_TOKEN_TRANSPORT_HEADER</span><span class="o">=</span><span class="s2">&quot;Authorization&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w"> </span>chromadb/chroma:latest
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<details class="info">
+<summary>Is my config right?</summary>
+<p>If you have correctly configured the server you should see the following line in the server logs:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Starting<span class="w"> </span>component<span class="w"> </span>TokenAuthenticationServerProvider
+</span></code></pre></div>
+</details>
+<p><strong>Client</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kn">from</span> <span class="nn">chromadb.config</span> <span class="kn">import</span> <span class="n">Settings</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">HttpClient</span><span class="p">(</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>  <span class="n">settings</span><span class="o">=</span><span class="n">Settings</span><span class="p">(</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>      <span class="n">chroma_client_auth_provider</span><span class="o">=</span><span class="s2">&quot;chromadb.auth.token_authn.TokenAuthClientProvider&quot;</span><span class="p">,</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>      <span class="n">chroma_client_auth_credentials</span><span class="o">=</span><span class="s2">&quot;chr0ma-t0k3n&quot;</span><span class="p">)</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="p">)</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="c1"># if everything is correctly configured the below should list all collections</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="n">client</span><span class="o">.</span><span class="n">list_collections</span><span class="p">()</span>
+</span></code></pre></div>
+<details class="tip">
+<summary>Testing with cURL</summary>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>curl<span class="w"> </span>-v<span class="w"> </span>http://localhost:8000/api/v1/collections<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer chr0ma-t0k3n&quot;</span>
+</span></code></pre></div>
+</details>
+<h2 id="authorization">Authorization<a class="headerlink" href="#authorization" title="Permanent link">&para;</a></h2>
+<p>Coming soon!</p>
 
 
 
@@ -2086,7 +2302,7 @@ multi-tenancy approaches in Chroma.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 15, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 11, 2024</span>
   </span>
 
     

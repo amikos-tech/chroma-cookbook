@@ -14,7 +14,7 @@
         <link rel="prev" href="../running/systemd-service/">
       
       
-        <link rel="next" href="chroma-ssl-cert/">
+        <link rel="next" href="auth/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -1514,6 +1514,8 @@
       
         
       
+        
+      
     
     
     
@@ -1550,6 +1552,27 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chroma-native Auth
+  </span>
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1998,6 +2021,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#authentication-and-authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication and Authorization
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2025,6 +2057,7 @@ cases.</p>
 <li>In-transit encryption using SSL/TLS certificates</li>
 <li>Access control</li>
 <li>At-rest encryption</li>
+<li>Adding authentication and authorization</li>
 </ul>
 <h2 id="ssltls-certificates">SSL/TLS Certificates<a class="headerlink" href="#ssltls-certificates" title="Permanent link">&para;</a></h2>
 <p>Securing your Chroma with a proxy is one of the most common ways to secure your Chroma.
@@ -2035,6 +2068,11 @@ Ensuring that all traffic between your client and Chroma server is encrypted is 
 <li>(Coming soon) Proxy with SSL/TLS termination - use a proxy to terminate SSL/TLS and forward traffic to Chroma.</li>
 <li>(Coming soon) Cloud Provider API Gateway with SSL/TLS termination - use a cloud provider's API Gateway to terminate SSL/TLS and
   forward traffic to Chroma.</li>
+</ul>
+<h2 id="authentication-and-authorization">Authentication and Authorization<a class="headerlink" href="#authentication-and-authorization" title="Permanent link">&para;</a></h2>
+<p>Chroma offers built-in authentication and authorization mechanisms to secure your Chroma instance.</p>
+<ul>
+<li><a href="auth/">Chroma-native Auth</a> - Configure Chroma built-in authentication and authorization.</li>
 </ul>
 
 
@@ -2056,7 +2094,7 @@ Ensuring that all traffic between your client and Chroma server is encrypted is 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 13, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 11, 2024</span>
   </span>
 
     
