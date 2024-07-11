@@ -12,6 +12,15 @@
 
 #### `is_persistent`
 
+Defines whether Chroma should persist data or not.
+
+Possible values:
+
+- `TRUE`
+- `FALSE`
+
+Default: `FALSE`
+
 #### `persist_directory`
 
 #### `allow_reset`

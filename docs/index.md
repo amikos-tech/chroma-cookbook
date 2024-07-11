@@ -10,6 +10,7 @@ Latest ChromaDB version: [0.5.3](https://github.com/chroma-core/chroma/releases/
 
 ## New and Noteworthy
 
+- 🔒 [Chroma Auth](security/auth.md) - Learn how to secure your Chroma deployment with Authentication - 📅`11-Jul-2024`
 - 📦 [Async Http Client](core/clients.md#http-client) - Chroma now supports async HTTP clients - 📅`19-Jun-2024`
 - 🔒 [Security](security/index.md) - Learn how to secure your Chroma deployment - 📅`13-Jun-2024`
 - 🔧 [Installation](core/install.md) - Learn about the different ways to install Chroma - 📅`08-Jun-2024`
@@ -17,7 +18,6 @@ Latest ChromaDB version: [0.5.3](https://github.com/chroma-core/chroma/releases/
 - 📐 [Resource Requirements](core/resources.md) - Recently updated with temporary storage requirements - 📅`28-May-2024`
 - ⁉️[FAQs](faq/index.md) - Facing an issue, check out our FAQ section for answers. - 📅`28-May-2024`
 - 💾 [Chroma Storage Layout](core/storage-layout.md) - Understand how Chroma stores persistent data - 📅`21-May-2024`
-- ⚙️ [Chroma Configuration](core/configuration.md) - Learn about all the levers that Chroma offers for configuring the client, server and HNSW indices - 📅`16-May-2024`
 
 ## Getting Started
 
