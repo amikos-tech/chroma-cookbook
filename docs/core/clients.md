@@ -145,6 +145,61 @@ remote ChromaDB server. The HTTP client can operate in synchronous or asynchrono
     - `tenant` - the tenant to use. Default is `default_tenant`.
     - `database` - the database to use. Default is `default_database`.
 
+=== "GoLang"
+
+    ```bash
+    go get github.com/amikos-tech/chroma-go
+    ```
+    ```go
+    package main
+    
+    import (
+        "context"
+        "fmt"
+        "log"
+        "os"
+    
+        chroma "github.com/amikos-tech/chroma-go"
+        "github.com/amikos-tech/chroma-go/collection"
+        openai "github.com/amikos-tech/chroma-go/pkg/embeddings/openai"
+        "github.com/amikos-tech/chroma-go/types"
+    )
+    
+    func main() {
+        // Create new OpenAI embedding function
+    
+        openaiEf, err := openai.NewOpenAIEmbeddingFunction(os.Getenv("OPENAI_API_KEY"))
+        if err != nil {
+            log.Fatalf("Error creating OpenAI embedding function: %s \n", err)
+        }
+        // Create a new Chroma client
+        client := chroma.NewClient(
+            "localhost:8000",
+            chroma.WithTenant(types.DefaultTenant),
+            chroma.WithDatabase(types.DefaultDatabase),
+            chroma.WithAuth(types.NewTokenAuthCredentialsProvider("my-token", types.AuthorizationTokenHeader))
+        )
+    
+        // Create a new collection with options
+        newCollection, err := client.NewCollection(
+            context.TODO(),
+            "test-collection",
+            collection.WithMetadata("key1", "value1"),
+            collection.WithEmbeddingFunction(openaiEf),
+            collection.WithHNSWDistanceFunction(types.L2),
+        )
+        if err != nil {
+            log.Fatalf("Error creating collection: %s \n", err)
+        }
+    }
+    ```
+    **Parameters**:
+    
+    - Chroma endpoint - the chroma endpoint URL e.g. `http://localhost:8000`. This is a required parameter.
+    - `WithAuth()` - Chroma authentication provider (see more [here](https://go-client.chromadb.dev/auth/)).
+    - `WithTenant()` - the tenant to use. Default is `default_tenant` or constant `types.DefaultTenant`.
+    - `WithDatabase()` - the database to use. Default is `default_database` or constant `types.DefaultDatabase`.
+
 ### Uses of HTTP Client
 
 The HTTP client is ideal for when you want to scale your application or move off of local machine storage. It is
