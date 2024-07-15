@@ -10,7 +10,7 @@
 
 ### Core
 
-#### `is_persistent`
+#### `IS_PERSISTENT`
 
 Defines whether Chroma should persist data or not.
 
@@ -21,92 +21,103 @@ Possible values:
 
 Default: `FALSE`
 
-#### `persist_directory`
+#### `PERSIST_DIRECTORY`
 
-#### `allow_reset`
+Defines the directory where Chroma should persist data. This can be relative or absolute path. The directory must be
+writeable to Chroma process.
 
-#### `chroma_memory_limit_bytes`
+Default: `./chroma`
 
-#### `chroma_segment_cache_policy`
+#### `ALLOW_RESET`
+
+Defines whether Chroma should allow resetting the index (delete all data).
+
+Possible values:
+
+- `TRUE`
+- `FALSE`
+
+Default: `FALSE`
+
+#### `CHROMA_MEMORY_LIMIT_BYTES`
+
+#### `CHROMA_SEGMENT_CACHE_POLICY`
 
 ### Telemetry and Observability
 
-#### `chroma_otel_collection_endpoint`
+#### `CHROMA_OTEL_COLLECTION_ENDPOINT`
 
-#### `chroma_otel_service_name`
+#### `CHROMA_OTEL_SERVICE_NAME`
 
-#### `chroma_otel_collection_headers`
+#### `CHROMA_OTEL_COLLECTION_HEADERS`
 
-#### `chroma_otel_granularity`
+#### `CHROMA_OTEL_GRANULARITY`
 
-#### `chroma_product_telemetry_impl`
+#### `CHROMA_PRODUCT_TELEMETRY_IMPL`
 
-#### `chroma_telemetry_impl`
+#### `CHROMA_TELEMETRY_IMPL`
 
-#### `anonymized_telemetry`
+#### `ANONYMIZED_TELEMETRY`
 
 ### Maintenance
 
-#### `migrations`
+#### `MIGRATIONS`
 
-#### `migrations_hash_algorithm`
+#### `MIGRATIONS_HASH_ALGORITHM`
 
 ### Operations and Distributed
 
-#### `chroma_sysdb_impl`
+#### `CHROMA_SYSDB_IMPL`
 
-#### `chroma_producer_impl`
+#### `CHROMA_PRODUCER_IMPL`
 
-#### `chroma_consumer_impl`
+#### `CHROMA_CONSUMER_IMPL`
 
-#### `chroma_segment_manager_impl`
+#### `CHROMA_SEGMENT_MANAGER_IMPL`
 
-#### `chroma_segment_directory_impl`
+#### `CHROMA_SEGMENT_DIRECTORY_IMPL`
 
-#### `chroma_memberlist_provider_impl`
+#### `CHROMA_MEMBERLIST_PROVIDER_IMPL`
 
-#### `worker_memberlist_name`
+#### `WORKER_MEMBERLIST_NAME`
 
-#### `chroma_coordinator_host`
+#### `CHROMA_COORDINATOR_HOST`
 
-#### `chroma_server_grpc_port`
+#### `CHROMA_SERVER_GRPC_PORT`
 
-#### `chroma_logservice_host`
+#### `CHROMA_LOGSERVICE_HOST`
 
-#### `chroma_logservice_port`
+#### `CHROMA_LOGSERVICE_PORT`
 
-#### `chroma_quota_provider_impl`
+#### `CHROMA_QUOTA_PROVIDER_IMPL`
 
-#### `chroma_rate_limiting_provider_impl`
+#### `CHROMA_RATE_LIMITING_PROVIDER_IMPL`
 
 ### Authentication
 
-#### `chroma_auth_token_transport_header`
+#### `CHROMA_AUTH_TOKEN_TRANSPORT_HEADER`
 
-#### `chroma_client_auth_provider`
+#### `CHROMA_CLIENT_AUTH_PROVIDER`
 
-#### `chroma_client_auth_credentials`
+#### `CHROMA_CLIENT_AUTH_CREDENTIALS`
 
-#### `chroma_server_auth_ignore_paths`
+#### `CHROMA_SERVER_AUTH_IGNORE_PATHS`
 
-#### `chroma_overwrite_singleton_tenant_database_access_from_auth`
+#### `CHROMA_OVERWRITE_SINGLETON_TENANT_DATABASE_ACCESS_FROM_AUTH`
 
-#### `chroma_server_authn_provider`
+#### `CHROMA_SERVER_AUTHN_PROVIDER`
 
-#### `chroma_server_authn_credentials`
+#### `CHROMA_SERVER_AUTHN_CREDENTIALS`
 
-#### `chroma_server_authn_credentials_file`
-
-
-
+#### `CHROMA_SERVER_AUTHN_CREDENTIALS_FILE`
 
 ### Authorization
 
-#### `chroma_server_authz_provider`
+#### `CHROMA_SERVER_AUTHZ_PROVIDER`
 
-#### `chroma_server_authz_config`
+#### `CHROMA_SERVER_AUTHZ_CONFIG`
 
-#### `chroma_server_authz_config_file`
+#### `CHROMA_SERVER_AUTHZ_CONFIG_FILE`
 
 ## Client Configuration
 
