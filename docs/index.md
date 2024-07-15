@@ -2,7 +2,7 @@
 
 This is a collection of small guides and recipes to help you get started with ChromaDB.
 
-Latest ChromaDB version: [0.5.3](https://github.com/chroma-core/chroma/releases/tag/0.5.3)
+Latest ChromaDB version: [0.5.4](https://github.com/chroma-core/chroma/releases/tag/0.5.4)
 
 **Latest Releases highlights:**
 
@@ -10,6 +10,7 @@ Latest ChromaDB version: [0.5.3](https://github.com/chroma-core/chroma/releases/
 
 ## New and Noteworthy
 
+- ✨ [Multi-Category Filtering](strategies/multi-category-filters.md) - Learn how to filter data based on multiple categories - 📅`15-Jul-2024`
 - 🔒 [Chroma Auth](security/auth.md) - Learn how to secure your Chroma deployment with Authentication - 📅`11-Jul-2024`
 - 📦 [Async Http Client](core/clients.md#http-client) - Chroma now supports async HTTP clients - 📅`19-Jun-2024`
 - 🔒 [Security](security/index.md) - Learn how to secure your Chroma deployment - 📅`13-Jun-2024`
@@ -17,7 +18,6 @@ Latest ChromaDB version: [0.5.3](https://github.com/chroma-core/chroma/releases/
 - 🧠 [Memory Management](strategies/memory-management.md) - Learn how to manage memory in ChromaDB - 📅`30-May-2024`
 - 📐 [Resource Requirements](core/resources.md) - Recently updated with temporary storage requirements - 📅`28-May-2024`
 - ⁉️[FAQs](faq/index.md) - Facing an issue, check out our FAQ section for answers. - 📅`28-May-2024`
-- 💾 [Chroma Storage Layout](core/storage-layout.md) - Understand how Chroma stores persistent data - 📅`21-May-2024`
 
 ## Getting Started
 
