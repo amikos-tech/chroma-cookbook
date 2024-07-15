@@ -2499,7 +2499,7 @@
 <h2 id="common-configurations-options">Common Configurations Options<a class="headerlink" href="#common-configurations-options" title="Permanent link">&para;</a></h2>
 <h2 id="server-configuration">Server Configuration<a class="headerlink" href="#server-configuration" title="Permanent link">&para;</a></h2>
 <h3 id="core">Core<a class="headerlink" href="#core" title="Permanent link">&para;</a></h3>
-<h4 id="is_persistent"><code>is_persistent</code><a class="headerlink" href="#is_persistent" title="Permanent link">&para;</a></h4>
+<h4 id="is_persistent"><code>IS_PERSISTENT</code><a class="headerlink" href="#is_persistent" title="Permanent link">&para;</a></h4>
 <p>Defines whether Chroma should persist data or not.</p>
 <p>Possible values:</p>
 <ul>
@@ -2507,48 +2507,58 @@
 <li><code>FALSE</code></li>
 </ul>
 <p>Default: <code>FALSE</code></p>
-<h4 id="persist_directory"><code>persist_directory</code><a class="headerlink" href="#persist_directory" title="Permanent link">&para;</a></h4>
-<h4 id="allow_reset"><code>allow_reset</code><a class="headerlink" href="#allow_reset" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_memory_limit_bytes"><code>chroma_memory_limit_bytes</code><a class="headerlink" href="#chroma_memory_limit_bytes" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_segment_cache_policy"><code>chroma_segment_cache_policy</code><a class="headerlink" href="#chroma_segment_cache_policy" title="Permanent link">&para;</a></h4>
+<h4 id="persist_directory"><code>PERSIST_DIRECTORY</code><a class="headerlink" href="#persist_directory" title="Permanent link">&para;</a></h4>
+<p>Defines the directory where Chroma should persist data. This can be relative or absolute path. The directory must be
+writeable to Chroma process.</p>
+<p>Default: <code>./chroma</code></p>
+<h4 id="allow_reset"><code>ALLOW_RESET</code><a class="headerlink" href="#allow_reset" title="Permanent link">&para;</a></h4>
+<p>Defines whether Chroma should allow resetting the index (delete all data).</p>
+<p>Possible values:</p>
+<ul>
+<li><code>TRUE</code></li>
+<li><code>FALSE</code></li>
+</ul>
+<p>Default: <code>FALSE</code></p>
+<h4 id="chroma_memory_limit_bytes"><code>CHROMA_MEMORY_LIMIT_BYTES</code><a class="headerlink" href="#chroma_memory_limit_bytes" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_segment_cache_policy"><code>CHROMA_SEGMENT_CACHE_POLICY</code><a class="headerlink" href="#chroma_segment_cache_policy" title="Permanent link">&para;</a></h4>
 <h3 id="telemetry-and-observability">Telemetry and Observability<a class="headerlink" href="#telemetry-and-observability" title="Permanent link">&para;</a></h3>
-<h4 id="chroma_otel_collection_endpoint"><code>chroma_otel_collection_endpoint</code><a class="headerlink" href="#chroma_otel_collection_endpoint" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_otel_service_name"><code>chroma_otel_service_name</code><a class="headerlink" href="#chroma_otel_service_name" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_otel_collection_headers"><code>chroma_otel_collection_headers</code><a class="headerlink" href="#chroma_otel_collection_headers" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_otel_granularity"><code>chroma_otel_granularity</code><a class="headerlink" href="#chroma_otel_granularity" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_product_telemetry_impl"><code>chroma_product_telemetry_impl</code><a class="headerlink" href="#chroma_product_telemetry_impl" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_telemetry_impl"><code>chroma_telemetry_impl</code><a class="headerlink" href="#chroma_telemetry_impl" title="Permanent link">&para;</a></h4>
-<h4 id="anonymized_telemetry"><code>anonymized_telemetry</code><a class="headerlink" href="#anonymized_telemetry" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_otel_collection_endpoint"><code>CHROMA_OTEL_COLLECTION_ENDPOINT</code><a class="headerlink" href="#chroma_otel_collection_endpoint" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_otel_service_name"><code>CHROMA_OTEL_SERVICE_NAME</code><a class="headerlink" href="#chroma_otel_service_name" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_otel_collection_headers"><code>CHROMA_OTEL_COLLECTION_HEADERS</code><a class="headerlink" href="#chroma_otel_collection_headers" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_otel_granularity"><code>CHROMA_OTEL_GRANULARITY</code><a class="headerlink" href="#chroma_otel_granularity" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_product_telemetry_impl"><code>CHROMA_PRODUCT_TELEMETRY_IMPL</code><a class="headerlink" href="#chroma_product_telemetry_impl" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_telemetry_impl"><code>CHROMA_TELEMETRY_IMPL</code><a class="headerlink" href="#chroma_telemetry_impl" title="Permanent link">&para;</a></h4>
+<h4 id="anonymized_telemetry"><code>ANONYMIZED_TELEMETRY</code><a class="headerlink" href="#anonymized_telemetry" title="Permanent link">&para;</a></h4>
 <h3 id="maintenance">Maintenance<a class="headerlink" href="#maintenance" title="Permanent link">&para;</a></h3>
-<h4 id="migrations"><code>migrations</code><a class="headerlink" href="#migrations" title="Permanent link">&para;</a></h4>
-<h4 id="migrations_hash_algorithm"><code>migrations_hash_algorithm</code><a class="headerlink" href="#migrations_hash_algorithm" title="Permanent link">&para;</a></h4>
+<h4 id="migrations"><code>MIGRATIONS</code><a class="headerlink" href="#migrations" title="Permanent link">&para;</a></h4>
+<h4 id="migrations_hash_algorithm"><code>MIGRATIONS_HASH_ALGORITHM</code><a class="headerlink" href="#migrations_hash_algorithm" title="Permanent link">&para;</a></h4>
 <h3 id="operations-and-distributed">Operations and Distributed<a class="headerlink" href="#operations-and-distributed" title="Permanent link">&para;</a></h3>
-<h4 id="chroma_sysdb_impl"><code>chroma_sysdb_impl</code><a class="headerlink" href="#chroma_sysdb_impl" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_producer_impl"><code>chroma_producer_impl</code><a class="headerlink" href="#chroma_producer_impl" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_consumer_impl"><code>chroma_consumer_impl</code><a class="headerlink" href="#chroma_consumer_impl" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_segment_manager_impl"><code>chroma_segment_manager_impl</code><a class="headerlink" href="#chroma_segment_manager_impl" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_segment_directory_impl"><code>chroma_segment_directory_impl</code><a class="headerlink" href="#chroma_segment_directory_impl" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_memberlist_provider_impl"><code>chroma_memberlist_provider_impl</code><a class="headerlink" href="#chroma_memberlist_provider_impl" title="Permanent link">&para;</a></h4>
-<h4 id="worker_memberlist_name"><code>worker_memberlist_name</code><a class="headerlink" href="#worker_memberlist_name" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_coordinator_host"><code>chroma_coordinator_host</code><a class="headerlink" href="#chroma_coordinator_host" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_server_grpc_port"><code>chroma_server_grpc_port</code><a class="headerlink" href="#chroma_server_grpc_port" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_logservice_host"><code>chroma_logservice_host</code><a class="headerlink" href="#chroma_logservice_host" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_logservice_port"><code>chroma_logservice_port</code><a class="headerlink" href="#chroma_logservice_port" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_quota_provider_impl"><code>chroma_quota_provider_impl</code><a class="headerlink" href="#chroma_quota_provider_impl" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_rate_limiting_provider_impl"><code>chroma_rate_limiting_provider_impl</code><a class="headerlink" href="#chroma_rate_limiting_provider_impl" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_sysdb_impl"><code>CHROMA_SYSDB_IMPL</code><a class="headerlink" href="#chroma_sysdb_impl" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_producer_impl"><code>CHROMA_PRODUCER_IMPL</code><a class="headerlink" href="#chroma_producer_impl" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_consumer_impl"><code>CHROMA_CONSUMER_IMPL</code><a class="headerlink" href="#chroma_consumer_impl" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_segment_manager_impl"><code>CHROMA_SEGMENT_MANAGER_IMPL</code><a class="headerlink" href="#chroma_segment_manager_impl" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_segment_directory_impl"><code>CHROMA_SEGMENT_DIRECTORY_IMPL</code><a class="headerlink" href="#chroma_segment_directory_impl" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_memberlist_provider_impl"><code>CHROMA_MEMBERLIST_PROVIDER_IMPL</code><a class="headerlink" href="#chroma_memberlist_provider_impl" title="Permanent link">&para;</a></h4>
+<h4 id="worker_memberlist_name"><code>WORKER_MEMBERLIST_NAME</code><a class="headerlink" href="#worker_memberlist_name" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_coordinator_host"><code>CHROMA_COORDINATOR_HOST</code><a class="headerlink" href="#chroma_coordinator_host" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_server_grpc_port"><code>CHROMA_SERVER_GRPC_PORT</code><a class="headerlink" href="#chroma_server_grpc_port" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_logservice_host"><code>CHROMA_LOGSERVICE_HOST</code><a class="headerlink" href="#chroma_logservice_host" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_logservice_port"><code>CHROMA_LOGSERVICE_PORT</code><a class="headerlink" href="#chroma_logservice_port" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_quota_provider_impl"><code>CHROMA_QUOTA_PROVIDER_IMPL</code><a class="headerlink" href="#chroma_quota_provider_impl" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_rate_limiting_provider_impl"><code>CHROMA_RATE_LIMITING_PROVIDER_IMPL</code><a class="headerlink" href="#chroma_rate_limiting_provider_impl" title="Permanent link">&para;</a></h4>
 <h3 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h3>
-<h4 id="chroma_auth_token_transport_header"><code>chroma_auth_token_transport_header</code><a class="headerlink" href="#chroma_auth_token_transport_header" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_client_auth_provider"><code>chroma_client_auth_provider</code><a class="headerlink" href="#chroma_client_auth_provider" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_client_auth_credentials"><code>chroma_client_auth_credentials</code><a class="headerlink" href="#chroma_client_auth_credentials" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_server_auth_ignore_paths"><code>chroma_server_auth_ignore_paths</code><a class="headerlink" href="#chroma_server_auth_ignore_paths" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_overwrite_singleton_tenant_database_access_from_auth"><code>chroma_overwrite_singleton_tenant_database_access_from_auth</code><a class="headerlink" href="#chroma_overwrite_singleton_tenant_database_access_from_auth" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_server_authn_provider"><code>chroma_server_authn_provider</code><a class="headerlink" href="#chroma_server_authn_provider" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_server_authn_credentials"><code>chroma_server_authn_credentials</code><a class="headerlink" href="#chroma_server_authn_credentials" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_server_authn_credentials_file"><code>chroma_server_authn_credentials_file</code><a class="headerlink" href="#chroma_server_authn_credentials_file" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_auth_token_transport_header"><code>CHROMA_AUTH_TOKEN_TRANSPORT_HEADER</code><a class="headerlink" href="#chroma_auth_token_transport_header" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_client_auth_provider"><code>CHROMA_CLIENT_AUTH_PROVIDER</code><a class="headerlink" href="#chroma_client_auth_provider" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_client_auth_credentials"><code>CHROMA_CLIENT_AUTH_CREDENTIALS</code><a class="headerlink" href="#chroma_client_auth_credentials" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_server_auth_ignore_paths"><code>CHROMA_SERVER_AUTH_IGNORE_PATHS</code><a class="headerlink" href="#chroma_server_auth_ignore_paths" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_overwrite_singleton_tenant_database_access_from_auth"><code>CHROMA_OVERWRITE_SINGLETON_TENANT_DATABASE_ACCESS_FROM_AUTH</code><a class="headerlink" href="#chroma_overwrite_singleton_tenant_database_access_from_auth" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_server_authn_provider"><code>CHROMA_SERVER_AUTHN_PROVIDER</code><a class="headerlink" href="#chroma_server_authn_provider" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_server_authn_credentials"><code>CHROMA_SERVER_AUTHN_CREDENTIALS</code><a class="headerlink" href="#chroma_server_authn_credentials" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_server_authn_credentials_file"><code>CHROMA_SERVER_AUTHN_CREDENTIALS_FILE</code><a class="headerlink" href="#chroma_server_authn_credentials_file" title="Permanent link">&para;</a></h4>
 <h3 id="authorization">Authorization<a class="headerlink" href="#authorization" title="Permanent link">&para;</a></h3>
-<h4 id="chroma_server_authz_provider"><code>chroma_server_authz_provider</code><a class="headerlink" href="#chroma_server_authz_provider" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_server_authz_config"><code>chroma_server_authz_config</code><a class="headerlink" href="#chroma_server_authz_config" title="Permanent link">&para;</a></h4>
-<h4 id="chroma_server_authz_config_file"><code>chroma_server_authz_config_file</code><a class="headerlink" href="#chroma_server_authz_config_file" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_server_authz_provider"><code>CHROMA_SERVER_AUTHZ_PROVIDER</code><a class="headerlink" href="#chroma_server_authz_provider" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_server_authz_config"><code>CHROMA_SERVER_AUTHZ_CONFIG</code><a class="headerlink" href="#chroma_server_authz_config" title="Permanent link">&para;</a></h4>
+<h4 id="chroma_server_authz_config_file"><code>CHROMA_SERVER_AUTHZ_CONFIG_FILE</code><a class="headerlink" href="#chroma_server_authz_config_file" title="Permanent link">&para;</a></h4>
 <h2 id="client-configuration">Client Configuration<a class="headerlink" href="#client-configuration" title="Permanent link">&para;</a></h2>
 <h3 id="authentication_1">Authentication<a class="headerlink" href="#authentication_1" title="Permanent link">&para;</a></h3>
 <h2 id="hnsw-configuration">HNSW Configuration<a class="headerlink" href="#hnsw-configuration" title="Permanent link">&para;</a></h2>
@@ -2683,7 +2693,7 @@ gets transferred to HNSW index. This value can be changed after index creation. 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 11, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 15, 2024</span>
   </span>
 
     
