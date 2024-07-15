@@ -8,9 +8,30 @@ Unfortunately Chroma and LC's embedding functions are not compatible with each o
 convert Chroma's embedding functions to LC's and vice versa.
 
 **Links**:
+
 - [Chroma Embedding Functions Definition](https://github.com/chroma-core/chroma/blob/ddb7ab13bee394cf942bc8a976629884cd0f4294/chromadb/api/types.py#L185-L201)
 - [Langchain Embedding Functions Definition](https://github.com/langchain-ai/langchain/blob/master/libs/core/langchain_core/embeddings/embeddings.py)
 
+### Chroma Built-in Langchain Adapter
+
+As of version `0.5.x` Chroma offers a built-in two-way adapter to convert Langchain's embedding function to an adapted
+embeddings that can be used by both LC and Chroma. Implementation can be
+found [here](https://github.com/chroma-core/chroma/blob/main/chromadb/utils/embedding_functions/chroma_langchain_embedding_function.py).
+
+```python
+# pip install chromadb langchain langchain-huggingface langchain-chroma
+import chromadb
+from chromadb.utils.embedding_functions import create_langchain_embedding
+from langchain_huggingface import HuggingFaceEmbeddings
+
+langchain_embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+
+ef = create_langchain_embedding(langchain_embeddings)
+client = chromadb.PersistentClient(path="/test_folder_1")
+collection = client.get_or_create_collection(name="name_1", embedding_function=ef)
+```
+
+### Custom Adapter
 
 Here is the adapter to convert Chroma's embedding functions to LC's:
 
@@ -56,6 +77,7 @@ class LangChainEmbeddingAdapter(EmbeddingFunction[Documents]):
 Using Chroma Embedding Functions with Langchain:
 
 ```python
+# pip install chromadb langchain langchain-huggingface langchain-chroma
 from langchain.vectorstores.chroma import Chroma
 from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
 
@@ -71,12 +93,13 @@ docs_vectorstore = Chroma.from_texts(
 Using Langchain Embedding Functions with Chroma:
 
 ```python
-from langchain_community.embeddings import SentenceTransformerEmbeddings
+# pip install chromadb langchain langchain-huggingface langchain-chroma
+from langchain_huggingface import HuggingFaceEmbeddings
 import chromadb
 
 client = chromadb.Client()
 
 collection = client.get_or_create_collection("test", embedding_function=LangChainEmbeddingAdapter(
-    SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")))
+    HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")))
 collection.add(ids=["1", "2", "3"], documents=["foo", "bar", "baz"])
 ```

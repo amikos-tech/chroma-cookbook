@@ -31,7 +31,7 @@ docker run --rm --entrypoint echo httpd:2 "change_this_password" | htpasswd -iBc
     Chroma supports multiple users in the htpasswd file. You can add multiple users by running the command multiple 
     times WITHOUT `-c` flag.
 
-Export the necessary variables:
+Environment variables:
 
 ```bash
 export CHROMA_SERVER_AUTHN_CREDENTIALS_FILE="server.htpasswd"
@@ -43,6 +43,8 @@ Running the server:
 === "CLI"
 
     ```bash
+    export CHROMA_SERVER_AUTHN_CREDENTIALS_FILE="server.htpasswd"
+    export CHROMA_SERVER_AUTHN_PROVIDER="chromadb.auth.basic_authn.BasicAuthenticationServerProvider"
     chroma run --path /chroma-data
     ```
 
@@ -90,7 +92,7 @@ client.list_collections()
 
 **Server**
 
-Export the necessary variables:
+Environment variables:
 
 ```bash
 export CHROMA_SERVER_AUTHN_CREDENTIALS="chr0ma-t0k3n"
@@ -112,6 +114,9 @@ Running the server:
 === "CLI"
 
     ```bash
+    export CHROMA_SERVER_AUTHN_CREDENTIALS="chr0ma-t0k3n"
+    export CHROMA_SERVER_AUTHN_PROVIDER="chromadb.auth.token_authn.TokenAuthenticationServerProvider"
+    export CHROMA_AUTH_TOKEN_TRANSPORT_HEADER="Authorization"
     chroma run --path /chroma-data
     ```
 
