@@ -221,6 +221,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://cookbook.chromadb.dev/strategies/multi-category-filters/</loc>
+         <lastmod>2024-07-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://cookbook.chromadb.dev/strategies/privacy/</loc>
          <lastmod>2024-07-15</lastmod>
          <changefreq>daily</changefreq>

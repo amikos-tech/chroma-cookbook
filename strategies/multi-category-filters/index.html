@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://cookbook.chromadb.dev/core/system_constraints/">
+        <link rel="canonical" href="https://cookbook.chromadb.dev/strategies/multi-category-filters/">
       
       
-        <link rel="prev" href="../storage-layout/">
+        <link rel="prev" href="../memory-management/">
       
       
-        <link rel="next" href="../tenants-and-databases/">
+        <link rel="next" href="../privacy/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Chroma System Constraints - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+        <title>Multi-Category Filters - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chroma-system-constraints" class="md-skip">
+        <a href="#multi-category-filters" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chroma System Constraints
+              Multi-Category Filters
             
           </span>
         </div>
@@ -340,8 +340,6 @@
       
   
   
-    
-  
   
   
     
@@ -380,16 +378,16 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../core/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -406,7 +404,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Core
@@ -422,7 +420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+      <a href="../../core/api/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -443,7 +441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../clients/" class="md-nav__link">
+      <a href="../../core/clients/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -464,7 +462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../collections/" class="md-nav__link">
+      <a href="../../core/collections/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -485,7 +483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../concepts/" class="md-nav__link">
+      <a href="../../core/concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -506,7 +504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
+      <a href="../../core/configuration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -527,7 +525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../document-ids/" class="md-nav__link">
+      <a href="../../core/document-ids/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -548,7 +546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filters/" class="md-nav__link">
+      <a href="../../core/filters/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -569,7 +567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
+      <a href="../../core/install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -590,7 +588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/" class="md-nav__link">
+      <a href="../../core/resources/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -611,7 +609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../storage-layout/" class="md-nav__link">
+      <a href="../../core/storage-layout/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -629,30 +627,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Chroma System Constraints
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../core/system_constraints/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -661,37 +639,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#operational-modes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Operational Modes
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -704,7 +651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tenants-and-databases/" class="md-nav__link">
+      <a href="../../core/tenants-and-databases/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -766,7 +713,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/wal-pruning/" class="md-nav__link">
+      <a href="../../core/advanced/wal-pruning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -787,7 +734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced/wal/" class="md-nav__link">
+      <a href="../../core/advanced/wal/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1658,8 +1605,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1686,11 +1635,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
         
           
           <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
@@ -1704,7 +1653,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             Strategies
@@ -1718,7 +1667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/backup/" class="md-nav__link">
+      <a href="../backup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1739,7 +1688,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/batching/" class="md-nav__link">
+      <a href="../batching/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1760,7 +1709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/cors/" class="md-nav__link">
+      <a href="../cors/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1781,7 +1730,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/keyword-search/" class="md-nav__link">
+      <a href="../keyword-search/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1802,7 +1751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/memory-management/" class="md-nav__link">
+      <a href="../memory-management/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1820,10 +1769,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../strategies/multi-category-filters/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1832,6 +1790,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1844,7 +1803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/privacy/" class="md-nav__link">
+      <a href="../privacy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1865,7 +1824,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/rebuilding/" class="md-nav__link">
+      <a href="../rebuilding/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1886,7 +1845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/time-based-queries/" class="md-nav__link">
+      <a href="../time-based-queries/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1933,7 +1892,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../strategies/multi-tenancy/" class="md-nav__link ">
+            <a href="../multi-tenancy/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1966,7 +1925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/multi-tenancy/authorization-model-impl-with-openfga/" class="md-nav__link">
+      <a href="../multi-tenancy/authorization-model-impl-with-openfga/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1987,7 +1946,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/multi-tenancy/authorization-model-with-openfga/" class="md-nav__link">
+      <a href="../multi-tenancy/authorization-model-with-openfga/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2008,7 +1967,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/multi-tenancy/multi-user-basic-auth/" class="md-nav__link">
+      <a href="../multi-tenancy/multi-user-basic-auth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2029,7 +1988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/multi-tenancy/naive-multi-tenancy/" class="md-nav__link">
+      <a href="../multi-tenancy/naive-multi-tenancy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2080,23 +2039,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#operational-modes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Operational Modes
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -2113,40 +2055,24 @@
   
 
 
-<h1 id="chroma-system-constraints">Chroma System Constraints<a class="headerlink" href="#chroma-system-constraints" title="Permanent link">&para;</a></h1>
-<p>This section contains common constraints of Chroma.</p>
-<ul>
-<li>Chroma is thread-safe</li>
-<li>Chroma is not process-safe</li>
-<li>Multiple Chroma Clients (Ephemeral, Persistent, Http) can be created from one or more threads within the same process</li>
-<li>A collection's name is unique within a Tenant and DB</li>
-<li>A collection's dimensions cannot change after creation =&gt; you cannot change the embedding function after creation</li>
-<li>Chroma operates in two modes - standalone (PersistentClient, EphemeralClient) and client/server (HttpClient with
-  ChromaServer)</li>
-<li>The distance function cannot be changed after collection creation.</li>
-</ul>
-<h2 id="operational-modes">Operational Modes<a class="headerlink" href="#operational-modes" title="Permanent link">&para;</a></h2>
-<p>Chroma can be operated in two modes:</p>
-<ul>
-<li>Standalone - This allows embedding Chroma in your python application without the need to communicate with external
-  processes.</li>
-<li>Client/Server - This allows embedding Chroma in your python application as a thin-client with minimal dependencies and
-  communicating with it via REST API. This is useful when you want to use Chroma from multiple processes or even
-  multiple machines.</li>
-</ul>
-<p>Depending on the mode you choose, you will need to consider the following component responsibilities:</p>
-<ul>
-<li>Standalone:<ul>
-<li>Clients (Persistent, Ephemeral) - Responsible for persistence, embedding, querying</li>
-</ul>
-</li>
-<li>Client/Server:<ul>
-<li>Clients (HttpClient) - Responsible for embedding, communication with Chroma server via REST API</li>
-<li>Server - Responsible for persistence and querying</li>
-</ul>
-</li>
-</ul>
-<p><img alt="Responsibilities of Clients" src="../../assets/images/operational-modes-responsibilities.png" /></p>
+<h1 id="multi-category-filters">Multi-Category Filters<a class="headerlink" href="#multi-category-filters" title="Permanent link">&para;</a></h1>
+<p>Sometimes you may want to filter documents in Chroma based on multiple categories e.g. <code>games</code> and <code>movies</code>.
+Unfortunately, Chroma does not yet support complex data-types like lists or sets so that one can use a single metadata
+field to store and filter by. It is also not possible to use fuzzy search <code>LIKE</code> queries on metadata fields.</p>
+<p>To solve this problem without introducing a complex logic on the client side, we suggest the following approach.</p>
+<p>When adding document to a collection add each category it belongs to as a boolean metadata field:</p>
+<div class="admonition note">
+<p class="admonition-title">No Empty Categories</p>
+<p>Only add categories an item belongs to with flags set to <code>True</code>. 
+Do not add categories an item does not belong to and set the flag to <code>False</code>.</p>
+</div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">uuid</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span> <span class="n">documents</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a document&quot;</span><span class="p">],</span> <span class="n">metadatas</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;games&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;movies&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}])</span>
+</span></code></pre></div>
+<p>When querying documents, you can filter by multiple categories by using the <code>where</code> parameter:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;This is a query document&quot;</span><span class="p">],</span> <span class="n">where</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;games&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;movies&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+</span></code></pre></div>
 
 
 
@@ -2167,7 +2093,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 15, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 15, 2024</span>
   </span>
 
     
