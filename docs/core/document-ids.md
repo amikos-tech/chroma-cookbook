@@ -53,7 +53,7 @@ that they do not contain any information about the document itself.
 Install the `ulid-py` package to generate ULIDs.
 
 ```bash
-pip install py-ulid
+pip install ulid-py
 ```
 
 ```python
