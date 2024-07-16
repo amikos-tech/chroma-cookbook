@@ -2317,15 +2317,15 @@
 </tr>
 <tr>
 <td>Version</td>
-<td><code>0.4.25.dev0</code> (<a href="https://pypi.org/project/chromadb-client/">PyPi Link</a>)</td>
+<td><code>0.5.5.dev0</code> (<a href="https://pypi.org/project/chromadb-client/">PyPi Link</a>)</td>
 </tr>
 <tr>
 <td>Docs</td>
-<td><a href="https://docs.trychroma.com/api">https://docs.trychroma.com/api</a></td>
+<td><a href="https://docs.trychroma.com/reference/py-client">https://docs.trychroma.com/reference/py-client</a></td>
 </tr>
 <tr>
 <td>Compatibility</td>
-<td>Python: <code>3.7+</code>, Chroma API Version: <code>0.4.15+</code></td>
+<td>Python: <code>3.8+</code>, Chroma API Version: <code>0.5.x</code></td>
 </tr>
 </tbody>
 </table>
@@ -2453,7 +2453,7 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">Embedding Functions</p>
-<p>The list above is not exhaustive. Check  <a href="https://docs.trychroma.com/embeddings">official docs</a> for up-to-date information.</p>
+<p>The list above is not exhaustive. Check  <a href="https://docs.trychroma.com/integrations#%F0%9F%A7%AC-embedding-integrations">official docs</a> for up-to-date information.</p>
 </div>
 <h2 id="javascript">JavaScript<a class="headerlink" href="#javascript" title="Permanent link">&para;</a></h2>
 <table>
@@ -2482,7 +2482,7 @@
 </tr>
 <tr>
 <td>Docs</td>
-<td><a href="https://docs.trychroma.com/api">https://docs.trychroma.com/api</a></td>
+<td><a href="https://docs.trychroma.com/reference/js-client">https://docs.trychroma.com/reference/js-client</a></td>
 </tr>
 <tr>
 <td>Compatibility</td>
@@ -2614,14 +2614,181 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">Embedding Functions</p>
-<p>The list above is not exhaustive. Check  <a href="https://docs.trychroma.com/embeddings">official docs</a> for up-to-date information.</p>
+<p>The list above is not exhaustive. Check  <a href="https://docs.trychroma.com/integrations#%F0%9F%A7%AC-embedding-integrations">official docs</a> for up-to-date information.</p>
 </div>
 <h2 id="ruby-client">Ruby Client<a class="headerlink" href="#ruby-client" title="Permanent link">&para;</a></h2>
 <p>https://github.com/mariochavez/chroma</p>
 <h2 id="java-client">Java Client<a class="headerlink" href="#java-client" title="Permanent link">&para;</a></h2>
 <p>https://github.com/amikos-tech/chromadb-java-client</p>
 <h2 id="go-client">Go Client<a class="headerlink" href="#go-client" title="Permanent link">&para;</a></h2>
-<p>https://github.com/amikos-tech/chroma-go</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maintainer</td>
+<td>Amikos Tech (Chroma Core contributor)</td>
+</tr>
+<tr>
+<td>Repo</td>
+<td><a href="https://github.com/amikos-tech/chroma-go">https://github.com/amikos-tech/chroma-go</a></td>
+</tr>
+<tr>
+<td>Status</td>
+<td>✅ Stable</td>
+</tr>
+<tr>
+<td>Version</td>
+<td><code>0.1.4</code> (<a href="https://pkg.go.dev/github.com/amikos-tech/chroma-go/">Go Pkg Link</a>)</td>
+</tr>
+<tr>
+<td>Docs</td>
+<td><a href="https://go-client.chromadb.dev/">https://go-client.chromadb.dev/</a></td>
+</tr>
+<tr>
+<td>Compatibility</td>
+<td>Go: <code>1.21+</code>, Chroma API Version: <code>0.5.x</code></td>
+</tr>
+</tbody>
+</table>
+<p>Feature Support:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create Tenant</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Get Tenant</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Create DB</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Get DB</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Create Collection</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Get Collection</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>List Collection</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Count Collection</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Delete Collection</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Add Documents</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Delete Documents</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Update Documents</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Query Documents</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Get Document</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Count Documents</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Auth - Basic</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Auth - Token</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Reset</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p>Embedding Function Support:</p>
+<table>
+<thead>
+<tr>
+<th>Embedding Function</th>
+<th>Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://go-client.chromadb.dev/embeddings/#openai">OpenAI</a></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://go-client.chromadb.dev/embeddings/#huggingface-inference-api">HuggingFace Inference API</a></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://go-client.chromadb.dev/embeddings/#cohere">Cohere</a></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://go-client.chromadb.dev/embeddings/#google-gemini-ai">Google Generative AI (Gemini)</a></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://go-client.chromadb.dev/embeddings/#mistral-ai">Mistral AI</a></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://go-client.chromadb.dev/embeddings/#cloudflare-workers-ai">Cloudflare Workers AI</a>)</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://go-client.chromadb.dev/embeddings/#together-ai">Together AI</a></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://go-client.chromadb.dev/embeddings/#ollama">Ollama</a></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://go-client.chromadb.dev/embeddings/#nomic-ai">Nomic AI</a></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><a href="https://go-client.chromadb.dev/embeddings/#huggingface-embedding-inference-server">Hugging Face Embedding Inference Server</a></td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
 <h2 id="c-client">C# Client<a class="headerlink" href="#c-client" title="Permanent link">&para;</a></h2>
 <p>https://github.com/microsoft/semantic-kernel/tree/main/dotnet/src/Connectors/Connectors.Memory.Chroma</p>
 <h2 id="rust-client">Rust Client<a class="headerlink" href="#rust-client" title="Permanent link">&para;</a></h2>
@@ -2654,7 +2821,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 12, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 16, 2024</span>
   </span>
 
     
