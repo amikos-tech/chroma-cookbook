@@ -56,7 +56,16 @@ The core Chroma package installs the full Chroma version which can be uses for l
     ```bash
     pip install git+https://github.com/chroma-core/chroma.git@x.y.z
     ```
-    
+
+=== "From PR Branch"
+
+    It is sometimes useful to install a version of Chroma that has still some unrelease functionality. Like a PR that either fixes a bug or brings
+    in a new functionality you may need. To test such unreleased code it is possible to install directly from GH PR branch.
+
+    ```bash
+    pip install git+https://github.com/chroma-core/chroma.git@<branch_name>
+    ```
+
 
 ## ChromaDB Python Client
 
