@@ -166,6 +166,8 @@ thing, as it allows you to change the document without changing the ID.
     ```
 
 === "Python"
+
+    **Random SHA256:**
     
     ```python
     import hashlib
@@ -193,6 +195,8 @@ thing, as it allows you to change the document without changing the ID.
     collection = client.get_or_create_collection("collection")
     collection.add(ids=[generate_sha256_hash() for _ in range(len(my_documents))], documents=my_documents)
     ```
+
+    **Document-based SHA256:**
 
     It is also possible to use the document as basis for the hash, the downside of that is that when the document changes,
     and you have a semantic around the text as relating to the hash, you may need to update the hash.
