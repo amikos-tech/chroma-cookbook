@@ -609,9 +609,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#copying-local-collection-to-remote" class="md-nav__link">
+  <a href="#copying-collections" class="md-nav__link">
     <span class="md-ellipsis">
-      Copying Local Collection to Remote
+      Copying Collections
     </span>
   </a>
   
@@ -2328,9 +2328,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#copying-local-collection-to-remote" class="md-nav__link">
+  <a href="#copying-collections" class="md-nav__link">
     <span class="md-ellipsis">
-      Copying Local Collection to Remote
+      Copying Collections
     </span>
   </a>
   
@@ -2673,20 +2673,58 @@ first get the existing metadata and then add the new key-value pair to it.</p>
 </span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>  <span class="c1"># do something with the batch</span>
 </span></code></pre></div>
 <h2 id="collection-utilities">Collection Utilities<a class="headerlink" href="#collection-utilities" title="Permanent link">&para;</a></h2>
-<h3 id="copying-local-collection-to-remote">Copying Local Collection to Remote<a class="headerlink" href="#copying-local-collection-to-remote" title="Permanent link">&para;</a></h3>
+<h3 id="copying-collections">Copying Collections<a class="headerlink" href="#copying-collections" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Local To Remote</label><label for="__tabbed_1_2">Local To Local</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p>The following example demonstrates how to copy a local collection to a remote ChromaDB server. (it also works in
 reverse)</p>
+<p>```python
+import chromadb</p>
+<p>client = chromadb.PersistentClient(path="my_local_data")
+remote_client = chromadb.HttpClient()</p>
+<p>collection = client.get_or_create_collection("local_collection")
+collection.add(
+    ids=["1", "2"],
+    documents=["hello world", "hello ChromaDB"],
+    metadatas=[{"a": 1}, {"b": 2}])
+remote_collection = remote_client.get_or_create_collection("remote_collection",
+                                                           metadata=collection.metadata)
+existing_count = collection.count()
+batch_size = 10
+for i in range(0, existing_count, batch_size):
+    batch = collection.get(
+        include=["metadatas", "documents", "embeddings"],
+        limit=batch_size,
+        offset=i)
+    remote_collection.add(
+        ids=batch["ids"],
+        documents=batch["documents"],
+        metadatas=batch["metadatas"],
+        embeddings=batch["embeddings"])
+  ```</p>
+<div class="admonition note">
+<p class="admonition-title">Using ChromaDB Data Pipes</p>
+<p>Using <a href="https://datapipes.chromadb.dev">ChromaDB Data Pipes</a> package you can achieve the same result.</p>
+<p><code>bash
+  pip install chromadb-data-pipes
+  cdp export "file://path/to_local_data/local_collection" | \
+  cdp import "http://remote_chromadb:port/remote_collection" --create</code></p>
+</div>
+</div>
+<div class="tabbed-block">
+<p>Following shows an example of how to copy a collection from one local persistent DB to another local persistent DB.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;my_local_data&quot;</span><span class="p">)</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">remote_client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">HttpClient</span><span class="p">()</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">local_client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;source&quot;</span><span class="p">)</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">remote_client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;target&quot;</span><span class="p">)</span>
 </span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">collection</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;local_collection&quot;</span><span class="p">)</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">collection</span> <span class="o">=</span> <span class="n">local_client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;my_source_collection&quot;</span><span class="p">)</span>
 </span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
 </span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">],</span>
 </span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="n">documents</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="s2">&quot;hello ChromaDB&quot;</span><span class="p">],</span>
 </span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    <span class="n">metadatas</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}])</span>
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="n">remote_collection</span> <span class="o">=</span> <span class="n">remote_client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;remote_collection&quot;</span><span class="p">,</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="n">remote_collection</span> <span class="o">=</span> <span class="n">remote_client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;my_target_collection&quot;</span><span class="p">,</span>
 </span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>                                                           <span class="n">metadata</span><span class="o">=</span><span class="n">collection</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
 </span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="n">existing_count</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
@@ -2703,11 +2741,14 @@ reverse)</p>
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Using ChromaDB Data Pipes</p>
-<p>There is a more efficient way to copy data between local and remote collections using <a href="https://datapipes.chromadb.dev">ChromaDB Data Pipes</a> package.</p>
+<p>You can achieve the above with <a href="https://datapipes.chromadb.dev">ChromaDB Data Pipes</a> package.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>pip<span class="w"> </span>install<span class="w"> </span>chromadb-data-pipes
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>cdp<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="s2">&quot;file://path/to_local_data/local_collection&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>cdp<span class="w"> </span>import<span class="w"> </span><span class="s2">&quot;http://remote_chromadb:port/remote_collection&quot;</span><span class="w"> </span>--create
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>cdp<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="s2">&quot;file://source_persist_dir/target_collection&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>cdp<span class="w"> </span>import<span class="w"> </span><span class="s2">&quot;file://target_persist_dir/target_collection&quot;</span><span class="w"> </span>--create
 </span></code></pre></div>
+</div>
+</div>
+</div>
 </div>
 <h3 id="cloning-a-collection">Cloning a collection<a class="headerlink" href="#cloning-a-collection" title="Permanent link">&para;</a></h3>
 <p>Here are some reasons why you might want to clone a collection:</p>
@@ -2750,8 +2791,8 @@ reverse)</p>
 </span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="n">existing_count</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
 </span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">existing_count</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
-</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>  <span class="n">batch</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;metadatas&quot;</span><span class="p">,</span> <span class="s2">&quot;documents&quot;</span><span class="p">],</span> <span class="n">limit</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
-</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>  <span class="n">newCol</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;ids&quot;</span><span class="p">],</span> <span class="n">documents</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;documents&quot;</span><span class="p">],</span> <span class="n">metadatas</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;metadatas&quot;</span><span class="p">])</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>    <span class="n">batch</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;metadatas&quot;</span><span class="p">,</span> <span class="s2">&quot;documents&quot;</span><span class="p">],</span> <span class="n">limit</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>    <span class="n">newCol</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;ids&quot;</span><span class="p">],</span> <span class="n">documents</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;documents&quot;</span><span class="p">],</span> <span class="n">metadatas</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;metadatas&quot;</span><span class="p">])</span>
 </span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="c1"># get first 10 documents with their OpenAI embeddings</span>
 </span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="nb">print</span><span class="p">(</span><span class="n">newCol</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;metadatas&quot;</span><span class="p">,</span> <span class="s2">&quot;documents&quot;</span><span class="p">,</span> <span class="s2">&quot;embeddings&quot;</span><span class="p">]))</span> 
 </span></code></pre></div>
@@ -2837,7 +2878,7 @@ data than the IDs is returned.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 10, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 23, 2024</span>
   </span>
 
     
