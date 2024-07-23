@@ -213,47 +213,92 @@ for i in range(0, existing_count, batch_size):
 
 ## Collection Utilities
 
-### Copying Local Collection to Remote
+### Copying Collections
 
-The following example demonstrates how to copy a local collection to a remote ChromaDB server. (it also works in
-reverse)
+    
+    
+=== "Local To Remote"
 
-```python
-import chromadb
+    The following example demonstrates how to copy a local collection to a remote ChromaDB server. (it also works in
+    reverse)
+    
+    ```python
+    import chromadb
+    
+    client = chromadb.PersistentClient(path="my_local_data")
+    remote_client = chromadb.HttpClient()
+    
+    collection = client.get_or_create_collection("local_collection")
+    collection.add(
+        ids=["1", "2"],
+        documents=["hello world", "hello ChromaDB"],
+        metadatas=[{"a": 1}, {"b": 2}])
+    remote_collection = remote_client.get_or_create_collection("remote_collection",
+                                                               metadata=collection.metadata)
+    existing_count = collection.count()
+    batch_size = 10
+    for i in range(0, existing_count, batch_size):
+        batch = collection.get(
+            include=["metadatas", "documents", "embeddings"],
+            limit=batch_size,
+            offset=i)
+        remote_collection.add(
+            ids=batch["ids"],
+            documents=batch["documents"],
+            metadatas=batch["metadatas"],
+            embeddings=batch["embeddings"])
+      ```
+    
+    !!! note "Using ChromaDB Data Pipes"
+    
+          Using [ChromaDB Data Pipes](https://datapipes.chromadb.dev) package you can achieve the same result.
+      
+          ```bash
+          pip install chromadb-data-pipes
+          cdp export "file://path/to_local_data/local_collection" | \
+          cdp import "http://remote_chromadb:port/remote_collection" --create
+          ```
 
-client = chromadb.PersistentClient(path="my_local_data")
-remote_client = chromadb.HttpClient()
+=== "Local To Local"
 
-collection = client.get_or_create_collection("local_collection")
-collection.add(
-    ids=["1", "2"],
-    documents=["hello world", "hello ChromaDB"],
-    metadatas=[{"a": 1}, {"b": 2}])
-remote_collection = remote_client.get_or_create_collection("remote_collection",
-                                                           metadata=collection.metadata)
-existing_count = collection.count()
-batch_size = 10
-for i in range(0, existing_count, batch_size):
-    batch = collection.get(
-        include=["metadatas", "documents", "embeddings"],
-        limit=batch_size,
-        offset=i)
-    remote_collection.add(
-        ids=batch["ids"],
-        documents=batch["documents"],
-        metadatas=batch["metadatas"],
-        embeddings=batch["embeddings"])
-```
+    Following shows an example of how to copy a collection from one local persistent DB to another local persistent DB.
 
-!!! note "Using ChromaDB Data Pipes"
-
-    There is a more efficient way to copy data between local and remote collections using [ChromaDB Data Pipes](https://datapipes.chromadb.dev) package.
-
-    ```bash
-    pip install chromadb-data-pipes
-    cdp export "file://path/to_local_data/local_collection" | \
-    cdp import "http://remote_chromadb:port/remote_collection" --create
+    ```python
+    import chromadb
+    
+    local_client = chromadb.PersistentClient(path="source")
+    remote_client = chromadb.PersistentClient(path="target")
+    
+    collection = local_client.get_or_create_collection("my_source_collection")
+    collection.add(
+        ids=["1", "2"],
+        documents=["hello world", "hello ChromaDB"],
+        metadatas=[{"a": 1}, {"b": 2}])
+    remote_collection = remote_client.get_or_create_collection("my_target_collection",
+                                                               metadata=collection.metadata)
+    existing_count = collection.count()
+    batch_size = 10
+    for i in range(0, existing_count, batch_size):
+        batch = collection.get(
+            include=["metadatas", "documents", "embeddings"],
+            limit=batch_size,
+            offset=i)
+        remote_collection.add(
+            ids=batch["ids"],
+            documents=batch["documents"],
+            metadatas=batch["metadatas"],
+            embeddings=batch["embeddings"])
     ```
+    
+    !!! note "Using ChromaDB Data Pipes"
+    
+          You can achieve the above with [ChromaDB Data Pipes](https://datapipes.chromadb.dev) package.
+      
+          ```bash
+          pip install chromadb-data-pipes
+          cdp export "file://source_persist_dir/target_collection" | \
+          cdp import "file://target_persist_dir/target_collection" --create
+          ```
 
 ### Cloning a collection
 
@@ -302,8 +347,8 @@ newCol = client.get_or_create_collection("openai_ef_collection", embedding_funct
 existing_count = col.count()
 batch_size = 10
 for i in range(0, existing_count, batch_size):
-  batch = col.get(include=["metadatas", "documents"], limit=batch_size, offset=i)
-  newCol.add(ids=batch["ids"], documents=batch["documents"], metadatas=batch["metadatas"])
+    batch = col.get(include=["metadatas", "documents"], limit=batch_size, offset=i)
+    newCol.add(ids=batch["ids"], documents=batch["documents"], metadatas=batch["metadatas"])
 # get first 10 documents with their OpenAI embeddings
 print(newCol.get(offset=0, limit=10,include=["metadatas", "documents", "embeddings"])) 
 ```
