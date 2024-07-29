@@ -41,14 +41,23 @@ client = chromadb.PersistentClient(
 The persistent client is useful for:
 
 - **Local development**: You can use the persistent client to develop locally and test out ChromaDB.
-- **Embedded applications**: You can use the persistent client to embed ChromaDB in your application. For example, if
-  you are building a web application, you can use the persistent client to store data locally on the server.
+- **Embedded applications**: You can use the persistent client to embed ChromaDB in your application. This means that
+  you can ship Chroma bundled with your product or services, thus simplifying the deployment process.
+- **Simplicity**: If you do not wish to incur the complexities associated with setting up and operating a Chroma
+  server (arguably Hosted-Chroma will resolve this).
+- **Data privacy**: If you are working with sensitive data and do not want to store it on a remote server.
+- **Optimize performance**: If you want to reduce latency.
+
+!!! warn "The right tool for the job"
+
+    When evaluating the use of local `PersistentClient` one should always factor in the scale of the application. 
+    Similar to SQLite vs Posgres/MySQL, `PersistentClient` vs `HTTPClient` with Chroma server, application architectural
+    characteristics (such as complexity, scale, performance etc) should be considered when deciding to use one or the other.
 
 ## HTTP Client
 
 Chroma also provides HTTP Client, suitable for use in a client-server mode. This client can be used to connect to a
 remote ChromaDB server. The HTTP client can operate in synchronous or asynchronous mode (see examples below)
-
 
 === "Python Sync"
 
@@ -120,7 +129,6 @@ remote ChromaDB server. The HTTP client can operate in synchronous or asynchrono
     !!! tip "Positional Parameters"
     
         Chroma `AsyncHttpClient` parameters are positional, unless keyword arguments are used.
-
 
 === "JavaScript"
 
