@@ -1,13 +1,33 @@
 # Write-ahead Log (WAL) Pruning
 
-As of this writing (v0.4.22) Chroma stores its WAL forever. This means that the WAL will grow indefinitely. This is
-obviously not ideal. Here we provide a small script + a few steps how to prune your WAL and keep it at a reasonable
-size. Pruning the WAL is particularly important if you have many writes to Chroma (e.g. documents are added, updated or
-deleted frequently).
+Chroma Write-Ahead Log is unbounded by default and grows indefinitely. This can lead to high disk usage and slow
+performance. To prevent this, it is recommended to prune/cleanup the WAL periodically. Below we offer a couple of tools,
+including an official and recommended CLI tool, to help you prune your WAL.
 
 ## Tooling
 
-We have worked on a tooling to provide users with a way to prune their WAL - [chroma-ops](https://github.com/amikos-tech/chromadb-ops).
+There are two ways to prune your WAL:
+
+- Chroma CLI - this is the official tooling provided by Chroma and is the recommended way to prune your WAL. This
+  functionality is available either from `main` branch or Chroma release `>0.5.5`.
+- [chroma-ops](https://github.com/amikos-tech/chromadb-ops)
+
+### Chroma CLI
+
+To prune your WAL you need to install Chroma CLI (it comes as part of the core Chroma package):
+
+```shell
+pip install chromadb
+
+chroma utils vacuum --path /path/to/persist_dir
+```
+
+!!! note "Auto-pruning"
+
+    Running the above command will enable auto WAL pruning. 
+    This means that Chroma will periodically prune the WAL during its normal operations.
+
+### Chroma Ops
 
 To prune your WAL you can run the following command:
 
@@ -19,6 +39,7 @@ chops cleanup-wal /path/to/persist_dir
 > ⚠️ IMPORTANT: It is always a good thing to backup your data before you prune the WAL.
 
 ## Manual
+
 Steps:
 
 !!! danger "Stop Chroma"
