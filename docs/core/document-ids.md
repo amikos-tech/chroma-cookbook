@@ -57,10 +57,12 @@ as it allows you to change the document without changing the ID.
     UUIDs especially v4 are not lexicographically sortable. In its current version (0.4.x-0.5.0) Chroma orders responses 
     of `get()` by the ID of the documents. Therefore, if you need predictable ordering, you may want to consider a different ID strategy.
 
-!!! tip "Storage Overhead"
+!!! tip "Storage and Performance Overhead"
 
-    UUIDs are 128 bits long, which can be a lot of overhead if you have a large number of documents. If you are concerned 
+    Chroma stores Document IDs as strings and UUIDs are 36 characters long, which can be a lot of overhead if you have a 
+    large number of documents. If you are concerned 
     about storage overhead, you may want to consider a different ID strategy.
+    Additionally Chroma uses the document IDs when sorting results which also incurs a performance hit.
 
 ### ULIDs
 
