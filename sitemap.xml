@@ -201,6 +201,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://cookbook.chromadb.dev/security/ssl-proxies/</loc>
+         <lastmod>2024-07-31</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://cookbook.chromadb.dev/strategies/backup/</loc>
          <lastmod>2024-07-31</lastmod>
          <changefreq>daily</changefreq>

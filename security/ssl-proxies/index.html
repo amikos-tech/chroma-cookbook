@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://cookbook.chromadb.dev/ecosystem/clients/">
+        <link rel="canonical" href="https://cookbook.chromadb.dev/security/ssl-proxies/">
       
       
-        <link rel="prev" href="../../core/advanced/wal/">
+        <link rel="prev" href="../chroma-ssl-cert/">
       
       
-        <link rel="next" href="../../embeddings/bring-your-own-embeddings/">
+        <link rel="next" href="../../strategies/backup/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Chroma Ecosystem Clients - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+        <title>SSL/TLS Proxy - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chroma-ecosystem-clients" class="md-skip">
+        <a href="#ssltls-proxy" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chroma Ecosystem Clients
+              SSL/TLS Proxy
             
           </span>
         </div>
@@ -790,8 +790,6 @@
       
   
   
-    
-  
   
   
     
@@ -802,11 +800,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -820,7 +818,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Ecosystem
@@ -831,30 +829,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Chroma Ecosystem Clients
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../ecosystem/clients/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -863,127 +841,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
-    <span class="md-ellipsis">
-      Python
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#javascript" class="md-nav__link">
-    <span class="md-ellipsis">
-      JavaScript
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ruby-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ruby Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#java-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Java Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#go-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Go Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#c-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      C# Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rust-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Rust Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#elixir-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Elixir Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dart-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dart Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#php-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      PHP Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#php-laravel-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      PHP (Laravel) Client
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1667,6 +1524,8 @@
       
   
   
+    
+  
   
   
     
@@ -1685,16 +1544,16 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../security/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1711,7 +1570,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             Security
@@ -1727,7 +1586,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../security/auth/" class="md-nav__link">
+      <a href="../auth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1748,7 +1607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../security/chroma-ssl-cert/" class="md-nav__link">
+      <a href="../chroma-ssl-cert/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1766,10 +1625,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../security/ssl-proxies/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    SSL/TLS Proxy
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1778,6 +1657,55 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getting-the-cert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting The cert
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#envoy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Envoy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nginx
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2223,99 +2151,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
+  <a href="#getting-the-cert" class="md-nav__link">
     <span class="md-ellipsis">
-      Python
+      Getting The cert
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#javascript" class="md-nav__link">
+  <a href="#envoy" class="md-nav__link">
     <span class="md-ellipsis">
-      JavaScript
+      Envoy
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ruby-client" class="md-nav__link">
+  <a href="#nginx" class="md-nav__link">
     <span class="md-ellipsis">
-      Ruby Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#java-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Java Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#go-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Go Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#c-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      C# Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rust-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Rust Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#elixir-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Elixir Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dart-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dart Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#php-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      PHP Client
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#php-laravel-client" class="md-nav__link">
-    <span class="md-ellipsis">
-      PHP (Laravel) Client
+      Nginx
     </span>
   </a>
   
@@ -2339,514 +2195,173 @@
   
 
 
-<h1 id="chroma-ecosystem-clients">Chroma Ecosystem Clients<a class="headerlink" href="#chroma-ecosystem-clients" title="Permanent link">&para;</a></h1>
-<h2 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Maintainer</td>
-<td>Chroma Core team</td>
-</tr>
-<tr>
-<td>Repo</td>
-<td><a href="https://github.com/chroma-core/chroma">https://github.com/chroma-core/chroma</a></td>
-</tr>
-<tr>
-<td>Status</td>
-<td>✅ Stable</td>
-</tr>
-<tr>
-<td>Version</td>
-<td><code>0.5.5.dev0</code> (<a href="https://pypi.org/project/chromadb-client/">PyPi Link</a>)</td>
-</tr>
-<tr>
-<td>Docs</td>
-<td><a href="https://docs.trychroma.com/reference/py-client">https://docs.trychroma.com/reference/py-client</a></td>
-</tr>
-<tr>
-<td>Compatibility</td>
-<td>Python: <code>3.8+</code>, Chroma API Version: <code>0.5.x</code></td>
-</tr>
-</tbody>
-</table>
-<p>Feature Support:</p>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Supported</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Create Tenant</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get Tenant</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Create DB</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get DB</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Create Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>List Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Count Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Delete Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Add Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Delete Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Update Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Query Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get Document</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Count Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Auth - Basic</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Auth - Token</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Reset</td>
-<td>✅</td>
-</tr>
-</tbody>
-</table>
-<p>Embedding Function Support:</p>
-<table>
-<thead>
-<tr>
-<th>Embedding Function</th>
-<th>Supported</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OpenAI</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Sentence Transformers</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>HuggingFace Inference API</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Cohere</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Google Vertex AI</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Google Generative AI (Gemini)</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>OpenCLIP (Multi-modal)</td>
-<td>✅</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="admonition-title">Embedding Functions</p>
-<p>The list above is not exhaustive. Check  <a href="https://docs.trychroma.com/integrations#%F0%9F%A7%AC-embedding-integrations">official docs</a> for up-to-date information.</p>
+<h1 id="ssltls-proxy">SSL/TLS Proxy<a class="headerlink" href="#ssltls-proxy" title="Permanent link">&para;</a></h1>
+<p>In this section we'll explore how to secure Chroma with a TLS-terminated HTTPS proxy. Below we'll give two examples of
+how to do this using Envoy and Nginx. The certificates are self-signed and generated using OpenSSL, but in the future
+we'll also provide examples of how to achieve this with Let's Encrypt and certbot.</p>
+<h2 id="getting-the-cert">Getting The cert<a class="headerlink" href="#getting-the-cert" title="Permanent link">&para;</a></h2>
+<p>To manually generate a certificate follow the steps <a href="../chroma-ssl-cert/#creating-a-self-signed-certificate">here</a>.</p>
+<h2 id="envoy">Envoy<a class="headerlink" href="#envoy" title="Permanent link">&para;</a></h2>
+<p>The following envoy configuration will create a listener on port 443 that will forward all requests to the <code>chromadb</code>.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">static_resources</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">listeners</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">listener_0</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span><span class="nt">address</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="nt">socket_address</span><span class="p">:</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">          </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">          </span><span class="nt">port_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">      </span><span class="nt">filter_chains</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">filters</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">envoy.filters.network.http_connection_manager</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">              </span><span class="nt">typed_config</span><span class="p">:</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">                </span><span class="s">&quot;@type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">                </span><span class="nt">stat_prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress_http</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">                </span><span class="nt">route_config</span><span class="p">:</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">                  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">chroma_route</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">                  </span><span class="nt">virtual_hosts</span><span class="p">:</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">                    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local_chromadb</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">                      </span><span class="nt">domains</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">                      </span><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">                        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">                            </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">                          </span><span class="nt">route</span><span class="p">:</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">                            </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">chromadb_service</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">                            </span><span class="nt">prefix_rewrite</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">                </span><span class="nt">http_filters</span><span class="p">:</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">envoy.filters.http.router</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">                    </span><span class="nt">typed_config</span><span class="p">:</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">                      </span><span class="s">&quot;@type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type.googleapis.com/envoy.extensions.filters.http.router.v3.Router</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">          </span><span class="nt">transport_socket</span><span class="p">:</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">envoy.transport_sockets.tls</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">            </span><span class="nt">typed_config</span><span class="p">:</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">              </span><span class="s">&quot;@type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.DownstreamTlsContext</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">              </span><span class="nt">common_tls_context</span><span class="p">:</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">                </span><span class="nt">tls_certificates</span><span class="p">:</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">certificate_chain</span><span class="p">:</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">                      </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/etc/envoy/certs/servercert.pem&quot;</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">                    </span><span class="nt">private_key</span><span class="p">:</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">                      </span><span class="nt">filename</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/etc/envoy/certs/serverkey.pem&quot;</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">  </span><span class="nt">clusters</span><span class="p">:</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">chromadb_service</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">      </span><span class="nt">connect_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25s</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LOGICAL_DNS</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">      </span><span class="nt">lb_policy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ROUND_ROBIN</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">      </span><span class="nt">load_assignment</span><span class="p">:</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">        </span><span class="nt">cluster_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">chromadb_service</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">        </span><span class="nt">endpoints</span><span class="p">:</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">lb_endpoints</span><span class="p">:</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">endpoint</span><span class="p">:</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">                  </span><span class="nt">address</span><span class="p">:</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">                    </span><span class="nt">socket_address</span><span class="p">:</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">                      </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">chromadb</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">                      </span><span class="nt">port_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8000</span>
+</span></code></pre></div>
+<p>Finally the docker compose to tie things up where we have added a <code>cert-gen</code> step to automatically generate the certificates, prior to starting the <code>envoy</code> and <code>chromadb</code> services.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3&#39;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">networks</span><span class="p">:</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">net</span><span class="p">:</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bridge</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">cert-gen</span><span class="p">:</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openquantumsafe/openssl3</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./certs:/certs</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./openssl.cnf:/etc/ssl/openssl.cnf</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">      </span><span class="no">sh -c &quot;[ -f /certs/servercert.pem ] || \</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">      </span><span class="no">openssl req -new -newkey rsa:2048 -sha256 -days 365 -nodes -x509 -keyout /certs/serverkey.pem -out /certs/servercert.pem -subj &#39;/O=Chroma/C=US&#39; -config /etc/ssl/openssl.cnf&quot;</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHROMA_DOMAIN=${CHROMA_DOMAIN:-localhost}</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="nt">envoy</span><span class="p">:</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bitnami/envoy</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./envoy.yaml:/opt/bitnami/envoy/conf/envoy.yaml</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./certs:/etc/envoy/certs</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./wait-for-certs.sh:/usr/local/bin/wait-for-certs.sh</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;443:443&quot;</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">net</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-gen</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">    </span><span class="nt">entrypoint</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">      </span><span class="no">sh -c &quot;/usr/local/bin/wait-for-certs.sh &amp;&amp; \</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">      </span><span class="no">/opt/bitnami/envoy/bin/envoy -c /opt/bitnami/envoy/conf/envoy.yaml&quot;</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">  </span><span class="nt">chromadb</span><span class="p">:</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">chromadb/chroma:0.5.5</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./chromadb:/chroma/chroma</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_PERSISTENT=TRUE</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ANONYMIZED_TELEMETRY=${ANONYMIZED_TELEMETRY:-TRUE}</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">net</span>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">envoy</span>
+</span></code></pre></div>
+<h2 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h2>
+<p>Use the following Nginx config (<code>nginx.conf</code>) as a starting point and build from there:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>server {
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    listen 443 ssl;
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    server_name localhost;
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    ssl_certificate /etc/nginx/certs/servercert.pem;
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    ssl_certificate_key /etc/nginx/certs/serverkey.pem;
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    location / {
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        proxy_pass http://chromadb:8000;
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        proxy_set_header Host $host;
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        proxy_http_version 1.1;  # Use HTTP/1.1
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        proxy_set_header X-Real-IP $remote_addr;
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        proxy_set_header X-Forwarded-Proto $scheme;
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    }
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>}
+</span></code></pre></div>
+<p>Create a <code>docker-compose.yml</code> file with the following content:</p>
+<div class="admonition warn">
+<p class="admonition-title">Config Files</p>
+<p>For the following <code>docker-compose.yaml</code> to operate successfully <code>openssl.cnf</code> and <code>nginx.conf</code> files need to be present in the same directory.</p>
 </div>
-<h2 id="javascript">JavaScript<a class="headerlink" href="#javascript" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Maintainer</td>
-<td>Chroma Core team</td>
-</tr>
-<tr>
-<td>Repo</td>
-<td><a href="https://github.com/chroma-core/chroma">https://github.com/chroma-core/chroma</a></td>
-</tr>
-<tr>
-<td>Status</td>
-<td>✅ Stable</td>
-</tr>
-<tr>
-<td>Version</td>
-<td><code>1.8.1</code> (<a href="https://www.npmjs.com/package/chromadb">NPM Link</a>)</td>
-</tr>
-<tr>
-<td>Docs</td>
-<td><a href="https://docs.trychroma.com/reference/js-client">https://docs.trychroma.com/reference/js-client</a></td>
-</tr>
-<tr>
-<td>Compatibility</td>
-<td>Python: <code>3.7+</code>, Chroma API Version: <code>TBD</code></td>
-</tr>
-</tbody>
-</table>
-<p>Feature Support:</p>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Supported</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Create Tenant</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get Tenant</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Create DB</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get DB</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Create Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>List Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Count Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Delete Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Add Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Delete Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Update Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Query Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get Document</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Count Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Auth - Basic</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Auth - Token</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Reset</td>
-<td>✅</td>
-</tr>
-</tbody>
-</table>
-<p>Embedding Function Support:</p>
-<table>
-<thead>
-<tr>
-<th>Embedding Function</th>
-<th>Supported</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OpenAI</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Sentence Transformers</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>HuggingFace Inference API</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Cohere</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Google Vertex AI</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Google Generative AI (Gemini)</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>OpenCLIP (Multi-modal)</td>
-<td>✅</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="admonition-title">Embedding Functions</p>
-<p>The list above is not exhaustive. Check  <a href="https://docs.trychroma.com/integrations#%F0%9F%A7%AC-embedding-integrations">official docs</a> for up-to-date information.</p>
-</div>
-<h2 id="ruby-client">Ruby Client<a class="headerlink" href="#ruby-client" title="Permanent link">&para;</a></h2>
-<p>https://github.com/mariochavez/chroma</p>
-<h2 id="java-client">Java Client<a class="headerlink" href="#java-client" title="Permanent link">&para;</a></h2>
-<p>https://github.com/amikos-tech/chromadb-java-client</p>
-<h2 id="go-client">Go Client<a class="headerlink" href="#go-client" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Maintainer</td>
-<td>Amikos Tech (Chroma Core contributor)</td>
-</tr>
-<tr>
-<td>Repo</td>
-<td><a href="https://github.com/amikos-tech/chroma-go">https://github.com/amikos-tech/chroma-go</a></td>
-</tr>
-<tr>
-<td>Status</td>
-<td>✅ Stable</td>
-</tr>
-<tr>
-<td>Version</td>
-<td><code>0.1.4</code> (<a href="https://pkg.go.dev/github.com/amikos-tech/chroma-go/">Go Pkg Link</a>)</td>
-</tr>
-<tr>
-<td>Docs</td>
-<td><a href="https://go-client.chromadb.dev/">https://go-client.chromadb.dev/</a></td>
-</tr>
-<tr>
-<td>Compatibility</td>
-<td>Go: <code>1.21+</code>, Chroma API Version: <code>0.5.x</code></td>
-</tr>
-</tbody>
-</table>
-<p>Feature Support:</p>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Supported</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Create Tenant</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get Tenant</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Create DB</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get DB</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Create Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>List Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Count Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Delete Collection</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Add Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Delete Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Update Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Query Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Get Document</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Count Documents</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Auth - Basic</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Auth - Token</td>
-<td>✅</td>
-</tr>
-<tr>
-<td>Reset</td>
-<td>✅</td>
-</tr>
-</tbody>
-</table>
-<p>Embedding Function Support:</p>
-<table>
-<thead>
-<tr>
-<th>Embedding Function</th>
-<th>Supported</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://go-client.chromadb.dev/embeddings/#openai">OpenAI</a></td>
-<td>✅</td>
-</tr>
-<tr>
-<td><a href="https://go-client.chromadb.dev/embeddings/#huggingface-inference-api">HuggingFace Inference API</a></td>
-<td>✅</td>
-</tr>
-<tr>
-<td><a href="https://go-client.chromadb.dev/embeddings/#cohere">Cohere</a></td>
-<td>✅</td>
-</tr>
-<tr>
-<td><a href="https://go-client.chromadb.dev/embeddings/#google-gemini-ai">Google Generative AI (Gemini)</a></td>
-<td>✅</td>
-</tr>
-<tr>
-<td><a href="https://go-client.chromadb.dev/embeddings/#mistral-ai">Mistral AI</a></td>
-<td>✅</td>
-</tr>
-<tr>
-<td><a href="https://go-client.chromadb.dev/embeddings/#cloudflare-workers-ai">Cloudflare Workers AI</a>)</td>
-<td>✅</td>
-</tr>
-<tr>
-<td><a href="https://go-client.chromadb.dev/embeddings/#together-ai">Together AI</a></td>
-<td>✅</td>
-</tr>
-<tr>
-<td><a href="https://go-client.chromadb.dev/embeddings/#ollama">Ollama</a></td>
-<td>✅</td>
-</tr>
-<tr>
-<td><a href="https://go-client.chromadb.dev/embeddings/#nomic-ai">Nomic AI</a></td>
-<td>✅</td>
-</tr>
-<tr>
-<td><a href="https://go-client.chromadb.dev/embeddings/#huggingface-embedding-inference-server">Hugging Face Embedding Inference Server</a></td>
-<td>✅</td>
-</tr>
-</tbody>
-</table>
-<h2 id="c-client">C# Client<a class="headerlink" href="#c-client" title="Permanent link">&para;</a></h2>
-<p>https://github.com/microsoft/semantic-kernel/tree/main/dotnet/src/Connectors/Connectors.Memory.Chroma</p>
-<h2 id="rust-client">Rust Client<a class="headerlink" href="#rust-client" title="Permanent link">&para;</a></h2>
-<p>https://crates.io/crates/chromadb</p>
-<h2 id="elixir-client">Elixir Client<a class="headerlink" href="#elixir-client" title="Permanent link">&para;</a></h2>
-<p>https://hex.pm/packages/chroma/</p>
-<h2 id="dart-client">Dart Client<a class="headerlink" href="#dart-client" title="Permanent link">&para;</a></h2>
-<p>https://pub.dev/packages/chromadb</p>
-<h2 id="php-client">PHP Client<a class="headerlink" href="#php-client" title="Permanent link">&para;</a></h2>
-<p>https://github.com/CodeWithKyrian/chromadb-php</p>
-<h2 id="php-laravel-client">PHP (Laravel) Client<a class="headerlink" href="#php-laravel-client" title="Permanent link">&para;</a></h2>
-<p>https://github.com/helgeSverre/chromadb</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3&#39;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">networks</span><span class="p">:</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">net</span><span class="p">:</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bridge</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="nt">cert-gen</span><span class="p">:</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openquantumsafe/openssl3</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./certs:/certs</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./openssl.cnf:/etc/ssl/openssl.cnf</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">      </span><span class="no">sh -c &quot;[ -f /certs/servercert.pem ] || \</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">      </span><span class="no">openssl req -new -newkey rsa:2048 -sha256 -days 365 -nodes -x509 -keyout /certs/serverkey.pem -out /certs/servercert.pem -subj &#39;/O=Chroma/C=US&#39; -config /etc/ssl/openssl.cnf&quot;</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHROMA_DOMAIN=${CHROMA_DOMAIN:-localhost}</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">  </span><span class="nt">chromadb</span><span class="p">:</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">chromadb/chroma:0.5.5</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./chromadb:/chroma/chroma</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IS_PERSISTENT=TRUE</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ANONYMIZED_TELEMETRY=${ANONYMIZED_TELEMETRY:-TRUE}</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8000:8000&quot;</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">net</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">  </span><span class="nt">nginx</span><span class="p">:</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx:latest</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-gen</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">chromadb</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;443:443&quot;</span>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./nginx.conf:/etc/nginx/conf.d/default.conf</span>
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./certs:/etc/nginx/certs</span>
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">net</span>
+</span></code></pre></div>
 
 
 
@@ -2867,7 +2382,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 16, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 31, 2024</span>
   </span>
 
     
