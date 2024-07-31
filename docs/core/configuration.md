@@ -59,9 +59,30 @@ Default: `FALSE`
 
 #### `ANONYMIZED_TELEMETRY`
 
+Enables or disables anonymized product telemetry.
+
+Possible values:
+
+- `TRUE` - Enables anonymized telemetry.
+- `FALSE` - Disables anonymized telemetry.
+
+Default: `TRUE` (enabled)
+
+Read more about how Chroma uses telemetry [here](https://docs.trychroma.com/telemetry).
+
 ### Maintenance
 
 #### `MIGRATIONS`
+
+Defines how schema migrations are handled in Chroma.
+
+Possible values:
+
+- `none` - No migrations are applied.
+- `validate` - Existing schema is validated.
+- `apply` - Migrations are applied.
+
+Default: `apply`
 
 #### `MIGRATIONS_HASH_ALGORITHM`
 
