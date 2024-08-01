@@ -247,7 +247,7 @@ for i in range(0, existing_count, batch_size):
             documents=batch["documents"],
             metadatas=batch["metadatas"],
             embeddings=batch["embeddings"])
-      ```
+    ```
     
     !!! note "Using ChromaDB Data Pipes"
     
