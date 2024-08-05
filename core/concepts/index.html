@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
     
     
       
@@ -605,15 +605,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#embedding-vector" class="md-nav__link">
-    <span class="md-ellipsis">
-      Embedding Vector
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#embedding-model" class="md-nav__link">
     <span class="md-ellipsis">
       Embedding Model
@@ -623,18 +614,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#document-and-metadata-index" class="md-nav__link">
+  <a href="#embeddings" class="md-nav__link">
     <span class="md-ellipsis">
-      Document and Metadata Index
+      Embeddings
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#vector-index-hnsw-index" class="md-nav__link">
+  <a href="#metadata-segment" class="md-nav__link">
     <span class="md-ellipsis">
-      Vector Index (HNSW Index)
+      Metadata Segment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector-segment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector Segment
     </span>
   </a>
   
@@ -2304,15 +2304,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#embedding-vector" class="md-nav__link">
-    <span class="md-ellipsis">
-      Embedding Vector
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#embedding-model" class="md-nav__link">
     <span class="md-ellipsis">
       Embedding Model
@@ -2322,18 +2313,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#document-and-metadata-index" class="md-nav__link">
+  <a href="#embeddings" class="md-nav__link">
     <span class="md-ellipsis">
-      Document and Metadata Index
+      Embeddings
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#vector-index-hnsw-index" class="md-nav__link">
+  <a href="#metadata-segment" class="md-nav__link">
     <span class="md-ellipsis">
-      Vector Index (HNSW Index)
+      Metadata Segment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector-segment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector Segment
     </span>
   </a>
   
@@ -2405,18 +2405,29 @@ following distance functions:</p>
 <li>Euclidean (L2) - Useful for text similarity, more sensitive to noise than <code>cosine</code></li>
 <li>Inner Product (IP) - Recommender systems</li>
 </ul>
-<h2 id="embedding-vector">Embedding Vector<a class="headerlink" href="#embedding-vector" title="Permanent link">&para;</a></h2>
-<p>A representation of a document in the embedding space in te form of a vector, list of 32-bit floats (or ints).</p>
 <h2 id="embedding-model">Embedding Model<a class="headerlink" href="#embedding-model" title="Permanent link">&para;</a></h2>
-<h2 id="document-and-metadata-index">Document and Metadata Index<a class="headerlink" href="#document-and-metadata-index" title="Permanent link">&para;</a></h2>
-<p>The document and metadata index is stored in SQLite database.</p>
-<h2 id="vector-index-hnsw-index">Vector Index (HNSW Index)<a class="headerlink" href="#vector-index-hnsw-index" title="Permanent link">&para;</a></h2>
-<p>Under the hood (ca. v0.4.22) Chroma uses its
+<h2 id="embeddings">Embeddings<a class="headerlink" href="#embeddings" title="Permanent link">&para;</a></h2>
+<p>A representation of a document in the embedding model's latent space in te form of a vector, list of 32-bit floats (or
+ints).</p>
+<h2 id="metadata-segment">Metadata Segment<a class="headerlink" href="#metadata-segment" title="Permanent link">&para;</a></h2>
+<p>The metadata segment holds both the documents and their respective metadata fields (if any). The metadata segment is
+stored in sqlite3 under <code>&lt;persistent_dir&gt;/chroma.sqlite3</code>.</p>
+<h2 id="vector-segment">Vector Segment<a class="headerlink" href="#vector-segment" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Segment or Index?</p>
+<p>In the below paragraphs we use, the terms "segment" and "index" are used interchangeably.</p>
+</div>
+<p>Under the hood Chroma uses its
 own <a href="https://github.com/chroma-core/hnswlib">fork</a> <a href="https://github.com/nmslib/hnswlib">HNSW lib</a> for indexing and
 searching vectors.</p>
-<p>In a single-node mode, Chroma will create a single HNSW index for each collection. The index is stored in a subdir of
-your persistent dir, named after the collection id (UUID-based).</p>
+<p>In a single-node mode, Chroma will create a single vector index for each collection. The index is stored in a UUID-named
+subdir in
+your persistent dir, named after the vector segment of the collection.</p>
 <p>The HNSW lib uses <a href="https://arxiv.org/abs/1603.09320">fast ANN</a> algo to search the vectors in the index.</p>
+<p>In addition to the HNSW index, Chroma uses Brute Force index to buffer embeddings in memory before they are added to the
+HNSW index (see <a href="../configuration/#hnswbatch_size"><code>batch_size</code></a>). As the name suggests the search in the Brute Force
+index is done by iterating over all the vectors in the index and comparing them to the query using the
+distance_function. Brute Force index search is exhaustive and works well on small datasets.</p>
 
 
 
@@ -2437,7 +2448,7 @@ your persistent dir, named after the collection id (UUID-based).</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 27, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 5, 2024</span>
   </span>
 
     
