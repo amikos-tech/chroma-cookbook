@@ -64,26 +64,35 @@ following distance functions:
 - Euclidean (L2) - Useful for text similarity, more sensitive to noise than `cosine`
 - Inner Product (IP) - Recommender systems
 
-## Embedding Vector
-
-A representation of a document in the embedding space in te form of a vector, list of 32-bit floats (or ints).
-
 ## Embedding Model
 
-## Document and Metadata Index
+## Embeddings
 
-The document and metadata index is stored in SQLite database.
+A representation of a document in the embedding model's latent space in te form of a vector, list of 32-bit floats (or
+ints).
 
-## Vector Index (HNSW Index)
+## Metadata Segment
 
-Under the hood (ca. v0.4.22) Chroma uses its
+The metadata segment holds both the documents and their respective metadata fields (if any). The metadata segment is
+stored in sqlite3 under `<persistent_dir>/chroma.sqlite3`.
+
+## Vector Segment
+
+!!! tip "Segment or Index?"
+
+    In the below paragraphs we use, the terms "segment" and "index" are used interchangeably.
+
+Under the hood Chroma uses its
 own [fork](https://github.com/chroma-core/hnswlib) [HNSW lib](https://github.com/nmslib/hnswlib) for indexing and
 searching vectors.
 
-In a single-node mode, Chroma will create a single HNSW index for each collection. The index is stored in a subdir of
-your persistent dir, named after the collection id (UUID-based).
+In a single-node mode, Chroma will create a single vector index for each collection. The index is stored in a UUID-named
+subdir in
+your persistent dir, named after the vector segment of the collection.
 
 The HNSW lib uses [fast ANN](https://arxiv.org/abs/1603.09320) algo to search the vectors in the index.
 
-
-
+In addition to the HNSW index, Chroma uses Brute Force index to buffer embeddings in memory before they are added to the
+HNSW index (see [`batch_size`](configuration.md#hnswbatch_size)). As the name suggests the search in the Brute Force
+index is done by iterating over all the vectors in the index and comparing them to the query using the
+distance_function. Brute Force index search is exhaustive and works well on small datasets.
