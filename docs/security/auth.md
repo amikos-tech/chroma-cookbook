@@ -58,6 +58,39 @@ Running the server:
      chromadb/chroma:latest
     ```
 
+=== "Docker Compose"
+    
+    Create a `docker-compose.yaml` with the following content:
+    
+    ```yaml
+    networks:
+      net:
+        driver: bridge
+    services:
+      chromadb:
+        image: chromadb/chroma:latest
+        volumes:
+          - ./chromadb:/chroma/chroma
+          - ./server.htpasswd:/chroma/server.htpasswd
+        environment:
+          - IS_PERSISTENT=TRUE
+          - PERSIST_DIRECTORY=/chroma/chroma # this is the default path, change it as needed
+          - ANONYMIZED_TELEMETRY=${ANONYMIZED_TELEMETRY:-TRUE}
+          - CHROMA_SERVER_AUTHN_CREDENTIALS_FILE=server.htpasswd
+          - CHROMA_SERVER_AUTHN_PROVIDER=chromadb.auth.basic_authn.BasicAuthenticationServerProvider
+        ports:
+          - 8000:8000
+        networks:
+          - net
+    ```
+    
+    Run the following command to start the Chroma server:
+    
+    ```bash
+    docker compose -f docker-compose.yaml up -d
+    ```
+
+
 ??? info "Is my config right?"
 
     If you have correctly configured the server you should see the following line in the server logs:
@@ -128,6 +161,39 @@ Running the server:
      -e CHROMA_AUTH_TOKEN_TRANSPORT_HEADER="Authorization" \
      -p 8000:8000 \
      chromadb/chroma:latest
+    ```
+
+=== "Docker Compose"
+
+    Create a `docker-compose.yaml` with the following content:
+    
+    ```yaml
+    networks:
+      net:
+        driver: bridge
+    services:
+      chromadb:
+        image: chromadb/chroma:latest
+        volumes:
+          - ./chromadb:/chroma/chroma
+          - ./server.htpasswd:/chroma/server.htpasswd
+        environment:
+          - IS_PERSISTENT=TRUE
+          - PERSIST_DIRECTORY=/chroma/chroma # this is the default path, change it as needed
+          - ANONYMIZED_TELEMETRY=${ANONYMIZED_TELEMETRY:-TRUE}
+          - CHROMA_SERVER_AUTHN_CREDENTIALS="chr0ma-t0k3n"
+          - CHROMA_AUTH_TOKEN_TRANSPORT_HEADER="Authorization"
+          - CHROMA_SERVER_AUTHN_PROVIDER=chromadb.auth.token_authn.TokenAuthenticationServerProvider
+        ports:
+          - 8000:8000
+        networks:
+          - net
+    ```
+    
+    Run the following command to start the Chroma server:
+    
+    ```bash
+    docker compose -f docker-compose.yaml up -d
     ```
 
 ??? info "Is my config right?"
