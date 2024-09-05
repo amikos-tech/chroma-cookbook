@@ -12,7 +12,9 @@ with Chroma. These information below is based on interactions with the Chroma co
 
 ### What does Chroma use to index embedding vectors?
 
-Chroma uses its own [fork]() of HNSW lib for indexing and searching embeddings.
+Chroma uses its own [fork]() of HNSW lib for indexing and searching embeddings. In addition to HNSW, Chroma also uses a
+Brute Force index, which acts as a buffer (prior to updating the HNSW graph) and performs exhaustive search using the
+same distance metric as the HNSW index.
 
 **Alternative Questions:**
 
@@ -65,6 +67,26 @@ print(ef(["test"]))
     Read the model card and try to understand what if any pooling the creators recommend. You may also want to normalize
     the embeddings before adding them to Chroma (pass `normalize_embeddings=True` to the `SentenceTransformerEmbeddingFunction` 
     EF constructor).
+
+### Should I store my documents in Chroma?
+
+> Note: This applies to Chroma single-node and local embedded clients. (Chroma version ca. 0.5.x)
+
+Chroma allows users to store both embeddings and documents, alongside metadata, in collections. Documents and metadata
+are both optional and depending on your use case you may choose to store them in Chroma or externally, or not at all.
+
+Here are some pros/cons to help you decide whether to store your documents in Chroma:
+
+**Pros:**
+
+- Keeps all the data in the same place. You don't have to manage a separate DB for the documents
+- Allows you to do keyword searches on the documents
+
+**Cons:**
+
+- The database can grow substantially in size because documents are effectively duplicated - once for storing them as
+  metadata for queries and another for the FTS5 index.
+- Queries performance hit
 
 ## Commonly Encountered Problems
 
