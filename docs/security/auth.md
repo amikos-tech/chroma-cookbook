@@ -162,6 +162,33 @@ Running the server:
     }
     ```
 
+=== "Java"
+
+    The below example shows auth with just headers. A more robust authentication mechanism is being implemented.
+
+    ```java
+    package tech.amikos;
+
+    import tech.amikos.chromadb.*;
+    import tech.amikos.chromadb.Collection;
+
+    import java.util.*;
+
+    public class Main {
+        public static void main(String[] args) {
+            try {
+                Client client = new Client(System.getenv("http://localhost:8000"));
+                client.setDefaultHeaders(new HashMap<>() {{
+                    put("Authorization", "Basic " + Base64.getEncoder().encodeToString("admin:admin".getBytes()));
+                }});
+                // your code here
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+    ```
+
 ??? tip "Testing with cURL"
 
     ```bash
@@ -308,6 +335,33 @@ Running the server:
         _, err = client.ListCollections(context.TODO())
         if err != nil {
             log.Fatalf("Error calling ListCollections: %s \n", err)
+        }
+    }
+    ```
+
+=== "Java"
+
+    The example below shows authorization with just headers. A more robust auth mechanism is under implementation.
+
+    ```java
+    package tech.amikos;
+
+    import tech.amikos.chromadb.*;
+    import tech.amikos.chromadb.Collection;
+
+    import java.util.*;
+
+    public class Main {
+        public static void main(String[] args) {
+            try {
+                Client client = new Client(System.getenv("http://localhost:8000"));
+                client.setDefaultHeaders(new HashMap<>() {{
+                    put("Authorization", "Bearer chr0ma-t0k3n");
+                }});
+                // your code here
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
     }
     ```
