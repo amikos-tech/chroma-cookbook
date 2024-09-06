@@ -135,6 +135,33 @@ Running the server:
     });
     ```
 
+=== "Go"
+
+    ```go
+    package main
+
+    import (
+        "context"
+        "log"
+        chroma "github.com/amikos-tech/chroma-go"
+      "github.com/amikos-tech/chroma-go/types"
+    )
+
+    func main() {
+        client, err := chroma.NewClient(
+            chroma.WithBasePath("http://localhost:8000"),
+            chroma.WithAuth(types.NewBasicAuthCredentialsProvider("admin", "admin")),
+        )
+        if err != nil {
+            log.Fatalf("Error creating client: %s \n", err)
+        }
+        _, err = client.ListCollections(context.TODO())
+        if err != nil {
+            log.Fatalf("Error calling ListCollections: %s \n", err)
+        }
+    }
+    ```
+
 ??? tip "Testing with cURL"
 
     ```bash
@@ -256,6 +283,33 @@ Running the server:
             credentials: "chr0ma-t0k3n",
         }
     });
+    ```
+
+=== "Go"
+
+    ```go
+    package main
+
+    import (
+        "context"
+        "log"
+        chroma "github.com/amikos-tech/chroma-go"
+        "github.com/amikos-tech/chroma-go/types"
+    )
+
+    func main() {
+        client, err := chroma.NewClient(
+            chroma.WithBasePath("http://localhost:8000"), 
+            chroma.WithAuth(types.NewTokenAuthCredentialsProvider("chr0ma-t0k3n", types.AuthorizationTokenHeader)),
+        )
+        if err != nil {
+            log.Fatalf("Error creating client: %s \n", err)
+        }
+        _, err = client.ListCollections(context.TODO())
+        if err != nil {
+            log.Fatalf("Error calling ListCollections: %s \n", err)
+        }
+    }
     ```
 
 ??? tip "Testing with cURL"
