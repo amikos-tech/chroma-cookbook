@@ -2,10 +2,14 @@
 
 Chroma offers built in authentication and authorization mechanisms to secure your Chroma instance.
 
-!!! warn "Auth Disabled by Default"
+!!! warning "Auth Disabled by Default"
 
     By default, Chroma does not require authentication. You must enable it manually. If you are deploying Chroma in a public-facing 
     environment, it is **highly** recommended to enable authentication.
+
+!!! warning "Auth needs the company of SSL/TLS"
+
+    Authentication without encryption is insecure. If you are deploying Chroma in a public-facing environment, it is **highly** recommended that you add (SSL/TLS)[ssl-proxy.md].
 
 ## Authentication
 
@@ -101,19 +105,35 @@ Running the server:
 
 **Client**
 
-```python
-import chromadb
-from chromadb.config import Settings
+=== "Python"
 
-client = chromadb.HttpClient(
-  settings=Settings(
-      chroma_client_auth_provider="chromadb.auth.basic_authn.BasicAuthClientProvider",
-      chroma_client_auth_credentials="admin:admin")
-)
+    ```python
+    import chromadb
+    from chromadb.config import Settings
 
-# if everything is correctly configured the below should list all collections
-client.list_collections()
-```
+    client = chromadb.HttpClient(
+      settings=Settings(
+          chroma_client_auth_provider="chromadb.auth.basic_authn.BasicAuthClientProvider",
+          chroma_client_auth_credentials="admin:admin")
+    )
+
+    # if everything is correctly configured the below should list all collections
+    client.list_collections()
+    ```
+
+=== "JS"
+
+    ```javascript
+    // const {ChromaClient} = require("chromadb"); // CommonJS
+    import { ChromaClient } from "chromadb"; // ES Modules
+    const client = new ChromaClient({
+        url: "http://localhost:8000",
+        auth: {
+            provider: "basic",
+            credentials: "admin:admin",
+        }
+    });
+    ```
 
 ??? tip "Testing with cURL"
 
@@ -206,19 +226,37 @@ Running the server:
 
 **Client**
 
-```python
-import chromadb
-from chromadb.config import Settings
+=== "Python"
 
-client = chromadb.HttpClient(
-  settings=Settings(
-      chroma_client_auth_provider="chromadb.auth.token_authn.TokenAuthClientProvider",
-      chroma_client_auth_credentials="chr0ma-t0k3n")
-)
+    ```python
+    import chromadb
+    from chromadb.config import Settings
 
-# if everything is correctly configured the below should list all collections
-client.list_collections()
-```
+    client = chromadb.HttpClient(
+      settings=Settings(
+          chroma_client_auth_provider="chromadb.auth.token_authn.TokenAuthClientProvider",
+          chroma_client_auth_credentials="chr0ma-t0k3n",
+          chroma_client_auth_token_transport_header="Authorization"
+      )
+    )
+
+    # if everything is correctly configured the below should list all collections
+    client.list_collections()
+    ```
+
+=== "JS"
+
+    ```javascript
+    // const {ChromaClient} = require("chromadb"); // CommonJS
+    import { ChromaClient } from "chromadb"; // ES Modules
+    const client = new ChromaClient({
+        url: "http://localhost:8000",
+        auth: {
+            provider: "token",
+            credentials: "chr0ma-t0k3n",
+        }
+    });
+    ```
 
 ??? tip "Testing with cURL"
 
