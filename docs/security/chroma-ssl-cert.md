@@ -16,6 +16,11 @@ Chroma uses uvicorn as an ASGI server, which can be configured to use SSL/TLS ce
 
 ### Creating a self-signed certificate
 
+!!! warning "Important"
+
+   The `SAN` (Subject Alternative Name) is required for the certificate to work as modern security standards require
+   the certificate to match the domain name.
+
 You will also need to create a `openssl.cnf` file in the same directory with the following content:
 
     ```ini
