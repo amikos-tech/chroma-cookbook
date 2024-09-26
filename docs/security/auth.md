@@ -27,13 +27,29 @@ For each authentication method there are configurations in both client and serve
 Generate a password file with bcrypt hashed password:
 
 ```bash
-docker run --rm --entrypoint echo httpd:2 "change_this_password" | htpasswd -iBc server.htpasswd user1
+docker run --rm --entrypoint htpasswd httpd:2 -Bbn admin password123 >> server.htpasswd
+```
+
+Verify the password file:
+
+```bash
+docker run --rm -v ./server.htpasswd:/server.htpasswd --entrypoint htpasswd httpd:2 -vb /server.htpasswd admin password123
 ```
 
 ??? tip "Multiple users"
     
     Chroma supports multiple users in the htpasswd file. You can add multiple users by running the command multiple 
     times WITHOUT `-c` flag.
+
+??? tip "Frequently encountered Chroma errors"
+
+    If you see the following error:
+
+    ```bash
+    UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+    ```
+
+    It is likely that you have not used the `-B` (bcrypt) flag when creating the password file.
 
 Environment variables:
 
