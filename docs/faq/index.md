@@ -88,6 +88,19 @@ Here are some pros/cons to help you decide whether to store your documents in Ch
   metadata for queries and another for the FTS5 index.
 - Queries performance hit
 
+### "Dude, where's my data?"
+
+If you are new to Chroma, you might be asking yourself: "Where is my data been stored?". As, per usual, the answer is: "It depends".
+
+Generally Chroma uses `PERSIST_DIRECTORY` to store the data, but when running in CLI mode, this is overridden by the CLI itself.
+
+- Running in CLI mode (`--path` is not specified) data is stored in the `./chroma_data` directory.
+- Running in Jupyter notebook, Colab or directly using `PersistentClient` (unless `path` is specified or env var `PERSIST_DIRECTORY` is set), data is stored in the `./chroma` directory.
+- Running with docker compose (from source repo), the data is stored in docker volume named `chroma-data` (unless an explicit volume binding is specified)
+- Running with `docker run` (no volume binding with `-v`) the data is stored in the container and is lost ☠️ when the container is removed.
+
+In all other cases where env var, parameter or binding is specified, the data is stored in your specified directory.
+
 ## Commonly Encountered Problems
 
 ### Collection Dimensionality Mismatch
