@@ -11,6 +11,10 @@
 To create your a local persistent client use the `PersistentClient` class. This client will store all data locally in a
 directory on your machine at the path you specify.
 
+!!! tip "Authentication"
+
+    For authentication details see the [Chroma-native Authentication](../security/auth.md) section.
+
 ```python
 import chromadb
 from chromadb.config import DEFAULT_TENANT, DEFAULT_DATABASE, Settings
@@ -57,7 +61,11 @@ The persistent client is useful for:
 ## HTTP Client
 
 Chroma also provides HTTP Client, suitable for use in a client-server mode. This client can be used to connect to a
-remote ChromaDB server. The HTTP client can operate in synchronous or asynchronous mode (see examples below)
+remote ChromaDB server. The HTTP client can operate in synchronous or asynchronous mode (see examples below).
+
+!!! tip "Authentication"
+
+    For authentication details see the [Chroma-native Authentication](../security/auth.md) section.
 
 === "Python Sync"
 
