@@ -96,12 +96,15 @@ services:
     networks:
       - net
     depends_on:
-      - cert-gen
+      cert-gen:
+        condition: service_completed_successfully
+      chromadb:
+        condition: service_healthy
     entrypoint: |
       sh -c "/usr/local/bin/wait-for-certs.sh && \
       /opt/bitnami/envoy/bin/envoy -c /opt/bitnami/envoy/conf/envoy.yaml"
   chromadb:
-    image: chromadb/chroma:0.5.5
+    image: chromadb/chroma:0.5.11
     volumes:
       - ./chromadb:/chroma/chroma
     environment:
@@ -109,8 +112,12 @@ services:
       - ANONYMIZED_TELEMETRY=${ANONYMIZED_TELEMETRY:-TRUE}
     networks:
       - net
-    depends_on:
-      - envoy
+    healthcheck:
+      # Adjust below to match your container port
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/api/v1/heartbeat" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 ```
 
 ## Nginx
@@ -159,7 +166,7 @@ services:
     environment:
       - CHROMA_DOMAIN=${CHROMA_DOMAIN:-localhost}
   chromadb:
-    image: chromadb/chroma:0.5.5
+    image: chromadb/chroma:0.5.11
     volumes:
       - ./chromadb:/chroma/chroma
     environment:
@@ -167,6 +174,12 @@ services:
       - ANONYMIZED_TELEMETRY=${ANONYMIZED_TELEMETRY:-TRUE}
     ports:
       - "8000:8000"
+    healthcheck:
+      # Adjust below to match your container port
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/api/v1/heartbeat" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     networks:
       - net
   nginx:
@@ -181,5 +194,8 @@ services:
       - ./certs:/etc/nginx/certs
     networks:
       - net
+    depends_on:
+      chromadb:
+        condition: service_healthy
 ```
 

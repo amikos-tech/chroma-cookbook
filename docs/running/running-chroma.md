@@ -40,7 +40,7 @@ Prerequisites:
 - Docker - [Overview of Docker Desktop | Docker Docs](https://docs.docker.com/desktop/)
 
 ```shell
-docker run -d --rm --name chromadb -v ./chroma:/chroma/chroma -e IS_PERSISTENT=TRUE -e ANONYMIZED_TELEMETRY=TRUE chromadb/chroma:latest
+docker run -d --rm --name chromadb -v ./chroma:/chroma/chroma -e IS_PERSISTENT=TRUE -e ANONYMIZED_TELEMETRY=TRUE chromadb/chroma:0.5.11
 ```
 
 Options:
@@ -52,8 +52,7 @@ Options:
   default it is `/chroma/chroma`
 - `-e ANONYMIZED_TELEMETRY=TRUE` allows you to turn on (`TRUE`) or off (`FALSE`) anonymous product telemetry which helps
   the Chroma team in making informed decisions about Chroma OSS and commercial direction.
-- `chromadb/chroma:latest` indicates the latest Chroma version but can be replaced with any valid tag if a prior version
-  is needed (e.g. `chroma:0.4.24`)
+- `chromadb/chroma:5.11` indicates the Chroma release version.
 
 ### Docker Compose (Cloned Repo)
 
@@ -73,7 +72,7 @@ docker compose up -d --build
 If you want to run a specific version of Chroma you can checkout the version tag you need:
 
 ```shell
-git checkout release/0.4.24
+git checkout release/0.5.11
 ```
 
 ### Docker Compose (Without Cloning the Repo)
@@ -94,7 +93,7 @@ networks:
     driver: bridge
 services:
   chromadb:
-    image: chromadb/chroma:latest
+    image: chromadb/chroma:0.5.11
     volumes:
       - ./chromadb:/chroma/chroma
     environment:
@@ -107,8 +106,12 @@ services:
       - net
 ```
 
-The above will create a container with the latest Chroma (`chromadb/chroma:latest`), will expose it to port `8000` on
+The above will create a container with the latest Chroma (`chromadb/chroma:0.5.11`), will expose it to port `8000` on
 the local machine and will persist data in `./chromadb` relative path from where the `docker-compose.yaml` has been ran.
+
+!!! tip "Versioning"
+
+    When running Chroma with docker compose try to pin the version to a specific release. This will ensure intentional upgrades and avoid potential issues (usually with clients).
 
 We have also created a small gist with the above file for convenience:
 
@@ -145,7 +148,7 @@ Get and install the chart:
 ```bash
 helm repo add chroma https://amikos-tech.github.io/chromadb-chart/
 helm repo update
-helm install chroma chroma/chromadb --set chromadb.apiVersion="0.4.24"
+helm install chroma chroma/chromadb --set chromadb.apiVersion="0.5.11"
 ```
 
 By default the chart will enable authentication in Chroma. To get the token run the following:

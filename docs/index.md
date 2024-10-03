@@ -2,12 +2,8 @@
 
 This is a collection of small guides and recipes to help you get started with ChromaDB.
 
-Latest ChromaDB version: [0.5.5](https://github.com/chroma-core/chroma/releases/tag/0.5.5)
+Latest ChromaDB version: [0.5.11](https://github.com/chroma-core/chroma/releases/tag/0.5.11)
 
-**Latest Releases highlights:**
-
-- WAL pruning
-- Adds async client support
 
 ## New and Noteworthy
 
