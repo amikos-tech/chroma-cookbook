@@ -10,9 +10,25 @@ with Chroma. These information below is based on interactions with the Chroma co
 
 ## Frequently Asked Questions
 
+### Distances and Similarity
+
+Chroma uses distance metrics to measure how dissimilar a result is from a query. A distance of 0 indicates that the two items are identical, while larger distances indicate greater dissimilarity. This approach starts at 0 and increases upward, aligning with the intuitive notion of distance.
+
+In contrast, similarity metrics measure how similar two items are, often on a scale where higher values represent greater similarity. For example:
+
+	•	Cosine Similarity ranges from -1 to 1, where:
+	•	1 indicates identical orientation (maximum similarity),
+	•	0 indicates orthogonality (no similarity),
+	•	-1 indicates opposite orientation (maximum dissimilarity).
+	•	Dot Product can range from negative to positive infinity, depending on the vectors’ magnitudes and directions. When vectors are normalized and non-negative, the dot product ranges from 0 to 1.
+
+#### Why Does Chroma Use Distance Metrics?
+
+Chroma uses distance metrics because they provide a straightforward way to quantify dissimilarity between vectors. Consistency is another key aspect - irrespecitve of the distance metric used, distance results follow the same conceptual framework. Finally, distance is is an intuitive metric which makes Chroma more accessible to a wider audience.
+
 ### What does Chroma use to index embedding vectors?
 
-Chroma uses its own [fork]() of HNSW lib for indexing and searching embeddings. In addition to HNSW, Chroma also uses a
+Chroma uses its own [fork](https://github.com/chroma-core/hnswlib) of HNSW lib for indexing and searching embeddings. In addition to HNSW, Chroma also uses a
 Brute Force index, which acts as a buffer (prior to updating the HNSW graph) and performs exhaustive search using the
 same distance metric as the HNSW index.
 
