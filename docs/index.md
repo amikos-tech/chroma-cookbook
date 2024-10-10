@@ -7,6 +7,7 @@ Latest ChromaDB version: [0.5.11](https://github.com/chroma-core/chroma/releases
 
 ## New and Noteworthy
 
+- ⁉️[FAQs](faq/index.md) - Updated FAQ sections - 📅`10-Oct-2024`
 - 🔥 [SSL-Terminating Proxies](security/ssl-proxies.md) - Learn how to secure Chroma server with `Envoy` or `Nginx` proxies - 📅`31-Jul-2024`
 - 🗑️ [WAL Pruning](core/advanced/wal-pruning.md#chroma-cli) - Learn how to prune (cleanup) your Chroma database (WAL) with Chroma's built-in CLI `vacuum` command - 📅`30-Jul-2024`
 - ✨ [Multi-Category Filtering](strategies/multi-category-filters.md) - Learn how to filter data based on multiple categories - 📅`15-Jul-2024`
@@ -16,7 +17,6 @@ Latest ChromaDB version: [0.5.11](https://github.com/chroma-core/chroma/releases
 - 🔧 [Installation](core/install.md) - Learn about the different ways to install Chroma - 📅`08-Jun-2024`
 - 🧠 [Memory Management](strategies/memory-management.md) - Learn how to manage memory in ChromaDB - 📅`30-May-2024`
 - 📐 [Resource Requirements](core/resources.md) - Recently updated with temporary storage requirements - 📅`28-May-2024`
-- ⁉️[FAQs](faq/index.md) - Facing an issue, check out our FAQ section for answers. - 📅`28-May-2024`
 
 ## Getting Started
 
