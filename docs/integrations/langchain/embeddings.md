@@ -42,10 +42,10 @@ found [here](https://github.com/chroma-core/chroma/blob/main/chromadb/utils/embe
     Find out more about Langchain's OpenAI embeddings [here](https://python.langchain.com/docs/integrations/text_embedding/openai/).
 
     ```python
+    # pip install chromadb langchain langchain-openai langchain-chroma
     import chromadb
     from chromadb.utils.embedding_functions import create_langchain_embedding
     from langchain_openai import OpenAIEmbeddings
-    from google.colab import userdata
 
     langchain_embeddings = OpenAIEmbeddings(
         model="text-embedding-3-large",
