@@ -18,18 +18,45 @@ As of version `0.5.x` Chroma offers a built-in two-way adapter to convert Langch
 embeddings that can be used by both LC and Chroma. Implementation can be
 found [here](https://github.com/chroma-core/chroma/blob/main/chromadb/utils/embedding_functions/chroma_langchain_embedding_function.py).
 
-```python
-# pip install chromadb langchain langchain-huggingface langchain-chroma
-import chromadb
-from chromadb.utils.embedding_functions import create_langchain_embedding
-from langchain_huggingface import HuggingFaceEmbeddings
+=== "HuggingFace"
 
-langchain_embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+    Find out more about Langchain's HuggingFace embeddings [here](https://python.langchain.com/docs/integrations/platforms/huggingface/#embedding-models).
 
-ef = create_langchain_embedding(langchain_embeddings)
-client = chromadb.PersistentClient(path="/test_folder_1")
-collection = client.get_or_create_collection(name="name_1", embedding_function=ef)
-```
+    ```python
+    # pip install chromadb langchain langchain-huggingface langchain-chroma
+    import chromadb
+    from chromadb.utils.embedding_functions import create_langchain_embedding
+    from langchain_huggingface import HuggingFaceEmbeddings
+
+    langchain_embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+
+    ef = create_langchain_embedding(langchain_embeddings)
+    client = chromadb.PersistentClient(path="./chroma-data")
+    collection = client.get_or_create_collection(name="my_collection", embedding_function=ef)
+    
+    collection.add(ids=["1"],documents=["test document goes here"])
+    ```
+
+=== "OpenAI"
+
+    Find out more about Langchain's OpenAI embeddings [here](https://python.langchain.com/docs/integrations/text_embedding/openai/).
+
+    ```python
+    import chromadb
+    from chromadb.utils.embedding_functions import create_langchain_embedding
+    from langchain_openai import OpenAIEmbeddings
+    from google.colab import userdata
+
+    langchain_embeddings = OpenAIEmbeddings(
+        model="text-embedding-3-large",
+        api_key=os.environ["OPENAI_API_KEY"],
+    )
+    ef = create_langchain_embedding(langchain_embeddings)
+    client = chromadb.PersistentClient(path="/chroma-data")
+    collection = client.get_or_create_collection(name="my_collection", embedding_function=ef)
+
+    collection.add(ids=["1"],documents=["test document goes here"])
+    ```
 
 ### Custom Adapter
 
