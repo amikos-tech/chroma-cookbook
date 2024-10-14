@@ -54,8 +54,8 @@ as it allows you to change the document without changing the ID.
 
 !!! tip "Predictable Ordering"
 
-    UUIDs especially v4 are not lexicographically sortable. In its current version (0.4.x-0.5.0) Chroma orders responses 
-    of `get()` by the ID of the documents. Therefore, if you need predictable ordering, you may want to consider a different ID strategy.
+    UUIDs especially v4 are not lexicographically sortable. In its current version (0.4.x-0.5.10) Chroma orders responses 
+    of `get()` by the ID of the documents. Therefore, if you need predictable ordering, you may want to consider a different ID strategy. In version `0.5.11` ordering is done on [internal IDs](https://docs.trychroma.com/deployment/migration#v0.5.11)
 
 !!! tip "Storage and Performance Overhead"
 
