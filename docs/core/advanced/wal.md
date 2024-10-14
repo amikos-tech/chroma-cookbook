@@ -6,7 +6,7 @@ request (aka transaction) is safely stored before acknowledging back to the user
 after writing to the WAL, the data is also written to the index. This enables Chroma to serve as real-time search
 engine, where the data is available for querying immediately after it is written to the WAL.
 
-Below is a diagram that illustrates the WAL in ChromaDB (ca. v0.4.22):
+Below is a diagram that illustrates the WAL in ChromaDB (ca. v0.5.1322):
 
 ![WAL](../../assets/images/WAL.png){: style="width:100%"}
 
