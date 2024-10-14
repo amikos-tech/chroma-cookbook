@@ -111,7 +111,7 @@ You can run Chroma with the SSL/TLS certificate generate above or any other cert
     
     services:
       server:
-        image: chromadb/chroma:0.5.11
+        image: chromadb/chroma:0.5.13
         volumes:
           # Be aware that indexed data are located in "/chroma/chroma/"
           # Default configuration for persist_directory in chromadb/config.py

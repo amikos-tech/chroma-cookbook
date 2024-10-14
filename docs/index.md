@@ -2,7 +2,11 @@
 
 This is a collection of small guides and recipes to help you get started with ChromaDB.
 
-Latest ChromaDB version: [0.5.11](https://github.com/chroma-core/chroma/releases/tag/0.5.11)
+!!! warning "Critical Fixes"
+
+  If you are using Chroma `>=0.5.7` and `<=0.5.13` please upgrade to `0.5.13` as there is a critical bug that can cause data loss. Read more on the [GH Issue](https://github.com/chroma-core/chroma/issues/2922).
+
+Latest ChromaDB version: [0.5.13](https://github.com/chroma-core/chroma/releases/tag/0.5.13)
 
 
 ## New and Noteworthy
