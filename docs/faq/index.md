@@ -318,3 +318,63 @@ is not included and is instead aliased to `None`.
 To resolve this issue you must always provide an embedding function when you call `get_collection`
 or `get_or_create_collection` methods to provide the Http client with the necessary information to compute embeddings.
 
+### Adding documents is slow
+
+**Symptoms:**
+
+Adding documents to Chroma appears slow.
+
+**Context:**
+
+You've tried adding documents to a collection using the `add()` or `upsert()` methods.
+
+**Cause:**
+
+There are several reasons why the addition may be slow:
+
+- Very large batches
+- Slow embeddings
+- Slow network
+
+Let's break down each of the factors.
+
+**Very large batches**
+
+If you are trying to add 1000s or even 10,000s of documents at once and depending on how much data is already in your collection Chroma (specifically the HNSW graph updates) can become a bottleneck.
+
+To debug if this is the case you can reduce the size of the batch and see if the operation is faster. You can also check how many records are in the collection with `count()` method.
+
+**Slow embeddings**
+
+This is the most common reason for slow addition. Some embedding functions are slower than others. To debug this you can try the following example by adjusting the embeding function to your own. What the code tests is how much it takes to compute the embedings and then to add them to the collection in separate steps such that each can be measured independenty.
+
+```python
+from chromadb.utils import embedding_functions
+import chromadb
+import uuid
+
+list_of_sentences = ["Hello world!", "How are you?"] # this should be your list of documents to add
+
+# change the below EF definition to match your embedding function
+default_ef = embedding_functions.DefaultEmbeddingFunction() 
+
+start_time = time.perf_counter()
+embeddings=default_ef(list_of_sentences)
+end_time = time.perf_counter()
+print(f"Embedding time: {end_time - start_time}")
+
+client = chromadb.PersistentClient(path="my_chroma_data")
+collection = client.get_or_create_collection("my_collection")
+
+start_time = time.perf_counter()
+# this will add your documents and the generated embeddings without Chroma doing the embedding for you internally
+collection.add(ids=[f"{uuid.uuid4()}" for _ in range(len(list_of_sentences))],documents=list_of_sentences, embeddings=embeddings)
+end_time = time.perf_counter()
+print(f"Chroma add time: {end_time - start_time}")
+
+```
+
+**Slow network**
+
+If you are adding documents to a remote Chroma the network speed can become a bottleneck. To debug this you can with a local `PersistentClient` and see if the operation is faster.
+
