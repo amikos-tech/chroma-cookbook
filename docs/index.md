@@ -6,11 +6,12 @@ This is a collection of small guides and recipes to help you get started with Ch
 
     If you are using Chroma `>=0.5.7` and `<=0.5.13` please upgrade to `0.5.13` as there is a critical bug that can cause data loss. Read more on the [GH Issue #2922](https://github.com/chroma-core/chroma/issues/2922).
 
-Latest ChromaDB version: [0.5.13](https://github.com/chroma-core/chroma/releases/tag/0.5.13)
+Latest ChromaDB version: [0.5.15](https://github.com/chroma-core/chroma/releases/tag/0.5.15)
 
 
 ## New and Noteworthy
 
+- 🏎️ [Performance Tips](running/performance-tips.md) - Learn how to optimize the performance of yourChroma - 📅`16-Oct-2024`
 - ⁉️[FAQs](faq/index.md) - Updated FAQ sections - 📅`15-Oct-2024`
 - 🔥 [SSL-Terminating Proxies](security/ssl-proxies.md) - Learn how to secure Chroma server with `Envoy` or `Nginx` proxies - 📅`31-Jul-2024`
 - 🗑️ [WAL Pruning](core/advanced/wal-pruning.md#chroma-cli) - Learn how to prune (cleanup) your Chroma database (WAL) with Chroma's built-in CLI `vacuum` command - 📅`30-Jul-2024`
