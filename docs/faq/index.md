@@ -16,11 +16,11 @@ Chroma uses distance metrics to measure how dissimilar a result is from a query.
 
 In contrast, similarity metrics measure how similar two items are, often on a scale where higher values represent greater similarity. For example:
 
-	•	Cosine Similarity ranges from -1 to 1, where:
-	•	1 indicates identical orientation (maximum similarity),
-	•	0 indicates orthogonality (no similarity),
-	•	-1 indicates opposite orientation (maximum dissimilarity).
-	•	Dot Product can range from negative to positive infinity, depending on the vectors’ magnitudes and directions. When vectors are normalized and non-negative, the dot product ranges from 0 to 1.
+- Cosine Similarity ranges from -1 to 1, where:
+  - 1 indicates identical orientation (maximum similarity),
+  - 0 indicates orthogonality (no similarity),
+  - -1 indicates opposite orientation (maximum dissimilarity).
+- Dot Product can range from negative to positive infinity, depending on the vectors' magnitudes and directions. When vectors are normalized and non-negative, the dot product ranges from 0 to 1.
 
 #### Why Does Chroma Use Distance Metrics?
 
