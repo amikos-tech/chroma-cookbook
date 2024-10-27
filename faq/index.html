@@ -2282,10 +2282,12 @@ or <a href="https://github.com/chroma-core/chroma/issues">GitHub Issues</a></p>
 <p>Chroma uses distance metrics to measure how dissimilar a result is from a query. A distance of 0 indicates that the two items are identical, while larger distances indicate greater dissimilarity. This approach starts at 0 and increases upward, aligning with the intuitive notion of distance.</p>
 <p>In contrast, similarity metrics measure how similar two items are, often on a scale where higher values represent greater similarity. For example:</p>
 <ul>
-<li>Cosine Similarity ranges from -1 to 1, where:</li>
+<li>Cosine Similarity ranges from -1 to 1, where:<ul>
 <li>1 indicates identical orientation (maximum similarity),</li>
 <li>0 indicates orthogonality (no similarity),</li>
 <li>-1 indicates opposite orientation (maximum dissimilarity).</li>
+</ul>
+</li>
 <li>Dot Product can range from negative to positive infinity, depending on the vectors' magnitudes and directions. When vectors are normalized and non-negative, the dot product ranges from 0 to 1.</li>
 </ul>
 <h4 id="why-does-chroma-use-distance-metrics">Why Does Chroma Use Distance Metrics?<a class="headerlink" href="#why-does-chroma-use-distance-metrics" title="Permanent link">&para;</a></h4>
