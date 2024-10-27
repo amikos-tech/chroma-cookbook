@@ -2281,12 +2281,13 @@ or <a href="https://github.com/chroma-core/chroma/issues">GitHub Issues</a></p>
 <h3 id="distances-and-similarity">Distances and Similarity<a class="headerlink" href="#distances-and-similarity" title="Permanent link">&para;</a></h3>
 <p>Chroma uses distance metrics to measure how dissimilar a result is from a query. A distance of 0 indicates that the two items are identical, while larger distances indicate greater dissimilarity. This approach starts at 0 and increases upward, aligning with the intuitive notion of distance.</p>
 <p>In contrast, similarity metrics measure how similar two items are, often on a scale where higher values represent greater similarity. For example:</p>
-<div class="language-text highlight"><pre><span></span><code>•   Cosine Similarity ranges from -1 to 1, where:
-•   1 indicates identical orientation (maximum similarity),
-•   0 indicates orthogonality (no similarity),
-•   -1 indicates opposite orientation (maximum dissimilarity).
-•   Dot Product can range from negative to positive infinity, depending on the vectors’ magnitudes and directions. When vectors are normalized and non-negative, the dot product ranges from 0 to 1.
-</code></pre></div>
+<ul>
+<li>Cosine Similarity ranges from -1 to 1, where:</li>
+<li>1 indicates identical orientation (maximum similarity),</li>
+<li>0 indicates orthogonality (no similarity),</li>
+<li>-1 indicates opposite orientation (maximum dissimilarity).</li>
+<li>Dot Product can range from negative to positive infinity, depending on the vectors' magnitudes and directions. When vectors are normalized and non-negative, the dot product ranges from 0 to 1.</li>
+</ul>
 <h4 id="why-does-chroma-use-distance-metrics">Why Does Chroma Use Distance Metrics?<a class="headerlink" href="#why-does-chroma-use-distance-metrics" title="Permanent link">&para;</a></h4>
 <p>Chroma uses distance metrics because they provide a straightforward way to quantify dissimilarity between vectors. Consistency is another key aspect - irrespecitve of the distance metric used, distance results follow the same conceptual framework. Finally, distance is is an intuitive metric which makes Chroma more accessible to a wider audience.</p>
 <h3 id="what-does-chroma-use-to-index-embedding-vectors">What does Chroma use to index embedding vectors?<a class="headerlink" href="#what-does-chroma-use-to-index-embedding-vectors" title="Permanent link">&para;</a></h3>
@@ -2561,7 +2562,7 @@ or <code>get_or_create_collection</code> methods to provide the Http client with
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 15, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 27, 2024</span>
   </span>
 
     
