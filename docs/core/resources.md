@@ -30,9 +30,7 @@ is at least 2-4x the RAM required for the vector HNSW index.
 
 !!! note "WAL Cleanup"
 
-    Chroma does not currently clean the WAL so your sqlite3 metadata file will grow over time. In the meantime feel free
-    to use available tooling to periodically clean your WAL -
-    see [chromadb-ops](https://github.com/amikos-tech/chromadb-ops) for more information.
+    Since version `0.5.6` Chroma automatically cleans up the WAL file.
 
 ### Temporary Disk Space
 
