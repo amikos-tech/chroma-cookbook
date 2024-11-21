@@ -165,6 +165,12 @@ HNSW for your use case. All HNSW parameters are configured as metadata for a col
 - Possible values: `l2`, `cosine`, `ip`
 - Parameter **_cannot_** be changed after index creation.
 
+**Example**:
+
+```python
+res = client.create_collection("my_collection", metadata={ "hnsw:space": "cosine"})
+```
+
 ### `hnsw:construction_ef`
 
 **Description**: Controls the number of neighbours in the HNSW graph to explore when adding new vectors. The more
@@ -177,6 +183,12 @@ explores the better and more exhaustive the results will be. Increasing the valu
 
 - Values must be positive integers.
 - Parameter **_cannot_** be changed after index creation.
+
+**Example**:
+
+```python
+res = client.create_collection("my_collection", metadata={ "hnsw:construction_ef": 100})
+```
 
 ### `hnsw:M`
 
@@ -191,6 +203,12 @@ consumption.
 - Values must be positive integers.
 - Parameter **_cannot_** be changed after index creation.
 
+**Example**:
+
+```python
+res = client.create_collection("my_collection", metadata={ "hnsw:M": 16})
+```
+
 ### `hnsw:search_ef`
 
 **Description**: Controls the number of neighbours in the HNSW graph to explore when searching. Increasing this requires
@@ -203,6 +221,12 @@ more memory for the HNSW algo to explore the nodes during knn search.
 - Values must be positive integers.
 - Parameter **_can_** be changed after index creation.
 
+**Example**:
+
+```python
+res = client.create_collection("my_collection", metadata={ "hnsw:search_ef": 10})
+```
+
 ### `hnsw:num_threads`
 
 **Description**: Controls how many threads HNSW algo use.
@@ -213,6 +237,12 @@ more memory for the HNSW algo to explore the nodes during knn search.
 
 - Values must be positive integers.
 - Parameter **_can_** be changed after index creation.
+
+**Example**:
+
+```python
+res = client.create_collection("my_collection", metadata={ "hnsw:num_threads": 4})
+```
 
 ### `hnsw:resize_factor`
 
@@ -226,6 +256,12 @@ current graph capacity is reached.
 - Values must be positive floating point numbers.
 - Parameter **_can_** be changed after index creation.
 
+**Example**:
+
+```python
+res = client.create_collection("my_collection", metadata={ "hnsw:resize_factor": 1.2})
+```
+
 ### `hnsw:batch_size`
 
 **Description**: Controls the size of the Bruteforce (in-memory) index. Once this threshold is crossed vectors from BF
@@ -238,6 +274,12 @@ gets transferred to HNSW index. This value can be changed after index creation. 
 
 - Values must be positive integers.
 - Parameter **_can_** be changed after index creation.
+
+**Example**:
+
+```python
+res = client.create_collection("my_collection", metadata={ "hnsw:batch_size": 100})
+```
 
 ### `hnsw:sync_threshold`
 
@@ -272,19 +314,6 @@ res = client.create_collection("my_collection", metadata={
 
 Updating HNSW parameters after creation
 
-```python
-import chromadb
+!!! warning "Updating HNSW parameters"
 
-client = chromadb.HttpClient()  # Adjust as per your client
-res = client.get_or_create_collection("my_collection", metadata={
-    "hnsw:search_ef": 200,
-    "hnsw:num_threads": 8,
-    "hnsw:resize_factor": 2,
-    "hnsw:batch_size": 10000,
-    "hnsw:sync_threshold": 1000000,
-})
-```
-
-!!! tip "get_or_create_collection overrides"
-
-    When using `get_or_create_collection()` with `metadata` parameter, existing metadata will be overridden with the new values.
+    Updating HNSW parameters after index creation is not supported as of version `0.5.5`.

@@ -34,7 +34,7 @@ To enable the LRU cache the following two settings parameters or environment var
 
     The below code snippets assume you are working with a `PersistentClient` or an `EphemeralClient` instance.
 
-At the time of writing (Chroma v0.5.1322), Chroma does not allow you to manually unloading of collections from memory.
+At the time of writing (Chroma v0.5.20), Chroma does not allow you to manually unloading of collections from memory.
 
 Here we provide a simple utility function to help users unload collections from memory.
 
