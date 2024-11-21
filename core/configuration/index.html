@@ -2576,6 +2576,26 @@
 <li><code>FALSE</code></li>
 </ul>
 <p>Default: <code>FALSE</code></p>
+<p><strong>How to use</strong>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CLI</label><label for="__tabbed_1_2">Python</label><label for="__tabbed_1_3">Docker</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">IS_PERSISTENT</span><span class="o">=</span>TRUE
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>chroma<span class="w"> </span>run<span class="w"> </span>--path<span class="w"> </span>./chroma
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">chromadb.config</span> <span class="kn">import</span> <span class="n">Settings</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">settings</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">(</span><span class="n">is_persistent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># run the server with the settings</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--rm<span class="w"> </span>--name<span class="w"> </span>chromadb<span class="w"> </span>-v<span class="w"> </span>./chroma:/chroma/chroma<span class="w"> </span>-e<span class="w"> </span><span class="nv">IS_PERSISTENT</span><span class="o">=</span>TRUE<span class="w"> </span>chromadb/chroma:0.5.20
+</span></code></pre></div>
+</div>
+</div>
+</div>
 <h4 id="persist_directory"><code>PERSIST_DIRECTORY</code><a class="headerlink" href="#persist_directory" title="Permanent link">&para;</a></h4>
 <p>Defines the directory where Chroma should persist data. This can be relative or absolute path. The directory must be
 writeable to Chroma process.</p>
@@ -2591,12 +2611,50 @@ writeable to Chroma process.</p>
 <h4 id="chroma_memory_limit_bytes"><code>CHROMA_MEMORY_LIMIT_BYTES</code><a class="headerlink" href="#chroma_memory_limit_bytes" title="Permanent link">&para;</a></h4>
 <h4 id="chroma_segment_cache_policy"><code>CHROMA_SEGMENT_CACHE_POLICY</code><a class="headerlink" href="#chroma_segment_cache_policy" title="Permanent link">&para;</a></h4>
 <h3 id="telemetry-and-observability">Telemetry and Observability<a class="headerlink" href="#telemetry-and-observability" title="Permanent link">&para;</a></h3>
+<p>In the current Chroma version (as of time or writing <code>0.5.20</code>) the only type of telemetry supported are traces.</p>
+<p>The following configuration options allow you to configure the tracing service that accepts OpenTelemetry traces via the OLTP GRPC endpoint.</p>
+<p>In addition to traces Chroma also performs anonymized product telemetry. The product telemetry is enabled by default.</p>
 <h4 id="chroma_otel_collection_endpoint"><code>CHROMA_OTEL_COLLECTION_ENDPOINT</code><a class="headerlink" href="#chroma_otel_collection_endpoint" title="Permanent link">&para;</a></h4>
+<p>Defines the endpoint of the tracing service that accepts OpenTelemetry traces via the OLTP GRPC endpoint.</p>
+<p>Value type: <code>Valid URL</code></p>
+<p>Default: None</p>
+<p><strong>Example</strong>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CHROMA_OTEL_COLLECTION_ENDPOINT</span><span class="o">=</span>http://localhost:4317
+</span></code></pre></div>
 <h4 id="chroma_otel_service_name"><code>CHROMA_OTEL_SERVICE_NAME</code><a class="headerlink" href="#chroma_otel_service_name" title="Permanent link">&para;</a></h4>
+<p>Defines the name of the service that will be used in the tracing service.</p>
+<p>Default: <code>chroma</code></p>
+<p><strong>Example</strong>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CHROMA_OTEL_SERVICE_NAME</span><span class="o">=</span>chroma-dev
+</span></code></pre></div>
 <h4 id="chroma_otel_collection_headers"><code>CHROMA_OTEL_COLLECTION_HEADERS</code><a class="headerlink" href="#chroma_otel_collection_headers" title="Permanent link">&para;</a></h4>
+<p>Defines the headers that will be sent with each trace/span.</p>
+<p>Default: None</p>
+<p><strong>Example</strong>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CHROMA_OTEL_COLLECTION_HEADERS</span><span class="o">=</span><span class="s1">&#39;{&quot;X-API-KEY&quot;:&quot;1234567890&quot;}&#39;</span>
+</span></code></pre></div>
 <h4 id="chroma_otel_granularity"><code>CHROMA_OTEL_GRANULARITY</code><a class="headerlink" href="#chroma_otel_granularity" title="Permanent link">&para;</a></h4>
+<p>Defines the granularity of the traces.</p>
+<p>Possible values:</p>
+<ul>
+<li><code>none</code> - No spans are emitted.</li>
+<li><code>operation</code> - Spans are emitted for each operation.</li>
+<li><code>operation_and_segment</code> - Spans are emitted for almost all method calls.</li>
+<li><code>all</code> - Spans are emitted for almost all method calls.</li>
+</ul>
+<p>Default: <code>none</code></p>
+<p><strong>Example</strong>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CHROMA_OTEL_GRANULARITY</span><span class="o">=</span>all
+</span></code></pre></div>
 <h4 id="chroma_product_telemetry_impl"><code>CHROMA_PRODUCT_TELEMETRY_IMPL</code><a class="headerlink" href="#chroma_product_telemetry_impl" title="Permanent link">&para;</a></h4>
+<div class="admonition warning">
+<p class="admonition-title">Do not change</p>
+<p>Do not change the default implementation as it may impact Chroma stability, instead use the <code>ANONYMIZED_TELEMETRY</code> configuration.</p>
+</div>
+<p>Defines the implementation of the product telemetry.</p>
+<p>Default: <code>chromadb.telemetry.product.posthog.Posthog</code></p>
 <h4 id="chroma_telemetry_impl"><code>CHROMA_TELEMETRY_IMPL</code><a class="headerlink" href="#chroma_telemetry_impl" title="Permanent link">&para;</a></h4>
+<p>This is identical to <code>CHROMA_PRODUCT_TELEMETRY_IMPL</code> but for the anonymized telemetry but is kept for backwards compatibility.</p>
 <h4 id="anonymized_telemetry"><code>ANONYMIZED_TELEMETRY</code><a class="headerlink" href="#anonymized_telemetry" title="Permanent link">&para;</a></h4>
 <p>Enables or disables anonymized product telemetry.</p>
 <p>Possible values:</p>
@@ -2606,6 +2664,9 @@ writeable to Chroma process.</p>
 </ul>
 <p>Default: <code>TRUE</code> (enabled)</p>
 <p>Read more about how Chroma uses telemetry <a href="https://docs.trychroma.com/telemetry">here</a>.</p>
+<p><strong>Example</strong>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ANONYMIZED_TELEMETRY</span><span class="o">=</span>FALSE
+</span></code></pre></div>
 <h3 id="maintenance">Maintenance<a class="headerlink" href="#maintenance" title="Permanent link">&para;</a></h3>
 <h4 id="migrations"><code>MIGRATIONS</code><a class="headerlink" href="#migrations" title="Permanent link">&para;</a></h4>
 <p>Defines how schema migrations are handled in Chroma.</p>
@@ -2617,6 +2678,16 @@ writeable to Chroma process.</p>
 </ul>
 <p>Default: <code>apply</code></p>
 <h4 id="migrations_hash_algorithm"><code>MIGRATIONS_HASH_ALGORITHM</code><a class="headerlink" href="#migrations_hash_algorithm" title="Permanent link">&para;</a></h4>
+<p>Defines the algorithm used to hash the migrations. This configuration was introduces as some organizations have strict policies around use of cryptographic algorithms, considering the default <code>md5</code> being a weak hashing algorithm.</p>
+<p>Possible values:</p>
+<ul>
+<li><code>sha256</code> - Uses SHA-256 to hash the migrations.</li>
+<li><code>md5</code> - Uses MD5 to hash the migrations.</li>
+</ul>
+<p>Default: <code>md5</code></p>
+<p><strong>Example</strong>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MIGRATIONS_HASH_ALGORITHM</span><span class="o">=</span>sha256
+</span></code></pre></div>
 <h3 id="operations-and-distributed">Operations and Distributed<a class="headerlink" href="#operations-and-distributed" title="Permanent link">&para;</a></h3>
 <h4 id="chroma_sysdb_impl"><code>CHROMA_SYSDB_IMPL</code><a class="headerlink" href="#chroma_sysdb_impl" title="Permanent link">&para;</a></h4>
 <h4 id="chroma_producer_impl"><code>CHROMA_PRODUCER_IMPL</code><a class="headerlink" href="#chroma_producer_impl" title="Permanent link">&para;</a></h4>
@@ -2663,7 +2734,7 @@ If you which to change these parameters, you will need to clone the collection s
 <li>Parameter <strong><em>cannot</em></strong> be changed after index creation.</li>
 </ul>
 <p><strong>Example</strong>:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="s2">&quot;my_collection&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;hnsw:space&quot;</span><span class="p">:</span> <span class="s2">&quot;cosine&quot;</span><span class="p">})</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="s2">&quot;my_collection&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;hnsw:space&quot;</span><span class="p">:</span> <span class="s2">&quot;cosine&quot;</span><span class="p">})</span>
 </span></code></pre></div>
 <h3 id="hnswconstruction_ef"><code>hnsw:construction_ef</code><a class="headerlink" href="#hnswconstruction_ef" title="Permanent link">&para;</a></h3>
 <p><strong>Description</strong>: Controls the number of neighbours in the HNSW graph to explore when adding new vectors. The more
@@ -2676,7 +2747,10 @@ explores the better and more exhaustive the results will be. Increasing the valu
 <li>Parameter <strong><em>cannot</em></strong> be changed after index creation.</li>
 </ul>
 <p><strong>Example</strong>:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="s2">&quot;my_collection&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;hnsw:construction_ef&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">})</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="s2">&quot;my_collection&quot;</span><span class="p">,</span> 
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;hnsw:construction_ef&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="p">)</span>
 </span></code></pre></div>
 <h3 id="hnswm"><code>hnsw:M</code><a class="headerlink" href="#hnswm" title="Permanent link">&para;</a></h3>
 <p><strong>Description</strong>: Controls the maximum number of neighbour connections (M), a newly inserted vector. A higher value
@@ -2689,7 +2763,10 @@ consumption.</p>
 <li>Parameter <strong><em>cannot</em></strong> be changed after index creation.</li>
 </ul>
 <p><strong>Example</strong>:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="s2">&quot;my_collection&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;hnsw:M&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">})</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="s2">&quot;my_collection&quot;</span><span class="p">,</span> 
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;hnsw:M&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">}</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="p">)</span>
 </span></code></pre></div>
 <h3 id="hnswsearch_ef"><code>hnsw:search_ef</code><a class="headerlink" href="#hnswsearch_ef" title="Permanent link">&para;</a></h3>
 <p><strong>Description</strong>: Controls the number of neighbours in the HNSW graph to explore when searching. Increasing this requires
@@ -2701,7 +2778,10 @@ more memory for the HNSW algo to explore the nodes during knn search.</p>
 <li>Parameter <strong><em>can</em></strong> be changed after index creation.</li>
 </ul>
 <p><strong>Example</strong>:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="s2">&quot;my_collection&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;hnsw:search_ef&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="s2">&quot;my_collection&quot;</span><span class="p">,</span> 
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;hnsw:search_ef&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="p">)</span>
 </span></code></pre></div>
 <h3 id="hnswnum_threads"><code>hnsw:num_threads</code><a class="headerlink" href="#hnswnum_threads" title="Permanent link">&para;</a></h3>
 <p><strong>Description</strong>: Controls how many threads HNSW algo use.</p>
@@ -2712,7 +2792,10 @@ more memory for the HNSW algo to explore the nodes during knn search.</p>
 <li>Parameter <strong><em>can</em></strong> be changed after index creation.</li>
 </ul>
 <p><strong>Example</strong>:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="s2">&quot;my_collection&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;hnsw:num_threads&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="s2">&quot;my_collection&quot;</span><span class="p">,</span> 
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;hnsw:num_threads&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="p">)</span>
 </span></code></pre></div>
 <h3 id="hnswresize_factor"><code>hnsw:resize_factor</code><a class="headerlink" href="#hnswresize_factor" title="Permanent link">&para;</a></h3>
 <p><strong>Description</strong>: Controls the rate of growth of the graph (e.g. how many node capacity will be added) whenever the
@@ -2724,7 +2807,10 @@ current graph capacity is reached.</p>
 <li>Parameter <strong><em>can</em></strong> be changed after index creation.</li>
 </ul>
 <p><strong>Example</strong>:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="s2">&quot;my_collection&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;hnsw:resize_factor&quot;</span><span class="p">:</span> <span class="mf">1.2</span><span class="p">})</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="s2">&quot;my_collection&quot;</span><span class="p">,</span> 
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;hnsw:resize_factor&quot;</span><span class="p">:</span> <span class="mf">1.2</span><span class="p">}</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="p">)</span>
 </span></code></pre></div>
 <h3 id="hnswbatch_size"><code>hnsw:batch_size</code><a class="headerlink" href="#hnswbatch_size" title="Permanent link">&para;</a></h3>
 <p><strong>Description</strong>: Controls the size of the Bruteforce (in-memory) index. Once this threshold is crossed vectors from BF
@@ -2737,7 +2823,10 @@ gets transferred to HNSW index. This value can be changed after index creation. 
 <li>Parameter <strong><em>can</em></strong> be changed after index creation.</li>
 </ul>
 <p><strong>Example</strong>:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="s2">&quot;my_collection&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;hnsw:batch_size&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">})</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="s2">&quot;my_collection&quot;</span><span class="p">,</span> 
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;hnsw:batch_size&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="p">)</span>
 </span></code></pre></div>
 <h3 id="hnswsync_threshold"><code>hnsw:sync_threshold</code><a class="headerlink" href="#hnswsync_threshold" title="Permanent link">&para;</a></h3>
 <p><strong>Description</strong>: Controls the threshold when using HNSW index is written to disk.</p>
@@ -2749,19 +2838,22 @@ gets transferred to HNSW index. This value can be changed after index creation. 
 </ul>
 <h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
 <p>Configuring HNSW parameters at creation time</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">HttpClient</span><span class="p">()</span>  <span class="c1"># Adjust as per your client</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="s2">&quot;my_collection&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="s2">&quot;hnsw:space&quot;</span><span class="p">:</span> <span class="s2">&quot;cosine&quot;</span><span class="p">,</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="s2">&quot;hnsw:construction_ef&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="s2">&quot;hnsw:M&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="s2">&quot;hnsw:search_ef&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="s2">&quot;hnsw:num_threads&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    <span class="s2">&quot;hnsw:resize_factor&quot;</span><span class="p">:</span> <span class="mf">1.2</span><span class="p">,</span>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    <span class="s2">&quot;hnsw:batch_size&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    <span class="s2">&quot;hnsw:sync_threshold&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="p">})</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kn">import</span> <span class="nn">chromadb</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">HttpClient</span><span class="p">()</span>  <span class="c1"># Adjust as per your client</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="s2">&quot;my_collection&quot;</span><span class="p">,</span> 
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>        <span class="s2">&quot;hnsw:space&quot;</span><span class="p">:</span> <span class="s2">&quot;cosine&quot;</span><span class="p">,</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>        <span class="s2">&quot;hnsw:construction_ef&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>        <span class="s2">&quot;hnsw:M&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>        <span class="s2">&quot;hnsw:search_ef&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>        <span class="s2">&quot;hnsw:num_threads&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>        <span class="s2">&quot;hnsw:resize_factor&quot;</span><span class="p">:</span> <span class="mf">1.2</span><span class="p">,</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>        <span class="s2">&quot;hnsw:batch_size&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>        <span class="s2">&quot;hnsw:sync_threshold&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>    <span class="p">}</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="p">)</span>
 </span></code></pre></div>
 <p>Updating HNSW parameters after creation</p>
 <div class="admonition warning">
