@@ -11,6 +11,7 @@ Latest ChromaDB version: [0.5.20](https://github.com/chroma-core/chroma/releases
 
 ## New and Noteworthy
 
+- ⚒️ [Configuration](core/configuration.md) - Updated descriptions and added examples of Chroma configuration options - 📅`21-Nov-2024`
 - 🏎️ [Performance Tips](running/performance-tips.md) - Learn how to optimize the performance of yourChroma - 📅`16-Oct-2024`
 - ⁉️[FAQs](faq/index.md) - Updated FAQ sections - 📅`15-Oct-2024`
 - 🔥 [SSL-Terminating Proxies](security/ssl-proxies.md) - Learn how to secure Chroma server with `Envoy` or `Nginx` proxies - 📅`31-Jul-2024`
