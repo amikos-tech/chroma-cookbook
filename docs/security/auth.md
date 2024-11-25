@@ -306,7 +306,7 @@ Running the server:
       settings=Settings(
           chroma_client_auth_provider="chromadb.auth.token_authn.TokenAuthClientProvider",
           chroma_client_auth_credentials="chr0ma-t0k3n",
-          chroma_client_auth_token_transport_header="Authorization"
+          chroma_auth_token_transport_header="Authorization"
       )
     )
 
