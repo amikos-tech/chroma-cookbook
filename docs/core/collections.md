@@ -50,7 +50,7 @@ Defaults:
 
 !!! tip "Official Docs"
 
-    For more information on the `create_collection` or `get_or_create_collection` methods, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Client#get_or_create_collection).
+    For more information on the `create_collection` or `get_or_create_collection` methods, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/python/client#getorcreatecollection).
 
 Parameters:
 
@@ -86,7 +86,7 @@ col = client.get_or_create_collection("test", metadata={"key": "value"})
 
 !!! tip "Official Docs"
 
-    For more information on the `delete_collection` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Client#delete_collection).
+    For more information on the `delete_collection` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/python/client#deletecollection).
 
 Parameters:
 
@@ -105,7 +105,11 @@ client.delete_collection("test")
 
 !!! tip "Official Docs"
 
-    For more information on the `list_collections` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Client#list_collections).
+    For more information on the `list_collections` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/python/client#listcollections).
+
+!!! note "Breaking Change in 0.6.0"
+
+    In ChromaDB 0.6.0, the `list_collections` method was updated to return a list of collection names (`Sequence[CollectionName]` where `CollectionName` is a string) instead of collection objects.
 
 Parameters:
 
@@ -119,14 +123,14 @@ Parameters:
 import chromadb
 
 client = chromadb.PersistentClient(path="test")  # or HttpClient()
-collections = client.list_collections()
+collections = client.list_collections() # in <0.6.0 returns the list of collection objects, in >=0.6.0 returns the list of collection names
 ```
 
 ### Getting a collection
 
 !!! tip "Official Docs"
 
-    For more information on the `get_collection` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Client#get_collection).
+    For more information on the `get_collection` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/python/client#getcollection).
 
 Parameters:
 
@@ -146,7 +150,7 @@ col = client.get_collection("test")
 
 !!! tip "Official Docs"
 
-    For more information on the `modify` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Collection#modify).
+    For more information on the `modify` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/python/collection#modify).
 
 !!! tip "Modify method on collection"
 
@@ -156,6 +160,10 @@ col = client.get_collection("test")
 
     Metadata is always overwritten when modified. If you want to add a new key-value pair to the metadata, you must
     first get the existing metadata and then add the new key-value pair to it.
+
+!!! warning "Changin HNSW parameters"
+
+    While as of current version (`0.6.2`) you can create a collection and supply HNSW parameters in the metadata, it is not possible to change the HNSW parameters after initial creation.
 
 Parameters:
 
@@ -176,9 +184,11 @@ col.modify(name="test2", metadata={"key": "value"})
 
 ### Counting Collections
 
+Returns the number of collections for the currently configured tenant and database.
+
 !!! tip "Official Docs"
 
-    For more information on the `count_collections` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/Client#count_collections).
+    For more information on the `count_collections` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/python/client#countcollections).
 
 ```python
 import chromadb
@@ -186,7 +196,7 @@ import chromadb
 client = chromadb.PersistentClient(path="test")  # or HttpClient()
 col = client.get_or_create_collection("test")  # create a new collection
 
-client.count_collections()
+collections_count = client.count_collections() # int
 ```
 
 ## Iterating over a Collection

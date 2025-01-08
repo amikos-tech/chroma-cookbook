@@ -209,3 +209,11 @@ results = collection.query(
     where_document={"$or": [{"$not_contains": "search_string1"}, {"$not_contains": "search_string2"}]}
 )
 ```
+
+## Pagination
+
+`Collection.get()` allows users to specify page details `limit` and `offset`.
+
+```python
+results = collection.get(limit=10, offset=20)
+```
