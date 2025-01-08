@@ -104,7 +104,7 @@ services:
       sh -c "/usr/local/bin/wait-for-certs.sh && \
       /opt/bitnami/envoy/bin/envoy -c /opt/bitnami/envoy/conf/envoy.yaml"
   chromadb:
-    image: chromadb/chroma:0.5.20
+    image: chromadb/chroma:0.6.2
     volumes:
       - ./chromadb:/chroma/chroma
     environment:
@@ -166,7 +166,7 @@ services:
     environment:
       - CHROMA_DOMAIN=${CHROMA_DOMAIN:-localhost}
   chromadb:
-    image: chromadb/chroma:0.5.20
+    image: chromadb/chroma:0.6.2
     volumes:
       - ./chromadb:/chroma/chroma
     environment:
