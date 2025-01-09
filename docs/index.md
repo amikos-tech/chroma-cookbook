@@ -90,10 +90,10 @@ Below is a list of available clients for ChromaDB.
 - [Keyword Search](strategies/keyword-search.md) - Searching for keywords in ChromaDB
 - [Memory Management](strategies/memory-management.md) - Managing memory in ChromaDB
 - [Time-based Queries](strategies/time-based-queries.md) - Querying data based on timestamps
-- ✨'`Coming Soon` Testing with Chroma - learn how to test your GenAI apps that include Chroma.
-- ✨'`Coming Soon` Monitoring Chroma - learn how to monitor your Chroma instance.
-- ✨'`Coming Soon` Building Chroma clients - learn how to build clients for Chroma.
-- ✨'`Coming Soon` Creating the perfect Embedding Function (wrapper) - learn the best practices for creating your own
+- ✨ `Coming Soon` Testing with Chroma - learn how to test your GenAI apps that include Chroma.
+- ✨ `Coming Soon` Monitoring Chroma - learn how to monitor your Chroma instance.
+- ✨ `Coming Soon` Building Chroma clients - learn how to build clients for Chroma.
+- ✨ `Coming Soon` Creating the perfect Embedding Function (wrapper) - learn the best practices for creating your own
   embedding function.
 - ✨ [Multi-User Basic Auth Plugin](strategies/multi-tenancy/multi-user-basic-auth.md) - learn how to build a multi-user
   basic authentication plugin for Chroma.
