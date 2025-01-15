@@ -2591,7 +2591,7 @@
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--rm<span class="w"> </span>--name<span class="w"> </span>chromadb<span class="w"> </span>-v<span class="w"> </span>./chroma:/chroma/chroma<span class="w"> </span>-e<span class="w"> </span><span class="nv">IS_PERSISTENT</span><span class="o">=</span>TRUE<span class="w"> </span>chromadb/chroma:0.6.2
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--rm<span class="w"> </span>--name<span class="w"> </span>chromadb<span class="w"> </span>-v<span class="w"> </span>./chroma:/chroma/chroma<span class="w"> </span>-e<span class="w"> </span><span class="nv">IS_PERSISTENT</span><span class="o">=</span>TRUE<span class="w"> </span>chromadb/chroma:0.6.3
 </span></code></pre></div>
 </div>
 </div>
@@ -2611,7 +2611,7 @@ writeable to Chroma process.</p>
 <h4 id="chroma_memory_limit_bytes"><code>CHROMA_MEMORY_LIMIT_BYTES</code><a class="headerlink" href="#chroma_memory_limit_bytes" title="Permanent link">&para;</a></h4>
 <h4 id="chroma_segment_cache_policy"><code>CHROMA_SEGMENT_CACHE_POLICY</code><a class="headerlink" href="#chroma_segment_cache_policy" title="Permanent link">&para;</a></h4>
 <h3 id="telemetry-and-observability">Telemetry and Observability<a class="headerlink" href="#telemetry-and-observability" title="Permanent link">&para;</a></h3>
-<p>In the current Chroma version (as of time or writing <code>0.6.2</code>) the only type of telemetry supported are traces.</p>
+<p>In the current Chroma version (as of time or writing <code>0.6.3</code>) the only type of telemetry supported are traces.</p>
 <p>The following configuration options allow you to configure the tracing service that accepts OpenTelemetry traces via the OLTP GRPC endpoint.</p>
 <p>In addition to traces Chroma also performs anonymized product telemetry. The product telemetry is enabled by default.</p>
 <h4 id="chroma_otel_collection_endpoint"><code>CHROMA_OTEL_COLLECTION_ENDPOINT</code><a class="headerlink" href="#chroma_otel_collection_endpoint" title="Permanent link">&para;</a></h4>
@@ -2880,7 +2880,7 @@ gets transferred to HNSW index. This value can be changed after index creation. 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 8, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 15, 2025</span>
   </span>
 
     
