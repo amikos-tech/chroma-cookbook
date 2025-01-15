@@ -40,7 +40,7 @@ Prerequisites:
 - Docker - [Overview of Docker Desktop | Docker Docs](https://docs.docker.com/desktop/)
 
 ```shell
-docker run -d --rm --name chromadb -p 8000:8000 -v ./chroma:/chroma/chroma -e IS_PERSISTENT=TRUE -e ANONYMIZED_TELEMETRY=TRUE chromadb/chroma:0.6.2
+docker run -d --rm --name chromadb -p 8000:8000 -v ./chroma:/chroma/chroma -e IS_PERSISTENT=TRUE -e ANONYMIZED_TELEMETRY=TRUE chromadb/chroma:0.6.3
 ```
 
 Options:
@@ -73,7 +73,7 @@ docker compose up -d --build
 If you want to run a specific version of Chroma you can checkout the version tag you need:
 
 ```shell
-git checkout release/0.6.2
+git checkout release/0.6.3
 ```
 
 ### Docker Compose (Without Cloning the Repo)
@@ -94,7 +94,7 @@ networks:
     driver: bridge
 services:
   chromadb:
-    image: chromadb/chroma:0.6.2
+    image: chromadb/chroma:0.6.3
     volumes:
       - ./chromadb:/chroma/chroma
     environment:
@@ -107,7 +107,7 @@ services:
       - net
 ```
 
-The above will create a container with the latest Chroma (`chromadb/chroma:0.6.2`), will expose it to port `8000` on
+The above will create a container with the latest Chroma (`chromadb/chroma:0.6.3`), will expose it to port `8000` on
 the local machine and will persist data in `./chromadb` relative path from where the `docker-compose.yaml` has been ran.
 
 !!! tip "Versioning"
@@ -149,7 +149,7 @@ Get and install the chart:
 ```bash
 helm repo add chroma https://amikos-tech.github.io/chromadb-chart/
 helm repo update
-helm install chroma chroma/chromadb --set chromadb.apiVersion="0.6.2"
+helm install chroma chroma/chromadb --set chromadb.apiVersion="0.6.3"
 ```
 
 By default the chart will enable authentication in Chroma. To get the token run the following:

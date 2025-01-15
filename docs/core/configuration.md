@@ -42,7 +42,7 @@ Default: `FALSE`
 === "Docker"
 
     ```bash
-    docker run -d --rm --name chromadb -v ./chroma:/chroma/chroma -e IS_PERSISTENT=TRUE chromadb/chroma:0.6.2
+    docker run -d --rm --name chromadb -v ./chroma:/chroma/chroma -e IS_PERSISTENT=TRUE chromadb/chroma:0.6.3
     ```
 
 
@@ -71,7 +71,7 @@ Default: `FALSE`
 
 ### Telemetry and Observability
 
-In the current Chroma version (as of time or writing `0.6.2`) the only type of telemetry supported are traces.
+In the current Chroma version (as of time or writing `0.6.3`) the only type of telemetry supported are traces.
 
 The following configuration options allow you to configure the tracing service that accepts OpenTelemetry traces via the OLTP GRPC endpoint.
 

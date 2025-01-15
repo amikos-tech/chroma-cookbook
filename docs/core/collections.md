@@ -163,7 +163,7 @@ col = client.get_collection("test")
 
 !!! warning "Changin HNSW parameters"
 
-    While as of current version (`0.6.2`) you can create a collection and supply HNSW parameters in the metadata, it is not possible to change the HNSW parameters after initial creation.
+    While as of current version (`0.6.3`) you can create a collection and supply HNSW parameters in the metadata, it is not possible to change the HNSW parameters after initial creation.
 
 Parameters:
 
