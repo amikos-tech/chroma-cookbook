@@ -266,7 +266,6 @@ Running the server:
         image: chromadb/chroma:latest
         volumes:
           - ./chromadb:/chroma/chroma
-          - ./server.htpasswd:/chroma/server.htpasswd
         environment:
           - IS_PERSISTENT=TRUE
           - PERSIST_DIRECTORY=/chroma/chroma # this is the default path, change it as needed
