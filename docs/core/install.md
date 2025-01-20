@@ -114,7 +114,7 @@ To install the Chroma JS/TS client package, use the following command depending 
 === "Yarn"
 
     ```bash
-    yarn install chromadb chromadb-default-embed
+    yarn add chromadb chromadb-default-embed
     ```
 
 === "NPM"
@@ -126,7 +126,7 @@ To install the Chroma JS/TS client package, use the following command depending 
 === "PNPM"
 
     ```bash
-    pnpm install chromadb chromadb-default-embed
+    pnpm add chromadb chromadb-default-embed
     ```
 
 === "GitHub"
