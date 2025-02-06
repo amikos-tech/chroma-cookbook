@@ -13,7 +13,7 @@ Once the client or the server is started a basic directory structure is created 
 containing the `chroma.sqlite3` file. Once collections are created and data is added, subdirectories are created for
 each collection. The subdirectories are UUID-named and refer to the vector segment.
 
-???+ tip "Chroma Ops - Maintenance CLI"
+??? tip "Chroma Ops - Maintenance CLI"
 
     If you are looking maintenance CLI that can help you inspect, configure and improve the performance of your Chroma, try [Chroma Ops](https://github.com/amikos-tech/chromadb-ops?tab=readme-ov-file#chroma-maintenance-cli).
 
@@ -68,11 +68,13 @@ durable and can be recovered in case of a crash. The WAL is composed of the foll
   the metadata segment.
 
 
-=== "Example Queue Configuration"
 
-    ```json
-   {"automatically_purge": true, "_type": "EmbeddingsQueueConfigurationInternal"}
-    ```
+```json title="Example Queue Configuration"
+{
+  "automatically_purge": true,
+  "_type": "EmbeddingsQueueConfigurationInternal"
+}
+```
 
 #### Metadata Segment
 
@@ -97,4 +99,4 @@ Each collection has its own subdirectory, a UUIDv4-named diretory which stores H
 - `length.bin` - Records the number of links each node has, aiding in efficient traversal during searches.
 - `link_lists.bin` - Stores the adjacency lists for nodes, detailing their connections within the graph.
 - `data_level0.bin` - Contains the base layer of the hierarchical graph, storing the actual vectors and their connections.
-- `metadata.pickle` - Chroma specific metadata about mapping between ids in `embeddings` table and labels in the HNSW index.
+- `index_metadata.pickle` - Chroma specific metadata about mapping between ids in `embeddings` table and labels in the HNSW index.
