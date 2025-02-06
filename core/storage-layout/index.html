@@ -2305,7 +2305,7 @@ argument <code>--path</code>. If not passed, the default is <code>./chroma/</cod
 <p>Once the client or the server is started a basic directory structure is created under the persistent directory
 containing the <code>chroma.sqlite3</code> file. Once collections are created and data is added, subdirectories are created for
 each collection. The subdirectories are UUID-named and refer to the vector segment.</p>
-<details class="tip" open="open">
+<details class="tip">
 <summary>Chroma Ops - Maintenance CLI</summary>
 <p>If you are looking maintenance CLI that can help you inspect, configure and improve the performance of your Chroma, try <a href="https://github.com/amikos-tech/chromadb-ops?tab=readme-ov-file#chroma-maintenance-cli">Chroma Ops</a>.</p>
 </details>
@@ -2353,15 +2353,11 @@ durable and can be recovered in case of a crash. The WAL is composed of the foll
 <li><code>max_seq_id</code> - maintains the maximum sequence ID of the metadata segment that is used as a WAL replay starting point for
   the metadata segment.</li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Example Queue Configuration</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>```json</p>
-</div>
-</div>
-</div>
-<p>{"automatically_purge": true, "_type": "EmbeddingsQueueConfigurationInternal"}
-    ```</p>
+<div class="language-json highlight"><span class="filename">Example Queue Configuration</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;automatically_purge&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EmbeddingsQueueConfigurationInternal&quot;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span>
+</span></code></pre></div>
 <h4 id="metadata-segment">Metadata Segment<a class="headerlink" href="#metadata-segment" title="Permanent link">&para;</a></h4>
 <p>The metadata segment is a table that stores all the metadata and documents stored in Chroma. The metadata segment is
 composed of the following tables:</p>
@@ -2381,7 +2377,7 @@ composed of the following tables:</p>
 <li><code>length.bin</code> - Records the number of links each node has, aiding in efficient traversal during searches.</li>
 <li><code>link_lists.bin</code> - Stores the adjacency lists for nodes, detailing their connections within the graph.</li>
 <li><code>data_level0.bin</code> - Contains the base layer of the hierarchical graph, storing the actual vectors and their connections.</li>
-<li><code>metadata.pickle</code> - Chroma specific metadata about mapping between ids in <code>embeddings</code> table and labels in the HNSW index.</li>
+<li><code>index_metadata.pickle</code> - Chroma specific metadata about mapping between ids in <code>embeddings</code> table and labels in the HNSW index.</li>
 </ul>
 
 
