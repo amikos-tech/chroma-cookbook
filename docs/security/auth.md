@@ -121,7 +121,7 @@ Running the server:
 
 **Client**
 
-=== "Python"
+=== "Python Sync"
 
     ```python
     import chromadb
@@ -135,6 +135,17 @@ Running the server:
 
     # if everything is correctly configured the below should list all collections
     client.list_collections()
+    ```
+
+=== "Python Async"
+
+    ```python
+    import chromadb
+    import base64
+    
+    base64_credentials = base64.b64encode(b"admin:admin").decode("utf-8")
+
+    client = await chromadb.AsyncHttpClient(headers={"Authorization": f"Basic {base64_credentials}"})
     ```
 
 === "JS"
@@ -295,7 +306,7 @@ Running the server:
 
 **Client**
 
-=== "Python"
+=== "Python Sync"
 
     ```python
     import chromadb
@@ -311,6 +322,19 @@ Running the server:
 
     # if everything is correctly configured the below should list all collections
     client.list_collections()
+    ```
+
+=== "Python Async"
+
+    ```python
+    import chromadb
+    # for Authorization header
+    client = await chromadb.AsyncHttpClient(headers={"Authorization": "Bearer chr0ma-t0k3n"})
+    # for X-Chroma-Token header
+    client = await chromadb.AsyncHttpClient(headers={"X-Chroma-Token": "chr0ma-t0k3n"})
+
+    # if everything is correctly configured the below should list all collections
+    await client.list_collections()
     ```
 
 === "JS"
