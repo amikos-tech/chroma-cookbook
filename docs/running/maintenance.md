@@ -11,22 +11,21 @@ This section describes maintenance tooling and procedures for running your Chrom
 Chroma Ops is designed to help you maintain a healthy Chroma database. It can also be used for inspecting the state of your database. The following use cases are supported:
 
 - 📦 Database Maintenance
-  - [`db info`](#info) - gathers general information about your Chroma persistent database
-  - [`db clean`](#clean) - cleans up the database from unused files (for now only orphanated HNSW segment directories)
+  - [`db info`](#database-info) - gathers general information about your Chroma persistent database
+  - [`db clean`](#database-clean) - cleans up the database from unused files (for now only orphanated HNSW segment directories)
 - 📝 Write-Ahead Log (WAL) Maintenance
-  - [`wal info`](#info-1) - gathers information about the Write-Ahead Log (WAL)
-  - [`wal commit`](#commit) - commits the WAL to all collections with outstanding changes
-  - [`wal clean`](#clean-1) - cleans up the WAL from committed transactions. Recent Chroma version automatically prune the WAL so this is not needed unless you have older version of Chroma or disabled automatic WAL pruning.
-  - [`wal export`](#export) - exports the WAL to a `jsonl` file. This can be used for debugging and for auditing.
-  - [`wal config`](#configuration) - allows you to configure the WAL for your Chroma database.
+  - [`wal info`](#wal-info) - gathers information about the Write-Ahead Log (WAL)
+  - [`wal commit`](#wal-commit) - commits the WAL to all collections with outstanding changes
+  - [`wal export`](#wal-export) - exports the WAL to a `jsonl` file. This can be used for debugging and for auditing.
+  - [`wal config`](#wal-configuration) - allows you to configure the WAL for your Chroma database.
 - 🔍 Full Text Search (FTS) Maintenance
-  - [`fts rebuild`](#rebuild) - rebuilds the FTS index for all collections or change the tokenizer.
+  - [`fts rebuild`](#fts-rebuild) - rebuilds the FTS index for all collections or change the tokenizer.
 - 🧬 Vector Index (HNSW) Maintenance
-  - [`hnsw info`](#info-2) - gathers information about the HNSW index for a given collection
-  - [`hnsw rebuild`](#rebuild-1) - rebuilds the HNSW index for a given collection and allows the modification of otherwise immutable (construction-only) parameters. Useful command to keep your HNSW index healthy and prevent fragmentation.
-  - [`hnsw config`](#configuration-1) - allows you to configure the HNSW index for your Chroma database.
+  - [`hnsw info`](#hnsw-info) - gathers information about the HNSW index for a given collection
+  - [`hnsw rebuild`](#hnsw-rebuild) - rebuilds the HNSW index for a given collection and allows the modification of otherwise immutable (construction-only) parameters. Useful command to keep your HNSW index healthy and prevent fragmentation.
+  - [`hnsw config`](#hnsw-configuration) - allows you to configure the HNSW index for your Chroma database.
 - 📸 Collection Maintenance
-  - [`collection snapshot`](#snapshot) - creates a snapshot of a collection. The snapshots are self-contained and are meant to be used for backup and restore.
+  - [`collection snapshot`](#collection-snapshot) - creates a snapshot of a collection. The snapshots are self-contained and are meant to be used for backup and restore.
 
 !!! tip "Need help/Need more?"
 
@@ -492,7 +491,7 @@ Backup of old index created at smallc/0137d64b-8d71-42f5-b0d9-28716647b068_backu
 └─────────────────────┴─────────────────────────────────────────────┘
 ```
 
-##### HNSW Config
+##### HNSW Configuration
 
 _What it does_: Configures the HNSW index for your Chroma database.
 
