@@ -2,7 +2,7 @@
 
 This is a collection of small guides and recipes to help you get started with ChromaDB.
 
-!!! warning "Critical Fix in 0.5.13"
+??? warning "Critical Fix in 0.5.13"
 
     If you are using Chroma `>=0.5.7` and `<=0.5.13` please upgrade to `0.5.13+` or later as there is a critical bug that can cause data loss. Read more on the [GH Issue #2922](https://github.com/chroma-core/chroma/issues/2922).
 
