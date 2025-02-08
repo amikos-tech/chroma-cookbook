@@ -2352,6 +2352,7 @@
 <li><a href="#wal-commit"><code>wal commit</code></a> - commits the WAL to all collections with outstanding changes</li>
 <li><a href="#wal-export"><code>wal export</code></a> - exports the WAL to a <code>jsonl</code> file. This can be used for debugging and for auditing.</li>
 <li><a href="#wal-configuration"><code>wal config</code></a> - allows you to configure the WAL for your Chroma database.</li>
+<li><a href="#wal-clean"><code>wal clean</code></a> - cleans up the WAL from old, committed transactions.</li>
 <li>🔍 Full Text Search (FTS) Maintenance</li>
 <li><a href="#fts-rebuild"><code>fts rebuild</code></a> - rebuilds the FTS index for all collections or change the tokenizer.</li>
 <li>🧬 Vector Index (HNSW) Maintenance</li>
@@ -2595,10 +2596,28 @@
 </span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="go">Processing index for collection test (0137d64b-8d71-42f5-b0d9-28716647b068) - total vectors in index 20</span>
 </span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="go">WAL commit completed.</span>
 </span></code></pre></div>
+<h5 id="wal-clean">WAL Clean<a class="headerlink" href="#wal-clean" title="Permanent link">&para;</a></h5>
+<p><em>What it does</em>: Cleans up the Write-Ahead Log (WAL) from committed transactions. Recent Chroma version automatically prune the WAL so this is not needed unless you have older version of Chroma or disabled automatic WAL pruning.</p>
+<p><em>Why it's useful</em>: Keep your WAL in check so it doesn't grow too large (in case automatic WAL pruning is disabled).</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>chops<span class="w"> </span>wal<span class="w"> </span>clean<span class="w"> </span>/path/to/persist_dir
+</span></code></pre></div>
+<p>Options:</p>
+<ul>
+<li><code>--yes</code> (<code>-y</code>) - skip confirmation prompt (default: <code>False</code>, prompt will be shown)</li>
+</ul>
+<p>Example output:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="go">chops wal clean smallc                                                                                                                                                                                                                                                                        11:33:36  ☁  main ☂ ⚡ ✭</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="go">ChromaDB version: 0.6.2</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="go">Size before: 429596</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="go">Are you sure you want to clean up the WAL in smallc? This action will delete all WAL entries that are not committed to the HNSW index. [y/N]: y</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="go">Cleaning up WAL</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="go">WAL cleaned up. Size after: 388636</span>
+</span></code></pre></div>
 <h5 id="wal-configuration">WAL Configuration<a class="headerlink" href="#wal-configuration" title="Permanent link">&para;</a></h5>
 <p><em>What it does</em>: Configures the Write-Ahead Log (WAL) for your Chroma database.</p>
 <p><em>Why it's useful</em>: This command is useful for configuring the Write-Ahead Log (WAL) for your Chroma database.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>chops<span class="w"> </span>wal<span class="w"> </span>config<span class="w"> </span>/path/to/persist_dir<span class="w"> </span>--purge<span class="w"> </span>off
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>chops<span class="w"> </span>wal<span class="w"> </span>config<span class="w"> </span>/path/to/persist_dir<span class="w"> </span>--purge<span class="w"> </span>off
 </span></code></pre></div>
 <p>Options:</p>
 <ul>
@@ -2607,23 +2626,23 @@
 <li><code>--yes</code> option can be set to <code>true</code> (skip confirmation prompt) or <code>false</code> (show confirmation prompt). The default is <code>false</code>.</li>
 </ul>
 <p>Example output:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="go">chops wal config smallc --purge off</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="go">ChromaDB version: 0.6.2</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="go">                           Current WAL config                            </span>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</span>
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="go">┃ Config key                                ┃ Config Change             ┃</span>
-</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━┩</span>
-</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="go">│ Automatically purge (automatically_purge) │ True (old) -&gt; False (new) │</span>
-</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="go">└───────────────────────────────────────────┴───────────────────────────┘</span>
-</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
-</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="go">Are you sure you want to update the WAL config? [y/N]: y</span>
-</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="go">WAL config updated successfully!</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="go">chops wal config smallc --purge off</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="go">ChromaDB version: 0.6.2</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="go">                           Current WAL config                            </span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="go">┃ Config key                                ┃ Config Change             ┃</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━┩</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="go">│ Automatically purge (automatically_purge) │ True (old) -&gt; False (new) │</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="go">└───────────────────────────────────────────┴───────────────────────────┘</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="go">Are you sure you want to update the WAL config? [y/N]: y</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="go">WAL config updated successfully!</span>
 </span></code></pre></div>
 <h4 id="full-text-search-fts-maintenance">Full Text Search (FTS) Maintenance<a class="headerlink" href="#full-text-search-fts-maintenance" title="Permanent link">&para;</a></h4>
 <h5 id="fts-rebuild">FTS Rebuild<a class="headerlink" href="#fts-rebuild" title="Permanent link">&para;</a></h5>
 <p><em>What it does</em>: Rebuilds the Full Text Search (FTS) index for all collections.</p>
 <p><em>Why it's useful</em>: This command is useful for rebuilding the Full Text Search (FTS) index for all collections.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>chops<span class="w"> </span>fts<span class="w"> </span>rebuild<span class="w"> </span>/path/to/persist_dir
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>chops<span class="w"> </span>fts<span class="w"> </span>rebuild<span class="w"> </span>/path/to/persist_dir
 </span></code></pre></div>
 <p>Additional options:</p>
 <ul>
@@ -2631,19 +2650,19 @@
 <li><code>--tokenizer</code> (<code>-t</code>) - the tokenizer to use for the index.</li>
 </ul>
 <p>Example output:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="go">chops fts rebuild --tokenizer unicode61 smallc</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="go">ChromaDB version: 0.6.2</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="go">Are you sure you want to rebuild the FTS index in smallc? This action will drop the existing FTS index and create a new one. [y/N]: y</span>
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="go">Rebuilt FTS. Will try to start your Chroma now.</span>
-</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="go">NOTE: Depending on the size of your documents in Chroma it may take a while for Chroma to start up again.</span>
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="go">Chroma started successfully. FTS rebuilt.</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="go">chops fts rebuild --tokenizer unicode61 smallc</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="go">ChromaDB version: 0.6.2</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="go">Are you sure you want to rebuild the FTS index in smallc? This action will drop the existing FTS index and create a new one. [y/N]: y</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="go">Rebuilt FTS. Will try to start your Chroma now.</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="go">NOTE: Depending on the size of your documents in Chroma it may take a while for Chroma to start up again.</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="go">Chroma started successfully. FTS rebuilt.</span>
 </span></code></pre></div>
 <h4 id="hnsw-maintenance">HNSW Maintenance<a class="headerlink" href="#hnsw-maintenance" title="Permanent link">&para;</a></h4>
 <h5 id="hnsw-info">HNSW Info<a class="headerlink" href="#hnsw-info" title="Permanent link">&para;</a></h5>
 <p><em>What it does</em>: Gathers information about the HNSW index for a given collection.</p>
 <p><em>Why it's useful</em>: This command is useful for gathering information about the HNSW index for a given collection.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>chops<span class="w"> </span>hnsw<span class="w"> </span>info<span class="w"> </span>/path/to/persist_dir
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>chops<span class="w"> </span>hnsw<span class="w"> </span>info<span class="w"> </span>/path/to/persist_dir
 </span></code></pre></div>
 <p>Additional options:</p>
 <ul>
@@ -2651,37 +2670,7 @@
 <li><code>--verbose</code> (<code>-v</code>) - If specified, the HNSW index will be loaded for more accurate fragmentation level reporting.</li>
 </ul>
 <p>Example output:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="go">chops hnsw info smallc -c test</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="go">ChromaDB version: 0.6.2</span>
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="go">    HNSW details for collection test in default_database database    </span>
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</span>
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="go">┃ Metric              ┃ Value                                       ┃</span>
-</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩</span>
-</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="go">│ Space               │ cosine                                      │</span>
-</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="go">│ Dimensions          │ 384                                         │</span>
-</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="go">│ EF Construction     │ 200                                         │</span>
-</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="go">│ EF Search           │ 100                                         │</span>
-</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="go">│ M                   │ 64                                          │</span>
-</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="go">│ Number of threads   │ 16                                          │</span>
-</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="go">│ Resize factor       │ 1.2                                         │</span>
-</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="go">│ Batch size          │ 100                                         │</span>
-</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="go">│ Sync threshold      │ 1000                                        │</span>
-</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="go">│ Segment ID          │ 0137d64b-8d71-42f5-b0d9-28716647b068        │</span>
-</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="go">│ Path                │ smallc/0137d64b-8d71-42f5-b0d9-28716647b068 │</span>
-</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="go">│ Has metadata        │ True                                        │</span>
-</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a><span class="go">│ Number of elements  │ 20                                          │</span>
-</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a><span class="go">│ Collection ID       │ 97f5234e-d02a-43b8-9909-99447950c949        │</span>
-</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a><span class="go">│ Index size          │ 41.6KiB                                     │</span>
-</span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a><span class="go">│ Fragmentation level │ 0.00% (estimated)                           │</span>
-</span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a><span class="go">└─────────────────────┴─────────────────────────────────────────────┘</span>
-</span></code></pre></div>
-<h5 id="hnsw-rebuild">HNSW Rebuild<a class="headerlink" href="#hnsw-rebuild" title="Permanent link">&para;</a></h5>
-<p><em>What it does</em>: Rebuilds the HNSW index for a given collection and allows the modification of otherwise immutable (construction-only) parameters.</p>
-<p><em>Why it's useful</em>: This command is useful for rebuilding the HNSW index for a given collection and allows the modification of otherwise immutable (construction-only) parameters.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>chops<span class="w"> </span>hnsw<span class="w"> </span>rebuild<span class="w"> </span>/path/to/persist_dir
-</span></code></pre></div>
-<p>Example output:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="go">chops hnsw rebuild smallc -c test --m 64 --construction-ef 200</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="go">chops hnsw info smallc -c test</span>
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="go">ChromaDB version: 0.6.2</span>
 </span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="go">    HNSW details for collection test in default_database database    </span>
 </span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</span>
@@ -2701,45 +2690,75 @@
 </span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="go">│ Has metadata        │ True                                        │</span>
 </span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="go">│ Number of elements  │ 20                                          │</span>
 </span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="go">│ Collection ID       │ 97f5234e-d02a-43b8-9909-99447950c949        │</span>
-</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a><span class="go">│ Index size          │ 47.6KiB                                     │</span>
+</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a><span class="go">│ Index size          │ 41.6KiB                                     │</span>
 </span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a><span class="go">│ Fragmentation level │ 0.00% (estimated)                           │</span>
 </span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a><span class="go">└─────────────────────┴─────────────────────────────────────────────┘</span>
-</span><span id="__span-19-24"><a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a><span class="go">    HNSW segment config changes     </span>
-</span><span id="__span-19-25"><a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━┳━━━━━┓</span>
-</span><span id="__span-19-26"><a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a><span class="go">┃ Config Key           ┃ Old ┃ New ┃</span>
-</span><span id="__span-19-27"><a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━╇━━━━━┩</span>
-</span><span id="__span-19-28"><a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a><span class="go">│ hnsw:construction_ef │ 100 │ 200 │</span>
-</span><span id="__span-19-29"><a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a><span class="go">│ hnsw:M               │ 102 │ 64  │</span>
-</span><span id="__span-19-30"><a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a><span class="go">└──────────────────────┴─────┴─────┘</span>
-</span><span id="__span-19-31"><a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a>
-</span><span id="__span-19-32"><a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a><span class="go">Are you sure you want to rebuild this index? [y/N]: y</span>
-</span><span id="__span-19-33"><a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a><span class="go">Backup of old index created at smallc/0137d64b-8d71-42f5-b0d9-28716647b068_backup_20250208100514</span>
-</span><span id="__span-19-34"><a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a><span class="go">    HNSW details for collection test in default_database database    </span>
-</span><span id="__span-19-35"><a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</span>
-</span><span id="__span-19-36"><a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a><span class="go">┃ Metric              ┃ Value                                       ┃</span>
-</span><span id="__span-19-37"><a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩</span>
-</span><span id="__span-19-38"><a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a><span class="go">│ Space               │ cosine                                      │</span>
-</span><span id="__span-19-39"><a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a><span class="go">│ Dimensions          │ 384                                         │</span>
-</span><span id="__span-19-40"><a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a><span class="go">│ EF Construction     │ 200                                         │</span>
-</span><span id="__span-19-41"><a id="__codelineno-19-41" name="__codelineno-19-41" href="#__codelineno-19-41"></a><span class="go">│ EF Search           │ 100                                         │</span>
-</span><span id="__span-19-42"><a id="__codelineno-19-42" name="__codelineno-19-42" href="#__codelineno-19-42"></a><span class="go">│ M                   │ 64                                          │</span>
-</span><span id="__span-19-43"><a id="__codelineno-19-43" name="__codelineno-19-43" href="#__codelineno-19-43"></a><span class="go">│ Number of threads   │ 16                                          │</span>
-</span><span id="__span-19-44"><a id="__codelineno-19-44" name="__codelineno-19-44" href="#__codelineno-19-44"></a><span class="go">│ Resize factor       │ 1.2                                         │</span>
-</span><span id="__span-19-45"><a id="__codelineno-19-45" name="__codelineno-19-45" href="#__codelineno-19-45"></a><span class="go">│ Batch size          │ 100                                         │</span>
-</span><span id="__span-19-46"><a id="__codelineno-19-46" name="__codelineno-19-46" href="#__codelineno-19-46"></a><span class="go">│ Sync threshold      │ 1000                                        │</span>
-</span><span id="__span-19-47"><a id="__codelineno-19-47" name="__codelineno-19-47" href="#__codelineno-19-47"></a><span class="go">│ Segment ID          │ 0137d64b-8d71-42f5-b0d9-28716647b068        │</span>
-</span><span id="__span-19-48"><a id="__codelineno-19-48" name="__codelineno-19-48" href="#__codelineno-19-48"></a><span class="go">│ Path                │ smallc/0137d64b-8d71-42f5-b0d9-28716647b068 │</span>
-</span><span id="__span-19-49"><a id="__codelineno-19-49" name="__codelineno-19-49" href="#__codelineno-19-49"></a><span class="go">│ Has metadata        │ True                                        │</span>
-</span><span id="__span-19-50"><a id="__codelineno-19-50" name="__codelineno-19-50" href="#__codelineno-19-50"></a><span class="go">│ Number of elements  │ 20                                          │</span>
-</span><span id="__span-19-51"><a id="__codelineno-19-51" name="__codelineno-19-51" href="#__codelineno-19-51"></a><span class="go">│ Collection ID       │ 97f5234e-d02a-43b8-9909-99447950c949        │</span>
-</span><span id="__span-19-52"><a id="__codelineno-19-52" name="__codelineno-19-52" href="#__codelineno-19-52"></a><span class="go">│ Index size          │ 41.6KiB                                     │</span>
-</span><span id="__span-19-53"><a id="__codelineno-19-53" name="__codelineno-19-53" href="#__codelineno-19-53"></a><span class="go">│ Fragmentation level │ 0.00%                                       │</span>
-</span><span id="__span-19-54"><a id="__codelineno-19-54" name="__codelineno-19-54" href="#__codelineno-19-54"></a><span class="go">└─────────────────────┴─────────────────────────────────────────────┘</span>
+</span></code></pre></div>
+<h5 id="hnsw-rebuild">HNSW Rebuild<a class="headerlink" href="#hnsw-rebuild" title="Permanent link">&para;</a></h5>
+<p><em>What it does</em>: Rebuilds the HNSW index for a given collection and allows the modification of otherwise immutable (construction-only) parameters.</p>
+<p><em>Why it's useful</em>: This command is useful for rebuilding the HNSW index for a given collection and allows the modification of otherwise immutable (construction-only) parameters.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>chops<span class="w"> </span>hnsw<span class="w"> </span>rebuild<span class="w"> </span>/path/to/persist_dir
+</span></code></pre></div>
+<p>Example output:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="go">chops hnsw rebuild smallc -c test --m 64 --construction-ef 200</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="go">ChromaDB version: 0.6.2</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="go">    HNSW details for collection test in default_database database    </span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="go">┃ Metric              ┃ Value                                       ┃</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="go">│ Space               │ cosine                                      │</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="go">│ Dimensions          │ 384                                         │</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="go">│ EF Construction     │ 200                                         │</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="go">│ EF Search           │ 100                                         │</span>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="go">│ M                   │ 64                                          │</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="go">│ Number of threads   │ 16                                          │</span>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="go">│ Resize factor       │ 1.2                                         │</span>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="go">│ Batch size          │ 100                                         │</span>
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="go">│ Sync threshold      │ 1000                                        │</span>
+</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="go">│ Segment ID          │ 0137d64b-8d71-42f5-b0d9-28716647b068        │</span>
+</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="go">│ Path                │ smallc/0137d64b-8d71-42f5-b0d9-28716647b068 │</span>
+</span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="go">│ Has metadata        │ True                                        │</span>
+</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="go">│ Number of elements  │ 20                                          │</span>
+</span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a><span class="go">│ Collection ID       │ 97f5234e-d02a-43b8-9909-99447950c949        │</span>
+</span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a><span class="go">│ Index size          │ 47.6KiB                                     │</span>
+</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a><span class="go">│ Fragmentation level │ 0.00% (estimated)                           │</span>
+</span><span id="__span-21-23"><a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a><span class="go">└─────────────────────┴─────────────────────────────────────────────┘</span>
+</span><span id="__span-21-24"><a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a><span class="go">    HNSW segment config changes     </span>
+</span><span id="__span-21-25"><a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━┳━━━━━┓</span>
+</span><span id="__span-21-26"><a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a><span class="go">┃ Config Key           ┃ Old ┃ New ┃</span>
+</span><span id="__span-21-27"><a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━╇━━━━━┩</span>
+</span><span id="__span-21-28"><a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a><span class="go">│ hnsw:construction_ef │ 100 │ 200 │</span>
+</span><span id="__span-21-29"><a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a><span class="go">│ hnsw:M               │ 102 │ 64  │</span>
+</span><span id="__span-21-30"><a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a><span class="go">└──────────────────────┴─────┴─────┘</span>
+</span><span id="__span-21-31"><a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a>
+</span><span id="__span-21-32"><a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a><span class="go">Are you sure you want to rebuild this index? [y/N]: y</span>
+</span><span id="__span-21-33"><a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a><span class="go">Backup of old index created at smallc/0137d64b-8d71-42f5-b0d9-28716647b068_backup_20250208100514</span>
+</span><span id="__span-21-34"><a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a><span class="go">    HNSW details for collection test in default_database database    </span>
+</span><span id="__span-21-35"><a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</span>
+</span><span id="__span-21-36"><a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a><span class="go">┃ Metric              ┃ Value                                       ┃</span>
+</span><span id="__span-21-37"><a id="__codelineno-21-37" name="__codelineno-21-37" href="#__codelineno-21-37"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩</span>
+</span><span id="__span-21-38"><a id="__codelineno-21-38" name="__codelineno-21-38" href="#__codelineno-21-38"></a><span class="go">│ Space               │ cosine                                      │</span>
+</span><span id="__span-21-39"><a id="__codelineno-21-39" name="__codelineno-21-39" href="#__codelineno-21-39"></a><span class="go">│ Dimensions          │ 384                                         │</span>
+</span><span id="__span-21-40"><a id="__codelineno-21-40" name="__codelineno-21-40" href="#__codelineno-21-40"></a><span class="go">│ EF Construction     │ 200                                         │</span>
+</span><span id="__span-21-41"><a id="__codelineno-21-41" name="__codelineno-21-41" href="#__codelineno-21-41"></a><span class="go">│ EF Search           │ 100                                         │</span>
+</span><span id="__span-21-42"><a id="__codelineno-21-42" name="__codelineno-21-42" href="#__codelineno-21-42"></a><span class="go">│ M                   │ 64                                          │</span>
+</span><span id="__span-21-43"><a id="__codelineno-21-43" name="__codelineno-21-43" href="#__codelineno-21-43"></a><span class="go">│ Number of threads   │ 16                                          │</span>
+</span><span id="__span-21-44"><a id="__codelineno-21-44" name="__codelineno-21-44" href="#__codelineno-21-44"></a><span class="go">│ Resize factor       │ 1.2                                         │</span>
+</span><span id="__span-21-45"><a id="__codelineno-21-45" name="__codelineno-21-45" href="#__codelineno-21-45"></a><span class="go">│ Batch size          │ 100                                         │</span>
+</span><span id="__span-21-46"><a id="__codelineno-21-46" name="__codelineno-21-46" href="#__codelineno-21-46"></a><span class="go">│ Sync threshold      │ 1000                                        │</span>
+</span><span id="__span-21-47"><a id="__codelineno-21-47" name="__codelineno-21-47" href="#__codelineno-21-47"></a><span class="go">│ Segment ID          │ 0137d64b-8d71-42f5-b0d9-28716647b068        │</span>
+</span><span id="__span-21-48"><a id="__codelineno-21-48" name="__codelineno-21-48" href="#__codelineno-21-48"></a><span class="go">│ Path                │ smallc/0137d64b-8d71-42f5-b0d9-28716647b068 │</span>
+</span><span id="__span-21-49"><a id="__codelineno-21-49" name="__codelineno-21-49" href="#__codelineno-21-49"></a><span class="go">│ Has metadata        │ True                                        │</span>
+</span><span id="__span-21-50"><a id="__codelineno-21-50" name="__codelineno-21-50" href="#__codelineno-21-50"></a><span class="go">│ Number of elements  │ 20                                          │</span>
+</span><span id="__span-21-51"><a id="__codelineno-21-51" name="__codelineno-21-51" href="#__codelineno-21-51"></a><span class="go">│ Collection ID       │ 97f5234e-d02a-43b8-9909-99447950c949        │</span>
+</span><span id="__span-21-52"><a id="__codelineno-21-52" name="__codelineno-21-52" href="#__codelineno-21-52"></a><span class="go">│ Index size          │ 41.6KiB                                     │</span>
+</span><span id="__span-21-53"><a id="__codelineno-21-53" name="__codelineno-21-53" href="#__codelineno-21-53"></a><span class="go">│ Fragmentation level │ 0.00%                                       │</span>
+</span><span id="__span-21-54"><a id="__codelineno-21-54" name="__codelineno-21-54" href="#__codelineno-21-54"></a><span class="go">└─────────────────────┴─────────────────────────────────────────────┘</span>
 </span></code></pre></div>
 <h5 id="hnsw-configuration">HNSW Configuration<a class="headerlink" href="#hnsw-configuration" title="Permanent link">&para;</a></h5>
 <p><em>What it does</em>: Configures the HNSW index for your Chroma database.</p>
 <p><em>Why it's useful</em>: This command is useful for configuring the HNSW index for your Chroma database.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>chops<span class="w"> </span>hnsw<span class="w"> </span>config<span class="w"> </span>/path/to/persist_dir<span class="w"> </span>--collection<span class="w"> </span>&lt;collection_name&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>chops<span class="w"> </span>hnsw<span class="w"> </span>config<span class="w"> </span>/path/to/persist_dir<span class="w"> </span>--collection<span class="w"> </span>&lt;collection_name&gt;
 </span></code></pre></div>
 <p>Options:</p>
 <ul>
@@ -2750,23 +2769,23 @@
 <li><code>--sync-threshold</code> (<code>-s</code>) - the sync threshold to use for the index.</li>
 </ul>
 <p>Example output:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="go">chops hnsw config smallc -c test --search-ef 100</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="go">ChromaDB version: 0.6.2</span>
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="go"> HNSW segment config changes  </span>
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="go">┏━━━━━━━━━━━━━━━━┳━━━━━┳━━━━━┓</span>
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="go">┃ Config Key     ┃ Old ┃ New ┃</span>
-</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="go">┡━━━━━━━━━━━━━━━━╇━━━━━╇━━━━━┩</span>
-</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="go">│ hnsw:search_ef │ 110 │ 100 │</span>
-</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="go">└────────────────┴─────┴─────┘</span>
-</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>
-</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="go">Are you sure you want to apply these changes? [y/N]: y</span>
-</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="go">HNSW index configuration modified successfully</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="go">chops hnsw config smallc -c test --search-ef 100</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="go">ChromaDB version: 0.6.2</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="go"> HNSW segment config changes  </span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="go">┏━━━━━━━━━━━━━━━━┳━━━━━┳━━━━━┓</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="go">┃ Config Key     ┃ Old ┃ New ┃</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="go">┡━━━━━━━━━━━━━━━━╇━━━━━╇━━━━━┩</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="go">│ hnsw:search_ef │ 110 │ 100 │</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="go">└────────────────┴─────┴─────┘</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="go">Are you sure you want to apply these changes? [y/N]: y</span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="go">HNSW index configuration modified successfully</span>
 </span></code></pre></div>
 <h4 id="collection-maintenance">Collection Maintenance<a class="headerlink" href="#collection-maintenance" title="Permanent link">&para;</a></h4>
 <h5 id="collection-snapshot">Collection Snapshot<a class="headerlink" href="#collection-snapshot" title="Permanent link">&para;</a></h5>
 <p><em>What it does</em>: Creates a snapshot of a collection. The snapshots are self-contained sqlite3 files.</p>
 <p><em>Why it's useful</em>: The command is useful if you want to create a backup or a point-in-time copy of a collection in its entirety. The snapshot files are self-contained and use sqlite3 as a storage engine. You can use <code>sqlite3</code> commands to inspect the snapshot files.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>chops<span class="w"> </span>collection<span class="w"> </span>snapshot<span class="w"> </span>/path/to/persist_dir<span class="w"> </span>--collection<span class="w"> </span>&lt;collection_name&gt;<span class="w"> </span>-o<span class="w"> </span>/path/to/snapshot.sqlite3
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>chops<span class="w"> </span>collection<span class="w"> </span>snapshot<span class="w"> </span>/path/to/persist_dir<span class="w"> </span>--collection<span class="w"> </span>&lt;collection_name&gt;<span class="w"> </span>-o<span class="w"> </span>/path/to/snapshot.sqlite3
 </span></code></pre></div>
 <p>Additional options:</p>
 <ul>
@@ -2775,31 +2794,31 @@
 <li><code>--output</code> (<code>-o</code>) - the path to the output snapshot file</li>
 </ul>
 <p>Example output:</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="go">chops collection snapshot ./smallc --collection test -o snapshot.sqlite3</span>
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="go">ChromaDB version: 0.6.2</span>
-</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
-</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="go">Are you sure you want to overwrite /Users/tazarov/experiments/chroma/chromadb-ops/snapshot.sqlite3 file? [y/N]: y</span>
-</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="go">Bootstrapping snapshot database...</span>
-</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="go">Snapshot database bootstrapped in /Users/tazarov/experiments/chroma/chromadb-ops/snapshot.sqlite3</span>
-</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="go">Copying collection test to snapshot database...</span>
-</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="go">  Copying collection to snapshot   </span>
-</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="go">            database...            </span>
-</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓</span>
-</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="go">┃ Table                   ┃ Count ┃</span>
-</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩</span>
-</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="go">│ Embeddings Queue        │ 20    │</span>
-</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a><span class="go">│ Max Seq ID              │ 1     │</span>
-</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a><span class="go">│ Embeddings              │ 20    │</span>
-</span><span id="__span-23-16"><a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a><span class="go">│ Embedding Metadata      │ 20    │</span>
-</span><span id="__span-23-17"><a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a><span class="go">│ Segments                │ 2     │</span>
-</span><span id="__span-23-18"><a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a><span class="go">│ Segment Metadata        │ 3     │</span>
-</span><span id="__span-23-19"><a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a><span class="go">│ Collections             │ 1     │</span>
-</span><span id="__span-23-20"><a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a><span class="go">│ Collection Metadata     │ 0     │</span>
-</span><span id="__span-23-21"><a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a><span class="go">│ HNSW Segment Data Files │ 5     │</span>
-</span><span id="__span-23-22"><a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a><span class="go">└─────────────────────────┴───────┘</span>
-</span><span id="__span-23-23"><a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a>
-</span><span id="__span-23-24"><a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a><span class="go">Are you sure you want to copy this collection to the snapshot database? [y/N]: y</span>
-</span><span id="__span-23-25"><a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a><span class="go">Collection test copied to snapshot database in /Users/tazarov/experiments/chroma/chromadb-ops/snapshot.sqlite3</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="go">chops collection snapshot ./smallc --collection test -o snapshot.sqlite3</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="go">ChromaDB version: 0.6.2</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="go">Are you sure you want to overwrite /Users/tazarov/experiments/chroma/chromadb-ops/snapshot.sqlite3 file? [y/N]: y</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="go">Bootstrapping snapshot database...</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="go">Snapshot database bootstrapped in /Users/tazarov/experiments/chroma/chromadb-ops/snapshot.sqlite3</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="go">Copying collection test to snapshot database...</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="go">  Copying collection to snapshot   </span>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="go">            database...            </span>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓</span>
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="go">┃ Table                   ┃ Count ┃</span>
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩</span>
+</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="go">│ Embeddings Queue        │ 20    │</span>
+</span><span id="__span-25-14"><a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="go">│ Max Seq ID              │ 1     │</span>
+</span><span id="__span-25-15"><a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a><span class="go">│ Embeddings              │ 20    │</span>
+</span><span id="__span-25-16"><a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a><span class="go">│ Embedding Metadata      │ 20    │</span>
+</span><span id="__span-25-17"><a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a><span class="go">│ Segments                │ 2     │</span>
+</span><span id="__span-25-18"><a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a><span class="go">│ Segment Metadata        │ 3     │</span>
+</span><span id="__span-25-19"><a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a><span class="go">│ Collections             │ 1     │</span>
+</span><span id="__span-25-20"><a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a><span class="go">│ Collection Metadata     │ 0     │</span>
+</span><span id="__span-25-21"><a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a><span class="go">│ HNSW Segment Data Files │ 5     │</span>
+</span><span id="__span-25-22"><a id="__codelineno-25-22" name="__codelineno-25-22" href="#__codelineno-25-22"></a><span class="go">└─────────────────────────┴───────┘</span>
+</span><span id="__span-25-23"><a id="__codelineno-25-23" name="__codelineno-25-23" href="#__codelineno-25-23"></a>
+</span><span id="__span-25-24"><a id="__codelineno-25-24" name="__codelineno-25-24" href="#__codelineno-25-24"></a><span class="go">Are you sure you want to copy this collection to the snapshot database? [y/N]: y</span>
+</span><span id="__span-25-25"><a id="__codelineno-25-25" name="__codelineno-25-25" href="#__codelineno-25-25"></a><span class="go">Collection test copied to snapshot database in /Users/tazarov/experiments/chroma/chromadb-ops/snapshot.sqlite3</span>
 </span></code></pre></div>
 
 
