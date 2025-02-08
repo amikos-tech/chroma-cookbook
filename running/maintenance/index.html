@@ -1,0 +1,2999 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://cookbook.chromadb.dev/running/maintenance/">
+      
+      
+        <link rel="prev" href="../health-checks/">
+      
+      
+        <link rel="next" href="../performance-tips/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.3">
+    
+    
+      
+        <title>Maintenance - ChromaDB Cookbook | The Unofficial Guide to ChromaDB</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.d7758b05.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-FZFKK5FLEY"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-FZFKK5FLEY",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-FZFKK5FLEY",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>if("undefined"!=typeof __md_analytics){var consent=__md_get("__consent");consent&&consent.analytics&&__md_analytics()}</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#maintenance" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://www.trychroma.com" title="ChromaDB Cookbook | The Unofficial Guide to ChromaDB" class="md-header__button md-logo" aria-label="ChromaDB Cookbook | The Unofficial Guide to ChromaDB" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ChromaDB Cookbook | The Unofficial Guide to ChromaDB
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Maintenance
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/amikos-tech/chroma-cookbook" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://www.trychroma.com" title="ChromaDB Cookbook | The Unofficial Guide to ChromaDB" class="md-nav__button md-logo" aria-label="ChromaDB Cookbook | The Unofficial Guide to ChromaDB" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    ChromaDB Cookbook | The Unofficial Guide to ChromaDB
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/amikos-tech/chroma-cookbook" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome to ChromaDB Cookbook
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Contributing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/getting-started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started with Contributing to Chroma
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/useful-shortcuts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Useful Shortcuts for Contributors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../core/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Core
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Core
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chroma API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/clients/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chroma Clients
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/collections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Collections
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Concepts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/document-ids/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Document IDs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/filters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Filters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/resources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resource Requirements
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/storage-layout/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Storage Layout
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/system_constraints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chroma System Constraints
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/tenants-and-databases/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tenants and Databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_14" id="__nav_3_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_14">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/advanced/queries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chroma Queries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/advanced/wal-pruning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Write-ahead Log (WAL) Pruning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/advanced/wal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Write-ahead Log (WAL)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ecosystem
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Ecosystem
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ecosystem/clients/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chroma Ecosystem Clients
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Embeddings
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Embeddings
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../embeddings/bring-your-own-embeddings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating your own embedding function
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../embeddings/cross-encoders/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cross-Encoders Reranking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../embeddings/embedding-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Embedding Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../embeddings/gpu-support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Embedding Functions GPU Support
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../faq/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Faq
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Faq
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Integrations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Integrations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../integrations/langchain/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Langchain
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            Langchain
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/langchain/embeddings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Langchain Embeddings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/langchain/retrievers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🦜⛓️ Langchain Retriever
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../integrations/llamaindex/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Llamaindex
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Llamaindex
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/llamaindex/embeddings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LlamaIndex Embeddings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../integrations/ollama/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Ollama
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Ollama
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../integrations/ollama/embeddings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ollama
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Running
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Running
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment-patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployment Patterns
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../health-checks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Health Checks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Maintenance
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Maintenance
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#chroma-ops-tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chroma Ops (Tooling)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chroma Ops (Tooling)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Cases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance-tips/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Performance Tips
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../road-to-prod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Road To Production
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../running-chroma/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Running Chroma
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../systemd-service/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Systemd service
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../security/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Security
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chroma-native Auth
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/chroma-ssl-cert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSL/TLS Certificates in Chroma
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/ssl-proxies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSL/TLS Proxy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Strategies
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Strategies
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/backup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ChromaDB Backups
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/batching/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Batching
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/cors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CORS Configuration for Browser-Based Access
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/keyword-search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Keyword Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/memory-management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Memory Management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/multi-category-filters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Category/Tag Filters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/privacy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Privacy Strategies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/rebuilding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rebuilding Chroma DB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/time-based-queries/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Time-based Queries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_10" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../strategies/multi-tenancy/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Multi tenancy
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10_10" id="__nav_10_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10_10">
+            <span class="md-nav__icon md-icon"></span>
+            Multi tenancy
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/multi-tenancy/authorization-model-impl-with-openfga/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Implementing OpenFGA Authorization Model In Chroma
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/multi-tenancy/authorization-model-with-openfga/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chroma Authorization Model with OpenFGA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/multi-tenancy/multi-user-basic-auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-User Basic Auth
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/multi-tenancy/naive-multi-tenancy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Naive Multi-tenancy Strategies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#chroma-ops-tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chroma Ops (Tooling)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chroma Ops (Tooling)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Cases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="maintenance">Maintenance<a class="headerlink" href="#maintenance" title="Permanent link">&para;</a></h1>
+<p>This section describes maintenance tooling and procedures for running your Chroma database.</p>
+<h2 id="chroma-ops-tooling">Chroma Ops (Tooling)<a class="headerlink" href="#chroma-ops-tooling" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/amikos-tech/chromadb-ops">Chroma Ops</a> is a maintenance CLI for Chroma. It provides a set of commands for inspecting, configuring and improving the performance of your Chroma database.</p>
+<h3 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h3>
+<p>Chroma Ops is designed to help you maintain a healthy Chroma database. It can also be used for inspecting the state of your database. The following use cases are supported:</p>
+<ul>
+<li>📦 Database Maintenance</li>
+<li><a href="#info"><code>db info</code></a> - gathers general information about your Chroma persistent database</li>
+<li><a href="#clean"><code>db clean</code></a> - cleans up the database from unused files (for now only orphanated HNSW segment directories)</li>
+<li>📝 Write-Ahead Log (WAL) Maintenance</li>
+<li><a href="#info-1"><code>wal info</code></a> - gathers information about the Write-Ahead Log (WAL)</li>
+<li><a href="#commit"><code>wal commit</code></a> - commits the WAL to all collections with outstanding changes</li>
+<li><a href="#clean-1"><code>wal clean</code></a> - cleans up the WAL from committed transactions. Recent Chroma version automatically prune the WAL so this is not needed unless you have older version of Chroma or disabled automatic WAL pruning.</li>
+<li><a href="#export"><code>wal export</code></a> - exports the WAL to a <code>jsonl</code> file. This can be used for debugging and for auditing.</li>
+<li><a href="#configuration"><code>wal config</code></a> - allows you to configure the WAL for your Chroma database.</li>
+<li>🔍 Full Text Search (FTS) Maintenance</li>
+<li><a href="#rebuild"><code>fts rebuild</code></a> - rebuilds the FTS index for all collections or change the tokenizer.</li>
+<li>🧬 Vector Index (HNSW) Maintenance</li>
+<li><a href="#info-2"><code>hnsw info</code></a> - gathers information about the HNSW index for a given collection</li>
+<li><a href="#rebuild-1"><code>hnsw rebuild</code></a> - rebuilds the HNSW index for a given collection and allows the modification of otherwise immutable (construction-only) parameters. Useful command to keep your HNSW index healthy and prevent fragmentation.</li>
+<li><a href="#configuration-1"><code>hnsw config</code></a> - allows you to configure the HNSW index for your Chroma database.</li>
+<li>📸 Collection Maintenance</li>
+<li><a href="#snapshot"><code>collection snapshot</code></a> - creates a snapshot of a collection. The snapshots are self-contained and are meant to be used for backup and restore.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Need help/Need more?</p>
+<p>If you need help or need more features, please join the <a href="https://discord.gg/MMeYNTmh3x">Discord server</a> and let us know. Or just do a pull request on <a href="https://github.com/amikos-tech/chromadb-ops/pulls">GitHub</a>.</p>
+</div>
+<h3 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
+<p>Chroma Ops can be installed using pip:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>chromadb-ops
+</span></code></pre></div>
+<h3 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h3>
+<h4 id="database-maintenance">Database Maintenance<a class="headerlink" href="#database-maintenance" title="Permanent link">&para;</a></h4>
+<h5 id="database-info">Database Info<a class="headerlink" href="#database-info" title="Permanent link">&para;</a></h5>
+<p>What it does: Gathers general information about your Chroma persistent database (works only for local persistent databases).</p>
+<p>Why it's useful: Run this command to better understand the current state of your database. It can provide you with invaluable information about any potential issues and also helps us help you in debugging issues.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>chops<span class="w"> </span>db<span class="w"> </span>info<span class="w"> </span>/path/to/persist_dir
+</span></code></pre></div>
+<p>Options:</p>
+<ul>
+<li><code>--skip-collection-names</code> (<code>-s</code>) - to skip specific collections</li>
+<li><code>--privacy-mode</code> (<code>-p</code>) - privacy mode hides paths and collection names so that the output can be shared without
+  exposing sensitive information</li>
+</ul>
+<p>When sharing larger outputs consider storing the output in a file:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>chops<span class="w"> </span>db<span class="w"> </span>info<span class="w"> </span>/path/to/persist_dir<span class="w"> </span>-p<span class="w"> </span>&gt;<span class="w"> </span>chroma_info.txt
+</span></code></pre></div>
+<p>Example output:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="go">chops db info smallc</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="go">                                 General Info</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="go">┃                    Property ┃ Value                                          ┃</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="go">│              Chroma Version │ 0.5.5                                          │</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="go">│        Number of Collection │ 1                                              │</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="go">│           Persist Directory │ /tmp/tmp9l3ceuvp                               │</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="go">│      Persist Directory Size │ 142.2MiB                                       │</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="go">│              SystemDB size: │ 81.6MiB (/tmp/tmp9l3ceuvp/chroma.sqlite3)      │</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="go">│     Orphan HNSW Directories │ []                                             │</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="go">└─────────────────────────────┴────────────────────────────────────────────────┘</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="go">───────────────────────────────── Collections ──────────────────────────────────</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="go">───────────────────────────────────── test ─────────────────────────────────────</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="go">                             &#39;test&#39; Collection Data</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="go">┃         Table Data ┃ Value                                                   ┃</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="go">│                 ID │ 9e80e4fd-fd4b-47b8-810c-e8ffa57c1912                    │</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="go">│               Name │ test                                                    │</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="go">│           Metadata │ None                                                    │</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="go">│          Dimension │ 1536                                                    │</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="go">│             Tenant │ default_tenant                                          │</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="go">│           Database │ default_database                                        │</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="go">│            Records │ 10,000                                                  │</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="go">│        WAL Entries │ 10,000                                                  │</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="go">└────────────────────┴─────────────────────────────────────────────────────────┘</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="go">─────────────────────────────────── Segments ───────────────────────────────────</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="go">                            Metadata Segment (test)</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="go">┃                Property ┃ Value                                              ┃</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩</span>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="go">│              Segment ID │ 832fa2cd-6c40-4eee-ad7d-35f260acaaaa               │</span>
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="go">│                    Type │ urn:chroma:segment/metadata/sqlite                 │</span>
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="go">│                   Scope │ METADATA                                           │</span>
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="go">│        SysDB Max Seq ID │ 10,000                                             │</span>
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="go">└─────────────────────────┴────────────────────────────────────────────────────┘</span>
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="go">                              HNSW Segment (test)</span>
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</span>
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="go">┃                     Property ┃ Value                                         ┃</span>
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩</span>
+</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="go">│                   Segment ID │ 13609103-d317-4556-a744-008c96229b72          │</span>
+</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a><span class="go">│                         Type │ urn:chroma:segment/vector/hnsw-local-persist… │</span>
+</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a><span class="go">│                        Scope │ VECTOR                                        │</span>
+</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a><span class="go">│                         Path │ /tmp/tmp9l3ceuvp/13609103-d317-4556-a744-008… │</span>
+</span><span id="__span-3-47"><a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a><span class="go">│             SysDB Max Seq ID │ 0                                             │</span>
+</span><span id="__span-3-48"><a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a><span class="go">│                HNSW Dir Size │ 60.6MiB                                       │</span>
+</span><span id="__span-3-49"><a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a><span class="go">│     HNSW Metadata Max Seq ID │ 10,000                                        │</span>
+</span><span id="__span-3-50"><a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a><span class="go">│   HNSW Metadata Total Labels │ 10,000                                        │</span>
+</span><span id="__span-3-51"><a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a><span class="go">│                      WAL Gap │ 0                                             │</span>
+</span><span id="__span-3-52"><a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a><span class="go">│ HNSW Raw Total Active Labels │ 10,000                                        │</span>
+</span><span id="__span-3-53"><a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a><span class="go">│    HNSW Raw Allocated Labels │ 10,000                                        │</span>
+</span><span id="__span-3-54"><a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a><span class="go">│           HNSW Orphan Labels │ set()                                         │</span>
+</span><span id="__span-3-55"><a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a><span class="go">│          Fragmentation Level │ 0.0                                           │</span>
+</span><span id="__span-3-56"><a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a><span class="go">└──────────────────────────────┴───────────────────────────────────────────────┘</span>
+</span></code></pre></div>
+<p>⚠️ Interesting things to look for:</p>
+<ul>
+<li>Fragmentation Level - the higher the value the more unnecessary memory and performance hits your HNSW index suffers.
+  It needs to be rebuilt.</li>
+<li>Orphan HNSW Directories - these are directories that are not associated with any collection. They can be safely
+  deleted.</li>
+<li>WAL Entries - high values usually means that you need prune your WAL. Use either this tool or
+  the <a href="https://cookbook.chromadb.dev/core/advanced/wal-pruning/#chroma-cli">official Chroma CLI</a>.</li>
+<li>HNSW Orphan Labels - this must always be empty set, if you see anything else report it
+  in <a href="https://discord.gg/MMeYNTmh3x">Discord @taz</a>.</li>
+</ul>
+<p><strong>How to Read the output</strong></p>
+<p><strong><em>General Info</em></strong></p>
+<p>This section presents general Chroma persistent dir info.</p>
+<ul>
+<li>Chroma Version - the currently installed Chroma version.</li>
+<li>Number of Collection - the number of collections in the persistent dir.</li>
+<li>Persist Directory - the path to the persistent dir (if privacy mode is off).</li>
+<li>Persist Directory Size - the size of the persistent dir.</li>
+<li>SystemDB size - the size of the system database (if privacy mode is off the full path to the sqlite3 file is shown).</li>
+<li>Orphan HNSW Directories - a list of orphan HNSW directories. These directories are present in the persistent dir but
+  are not associated with any collection.</li>
+</ul>
+<p><strong><em>Collections</em></strong></p>
+<ul>
+<li>ID - the collection ID.</li>
+<li>Name - the collection name.</li>
+<li>Metadata - the metadata associated with the collection.</li>
+<li>Dimension - the dimension of the embeddings in the collection. (this can be None in case no vectors are present and
+  the collection is newly created).</li>
+<li>Tenant - the tenant of the collection.</li>
+<li>Database - the database of the collection.</li>
+<li>Records - the number of records in the collection.</li>
+<li>WAL Entries - the number of WAL entries in the collection (as of 0.5.5 for new instances Chroma will clean WAL for
+  each collection periodically).</li>
+</ul>
+<p><strong><em>Metadata Segment</em></strong></p>
+<ul>
+<li>Segment ID - the segment ID.</li>
+<li>Type - the segment type.</li>
+<li>Scope - the segment scope.</li>
+<li>SysDB Max Seq ID - the maximum sequence ID in the system database.</li>
+</ul>
+<p><strong><em>HNSW Segment</em></strong></p>
+<ul>
+<li>Segment ID - the segment ID.</li>
+<li>Type - the segment type.</li>
+<li>Scope - the segment scope.</li>
+<li>Path - the path to the HNSW directory.</li>
+<li>SysDB Max Seq ID - the maximum sequence ID in the system database.</li>
+<li>HNSW Dir Size - the size of the HNSW directory.</li>
+<li>HNSW Metadata Max Seq ID - the maximum sequence ID in the HNSW metadata.</li>
+<li>HNSW Metadata Total Labels - the total number of labels in the HNSW metadata.</li>
+<li>WAL Gap - the difference between the maximum sequence ID in the system database and the maximum sequence ID in the
+  HNSW
+  metadata. The gap usually represents the number of WAL entries that are not committed to the HNSW index.</li>
+<li>HNSW Raw Total Active Labels - the total number of active labels in the HNSW index.</li>
+<li>HNSW Raw Allocated Labels - the total number of allocated labels in the HNSW index.</li>
+<li>HNSW Orphan Labels - a set of orphan labels in the HNSW index. These are labels in the HNSW index that are not visible
+  to Chroma as they are not part of the metadata. This set should always be empty, if not please report it!!!</li>
+<li>Fragmentation Level - the fragmentation level of the HNSW index.</li>
+</ul>
+<h5 id="database-clean">Database Clean<a class="headerlink" href="#database-clean" title="Permanent link">&para;</a></h5>
+<p><em>What it does</em>: Cleans up the database from unused files. It will remove all orphanated HNSW segment directories.</p>
+<p><em>Why it's useful</em>: Orphanated HNSW segment directories sometimes are the byproduct of a filesystem failure to remove the HNSW segment directory, most commonly encountered on Windows systems, but any type of file loocking or disk operation failure can cause Chroma to leave behind these directories.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>chops<span class="w"> </span>db<span class="w"> </span>clean<span class="w"> </span>/path/to/persist_dir
+</span></code></pre></div>
+<p>Supported options are:</p>
+<ul>
+<li><code>--dry-run</code> (<code>-d</code>) - to see what would be deleted without actually deleting anything.</li>
+</ul>
+<p>Example output:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="go">chops db clean smallc</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="go">ChromaDB version: 0.6.2</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="go">Cleaning up orphanated segment dirs...</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="go">                             Orphanated HNSW segment dirs                             </span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="go">┃ Segment ID                           ┃ Path                                        ┃</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="go">│ 2E9021A8-A767-4339-B2C2-2F4B22C05F1D │ smallc/2E9021A8-A767-4339-B2C2-2F4B22C05F1D │</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="go">└──────────────────────────────────────┴─────────────────────────────────────────────┘</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="go">Are you sure you want to delete these segment dirs? [y/N]: </span>
+</span></code></pre></div>
+<h4 id="wal-maintenance">WAL Maintenance<a class="headerlink" href="#wal-maintenance" title="Permanent link">&para;</a></h4>
+<h5 id="wal-info">WAL Info<a class="headerlink" href="#wal-info" title="Permanent link">&para;</a></h5>
+<p><em>What it does</em>: Gathers information about the Write-Ahead Log (WAL).</p>
+<p><em>Why it's useful</em>: Run this command to better understand the current state of the Write-Ahead Log (WAL). It can provide you with invaluable information about any potential issues and also helps us help you in debugging issues.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>chops<span class="w"> </span>wal<span class="w"> </span>info<span class="w"> </span>/path/to/persist_dir
+</span></code></pre></div>
+<p>Example output:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="go">chops wal info smallc</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="go">ChromaDB version: 0.6.2</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="go">WAL config is set to: auto purge.</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="go">                                         WAL Info                                         </span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="go">┏━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="go">┃ Collection ┃ Topic                                                             ┃ Count ┃</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="go">┡━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="go">│ test       │ persistent://default/default/97f5234e-d02a-43b8-9909-99447950c949 │ 20    │</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="go">└────────────┴───────────────────────────────────────────────────────────────────┴───────┘</span>
+</span></code></pre></div>
+<h5 id="wal-export">WAL Export<a class="headerlink" href="#wal-export" title="Permanent link">&para;</a></h5>
+<p><em>What it does</em>: Exports the Write-Ahead Log (WAL) to a <code>jsonl</code> file. This can be used for debugging and for auditing.</p>
+<p><em>Why it's useful</em>: This command is useful for exporting the Write-Ahead Log (WAL) to a <code>jsonl</code> file. This can be used for debugging and for auditing.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>chops<span class="w"> </span>wal<span class="w"> </span><span class="nb">export</span><span class="w"> </span>/path/to/persist_dir
+</span></code></pre></div>
+<p>Example output:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="go">chops wal export smallc --out wal.jsonl</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="go">ChromaDB version: 0.6.2</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="go">       Exporting WAL        </span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="go">┏━━━━━━━━━━━━┳━━━━━━━━━━━━━┓</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="go">┃ Collection ┃ WAL Entries ┃</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="go">┡━━━━━━━━━━━━╇━━━━━━━━━━━━━┩</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="go">│ test       │ 20          │</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="go">└────────────┴─────────────┘</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="go">Are you sure you want to export the WAL? [y/N]: y</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="go">Exported 20 rows</span>
+</span></code></pre></div>
+<h5 id="wal-commit">WAL Commit<a class="headerlink" href="#wal-commit" title="Permanent link">&para;</a></h5>
+<p><em>What it does</em>: Commits the Write-Ahead Log (WAL) to all collections with outstanding changes.</p>
+<p><em>Why it's useful</em>: This command is useful for committing the Write-Ahead Log (WAL) to all collections with outstanding changes.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>chops<span class="w"> </span>wal<span class="w"> </span>commit<span class="w"> </span>/path/to/persist_dir
+</span></code></pre></div>
+<p>Options:</p>
+<ul>
+<li><code>--skip</code> (<code>-s</code>) - skip certain collections by running <code>chops wal commit /path/to/persist_dir --skip &lt;collection_name&gt;</code></li>
+<li><code>--yes</code> (<code>-y</code>) - skip confirmation prompt (default: <code>False</code>, prompt will be shown)</li>
+</ul>
+<p>Example output:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="go">chops wal commit smallc</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="go">ChromaDB version: 0.6.2</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="go">     WAL Commit Summary     </span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="go">┏━━━━━━━━━━━━┳━━━━━━━━━━━━━┓</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="go">┃ Collection ┃ WAL Entries ┃</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="go">┡━━━━━━━━━━━━╇━━━━━━━━━━━━━┩</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="go">│ test       │ 20          │</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="go">│ test1      │ 0           │</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="go">└────────────┴─────────────┘</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="go">   Skipped    </span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="go"> Collections  </span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="go">┏━━━━━━━━━━━━┓</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="go">┃ Collection ┃</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="go">┡━━━━━━━━━━━━┩</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="go">└────────────┘</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="go">Are you sure you want to commit the WAL in smallc? As part of the WAL commit action your database will be migrated to currently installed version 0.6.2. [y/N]: y</span>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="go">Processing index for collection test (0137d64b-8d71-42f5-b0d9-28716647b068) - total vectors in index 20</span>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="go">WAL commit completed.</span>
+</span></code></pre></div>
+<h5 id="wal-configuration">WAL Configuration<a class="headerlink" href="#wal-configuration" title="Permanent link">&para;</a></h5>
+<p><em>What it does</em>: Configures the Write-Ahead Log (WAL) for your Chroma database.</p>
+<p><em>Why it's useful</em>: This command is useful for configuring the Write-Ahead Log (WAL) for your Chroma database.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>chops<span class="w"> </span>wal<span class="w"> </span>config<span class="w"> </span>/path/to/persist_dir<span class="w"> </span>--purge<span class="w"> </span>off
+</span></code></pre></div>
+<p>Options:</p>
+<ul>
+<li><code>--purge</code> option can be set to <code>auto</code> (automatically purge the WAL when the number of records in the collection exceeds the number of
+  records in the WAL) or <code>off</code> (disable automatic purge of the WAL). Automatic WAL purge is enabled by default. The automatic purge keeps your slite3 file smaller and faster, but it makes it hard or impossible to restore Chroma.</li>
+<li><code>--yes</code> option can be set to <code>true</code> (skip confirmation prompt) or <code>false</code> (show confirmation prompt). The default is <code>false</code>.</li>
+</ul>
+<p>Example output:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="go">chops wal config smallc --purge off</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="go">ChromaDB version: 0.6.2</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="go">                           Current WAL config                            </span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="go">┃ Config key                                ┃ Config Change             ┃</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━┩</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="go">│ Automatically purge (automatically_purge) │ True (old) -&gt; False (new) │</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="go">└───────────────────────────────────────────┴───────────────────────────┘</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="go">Are you sure you want to update the WAL config? [y/N]: y</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="go">WAL config updated successfully!</span>
+</span></code></pre></div>
+<h4 id="full-text-search-fts-maintenance">Full Text Search (FTS) Maintenance<a class="headerlink" href="#full-text-search-fts-maintenance" title="Permanent link">&para;</a></h4>
+<h5 id="fts-rebuild">FTS Rebuild<a class="headerlink" href="#fts-rebuild" title="Permanent link">&para;</a></h5>
+<p><em>What it does</em>: Rebuilds the Full Text Search (FTS) index for all collections.</p>
+<p><em>Why it's useful</em>: This command is useful for rebuilding the Full Text Search (FTS) index for all collections.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>chops<span class="w"> </span>fts<span class="w"> </span>rebuild<span class="w"> </span>/path/to/persist_dir
+</span></code></pre></div>
+<p>Additional options:</p>
+<ul>
+<li><code>--yes</code> (<code>-y</code>) - skip confirmation prompt (default: <code>False</code>, prompt will be shown)</li>
+<li><code>--tokenizer</code> (<code>-t</code>) - the tokenizer to use for the index.</li>
+</ul>
+<p>Example output:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="go">chops fts rebuild --tokenizer unicode61 smallc</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="go">ChromaDB version: 0.6.2</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="go">Are you sure you want to rebuild the FTS index in smallc? This action will drop the existing FTS index and create a new one. [y/N]: y</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="go">Rebuilt FTS. Will try to start your Chroma now.</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="go">NOTE: Depending on the size of your documents in Chroma it may take a while for Chroma to start up again.</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="go">Chroma started successfully. FTS rebuilt.</span>
+</span></code></pre></div>
+<h4 id="hnsw-maintenance">HNSW Maintenance<a class="headerlink" href="#hnsw-maintenance" title="Permanent link">&para;</a></h4>
+<h5 id="hnsw-info">HNSW Info<a class="headerlink" href="#hnsw-info" title="Permanent link">&para;</a></h5>
+<p><em>What it does</em>: Gathers information about the HNSW index for a given collection.</p>
+<p><em>Why it's useful</em>: This command is useful for gathering information about the HNSW index for a given collection.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>chops<span class="w"> </span>hnsw<span class="w"> </span>info<span class="w"> </span>/path/to/persist_dir
+</span></code></pre></div>
+<p>Additional options:</p>
+<ul>
+<li><code>--collection</code> (<code>-c</code>) - the collection name</li>
+<li><code>--verbose</code> (<code>-v</code>) - If specified, the HNSW index will be loaded for more accurate fragmentation level reporting.</li>
+</ul>
+<p>Example output:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="go">chops hnsw info smallc -c test</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="go">ChromaDB version: 0.6.2</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="go">    HNSW details for collection test in default_database database    </span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="go">┃ Metric              ┃ Value                                       ┃</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="go">│ Space               │ cosine                                      │</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="go">│ Dimensions          │ 384                                         │</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="go">│ EF Construction     │ 200                                         │</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="go">│ EF Search           │ 100                                         │</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="go">│ M                   │ 64                                          │</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="go">│ Number of threads   │ 16                                          │</span>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="go">│ Resize factor       │ 1.2                                         │</span>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="go">│ Batch size          │ 100                                         │</span>
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="go">│ Sync threshold      │ 1000                                        │</span>
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="go">│ Segment ID          │ 0137d64b-8d71-42f5-b0d9-28716647b068        │</span>
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="go">│ Path                │ smallc/0137d64b-8d71-42f5-b0d9-28716647b068 │</span>
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="go">│ Has metadata        │ True                                        │</span>
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a><span class="go">│ Number of elements  │ 20                                          │</span>
+</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a><span class="go">│ Collection ID       │ 97f5234e-d02a-43b8-9909-99447950c949        │</span>
+</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a><span class="go">│ Index size          │ 41.6KiB                                     │</span>
+</span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a><span class="go">│ Fragmentation level │ 0.00% (estimated)                           │</span>
+</span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a><span class="go">└─────────────────────┴─────────────────────────────────────────────┘</span>
+</span></code></pre></div>
+<h5 id="hnsw-rebuild">HNSW Rebuild<a class="headerlink" href="#hnsw-rebuild" title="Permanent link">&para;</a></h5>
+<p><em>What it does</em>: Rebuilds the HNSW index for a given collection and allows the modification of otherwise immutable (construction-only) parameters.</p>
+<p><em>Why it's useful</em>: This command is useful for rebuilding the HNSW index for a given collection and allows the modification of otherwise immutable (construction-only) parameters.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>chops<span class="w"> </span>hnsw<span class="w"> </span>rebuild<span class="w"> </span>/path/to/persist_dir
+</span></code></pre></div>
+<p>Example output:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="go">chops hnsw rebuild smallc -c test --m 64 --construction-ef 200</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="go">ChromaDB version: 0.6.2</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="go">    HNSW details for collection test in default_database database    </span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="go">┃ Metric              ┃ Value                                       ┃</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="go">│ Space               │ cosine                                      │</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="go">│ Dimensions          │ 384                                         │</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="go">│ EF Construction     │ 200                                         │</span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="go">│ EF Search           │ 100                                         │</span>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="go">│ M                   │ 64                                          │</span>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="go">│ Number of threads   │ 16                                          │</span>
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="go">│ Resize factor       │ 1.2                                         │</span>
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="go">│ Batch size          │ 100                                         │</span>
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="go">│ Sync threshold      │ 1000                                        │</span>
+</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="go">│ Segment ID          │ 0137d64b-8d71-42f5-b0d9-28716647b068        │</span>
+</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="go">│ Path                │ smallc/0137d64b-8d71-42f5-b0d9-28716647b068 │</span>
+</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="go">│ Has metadata        │ True                                        │</span>
+</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="go">│ Number of elements  │ 20                                          │</span>
+</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="go">│ Collection ID       │ 97f5234e-d02a-43b8-9909-99447950c949        │</span>
+</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a><span class="go">│ Index size          │ 47.6KiB                                     │</span>
+</span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a><span class="go">│ Fragmentation level │ 0.00% (estimated)                           │</span>
+</span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a><span class="go">└─────────────────────┴─────────────────────────────────────────────┘</span>
+</span><span id="__span-19-24"><a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a><span class="go">    HNSW segment config changes     </span>
+</span><span id="__span-19-25"><a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━┳━━━━━┓</span>
+</span><span id="__span-19-26"><a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a><span class="go">┃ Config Key           ┃ Old ┃ New ┃</span>
+</span><span id="__span-19-27"><a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━╇━━━━━┩</span>
+</span><span id="__span-19-28"><a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a><span class="go">│ hnsw:construction_ef │ 100 │ 200 │</span>
+</span><span id="__span-19-29"><a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a><span class="go">│ hnsw:M               │ 102 │ 64  │</span>
+</span><span id="__span-19-30"><a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a><span class="go">└──────────────────────┴─────┴─────┘</span>
+</span><span id="__span-19-31"><a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a>
+</span><span id="__span-19-32"><a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a><span class="go">Are you sure you want to rebuild this index? [y/N]: y</span>
+</span><span id="__span-19-33"><a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a><span class="go">Backup of old index created at smallc/0137d64b-8d71-42f5-b0d9-28716647b068_backup_20250208100514</span>
+</span><span id="__span-19-34"><a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a><span class="go">    HNSW details for collection test in default_database database    </span>
+</span><span id="__span-19-35"><a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓</span>
+</span><span id="__span-19-36"><a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a><span class="go">┃ Metric              ┃ Value                                       ┃</span>
+</span><span id="__span-19-37"><a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩</span>
+</span><span id="__span-19-38"><a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a><span class="go">│ Space               │ cosine                                      │</span>
+</span><span id="__span-19-39"><a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a><span class="go">│ Dimensions          │ 384                                         │</span>
+</span><span id="__span-19-40"><a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a><span class="go">│ EF Construction     │ 200                                         │</span>
+</span><span id="__span-19-41"><a id="__codelineno-19-41" name="__codelineno-19-41" href="#__codelineno-19-41"></a><span class="go">│ EF Search           │ 100                                         │</span>
+</span><span id="__span-19-42"><a id="__codelineno-19-42" name="__codelineno-19-42" href="#__codelineno-19-42"></a><span class="go">│ M                   │ 64                                          │</span>
+</span><span id="__span-19-43"><a id="__codelineno-19-43" name="__codelineno-19-43" href="#__codelineno-19-43"></a><span class="go">│ Number of threads   │ 16                                          │</span>
+</span><span id="__span-19-44"><a id="__codelineno-19-44" name="__codelineno-19-44" href="#__codelineno-19-44"></a><span class="go">│ Resize factor       │ 1.2                                         │</span>
+</span><span id="__span-19-45"><a id="__codelineno-19-45" name="__codelineno-19-45" href="#__codelineno-19-45"></a><span class="go">│ Batch size          │ 100                                         │</span>
+</span><span id="__span-19-46"><a id="__codelineno-19-46" name="__codelineno-19-46" href="#__codelineno-19-46"></a><span class="go">│ Sync threshold      │ 1000                                        │</span>
+</span><span id="__span-19-47"><a id="__codelineno-19-47" name="__codelineno-19-47" href="#__codelineno-19-47"></a><span class="go">│ Segment ID          │ 0137d64b-8d71-42f5-b0d9-28716647b068        │</span>
+</span><span id="__span-19-48"><a id="__codelineno-19-48" name="__codelineno-19-48" href="#__codelineno-19-48"></a><span class="go">│ Path                │ smallc/0137d64b-8d71-42f5-b0d9-28716647b068 │</span>
+</span><span id="__span-19-49"><a id="__codelineno-19-49" name="__codelineno-19-49" href="#__codelineno-19-49"></a><span class="go">│ Has metadata        │ True                                        │</span>
+</span><span id="__span-19-50"><a id="__codelineno-19-50" name="__codelineno-19-50" href="#__codelineno-19-50"></a><span class="go">│ Number of elements  │ 20                                          │</span>
+</span><span id="__span-19-51"><a id="__codelineno-19-51" name="__codelineno-19-51" href="#__codelineno-19-51"></a><span class="go">│ Collection ID       │ 97f5234e-d02a-43b8-9909-99447950c949        │</span>
+</span><span id="__span-19-52"><a id="__codelineno-19-52" name="__codelineno-19-52" href="#__codelineno-19-52"></a><span class="go">│ Index size          │ 41.6KiB                                     │</span>
+</span><span id="__span-19-53"><a id="__codelineno-19-53" name="__codelineno-19-53" href="#__codelineno-19-53"></a><span class="go">│ Fragmentation level │ 0.00%                                       │</span>
+</span><span id="__span-19-54"><a id="__codelineno-19-54" name="__codelineno-19-54" href="#__codelineno-19-54"></a><span class="go">└─────────────────────┴─────────────────────────────────────────────┘</span>
+</span></code></pre></div>
+<h5 id="hnsw-config">HNSW Config<a class="headerlink" href="#hnsw-config" title="Permanent link">&para;</a></h5>
+<p><em>What it does</em>: Configures the HNSW index for your Chroma database.</p>
+<p><em>Why it's useful</em>: This command is useful for configuring the HNSW index for your Chroma database.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>chops<span class="w"> </span>hnsw<span class="w"> </span>config<span class="w"> </span>/path/to/persist_dir<span class="w"> </span>--collection<span class="w"> </span>&lt;collection_name&gt;
+</span></code></pre></div>
+<p>Options:</p>
+<ul>
+<li><code>--search-ef</code> (<code>-e</code>) - the search ef to use for the index.</li>
+<li><code>--num-threads</code> (<code>-t</code>) - the number of threads to use for the index.</li>
+<li><code>--resize-factor</code> (<code>-r</code>) - the resize factor to use for the index.</li>
+<li><code>--batch-size</code> (<code>-b</code>) - the batch size to use for the index.</li>
+<li><code>--sync-threshold</code> (<code>-s</code>) - the sync threshold to use for the index.</li>
+</ul>
+<p>Example output:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="go">chops hnsw config smallc -c test --search-ef 100</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="go">ChromaDB version: 0.6.2</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="go"> HNSW segment config changes  </span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="go">┏━━━━━━━━━━━━━━━━┳━━━━━┳━━━━━┓</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="go">┃ Config Key     ┃ Old ┃ New ┃</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="go">┡━━━━━━━━━━━━━━━━╇━━━━━╇━━━━━┩</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="go">│ hnsw:search_ef │ 110 │ 100 │</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="go">└────────────────┴─────┴─────┘</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="go">Are you sure you want to apply these changes? [y/N]: y</span>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="go">HNSW index configuration modified successfully</span>
+</span></code></pre></div>
+<h4 id="collection-maintenance">Collection Maintenance<a class="headerlink" href="#collection-maintenance" title="Permanent link">&para;</a></h4>
+<h5 id="collection-snapshot">Collection Snapshot<a class="headerlink" href="#collection-snapshot" title="Permanent link">&para;</a></h5>
+<p><em>What it does</em>: Creates a snapshot of a collection. The snapshots are self-contained sqlite3 files.</p>
+<p><em>Why it's useful</em>: The command is useful if you want to create a backup or a point-in-time copy of a collection in its entirety. The snapshot files are self-contained and use sqlite3 as a storage engine. You can use <code>sqlite3</code> commands to inspect the snapshot files.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>chops<span class="w"> </span>collection<span class="w"> </span>snapshot<span class="w"> </span>/path/to/persist_dir<span class="w"> </span>--collection<span class="w"> </span>&lt;collection_name&gt;<span class="w"> </span>-o<span class="w"> </span>/path/to/snapshot.sqlite3
+</span></code></pre></div>
+<p>Additional options:</p>
+<ul>
+<li><code>--yes</code> (<code>-y</code>) - skip confirmation prompt (default: <code>False</code>, prompt will be shown)</li>
+<li><code>--collection</code> (<code>-c</code>) - the collection name</li>
+<li><code>--output</code> (<code>-o</code>) - the path to the output snapshot file</li>
+</ul>
+<p>Example output:</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="go">chops collection snapshot ./smallc --collection test -o snapshot.sqlite3</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="go">ChromaDB version: 0.6.2</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="go">Are you sure you want to overwrite /Users/tazarov/experiments/chroma/chromadb-ops/snapshot.sqlite3 file? [y/N]: y</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="go">Bootstrapping snapshot database...</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="go">Snapshot database bootstrapped in /Users/tazarov/experiments/chroma/chromadb-ops/snapshot.sqlite3</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="go">Copying collection test to snapshot database...</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="go">  Copying collection to snapshot   </span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="go">            database...            </span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="go">┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓</span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="go">┃ Table                   ┃ Count ┃</span>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="go">┡━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩</span>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="go">│ Embeddings Queue        │ 20    │</span>
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a><span class="go">│ Max Seq ID              │ 1     │</span>
+</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a><span class="go">│ Embeddings              │ 20    │</span>
+</span><span id="__span-23-16"><a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a><span class="go">│ Embedding Metadata      │ 20    │</span>
+</span><span id="__span-23-17"><a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a><span class="go">│ Segments                │ 2     │</span>
+</span><span id="__span-23-18"><a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a><span class="go">│ Segment Metadata        │ 3     │</span>
+</span><span id="__span-23-19"><a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a><span class="go">│ Collections             │ 1     │</span>
+</span><span id="__span-23-20"><a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a><span class="go">│ Collection Metadata     │ 0     │</span>
+</span><span id="__span-23-21"><a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a><span class="go">│ HNSW Segment Data Files │ 5     │</span>
+</span><span id="__span-23-22"><a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a><span class="go">└─────────────────────────┴───────┘</span>
+</span><span id="__span-23-23"><a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a>
+</span><span id="__span-23-24"><a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a><span class="go">Are you sure you want to copy this collection to the snapshot database? [y/N]: y</span>
+</span><span id="__span-23-25"><a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a><span class="go">Collection test copied to snapshot database in /Users/tazarov/experiments/chroma/chromadb-ops/snapshot.sqlite3</span>
+</span></code></pre></div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 8, 2025</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Amikos Tech LTD, 2024 (core ChromaDB contributors)
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/chroma-core/chroma" target="_blank" rel="noopener" title="Chroma on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://twitter.com/trychroma" target="_blank" rel="noopener" title="Chroma on Twitter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/amikos-tech" target="_blank" rel="noopener" title="Amikos on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://medium.com/@amikostech" target="_blank" rel="noopener" title="Amikos on Medium" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M180.5 74.262C80.813 74.262 0 155.633 0 256s80.819 181.738 180.5 181.738S361 356.373 361 256 280.191 74.262 180.5 74.262m288.25 10.646c-49.845 0-90.245 76.619-90.245 171.095s40.406 171.1 90.251 171.1 90.251-76.619 90.251-171.1H559c0-94.503-40.4-171.095-90.248-171.095Zm139.506 17.821c-17.526 0-31.735 68.628-31.735 153.274s14.2 153.274 31.735 153.274S640 340.631 640 256c0-84.649-14.215-153.271-31.742-153.271Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+  
+    
+  
+
+
+  
+    
+  
+
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies for analytics purposes. By continuing to use this website, you agree to their use.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="analytics" checked>
+          <span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+      </li>
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+        <script src="../../javascripts/gtag.js"></script>
+      
+    
+  </body>
+</html>
