@@ -2345,22 +2345,21 @@
 <p>Chroma Ops is designed to help you maintain a healthy Chroma database. It can also be used for inspecting the state of your database. The following use cases are supported:</p>
 <ul>
 <li>📦 Database Maintenance</li>
-<li><a href="#info"><code>db info</code></a> - gathers general information about your Chroma persistent database</li>
-<li><a href="#clean"><code>db clean</code></a> - cleans up the database from unused files (for now only orphanated HNSW segment directories)</li>
+<li><a href="#database-info"><code>db info</code></a> - gathers general information about your Chroma persistent database</li>
+<li><a href="#database-clean"><code>db clean</code></a> - cleans up the database from unused files (for now only orphanated HNSW segment directories)</li>
 <li>📝 Write-Ahead Log (WAL) Maintenance</li>
-<li><a href="#info-1"><code>wal info</code></a> - gathers information about the Write-Ahead Log (WAL)</li>
-<li><a href="#commit"><code>wal commit</code></a> - commits the WAL to all collections with outstanding changes</li>
-<li><a href="#clean-1"><code>wal clean</code></a> - cleans up the WAL from committed transactions. Recent Chroma version automatically prune the WAL so this is not needed unless you have older version of Chroma or disabled automatic WAL pruning.</li>
-<li><a href="#export"><code>wal export</code></a> - exports the WAL to a <code>jsonl</code> file. This can be used for debugging and for auditing.</li>
-<li><a href="#configuration"><code>wal config</code></a> - allows you to configure the WAL for your Chroma database.</li>
+<li><a href="#wal-info"><code>wal info</code></a> - gathers information about the Write-Ahead Log (WAL)</li>
+<li><a href="#wal-commit"><code>wal commit</code></a> - commits the WAL to all collections with outstanding changes</li>
+<li><a href="#wal-export"><code>wal export</code></a> - exports the WAL to a <code>jsonl</code> file. This can be used for debugging and for auditing.</li>
+<li><a href="#wal-configuration"><code>wal config</code></a> - allows you to configure the WAL for your Chroma database.</li>
 <li>🔍 Full Text Search (FTS) Maintenance</li>
-<li><a href="#rebuild"><code>fts rebuild</code></a> - rebuilds the FTS index for all collections or change the tokenizer.</li>
+<li><a href="#fts-rebuild"><code>fts rebuild</code></a> - rebuilds the FTS index for all collections or change the tokenizer.</li>
 <li>🧬 Vector Index (HNSW) Maintenance</li>
-<li><a href="#info-2"><code>hnsw info</code></a> - gathers information about the HNSW index for a given collection</li>
-<li><a href="#rebuild-1"><code>hnsw rebuild</code></a> - rebuilds the HNSW index for a given collection and allows the modification of otherwise immutable (construction-only) parameters. Useful command to keep your HNSW index healthy and prevent fragmentation.</li>
-<li><a href="#configuration-1"><code>hnsw config</code></a> - allows you to configure the HNSW index for your Chroma database.</li>
+<li><a href="#hnsw-info"><code>hnsw info</code></a> - gathers information about the HNSW index for a given collection</li>
+<li><a href="#hnsw-rebuild"><code>hnsw rebuild</code></a> - rebuilds the HNSW index for a given collection and allows the modification of otherwise immutable (construction-only) parameters. Useful command to keep your HNSW index healthy and prevent fragmentation.</li>
+<li><a href="#hnsw-configuration"><code>hnsw config</code></a> - allows you to configure the HNSW index for your Chroma database.</li>
 <li>📸 Collection Maintenance</li>
-<li><a href="#snapshot"><code>collection snapshot</code></a> - creates a snapshot of a collection. The snapshots are self-contained and are meant to be used for backup and restore.</li>
+<li><a href="#collection-snapshot"><code>collection snapshot</code></a> - creates a snapshot of a collection. The snapshots are self-contained and are meant to be used for backup and restore.</li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Need help/Need more?</p>
@@ -2737,7 +2736,7 @@
 </span><span id="__span-19-53"><a id="__codelineno-19-53" name="__codelineno-19-53" href="#__codelineno-19-53"></a><span class="go">│ Fragmentation level │ 0.00%                                       │</span>
 </span><span id="__span-19-54"><a id="__codelineno-19-54" name="__codelineno-19-54" href="#__codelineno-19-54"></a><span class="go">└─────────────────────┴─────────────────────────────────────────────┘</span>
 </span></code></pre></div>
-<h5 id="hnsw-config">HNSW Config<a class="headerlink" href="#hnsw-config" title="Permanent link">&para;</a></h5>
+<h5 id="hnsw-configuration">HNSW Configuration<a class="headerlink" href="#hnsw-configuration" title="Permanent link">&para;</a></h5>
 <p><em>What it does</em>: Configures the HNSW index for your Chroma database.</p>
 <p><em>Why it's useful</em>: This command is useful for configuring the HNSW index for your Chroma database.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>chops<span class="w"> </span>hnsw<span class="w"> </span>config<span class="w"> </span>/path/to/persist_dir<span class="w"> </span>--collection<span class="w"> </span>&lt;collection_name&gt;
