@@ -1,7 +1,7 @@
-site_name: ChromaDB Cookbook | The Unofficial Guide to ChromaDB
+site_name: Chroma Cookbook
 site_url: https://cookbook.chromadb.dev
 repo_url: https://github.com/amikos-tech/chroma-cookbook
-copyright: "Amikos Tech LTD, 2024 (core ChromaDB contributors)"
+copyright: "Amikos Tech LTD, 2025 (Chroma contributors)"
 theme:
   name: material
   palette:
