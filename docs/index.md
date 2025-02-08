@@ -1,4 +1,4 @@
-# Welcome to ChromaDB Cookbook
+# Get Cooking
 
 This is a collection of small guides and recipes to help you get started with ChromaDB.
 
