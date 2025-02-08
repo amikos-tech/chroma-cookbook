@@ -18,6 +18,7 @@ Chroma Ops is designed to help you maintain a healthy Chroma database. It can al
   - [`wal commit`](#wal-commit) - commits the WAL to all collections with outstanding changes
   - [`wal export`](#wal-export) - exports the WAL to a `jsonl` file. This can be used for debugging and for auditing.
   - [`wal config`](#wal-configuration) - allows you to configure the WAL for your Chroma database.
+  - [`wal clean`](#wal-clean) - cleans up the WAL from old, committed transactions.
 - 🔍 Full Text Search (FTS) Maintenance
   - [`fts rebuild`](#fts-rebuild) - rebuilds the FTS index for all collections or change the tokenizer.
 - 🧬 Vector Index (HNSW) Maintenance
@@ -205,7 +206,6 @@ Supported options are:
 
 - `--dry-run` (`-d`) - to see what would be deleted without actually deleting anything.
 
-
 Example output:
 
 ```console
@@ -313,6 +313,32 @@ ChromaDB version: 0.6.2
 Are you sure you want to commit the WAL in smallc? As part of the WAL commit action your database will be migrated to currently installed version 0.6.2. [y/N]: y
 Processing index for collection test (0137d64b-8d71-42f5-b0d9-28716647b068) - total vectors in index 20
 WAL commit completed.
+```
+
+##### WAL Clean
+
+_What it does_: Cleans up the Write-Ahead Log (WAL) from committed transactions. Recent Chroma version automatically prune the WAL so this is not needed unless you have older version of Chroma or disabled automatic WAL pruning.
+
+_Why it's useful_: Keep your WAL in check so it doesn't grow too large (in case automatic WAL pruning is disabled).
+
+```bash
+chops wal clean /path/to/persist_dir
+```
+
+Options:
+
+- `--yes` (`-y`) - skip confirmation prompt (default: `False`, prompt will be shown)
+
+Example output:
+
+```console
+chops wal clean smallc                                                                                                                                                                                                                                                                        11:33:36  ☁  main ☂ ⚡ ✭
+ChromaDB version: 0.6.2
+Size before: 429596
+
+Are you sure you want to clean up the WAL in smallc? This action will delete all WAL entries that are not committed to the HNSW index. [y/N]: y
+Cleaning up WAL
+WAL cleaned up. Size after: 388636
 ```
 
 ##### WAL Configuration
@@ -572,7 +598,3 @@ Copying collection test to snapshot database...
 Are you sure you want to copy this collection to the snapshot database? [y/N]: y
 Collection test copied to snapshot database in /Users/tazarov/experiments/chroma/chromadb-ops/snapshot.sqlite3
 ```
-
-
-
-
