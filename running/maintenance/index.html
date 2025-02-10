@@ -2699,6 +2699,25 @@
 <p><em>Why it's useful</em>: This command is useful for rebuilding the HNSW index for a given collection and allows the modification of otherwise immutable (construction-only) parameters.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>chops<span class="w"> </span>hnsw<span class="w"> </span>rebuild<span class="w"> </span>/path/to/persist_dir
 </span></code></pre></div>
+<p>Options:</p>
+<ul>
+<li><code>--backup</code> (<code>-b</code>) - backup the old index. At the end of the rebuild process the location of the backed up index will be printed out. (default: <code>True</code>)</li>
+<li><code>--database</code> (<code>-d</code>) - the database name (default: <code>default_database</code>)</li>
+<li><code>--yes</code> (<code>-y</code>) - skip confirmation prompt (default: <code>False</code>, prompt will be shown)</li>
+<li><code>--space</code> (<code>-s</code>) - the distance metric to use for the index.</li>
+<li><code>--construction-ef</code> (<code>-c</code>) - the construction ef to use for the index.</li>
+<li><code>--search-ef</code> (<code>-e</code>) - the search ef to use for the index.</li>
+<li><code>--m</code> (<code>-m</code>) - the m to use for the index.</li>
+<li><code>--num-threads</code> (<code>-t</code>) - the number of threads to use for the index.</li>
+<li><code>--resize-factor</code> (<code>-r</code>) - the resize factor to use for the index.</li>
+<li><code>--batch-size</code> (<code>-b</code>) - the batch size to use for the index.</li>
+<li><code>--sync-threshold</code> (<code>-s</code>) - the sync threshold to use for the index.</li>
+<li><code>--backup</code> (<code>-b</code>) - backup the old index. At the end of the rebuild process the location of the backed up index will be printed out. (default: <code>True</code>)</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Unchanged options will be skipped</p>
+<p>All the HNSW index options default to <code>None</code> which means no changes will be made if the parameter is not specified. Additionally, any options provided that are identical to the current index configuration will be skipped.</p>
+</div>
 <p>Example output:</p>
 <div class="language-console highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="go">chops hnsw rebuild smallc -c test --m 64 --construction-ef 200</span>
 </span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="go">ChromaDB version: 0.6.2</span>
@@ -2840,7 +2859,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 8, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 10, 2025</span>
   </span>
 
     
