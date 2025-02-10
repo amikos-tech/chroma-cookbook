@@ -458,6 +458,25 @@ _Why it's useful_: This command is useful for rebuilding the HNSW index for a gi
 chops hnsw rebuild /path/to/persist_dir
 ```
 
+Options:
+
+- `--backup` (`-b`) - backup the old index. At the end of the rebuild process the location of the backed up index will be printed out. (default: `True`)
+- `--database` (`-d`) - the database name (default: `default_database`)
+- `--yes` (`-y`) - skip confirmation prompt (default: `False`, prompt will be shown)
+- `--space` (`-s`) - the distance metric to use for the index.
+- `--construction-ef` (`-c`) - the construction ef to use for the index.
+- `--search-ef` (`-e`) - the search ef to use for the index.
+- `--m` (`-m`) - the m to use for the index.
+- `--num-threads` (`-t`) - the number of threads to use for the index.
+- `--resize-factor` (`-r`) - the resize factor to use for the index.
+- `--batch-size` (`-b`) - the batch size to use for the index.
+- `--sync-threshold` (`-s`) - the sync threshold to use for the index.
+- `--backup` (`-b`) - backup the old index. At the end of the rebuild process the location of the backed up index will be printed out. (default: `True`)
+
+!!! note "Unchanged options will be skipped"
+
+    All the HNSW index options default to `None` which means no changes will be made if the parameter is not specified. Additionally, any options provided that are identical to the current index configuration will be skipped.
+
 Example output:
 
 ```console
