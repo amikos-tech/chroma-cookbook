@@ -471,7 +471,6 @@ Options:
 - `--resize-factor` (`-r`) - the resize factor to use for the index.
 - `--batch-size` (`-b`) - the batch size to use for the index.
 - `--sync-threshold` (`-s`) - the sync threshold to use for the index.
-- `--backup` (`-b`) - backup the old index. At the end of the rebuild process the location of the backed up index will be printed out. (default: `True`)
 
 !!! note "Unchanged options will be skipped"
 
