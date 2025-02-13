@@ -2,7 +2,7 @@
 
 ## Docker Compose
 
-The simples form of health check is to use the `healthcheck` directive in the `docker-compose.yml` file. This is useful
+The simplest form of health check is to use the `healthcheck` directive in the `docker-compose.yml` file. This is useful
 if you are deploying Chroma alongside other services that may depend on it.
 
 ```yaml
@@ -40,7 +40,7 @@ services:
     ports:
       - 8000:8000
     healthcheck:
-      test: [ "CMD", "/bin/bash", "-c", "cat < /dev/null > /dev/tcp/localhost/8001" ]
+      test: [ "CMD", "/bin/bash", "-c", "cat < /dev/null > /dev/tcp/localhost/8000" ]
       interval: 30s
       timeout: 10s
       retries: 3
