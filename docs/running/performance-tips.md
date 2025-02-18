@@ -68,3 +68,14 @@ For more information on shortening embeddings see the official [OpenAI Blog post
         });
     const embeddings = embedder.generate(["hello world"]);
     ```
+
+## Defragment your HNSW indices
+
+If you have many updates (other than `add`) on your collections, overtime the HNSW indices become fragmented which has the following consequences:
+
+- Increased memory usage
+- Increased disk usage
+- Increased query times
+- Reduced accuracy
+
+To mitigate the above side-effects, you can periodically defragment/compact your HNSW indices. To do that use the `chops hnsw rebuild` [command](maintenance.md#hnsw-rebuild).
