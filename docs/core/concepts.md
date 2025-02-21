@@ -68,7 +68,7 @@ following distance functions:
 
 ## Embeddings
 
-A representation of a document in the embedding model's latent space in te form of a vector, list of 32-bit floats (or
+A representation of a document in the embedding model's latent space in the form of a vector, list of 32-bit floats (or
 ints).
 
 ## Metadata Segment
