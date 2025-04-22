@@ -17,6 +17,7 @@ Latest ChromaDB version: [1.0.6](https://github.com/chroma-core/chroma/releases/
 
 ## New and Noteworthy
 
+- 🔍 [Filters](core/filters.md) - New and improved guide to filtering.
 - 🔄 [Chroma Maintenance](running/maintenance.md) - Learn how to keep your Chroma database in tip-top shape - 📅`08-Feb-2025`
 - ⚒️ [Configuration](core/configuration.md) - Updated descriptions and added examples of Chroma configuration options - 📅`21-Nov-2024`
 - 🏎️ [Performance Tips](running/performance-tips.md) - Learn how to optimize the performance of yourChroma - 📅`16-Oct-2024`
