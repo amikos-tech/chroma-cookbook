@@ -1,12 +1,18 @@
 # Get Cooking
 
-This is a collection of small guides and recipes to help you get started with ChromaDB.
+This is a collection of small guides and recipes to help you get started with Chroma.
+
+!!! note "Chroma 1.0"
+
+    New updated content for Chroma 1.0.x is coming soon. Official announcement [here](https://trychroma.com/project/1.0.0).
+
+    It is the goal of this site to make your Chroma experience as pleasant as possible regardless of your technical expertise.
 
 ??? warning "Critical Fix in 0.5.13"
 
     If you are using Chroma `>=0.5.7` and `<=0.5.13` please upgrade to `0.5.13+` or later as there is a critical bug that can cause data loss. Read more on the [GH Issue #2922](https://github.com/chroma-core/chroma/issues/2922).
 
-Latest ChromaDB version: [0.6.3](https://github.com/chroma-core/chroma/releases/tag/0.6.3)
+Latest ChromaDB version: [1.0.6](https://github.com/chroma-core/chroma/releases/tag/1.0.6)
 
 
 ## New and Noteworthy
