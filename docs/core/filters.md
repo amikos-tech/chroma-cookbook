@@ -37,14 +37,42 @@ You can use the following JSON schema to validate your `where` filters:
                                 "$lt": {"type": "number"},
                                 "$lte": {"type": "number"},
                                 "$in": {
-                                    "type": "array",
-                                    "items": {"type": ["string", "number", "boolean"]},
-                                    "minItems": 1
+                                  "oneOf": [
+                                    {
+                                      "type": "array",
+                                      "items": { "type": "string" },
+                                      "minItems": 1
+                                    },
+                                    {
+                                      "type": "array",
+                                      "items": { "type": "number" },
+                                      "minItems": 1
+                                    },
+                                    {
+                                      "type": "array",
+                                      "items": { "type": "boolean" },
+                                      "minItems": 1
+                                    }
+                                  ]
                                 },
                                 "$nin": {
-                                    "type": "array",
-                                    "items": {"type": ["string", "number", "boolean"]},
-                                    "minItems": 1
+                                  "oneOf": [
+                                    {
+                                      "type": "array",
+                                      "items": { "type": "string" },
+                                      "minItems": 1
+                                    },
+                                    {
+                                      "type": "array",
+                                      "items": { "type": "number" },
+                                      "minItems": 1
+                                    },
+                                    {
+                                      "type": "array",
+                                      "items": { "type": "boolean" },
+                                      "minItems": 1
+                                    }
+                                  ]
                                 }
                             },
                             "additionalProperties": False,
