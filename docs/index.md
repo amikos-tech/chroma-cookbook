@@ -17,6 +17,7 @@ Latest ChromaDB version: [1.0.6](https://github.com/chroma-core/chroma/releases/
 
 ## New and Noteworthy
 
+- ☁️ [Chroma Chart]([http](https://github.com/amikos-tech/chromadb-chart)) - We've released a new Chroma chart version that now supports Chroma 1.0.x or later. Go check it out! - 📅`23-May-2025`
 - 🔍 [Filters](core/filters.md) - New and improved guide to filtering.
 - 🔄 [Chroma Maintenance](running/maintenance.md) - Learn how to keep your Chroma database in tip-top shape - 📅`08-Feb-2025`
 - ⚒️ [Configuration](core/configuration.md) - Updated descriptions and added examples of Chroma configuration options - 📅`21-Nov-2024`
