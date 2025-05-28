@@ -26,6 +26,6 @@ There are multiple ways to secure your Chroma instance using SSL/TLS certificate
 
 ## Authentication and Authorization
 
-Chroma offers built-in authentication and authorization mechanisms to secure your Chroma instance.
+Version prior to 1.0.x support [legacy authentication and authorization](legacy-auth.md) - Configure Chroma built-in authentication and authorization.
 
-- [Chroma-native Auth](auth.md) - Configure Chroma built-in authentication and authorization.
+Versions 1.0.0-1.0.10 do not support Authentication or Authorization natively so you will need to adjust your deployment with a [proxy-based authentcation](auth-1.0.x.md).
