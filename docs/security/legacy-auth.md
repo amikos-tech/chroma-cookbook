@@ -1,5 +1,9 @@
 # Chroma-native Auth
 
+!!! danger "Chroma-native Auth is not supported in v1.0.x"
+
+    Chroma native-auth described in this article is not supported in Chroma versions 1.0.0-1.0.10 (latest as of time of writing). DO NOT USE the below if you are on any of the affected version as it will not secure your instance.
+
 Chroma offers built in authentication and authorization mechanisms to secure your Chroma instance.
 
 !!! warning "Auth Disabled by Default"
