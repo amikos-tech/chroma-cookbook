@@ -161,11 +161,15 @@
          <lastmod>2025-05-28</lastmod>
     </url>
     <url>
-         <loc>https://cookbook.chromadb.dev/security/auth/</loc>
+         <loc>https://cookbook.chromadb.dev/security/auth-1.0.x/</loc>
          <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://cookbook.chromadb.dev/security/chroma-ssl-cert/</loc>
+         <lastmod>2025-05-28</lastmod>
+    </url>
+    <url>
+         <loc>https://cookbook.chromadb.dev/security/legacy-auth/</loc>
          <lastmod>2025-05-28</lastmod>
     </url>
     <url>
