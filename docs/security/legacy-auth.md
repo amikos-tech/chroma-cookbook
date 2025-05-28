@@ -1,8 +1,8 @@
-# Chroma-native Auth
+# Chroma-native Auth (Legacy)
 
 !!! danger "Chroma-native Auth is not supported in v1.0.x"
 
-    Chroma native-auth described in this article is not supported in Chroma versions 1.0.0-1.0.10 (latest as of time of writing). DO NOT USE the below if you are on any of the affected version as it will not secure your instance.
+    Chroma native-auth described in this article is not supported in Chroma versions 1.0.0-1.0.10 (latest as of time of writing). **DO NOT USE** the below if you are on any of the affected version as it will not secure your instance.
 
 Chroma offers built in authentication and authorization mechanisms to secure your Chroma instance.
 
@@ -13,7 +13,7 @@ Chroma offers built in authentication and authorization mechanisms to secure you
 
 !!! warning "Auth needs the company of SSL/TLS"
 
-    Authentication without encryption is insecure. If you are deploying Chroma in a public-facing environment, it is **highly** recommended that you add (SSL/TLS)[ssl-proxy.md].
+    Authentication without encryption is insecure. If you are deploying Chroma in a public-facing environment, it is **highly** recommended that you add [SSL/TLS](ssl-proxy.md).
 
 ## Authentication
 

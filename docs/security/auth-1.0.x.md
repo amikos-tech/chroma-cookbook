@@ -6,7 +6,6 @@
 You can secure your Chroma instance with a token-based auth using Envoy proxy.
 
 
-
 Create a `envoy.yaml` configuration file with the following content (adjust as needed or combined with [SSL](ssl-proxies.md)):
 
 ```yaml
@@ -72,7 +71,6 @@ Then create a`entrypoint.sh` startup script to interpolate the values in the `en
 ```bash
 #!/bin/sh
 
-
 sed 's/%CHROMA_AUTH_TOKEN_TRANSPORT_HEADER%/'$CHROMA_AUTH_TOKEN_TRANSPORT_HEADER'/g' /opt/bitnami/envoy/conf/envoy.yaml > /tmp/envoy_temp.yaml
 
 if [ $CHROMA_AUTH_TOKEN_TRANSPORT_HEADER = "Authorization" ]; then
@@ -114,15 +112,12 @@ services:
   chromadb:
     image: chromadb/chroma:1.0.10
     volumes:
-      - ./chromadb:/chroma/chroma
-    environment:
-      - IS_PERSISTENT=TRUE
-      - ANONYMIZED_TELEMETRY=${ANONYMIZED_TELEMETRY:-TRUE}
+      - ./chroma-data:/data
     networks:
       - net
     healthcheck:
       # Adjust below to match your container port
-      test: [ "CMD", "curl", "-f", "http://localhost:8000/api/v2/heartbeat" ]
+      test: ["CMD", "bash", "-c", "echo -n '' > /dev/tcp/127.0.0.1/8000"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -148,8 +143,9 @@ Verify:
 curl -v http://localhost:8000/api/v2/tenants/default_tenant/databases/default_database/collections -H "Authorization: Bearer myT0k3n123" 
 ```
 
-> ![NOTE]
-> Observe the presence of `Bearer` in the authorization header
+!!! note "Header format"
+
+    Observe the presence of `Bearer` in the authorization header
 
 ```python
 import chromadb
