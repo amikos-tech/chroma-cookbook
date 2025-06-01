@@ -44,7 +44,8 @@ static_resources:
                             permissions:
                               - header:
                                   name: %CHROMA_AUTH_TOKEN_TRANSPORT_HEADER%
-                                  exact_match: "%CHROMA_SERVER_AUTHN_CREDENTIALS%"
+                                  string_match:
+                                    exact: %CHROMA_SERVER_AUTHN_CREDENTIALS%
                             principals:
                               - any: true
                   - name: envoy.filters.http.router
