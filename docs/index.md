@@ -80,6 +80,7 @@ Below is a list of available clients for ChromaDB.
 - [VectorAdmin](https://github.com/Mintplex-Labs/vector-admin) (MintPlex Labs) - An open-source web-based admin
   interface for vector databases, including ChromaDB
 - [ChromaDB UI](https://github.com/thakkaryash94/chroma-ui) (Community maintained) - A web-based UI for ChromaDB
+- [phpMyChroma](https://github.com/pari/phpMyChroma) (Community maintained) - A tiny PHP 8+ web client that allows you to browse Chroma and perform semantic search
 
 ### CLI Tooling
 
