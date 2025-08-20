@@ -8,7 +8,7 @@ This is a collection of small guides and recipes to help you get started with Ch
 
     It is the goal of this site to make your Chroma experience as pleasant as possible regardless of your technical expertise.
 
-Latest ChromaDB version: [1.0.15](https://github.com/chroma-core/chroma/releases/tag/1.0.15)
+Latest ChromaDB version: [1.0.20](https://github.com/chroma-core/chroma/releases/tag/1.0.20)
 
 
 ## New and Noteworthy
