@@ -6,6 +6,79 @@ you'll need to configure Chroma to work with your browser to avoid CORS issues.
 
 ## Setting up Chroma for Browser-Based Access
 
+### Chroma 1.0 or later
+
+To allow browsers to directly access your Chroma instance you'll need to configure
+the `CHROMA_CORS_ALLOW_ORIGINS`. The `CHROMA_CORS_ALLOW_ORIGINS` environment variable controls the hosts
+which are allowed to access your Chroma instance.
+
+!!! note "Note"
+
+    The `CHROMA_CORS_ALLOW_ORIGINS` environment variable is a list of strings. Each string is a URL that is allowed
+    to access your Chroma instance. If you want to allow all hosts to access your Chroma instance, you can set
+    `CHROMA_CORS_ALLOW_ORIGINS` to `["*"]`. This is **not recommended** for production environments.
+
+
+
+
+=== "CLI"
+
+    ```bash
+    export CHROMA_CORS_ALLOW_ORIGINS='["http://localhost:3000"]'
+    chroma run --path /path/to/chroma-data
+    ```
+
+    Verify with `curl -i -X GET http://localhost:8000/api/v2/version -H "Origin: http://localhost:3000"` in the response you should see `access-control-allow-origin: http://localhost:3000` being returned if all works fine
+
+
+=== "Docker"
+
+    ```bash
+    docker run -e CHROMA_CORS_ALLOW_ORIGINS='["http://localhost:3000"]' -p 8000:8000 chromadb/chroma:1.0.20
+    ```
+
+    Verify with `curl -i -X GET http://localhost:8000/api/v2/version -H "Origin: http://localhost:3000"` in the response you should see `access-control-allow-origin: http://localhost:3000` being returned if all works fine
+
+
+=== "Docker Compose"
+
+    ```yaml
+    version: '3.9'
+
+    networks:
+      net:
+        driver: bridge
+
+    services:
+      server:
+        image: chromadb/chroma:1.0.20
+        volumes:
+          # Be aware that indexed data are located in "/data/"
+          - chroma-data:/data
+        environment:
+          - CHROMA_SERVER_CORS_ALLOW_ORIGINS=["http://localhost:3000"]
+        restart: unless-stopped # possible values are: "no", always", "on-failure", "unless-stopped"
+        ports:
+          - "8000:8000"
+        healthcheck:
+          # Adjust below to match your container port
+          test: [ "CMD", "curl", "-f", "http://localhost:8000/api/v2/heartbeat" ]
+          interval: 30s
+          timeout: 10s
+          retries: 3
+        networks:
+          - net
+
+    volumes:
+      chroma-data:
+        driver: local
+    ```
+
+    Run `docker compose up` to start your Chroma instance.
+    Verify with `curl -i -X GET http://localhost:8000/api/v2/version -H "Origin: http://localhost:3000"` in the response you should see `access-control-allow-origin: http://localhost:3000` being returned if all works fine
+
+### Chroma Pre-1.0 (Legacy)
+
 To allow browsers to directly access your Chroma instance you'll need to configure
 the `CHROMA_SERVER_CORS_ALLOW_ORIGINS`. The `CHROMA_SERVER_CORS_ALLOW_ORIGINS` environment variable controls the hosts
 which are allowed to access your Chroma instance.
