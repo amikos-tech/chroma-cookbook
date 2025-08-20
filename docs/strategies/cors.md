@@ -56,7 +56,7 @@ which are allowed to access your Chroma instance.
           # Be aware that indexed data are located in "/data/"
           - chroma-data:/data
         environment:
-          - CHROMA_SERVER_CORS_ALLOW_ORIGINS=["http://localhost:3000"]
+          - CHROMA_CORS_ALLOW_ORIGINS=["http://localhost:3000"]
         restart: unless-stopped # possible values are: "no", always", "on-failure", "unless-stopped"
         ports:
           - "8000:8000"
