@@ -267,7 +267,7 @@ HNSW for your use case. All HNSW parameters are configured as metadata for a col
 !!! tip "Changing HNSW parameters"
 
     Some HNSW parameters cannot be changed after index creation via the standard method shown below. 
-    If you which to change these parameters, you will need to clone the collection see an example [here](collections.md#cloning-a-collection).
+    If you whish to change these parameters, you will need to clone the collection see an example [here](collections.md#cloning-a-collection).
 
 ### `hnsw:space`
 
