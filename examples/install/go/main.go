@@ -9,13 +9,15 @@ import (
 )
 
 func main() {
-	client, err := chroma.NewHTTPClient(context.Background(), chroma.WithBaseURL("http://localhost:8000"))
+	client, err := chroma.NewHTTPClient(
+		chroma.WithBaseURL("http://localhost:8000"),
+	)
 	if err != nil {
 		log.Fatal(err)
 	}
-	_, err = client.Heartbeat(context.Background())
+	version, err := client.GetVersion(context.Background())
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("go: ok")
+	fmt.Printf("go: ok (version %s)\n", version)
 }

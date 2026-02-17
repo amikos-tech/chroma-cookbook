@@ -1,9 +1,8 @@
-use chroma::ChromaHttpClient;
+use chroma::{ChromaHttpClient, ChromaHttpClientOptions};
 
 #[tokio::main]
 async fn main() {
-    let client = ChromaHttpClient::new_default().expect("failed to create client");
-    let heartbeat = client.heartbeat().await;
-    assert!(heartbeat.is_ok());
-    println!("rust: ok");
+    let client = ChromaHttpClient::new(ChromaHttpClientOptions::default());
+    let heartbeat = client.heartbeat().await.expect("heartbeat failed");
+    println!("rust: ok (heartbeat {})", heartbeat.nanosecond_heartbeat);
 }
