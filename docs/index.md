@@ -8,11 +8,12 @@ This is a collection of small guides and recipes to help you get started with Ch
 
     It is the goal of this site to make your Chroma experience as pleasant as possible regardless of your technical expertise.
 
-Latest ChromaDB version: [1.0.20](https://github.com/chroma-core/chroma/releases/tag/1.0.20)
+Latest ChromaDB version: [1.5.0](https://github.com/chroma-core/chroma/releases/tag/1.5.0)
 
 
 ## New and Noteworthy
 
+- 🏷️ [Array Metadata Filters](core/filters.md#array-metadata) - Chroma 1.5.0 adds support for array metadata with `$contains`/`$not_contains` operators - 📅`17-Feb-2026`
 - 🔑 [Authentication in Chroma v1.0.x](security/auth-1.0.x.md) - Chroma 1.0.x does not support native Authentication, in this article we cover how to secure your Chroma 1.0.x instance - 📅`28-May-2025`
 - ☁️ [Chroma Chart](https://github.com/amikos-tech/chromadb-chart) - We've released a new Chroma chart version that now supports Chroma 1.0.x or later. Go check it out! - 📅`23-May-2025`
 - 🔍 [Filters](core/filters.md) - New and improved guide to filtering.

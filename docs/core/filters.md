@@ -73,7 +73,9 @@ You can use the following JSON schema to validate your `where` filters:
                                       "minItems": 1
                                     }
                                   ]
-                                }
+                                },
+                                "$contains": {"type": ["string", "number", "boolean"]},
+                                "$not_contains": {"type": ["string", "number", "boolean"]}
                             },
                             "additionalProperties": False,
                             "minProperties": 1,
@@ -294,6 +296,113 @@ Supported value types are:  `string`, `boolean`, `integer` or `float` (or `numbe
         where={"metadata_field": {"$nin": [1,"2",1.1]}}
     )
     ```
+
+### Array Metadata
+
+!!! note "Chroma >= 1.5.0"
+
+    Array metadata and the `$contains`/`$not_contains` operators require Chroma 1.5.0 or later.
+
+Chroma supports storing arrays in metadata fields. All elements in an array must be of the same type.
+
+Supported array element types: `string`, `integer`, `float`, `boolean`
+
+**Constraints:**
+
+- Empty arrays are not allowed
+- Nested arrays (arrays of arrays) are not supported
+- All elements must be the same type (no mixed-type arrays)
+
+#### Storing Array Metadata
+
+Here is an example of a research paper collection using array metadata to store multi-value fields like topics, authors, and review scores:
+
+```python
+import chromadb
+
+client = chromadb.Client()
+collection = client.create_collection("research_papers")
+
+collection.add(
+    ids=["paper-1", "paper-2", "paper-3"],
+    documents=[
+        "We introduce a transformer-based architecture for low-resource language translation.",
+        "A study on the effects of soil microbiome diversity on crop yield in arid climates.",
+        "Applying reinforcement learning to optimize energy consumption in smart grid networks.",
+    ],
+    metadatas=[
+        {
+            "authors": ["Chen", "Okafor", "Müller"],
+            "topics": ["nlp", "transformers", "low-resource"],
+            "review_scores": [8, 7, 9],
+            "year": 2024,
+        },
+        {
+            "authors": ["Patel", "Johansson"],
+            "topics": ["agriculture", "microbiome", "climate"],
+            "review_scores": [6, 7, 7],
+            "year": 2023,
+        },
+        {
+            "authors": ["Chen", "Williams"],
+            "topics": ["reinforcement-learning", "energy", "smart-grid"],
+            "review_scores": [9, 8, 9],
+            "year": 2024,
+        },
+    ],
+)
+```
+
+#### Contains (`$contains`)
+
+Returns records where an array metadata field includes a specific value. The filter value must be a scalar matching the array's element type.
+
+```python
+# Find papers authored by "Chen"
+results = collection.get(
+    where={"authors": {"$contains": "Chen"}}
+)
+# Returns paper-1 and paper-3
+```
+
+```python
+# Find papers that received a review score of 9
+results = collection.get(
+    where={"review_scores": {"$contains": 9}}
+)
+# Returns paper-1 and paper-3
+```
+
+#### Not Contains (`$not_contains`)
+
+Returns records where an array metadata field does not include a specific value.
+
+```python
+# Find papers not tagged with "nlp"
+results = collection.get(
+    where={"topics": {"$not_contains": "nlp"}}
+)
+# Returns paper-2 and paper-3
+```
+
+#### Combining Array Filters
+
+Array filters work with `$and`/`$or` logical operators and can be mixed with scalar filters:
+
+```python
+# Papers by "Chen" published in 2024 that cover "energy"
+results = collection.query(
+    query_texts=["renewable energy optimization"],
+    where={
+        "$and": [
+            {"authors": {"$contains": "Chen"}},
+            {"topics": {"$contains": "energy"}},
+            {"year": {"$eq": 2024}},
+        ]
+    },
+)
+# Returns paper-3
+```
 
 ### Logical Operator: And (`$and`)
 

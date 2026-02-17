@@ -34,7 +34,7 @@ which are allowed to access your Chroma instance.
 === "Docker"
 
     ```bash
-    docker run -e CHROMA_CORS_ALLOW_ORIGINS='["http://localhost:3000"]' -p 8000:8000 chromadb/chroma:1.0.20
+    docker run -e CHROMA_CORS_ALLOW_ORIGINS='["http://localhost:3000"]' -p 8000:8000 chromadb/chroma:1.5.0
     ```
 
     Verify with `curl -i -X GET http://localhost:8000/api/v2/version -H "Origin: http://localhost:3000"` in the response you should see `access-control-allow-origin: http://localhost:3000` being returned if all works fine
@@ -51,7 +51,7 @@ which are allowed to access your Chroma instance.
 
     services:
       server:
-        image: chromadb/chroma:1.0.20
+        image: chromadb/chroma:1.5.0
         volumes:
           # Be aware that indexed data are located in "/data/"
           - chroma-data:/data
