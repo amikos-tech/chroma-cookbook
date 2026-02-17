@@ -1,14 +1,27 @@
 # Installation
 
-Chroma single node is split into two packages: `chromadb` and `chromadb-client`. The `chromadb` package is the core
-package that provides the database functionality, while the `chromadb-client` package provides the Python client for
-interacting with the database.
+Chroma provides packages for Python, JavaScript/TypeScript, Go, and Rust.
 
-In addition to the python packages Chroma also provides a JS/TS client package.
+## Quick Start
 
-## Core (Python) - Single Node
+Get a Chroma server running quickly with the CLI or Docker:
 
-The core Chroma package installs the full Chroma version which can be uses for local development and testing.
+=== "CLI"
+
+    ```bash
+    pip install chromadb
+    chroma run --path ./getting-started
+    ```
+
+=== "Docker"
+
+    ```bash
+    docker pull chromadb/chroma && docker run -p 8000:8000 chromadb/chroma
+    ```
+
+## Python
+
+The `chromadb` package includes everything needed for both local (embedded) usage and connecting to a remote Chroma server.
 
 ??? note "Backward compatibility"
 
@@ -18,7 +31,7 @@ The core Chroma package installs the full Chroma version which can be uses for l
 
 ??? tip "Releases"
 
-    You can find Chroma releases in PyPI [here](https://pypi.org/project/chromadb-client/#history).
+    You can find Chroma releases on PyPI [here](https://pypi.org/project/chromadb/#history).
 
 === "Latest Release"
 
@@ -28,7 +41,7 @@ The core Chroma package installs the full Chroma version which can be uses for l
 
 === "Latest main branch"
 
-    Directly from  Github:
+    Directly from GitHub:
 
     ```bash
     pip install git+https://github.com/chroma-core/chroma.git@main
@@ -42,16 +55,16 @@ The core Chroma package installs the full Chroma version which can be uses for l
 
 === "Specific Version"
 
-    Installing a specific version of Chroma is useful when you want to ensure that your code works with a specific 
+    Installing a specific version of Chroma is useful when you want to ensure that your code works with a specific
     version of Chroma. To install a specific version of Chroma, run:
-    
+
     From PyPI:
-    
+
     ```bash
     pip install chromadb==<x.y.z>
     ```
-    
-    Directly from  Github (replace `x.y.z` with the [tag](https://github.com/chroma-core/chroma/tags) of the version you want to install):
+
+    Directly from GitHub (replace `x.y.z` with the [tag](https://github.com/chroma-core/chroma/tags) of the version you want to install):
 
     ```bash
     pip install git+https://github.com/chroma-core/chroma.git@x.y.z
@@ -59,92 +72,51 @@ The core Chroma package installs the full Chroma version which can be uses for l
 
 === "From PR Branch"
 
-    It is sometimes useful to install a version of Chroma that has still some unrelease functionality. Like a PR that either fixes a bug or brings
-    in a new functionality you may need. To test such unreleased code it is possible to install directly from GH PR branch.
+    It is sometimes useful to install a version of Chroma that has still some unreleased functionality. Like a PR that either fixes a bug or brings
+    in a new functionality you may need. To test such unreleased code it is possible to install directly from a GH PR branch.
 
     ```bash
     pip install git+https://github.com/chroma-core/chroma.git@<branch_name>
     ```
 
-
-## ChromaDB Python Client
-
-Chroma python client package `chromadb-client` provides a thin client for interacting with the Chroma database. The
-client interface is fully compatible with the core Chroma package so it can be interchangeably used with the core
-package.
-
-??? tip "Releases"
-
-    You can find Chroma releases in PyPI [here](https://pypi.org/project/chromadb-client/#history).
-
-=== "Latest Release"
-
-    ```bash
-    pip install chromadb-client
-    ```
-
-=== "Latest main branch"
-
-    From test PyPI:
-
-    ```bash
-    pip install --index-url https://test.pypi.org/simple/ chromadb-client
-    ```
-
-=== "Specific Version"
-
-    Installing a specific version of Chroma is useful when you want to ensure that your code works with a specific 
-    version of Chroma. To install a specific version of Chroma, run:
-    
-    ```bash
-    pip install chromadb==<x.y.z>
-    ```
-
-??? tip "Default Embedding Function"
-
-    The thin client is light-weight in terms of dependencies and as such the Default Embedding Function is not supported.
-    It is possible to install `onnxruntime` dependency and use the `chromadb.utils.embedding_functions.ONNXMiniLM_L6_V2` 
-    EF in place of `chromadb.utils.embedding_functions.DefaultEmbeddingFunction`. It is not recommended to run inference
-    (local EFs like the default EF) in resource constrained environments.
-    
-## Chroma JS/TS Client
+## JavaScript/TypeScript
 
 To install the Chroma JS/TS client package, use the following command depending on your package manager.
 
 === "Yarn"
 
     ```bash
-    yarn add chromadb chromadb-default-embed
+    yarn add chromadb @chroma-core/default-embed
     ```
 
 === "NPM"
 
     ```bash
-    npm install --save chromadb chromadb-default-embed
+    npm install --save chromadb @chroma-core/default-embed
     ```
 
 === "PNPM"
 
     ```bash
-    pnpm add chromadb chromadb-default-embed
+    pnpm add chromadb @chroma-core/default-embed
     ```
 
-=== "GitHub"
+??? tip "Embedding Function Packages"
 
-    To install from GitHub, visit https://github.com/chroma-core/chroma/pkgs/npm/chromadb.
+    All embedding function packages for JS/TS use the `@chroma-core/*` namespace. For example:
 
-    ??? warn "NPM Auth"
+    - `@chroma-core/default-embed` - Default embedding function
+    - `@chroma-core/openai` - OpenAI embeddings
+    - `@chroma-core/cohere` - Cohere embeddings
 
-        GitHub requires npm authentication to fetch packages. To authenticate with the GitHub NPM registry, you need to create a `.npmrc` file in your project directory with
-        the following content:
+## Go
 
-        ```bash
-        //npm.pkg.github.com/:_authToken=TOKEN
-        @chroma-core:registry=https://npm.pkg.github.com
-        ```
+```bash
+go get github.com/chroma-core/chroma/clients/go
+```
 
-        Replace `TOKEN` with your GitHub token. More info can be found [here](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token).
+## Rust
 
-    ```bash
-    npm install --save @chroma-core/chromadb
-    ```
+```bash
+cargo add chromadb
+```
