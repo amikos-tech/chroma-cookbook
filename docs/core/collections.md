@@ -18,8 +18,7 @@ Each collection is characterized by the following properties:
 Defaults:
 
 - Embedding Function - by default if `embedding_function` parameter is not provided at `get()` or `create_collection()`
-  or `get_or_create_collection()` time, Chroma uses `chromadb.utils.embedding_functions.DefaultEmbeddingFunction` which
-  uses the `chromadb.utils.embedding_functions.DefaultEmbeddingFunction` to embed documents. The default embedding
+  or `get_or_create_collection()` time, Chroma uses `chromadb.utils.embedding_functions.DefaultEmbeddingFunction` to embed documents. The default embedding
   function uses [Onnx Runtime](https://onnxruntime.ai/)
   with [`all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) model.
 - distance metric - by default Chroma use L2 (Euclidean Distance Squared) distance metric for newly created collection.
