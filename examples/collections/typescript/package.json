@@ -1,0 +1,15 @@
+{
+  "name": "chroma-collection-examples",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "chromadb": "latest",
+    "@chroma-core/default-embed": "latest"
+  },
+  "devDependencies": {
+    "tsx": "latest"
+  },
+  "scripts": {
+    "start": "npx tsx collection_examples.ts"
+  }
+}

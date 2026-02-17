@@ -42,3 +42,9 @@ examples/filtering/typescript/node_modules/
 examples/filtering/typescript/package-lock.json
 examples/filtering/go/go.sum
 examples/filtering/rust/target/
+examples/collections/typescript/node_modules/
+examples/collections/typescript/package-lock.json
+examples/collections/go/go.sum
+examples/collections/go/chroma-collection-examples
+examples/collections/python/__pycache__/
+examples/collections/rust/target/
