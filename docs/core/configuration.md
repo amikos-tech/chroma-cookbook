@@ -285,6 +285,42 @@ the full index cannot fit in a single machine's memory.
     });
     ```
 
+=== "Go"
+
+    ```go
+    package main
+
+    import (
+        "context"
+        chroma "github.com/amikos-tech/chroma-go/v2"
+        v2 "github.com/amikos-tech/chroma-go/v2/pkg/api/v2"
+    )
+
+    func main() {
+        ctx := context.Background()
+        client, _ := chroma.NewCloudClient(ctx,
+            chroma.WithTenant("my-tenant"),
+            chroma.WithDatabase("my-database"),
+        )
+
+        spannCfg := v2.NewSpannConfig(
+            v2.WithSpannSearchNprobe(64),
+            v2.WithSpannEfSearch(200),
+        )
+        vectorCfg := v2.NewVectorIndexConfig(
+            v2.WithSpace(v2.SpaceCosine),
+            v2.WithSpann(spannCfg),
+        )
+        schema, _ := v2.NewSchema(
+            v2.WithDefaultVectorIndex(vectorCfg),
+        )
+
+        col, _ := client.CreateCollection(ctx, "my_collection",
+            v2.WithSchemaCreate(schema),
+        )
+    }
+    ```
+
 ### Embedding Function Configuration
 
 Starting with Chroma v1.1.13, embedding functions are persisted server-side. You can configure
