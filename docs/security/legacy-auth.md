@@ -13,7 +13,7 @@ Chroma offers built in authentication and authorization mechanisms to secure you
 
 !!! warning "Auth needs the company of SSL/TLS"
 
-    Authentication without encryption is insecure. If you are deploying Chroma in a public-facing environment, it is **highly** recommended that you add [SSL/TLS](ssl-proxy.md).
+    Authentication without encryption is insecure. If you are deploying Chroma in a public-facing environment, it is **highly** recommended that you add [SSL/TLS](ssl-proxies.md).
 
 ## Authentication
 

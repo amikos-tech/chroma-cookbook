@@ -10,4 +10,4 @@ TBD
 
 #### Client-side Document Encryption
 
-See the [notebook](../../examples/advanced/encryption/client_side_encryption_example.ipynb) on client-side document encryption.
+Client-side document encryption notebook coming soon.

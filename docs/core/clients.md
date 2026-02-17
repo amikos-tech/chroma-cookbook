@@ -13,7 +13,7 @@ directory on your machine at the path you specify.
 
 !!! tip "Authentication"
 
-    For authentication details see the [Chroma-native Authentication](../security/auth.md) section.
+    For authentication details see the [Chroma-native Authentication](../security/auth-1.0.x.md) section.
 
 ```python
 import chromadb
@@ -65,7 +65,7 @@ remote ChromaDB server. The HTTP client can operate in synchronous or asynchrono
 
 !!! tip "Authentication"
 
-    For authentication details see the [Chroma-native Authentication](../security/auth.md) section.
+    For authentication details see the [Chroma-native Authentication](../security/auth-1.0.x.md) section.
 
 === "Python Sync"
 
@@ -138,83 +138,95 @@ remote ChromaDB server. The HTTP client can operate in synchronous or asynchrono
     
         Chroma `AsyncHttpClient` parameters are positional, unless keyword arguments are used.
 
-=== "JavaScript"
+=== "TypeScript"
 
-    ```javascript
-    import {ChromaClient}  from "chromadb";
+    ```typescript
+    import { ChromaClient } from "chromadb";
+
     const client = new ChromaClient({
-        path: "http://localhost:8000",
-        auth: {
-            provider: "token",
-            credentials: "your_token_here",
-            tokenHeaderType: "AUTHORIZATION",
-        },
+        host: "localhost",
+        port: 8000,
+        ssl: false,
+        headers: { "x-chroma-token": "your_token_here" },
         tenant: "default_tenant",
         database: "default_database",
     });
     ```
 
     **Parameters**:
-    
-    - `path` - The Chroma endpoint
-    - `auth` - Chroma authentication object
+
+    - `host` - The hostname of the remote server. Default is `localhost`.
+    - `port` - The port of the remote server. Default is `8000`.
+    - `ssl` - If `true`, the client will use HTTPS. Default is `false`.
+    - `headers` - Custom HTTP headers (e.g. authentication tokens).
     - `tenant` - the tenant to use. Default is `default_tenant`.
     - `database` - the database to use. Default is `default_database`.
 
-=== "GoLang"
+=== "Go"
 
     ```bash
-    go get github.com/amikos-tech/chroma-go
+    go get github.com/amikos-tech/chroma-go@latest
     ```
     ```go
     package main
-    
+
     import (
         "context"
-        "fmt"
         "log"
-        "os"
-    
-        chroma "github.com/amikos-tech/chroma-go"
-        "github.com/amikos-tech/chroma-go/collection"
-        openai "github.com/amikos-tech/chroma-go/pkg/embeddings/openai"
-        "github.com/amikos-tech/chroma-go/types"
+
+        chroma "github.com/amikos-tech/chroma-go/pkg/api/v2"
     )
-    
+
     func main() {
-        // Create new OpenAI embedding function
-    
-        openaiEf, err := openai.NewOpenAIEmbeddingFunction(os.Getenv("OPENAI_API_KEY"))
+        client, err := chroma.NewHTTPClient(
+            chroma.WithBaseURL("http://localhost:8000"),
+            chroma.WithDefaultDatabaseAndTenant(),
+        )
         if err != nil {
-            log.Fatalf("Error creating OpenAI embedding function: %s \n", err)
+            log.Fatalf("Error creating client: %s \n", err)
         }
-        // Create a new Chroma client
-        client := chroma.NewClient(
-            "localhost:8000",
-            chroma.WithTenant(types.DefaultTenant),
-            chroma.WithDatabase(types.DefaultDatabase),
-            chroma.WithAuth(types.NewTokenAuthCredentialsProvider("my-token", types.AuthorizationTokenHeader))
-        )
-    
-        // Create a new collection with options
-        newCollection, err := client.NewCollection(
-            context.TODO(),
-            "test-collection",
-            collection.WithMetadata("key1", "value1"),
-            collection.WithEmbeddingFunction(openaiEf),
-            collection.WithHNSWDistanceFunction(types.L2),
-        )
-        if err != nil {
-            log.Fatalf("Error creating collection: %s \n", err)
+        if err := client.Heartbeat(context.TODO()); err != nil {
+            log.Fatalf("Error connecting: %s \n", err)
         }
     }
     ```
+
     **Parameters**:
-    
-    - Chroma endpoint - the chroma endpoint URL e.g. `http://localhost:8000`. This is a required parameter.
+
+    - `WithBaseURL()` - the Chroma endpoint URL e.g. `http://localhost:8000`.
     - `WithAuth()` - Chroma authentication provider (see more [here](https://go-client.chromadb.dev/auth/)).
-    - `WithTenant()` - the tenant to use. Default is `default_tenant` or constant `types.DefaultTenant`.
-    - `WithDatabase()` - the database to use. Default is `default_database` or constant `types.DefaultDatabase`.
+    - `WithDatabaseAndTenant()` - set database and tenant explicitly.
+    - `WithDefaultDatabaseAndTenant()` - use `default_tenant` and `default_database`.
+
+=== "Rust"
+
+    ```bash
+    cargo add chroma
+    ```
+    ```rust
+    use chroma::{ChromaHttpClient, ChromaHttpClientOptions};
+
+    #[tokio::main]
+    async fn main() -> anyhow::Result<()> {
+        let client = ChromaHttpClient::new(ChromaHttpClientOptions::default());
+        let heartbeat = client.heartbeat().await?;
+        println!("Server timestamp: {}", heartbeat);
+        Ok(())
+    }
+    ```
+
+    **Parameters** (`ChromaHttpClientOptions`):
+
+    - `endpoint` - Server base URL. Default is `http://localhost:8000`.
+    - `auth_method` - Authentication strategy. Default is `ChromaAuthMethod::None`.
+    - `tenant_id` - Tenant identifier. Auto-resolved if omitted.
+    - `database_name` - Database name. Auto-resolved if omitted.
+
+    You can also construct a client from environment variables (`CHROMA_ENDPOINT`, `CHROMA_TENANT`, `CHROMA_DATABASE`):
+
+    ```rust
+    let client = ChromaHttpClient::from_env()?;
+    ```
 
 ### Uses of HTTP Client
 
@@ -238,6 +250,133 @@ important to note that there are trade-offs associated with using HTTP client:
 The `host` parameter supports a more advanced syntax than just the hostname. You can specify the whole endpoint ULR (
 without the API paths), e.g. `https://chromadb.example.com:8000/my_server/path/`. This is useful when you want to use a
 reverse proxy or load balancer in front of your ChromaDB server.
+
+## Cloud Client
+
+The `CloudClient` connects to [Chroma Cloud](https://trychroma.com). It handles authentication and endpoint
+configuration automatically.
+
+!!! note "Environment Variables"
+
+    All languages support configuration via environment variables. When `CHROMA_API_KEY`, `CHROMA_TENANT`, and
+    `CHROMA_DATABASE` are set, the client can be instantiated with no arguments.
+
+    If your API key is scoped to a single database, tenant and database are auto-resolved from the key —
+    you only need to provide the API key.
+
+=== "Python"
+
+    ```python
+    import chromadb
+
+    # Minimal — auto-resolves tenant/database from API key
+    client = chromadb.CloudClient(api_key="ck-your-api-key")
+
+    # Explicit tenant and database
+    client = chromadb.CloudClient(
+        tenant="your-tenant-id",
+        database="your-database-name",
+        api_key="ck-your-api-key",
+    )
+    ```
+
+    **Parameters**:
+
+    - `api_key` - Chroma Cloud API key. Falls back to `CHROMA_API_KEY` env var.
+    - `tenant` - Tenant identifier. Falls back to `CHROMA_TENANT` env var, or auto-resolved from API key.
+    - `database` - Database name. Falls back to `CHROMA_DATABASE` env var, or auto-resolved from API key.
+    - `settings` - Chroma Settings object to override defaults.
+
+=== "TypeScript"
+
+    ```typescript
+    import { CloudClient } from "chromadb";
+
+    const client = new CloudClient({
+        apiKey: "ck-your-api-key",
+        tenant: "your-tenant-id",
+        database: "your-database-name",
+    });
+    ```
+
+    **Parameters**:
+
+    - `apiKey` - Chroma Cloud API key. Falls back to `CHROMA_API_KEY` env var.
+    - `tenant` - Tenant identifier. Falls back to `CHROMA_TENANT` env var.
+    - `database` - Database name. Falls back to `CHROMA_DATABASE` env var.
+
+=== "Go"
+
+    ```go
+    package main
+
+    import (
+        "context"
+        "log"
+
+        chroma "github.com/amikos-tech/chroma-go/pkg/api/v2"
+    )
+
+    func main() {
+        client, err := chroma.NewCloudClient(
+            chroma.WithCloudAPIKey("ck-your-api-key"),
+            chroma.WithDatabaseAndTenant("your-database", "your-tenant-id"),
+        )
+        if err != nil {
+            log.Fatalf("Error creating cloud client: %s \n", err)
+        }
+        if err := client.Heartbeat(context.TODO()); err != nil {
+            log.Fatalf("Error connecting: %s \n", err)
+        }
+    }
+    ```
+
+    **Parameters**:
+
+    - `WithCloudAPIKey()` - Chroma Cloud API key. Falls back to `CHROMA_API_KEY` env var.
+    - `WithDatabaseAndTenant()` - Set database and tenant explicitly.
+    - `WithTimeout()` - Request timeout.
+
+    ??? note "Go Client Package"
+
+        The Go client is maintained at [`amikos-tech/chroma-go`](https://github.com/amikos-tech/chroma-go)
+        and has not yet been moved to `chroma-core`. Use the `github.com/amikos-tech/chroma-go/pkg/api/v2`
+        import path.
+
+=== "Rust"
+
+    ```rust
+    use chroma::{ChromaHttpClient, ChromaHttpClientOptions};
+
+    #[tokio::main]
+    async fn main() -> anyhow::Result<()> {
+        // Explicit API key and database
+        let options = ChromaHttpClientOptions::cloud(
+            "ck-your-api-key",
+            "your-database-name",
+        )?;
+        let client = ChromaHttpClient::new(options);
+
+        // Or from environment variables (CHROMA_API_KEY, CHROMA_DATABASE, etc.)
+        let client = ChromaHttpClient::cloud()?;
+
+        let heartbeat = client.heartbeat().await?;
+        println!("Server timestamp: {}", heartbeat);
+        Ok(())
+    }
+    ```
+
+    **Parameters** (`ChromaHttpClientOptions::cloud()`):
+
+    - `api_key` - Chroma Cloud API key.
+    - `database_name` - Database name. Tenant is auto-resolved.
+
+    **Environment-based** (`ChromaHttpClient::cloud()`):
+
+    - `CHROMA_API_KEY` (required)
+    - `CHROMA_ENDPOINT` (optional, defaults to `https://api.trychroma.com`)
+    - `CHROMA_TENANT` (optional, auto-resolved)
+    - `CHROMA_DATABASE` (optional, auto-resolved)
 
 ## Ephemeral Client
 
