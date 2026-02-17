@@ -1,0 +1,15 @@
+{
+  "name": "chroma-filtering-examples",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "chromadb": "latest",
+    "@chroma-core/default-embed": "latest"
+  },
+  "devDependencies": {
+    "tsx": "latest"
+  },
+  "scripts": {
+    "start": "npx tsx filter_examples.ts"
+  }
+}

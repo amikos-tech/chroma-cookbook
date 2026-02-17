@@ -30,8 +30,15 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 .idea/
 
+# MkDocs build output
+site/
+
 # Examples build artifacts
 examples/install/js/node_modules/
 examples/install/js/package-lock.json
 examples/install/go/go.sum
 examples/install/rust/target/
+examples/filtering/typescript/node_modules/
+examples/filtering/typescript/package-lock.json
+examples/filtering/go/go.sum
+examples/filtering/rust/target/
