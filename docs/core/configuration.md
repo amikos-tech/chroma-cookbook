@@ -410,6 +410,103 @@ the embedding function at collection creation time, and it will be automatically
 
 ---
 
+## 1.x Server Configuration
+
+Chroma 1.x is configured via a YAML configuration file. The server loads configuration from the path
+specified by the `CONFIG_PATH` environment variable. Individual settings can be overridden with
+`CHROMA_`-prefixed environment variables (use `__` for nested properties).
+
+```bash
+# Start with a custom config file
+CONFIG_PATH=/etc/chroma/config.yaml chroma run
+
+# Override individual settings via environment variables
+CHROMA_PORT=9000 chroma run
+CHROMA_CORS_ALLOW_ORIGINS='["*"]' chroma run
+CHROMA_ALLOW_RESET=true chroma run
+```
+
+### HTTP Server Settings
+
+| Parameter | Description | Default | Env Override |
+|-----------|-------------|---------|--------------|
+| `port` | HTTP server port | `8000` | `CHROMA_PORT` |
+| `listen_address` | Bind address | `0.0.0.0` | `CHROMA_LISTEN_ADDRESS` |
+| `max_payload_size_bytes` | Max request body size | `41943040` (40 MB) | `CHROMA_MAX_PAYLOAD_SIZE_BYTES` |
+| `cors_allow_origins` | Allowed CORS origins | None | `CHROMA_CORS_ALLOW_ORIGINS` |
+| `persist_path` | Data directory | `./chroma` | `CHROMA_PERSIST_PATH` |
+
+### General Settings
+
+| Parameter | Description | Default | Env Override |
+|-----------|-------------|---------|--------------|
+| `allow_reset` | Enable the `/reset` endpoint | `false` | `CHROMA_ALLOW_RESET` |
+| `default_knn_index` | Default vector index type | `hnsw` | `CHROMA_DEFAULT_KNN_INDEX` |
+| `enable_schema` | Enable schema validation | `true` | `CHROMA_ENABLE_SCHEMA` |
+
+### SQLite Settings
+
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| `sqlitedb.hash_type` | Migration hash algorithm | `md5` |
+| `sqlitedb.migration_mode` | How migrations are handled | `apply` |
+
+### OpenTelemetry
+
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| `open_telemetry.endpoint` | OTLP gRPC endpoint | None (disabled) |
+| `open_telemetry.service_name` | Service name in traces | `chromadb` |
+| `open_telemetry.filters` | Per-crate log level filters | `[{crate_name: "chroma_frontend", filter_level: "trace"}]` |
+
+### Example Configurations
+
+**Minimal single-node:**
+
+```yaml
+persist_path: "./chroma"
+```
+
+**Single-node with all common options:**
+
+```yaml
+# HTTP server
+port: 8000
+listen_address: "0.0.0.0"
+max_payload_size_bytes: 41943040
+cors_allow_origins: ["*"]
+
+# Storage
+persist_path: "./chroma"
+allow_reset: false
+
+# SQLite
+sqlitedb:
+  hash_type: "md5"
+  migration_mode: "apply"
+
+# Telemetry (optional)
+open_telemetry:
+  service_name: "chroma"
+  endpoint: "http://otel-collector:4317"
+  filters:
+    - crate_name: "chroma_frontend"
+      filter_level: "trace"
+```
+
+**Docker single-node:**
+
+```yaml
+persist_path: "/data"
+```
+
+!!! tip "Environment Variable Nesting"
+
+    Nested YAML properties are overridden using `__` as a separator. For example,
+    `sqlitedb.hash_type` becomes `CHROMA_SQLITEDB__HASH_TYPE`.
+
+---
+
 ## Pre-1.0 Configuration (Legacy)
 
 !!! warning "Legacy Configuration"
