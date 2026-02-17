@@ -21,9 +21,8 @@ Get a Chroma server running quickly with the CLI or Docker:
 
 ## Python
 
-[:material-file-code: Verify example](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/install/python/verify.py){ .md-button .md-button--primary }
-
 The `chromadb` package includes everything needed for both local (embedded) usage and connecting to a remote Chroma server.
+Here's a [minimal working example](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/install/python/verify.py) to confirm your installation.
 
 ??? note "Backward compatibility"
 
@@ -83,9 +82,8 @@ The `chromadb` package includes everything needed for both local (embedded) usag
 
 ## JavaScript/TypeScript
 
-[:material-file-code: Verify example](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/install/js/verify.mjs){ .md-button .md-button--primary }
-
 To install the Chroma JS/TS client package, use the following command depending on your package manager.
+Here's a [minimal working example](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/install/js/verify.mjs) to confirm your installation.
 
 === "Yarn"
 
@@ -115,16 +113,16 @@ To install the Chroma JS/TS client package, use the following command depending 
 
 ## Go
 
-[:material-file-code: Verify example](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/install/go/main.go){ .md-button .md-button--primary }
-
 ```bash
 go get github.com/amikos-tech/chroma-go
 ```
 
-## Rust
+Here's a [minimal working example](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/install/go/main.go) to confirm your installation.
 
-[:material-file-code: Verify example](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/install/rust/src/main.rs){ .md-button .md-button--primary }
+## Rust
 
 ```bash
 cargo add chroma
 ```
+
+Here's a [minimal working example](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/install/rust/src/main.rs) to confirm your installation.
