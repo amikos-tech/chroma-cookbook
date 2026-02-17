@@ -1,37 +1,90 @@
 # Multi-Category/Tag Filters
 
 Sometimes you may want to filter documents in Chroma based on multiple categories or tags e.g. `games` and `movies`.
-Unfortunately, Chroma does not yet support complex data-types like lists or sets so that one can use a single metadata
-field to store and filter by. It is also not possible to use fuzzy search `LIKE` queries on metadata fields.
 
-To solve this problem without introducing a complex logic on the client side, we suggest the following approach.
+## Adding Categories
 
-When adding document to a collection add each category it belongs to as a boolean metadata field:
+=== "Array Metadata (Chroma >= 1.5.0)"
 
-!!! note "No Empty Categories/Tags"
+    Store categories directly as an array metadata field:
 
-    Only add categories an item belongs to with flags set to `True`. 
-    Do not add categories an item does not belong to and set the flag to `False`.
+    ```python
+    collection.add(
+        ids=[f"{uuid.uuid4()}"],
+        documents=["This is a document"],
+        metadatas=[{"categories": ["games", "movies"]}],
+    )
+    ```
 
-```python
+=== "Boolean Fields (Pre-1.5.0)"
 
-collection.add(
-    ids=[f"{uuid.uuid4()}"],
-    documents=["This is a document"],
-    metadatas=[{"games": True, "movies": True}],
-)
-```
+    On older Chroma versions that don't support array metadata, add each category as a separate boolean field:
 
-When querying documents, you can filter by multiple categories by using the `where` parameter:
+    !!! note "No Empty Categories/Tags"
 
-```python
-results = collection.query(
-    query_texts=["This is a query document"],
-    where={"games": True},
-)
-# or a more complex query
-results = collection.query(
-    query_texts=["This is a query document"],
-    where={"$or": [{"games": True}, {"movies": True}]},
-)
-```
+        Only add categories an item belongs to with flags set to `True`.
+        Do not add categories an item does not belong to and set the flag to `False`.
+
+    ```python
+    collection.add(
+        ids=[f"{uuid.uuid4()}"],
+        documents=["This is a document"],
+        metadatas=[{"games": True, "movies": True}],
+    )
+    ```
+
+## Querying by Category
+
+=== "Array Metadata (Chroma >= 1.5.0)"
+
+    Use `$contains` to match documents with a specific category:
+
+    ```python
+    results = collection.query(
+        query_texts=["This is a query document"],
+        where={"categories": {"$contains": "games"}},
+    )
+    ```
+
+    Match documents in any of several categories with `$or`:
+
+    ```python
+    results = collection.query(
+        query_texts=["This is a query document"],
+        where={
+            "$or": [
+                {"categories": {"$contains": "games"}},
+                {"categories": {"$contains": "movies"}},
+            ]
+        },
+    )
+    ```
+
+    Exclude a category with `$not_contains`:
+
+    ```python
+    results = collection.query(
+        query_texts=["This is a query document"],
+        where={"categories": {"$not_contains": "sports"}},
+    )
+    ```
+
+=== "Boolean Fields (Pre-1.5.0)"
+
+    Filter by a single category:
+
+    ```python
+    results = collection.query(
+        query_texts=["This is a query document"],
+        where={"games": True},
+    )
+    ```
+
+    Filter by multiple categories with `$or`:
+
+    ```python
+    results = collection.query(
+        query_texts=["This is a query document"],
+        where={"$or": [{"games": True}, {"movies": True}]},
+    )
+    ```
