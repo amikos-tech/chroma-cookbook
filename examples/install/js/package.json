@@ -1,0 +1,9 @@
+{
+  "name": "chroma-install-verify",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "chromadb": "latest",
+    "@chroma-core/default-embed": "latest"
+  }
+}
