@@ -431,33 +431,36 @@ CHROMA_ALLOW_RESET=true chroma run
 | Parameter | Description | Default | Env Override |
 |-----------|-------------|---------|--------------|
 | `port` | HTTP server port | `8000` | `CHROMA_PORT` |
-| `listen_address` | Bind address | `0.0.0.0` | `CHROMA_LISTEN_ADDRESS` |
-| `max_payload_size_bytes` | Max request body size | `41943040` (40 MB) | `CHROMA_MAX_PAYLOAD_SIZE_BYTES` |
-| `cors_allow_origins` | Allowed CORS origins | None | `CHROMA_CORS_ALLOW_ORIGINS` |
-| `persist_path` | Data directory | `./chroma` | `CHROMA_PERSIST_PATH` |
+| `listen_address` | Network interface to bind to | `0.0.0.0` (all interfaces) | `CHROMA_LISTEN_ADDRESS` |
+| `max_payload_size_bytes` | Maximum request body size in bytes | `41943040` (40 MB) | `CHROMA_MAX_PAYLOAD_SIZE_BYTES` |
+| `cors_allow_origins` | List of allowed CORS origins. Use `["*"]` to allow any origin | None (CORS disabled) | `CHROMA_CORS_ALLOW_ORIGINS` |
+| `persist_path` | Directory for Chroma data files (SQLite DB, HNSW indices) | `./chroma` | `CHROMA_PERSIST_PATH` |
 
 ### General Settings
 
 | Parameter | Description | Default | Env Override |
 |-----------|-------------|---------|--------------|
-| `allow_reset` | Enable the `/reset` endpoint | `false` | `CHROMA_ALLOW_RESET` |
-| `default_knn_index` | Default vector index type | `hnsw` | `CHROMA_DEFAULT_KNN_INDEX` |
-| `enable_schema` | Enable schema validation | `true` | `CHROMA_ENABLE_SCHEMA` |
+| `allow_reset` | Enable the `DELETE /reset` endpoint, which deletes all data. Should be `false` in production | `false` | `CHROMA_ALLOW_RESET` |
+| `default_knn_index` | Default vector index type for new collections. Values: `hnsw` (single-node), `spann` (distributed/cloud) | `hnsw` | `CHROMA_DEFAULT_KNN_INDEX` |
+| `enable_schema` | Enable server-side schema validation for collection operations | `true` | `CHROMA_ENABLE_SCHEMA` |
 
 ### SQLite Settings
 
-| Parameter | Description | Default |
-|-----------|-------------|---------|
-| `sqlitedb.hash_type` | Migration hash algorithm | `md5` |
-| `sqlitedb.migration_mode` | How migrations are handled | `apply` |
+| Parameter | Description | Default | Env Override |
+|-----------|-------------|---------|--------------|
+| `sqlitedb.hash_type` | Hash algorithm for verifying migration file integrity. Values: `md5`, `sha256`. Use `sha256` if your organization prohibits MD5 | `md5` | `CHROMA_SQLITEDB__HASH_TYPE` |
+| `sqlitedb.migration_mode` | How schema migrations are handled on startup. Values: `apply` (run pending migrations), `validate` (check migrations are applied, fail if not) | `apply` | `CHROMA_SQLITEDB__MIGRATION_MODE` |
 
 ### OpenTelemetry
 
-| Parameter | Description | Default |
-|-----------|-------------|---------|
-| `open_telemetry.endpoint` | OTLP gRPC endpoint | None (disabled) |
-| `open_telemetry.service_name` | Service name in traces | `chromadb` |
-| `open_telemetry.filters` | Per-crate log level filters | `[{crate_name: "chroma_frontend", filter_level: "trace"}]` |
+Chroma 1.x emits traces via OpenTelemetry (OTLP gRPC). Tracing is disabled by default.
+Set the `open_telemetry` section to enable it.
+
+| Parameter | Description | Default | Env Override |
+|-----------|-------------|---------|--------------|
+| `open_telemetry.endpoint` | OTLP gRPC collector endpoint. Tracing is disabled when not set | None (disabled) | `CHROMA_OPEN_TELEMETRY__ENDPOINT` |
+| `open_telemetry.service_name` | Service name attached to all emitted spans | `chromadb` | `CHROMA_OPEN_TELEMETRY__SERVICE_NAME` |
+| `open_telemetry.filters` | Per-crate log level filters. Each entry has `crate_name` (Rust crate to filter) and `filter_level`. Levels: `trace`, `debug`, `info`, `warn`, `error` | `[{crate_name: "chroma_frontend", filter_level: "trace"}]` | — |
 
 ### Example Configurations
 
