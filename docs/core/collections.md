@@ -196,6 +196,269 @@ Creating a collection with custom HNSW configuration:
     });
     ```
 
+### Embedding Function Configuration and Persistence
+
+Starting with Chroma v1.1.13, embedding functions are persisted server-side in the collection configuration.
+After you create a collection, later `get_collection` / `getCollection` calls will auto-resolve the persisted
+embedding function.
+
+You can configure embedding functions in two ways:
+
+1. Pass `embedding_function` when creating a collection
+2. Set `configuration.embedding_function` with `name` and `config`
+
+API keys are auto-discovered from provider standard environment variables (for example `OPENAI_API_KEY`).
+If you use a non-standard variable, set `api_key_env_var` (Python) or `apiKeyEnvVar` (TypeScript).
+
+The persisted `embedding_function` payload follows provider schemas in the upstream Chroma registry:
+
+- [Embedding Function Schemas](https://github.com/chroma-core/chroma/tree/main/schemas/embedding_functions)
+- [OpenAI Schema Example](https://github.com/chroma-core/chroma/blob/main/schemas/embedding_functions/openai.json)
+- [Schema README](https://github.com/chroma-core/chroma/blob/main/schemas/embedding_functions/README.md)
+
+Cross-checked dense provider/package mapping:
+
+| Provider                       | Python | TypeScript (NPM · GitHub) | Go (pkg.go.dev · GitHub) |
+|--------------------------------|--------|----------------------------|---------------------------|
+| OpenAI                         | ✅     | ✅ [npm](https://www.npmjs.com/package/@chroma-core/openai) · [src](https://github.com/chroma-core/chroma/tree/main/clients/js/packages/chromadb-core/src/embeddings) | ✅ [pkg](https://pkg.go.dev/github.com/amikos-tech/chroma-go/v2/pkg/embeddings/openai) · [src](https://github.com/amikos-tech/chroma-go/tree/main/pkg/embeddings/openai) |
+| Google Gemini                  | ✅     | ✅ [npm](https://www.npmjs.com/package/@chroma-core/google-gemini) · [src](https://github.com/chroma-core/chroma/tree/main/clients/js/packages/chromadb-core/src/embeddings) | ✅ [pkg](https://pkg.go.dev/github.com/amikos-tech/chroma-go/v2/pkg/embeddings/gemini) · [src](https://github.com/amikos-tech/chroma-go/tree/main/pkg/embeddings/gemini) |
+| Cohere                         | ✅     | ✅ [npm](https://www.npmjs.com/package/@chroma-core/cohere) · [src](https://github.com/chroma-core/chroma/tree/main/clients/js/packages/chromadb-core/src/embeddings) | ✅ [pkg](https://pkg.go.dev/github.com/amikos-tech/chroma-go/v2/pkg/embeddings/cohere) · [src](https://github.com/amikos-tech/chroma-go/tree/main/pkg/embeddings/cohere) |
+| Cloudflare Workers AI          | ✅     | ✅ [npm](https://www.npmjs.com/package/@chroma-core/cloudflare-worker-ai) · [src](https://github.com/chroma-core/chroma/tree/main/clients/js/packages/chromadb-core/src/embeddings) | ✅ [pkg](https://pkg.go.dev/github.com/amikos-tech/chroma-go/v2/pkg/embeddings/cloudflare) · [src](https://github.com/amikos-tech/chroma-go/tree/main/pkg/embeddings/cloudflare) |
+| Hugging Face                   | ✅     | - | ✅ [pkg](https://pkg.go.dev/github.com/amikos-tech/chroma-go/v2/pkg/embeddings/hf) · [src](https://github.com/amikos-tech/chroma-go/tree/main/pkg/embeddings/hf) |
+| Hugging Face Embedding Server  | ✅     | ✅ [npm](https://www.npmjs.com/package/@chroma-core/huggingface-server) · [src](https://github.com/chroma-core/chroma/tree/main/clients/js/packages/chromadb-core/src/embeddings) | ✅ [pkg](https://pkg.go.dev/github.com/amikos-tech/chroma-go/v2/pkg/embeddings/hf) · [src](https://github.com/amikos-tech/chroma-go/tree/main/pkg/embeddings/hf) |
+| Instructor                     | ✅     | - | - |
+| Jina AI                        | ✅     | ✅ [npm](https://www.npmjs.com/package/@chroma-core/jina) · [src](https://github.com/chroma-core/chroma/tree/main/clients/js/packages/chromadb-core/src/embeddings) | ✅ [pkg](https://pkg.go.dev/github.com/amikos-tech/chroma-go/v2/pkg/embeddings/jina) · [src](https://github.com/amikos-tech/chroma-go/tree/main/pkg/embeddings/jina) |
+| Mistral                        | ✅     | ✅ [npm](https://www.npmjs.com/package/@chroma-core/mistral) · [src](https://github.com/chroma-core/chroma/tree/main/clients/js/packages/chromadb-core/src/embeddings) | ✅ [pkg](https://pkg.go.dev/github.com/amikos-tech/chroma-go/v2/pkg/embeddings/mistral) · [src](https://github.com/amikos-tech/chroma-go/tree/main/pkg/embeddings/mistral) |
+| Morph                          | ✅     | ✅ [npm](https://www.npmjs.com/package/@chroma-core/morph) · [src](https://github.com/chroma-core/chroma/tree/main/clients/js/packages/chromadb-core/src/embeddings) | ✅ [pkg](https://pkg.go.dev/github.com/amikos-tech/chroma-go/v2/pkg/embeddings/morph) · [src](https://github.com/amikos-tech/chroma-go/tree/main/pkg/embeddings/morph) |
+| Ollama                         | ✅     | ✅ [npm](https://www.npmjs.com/package/@chroma-core/ollama) · [src](https://github.com/chroma-core/chroma/tree/main/clients/js/packages/chromadb-core/src/embeddings) | ✅ [pkg](https://pkg.go.dev/github.com/amikos-tech/chroma-go/v2/pkg/embeddings/ollama) · [src](https://github.com/amikos-tech/chroma-go/tree/main/pkg/embeddings/ollama) |
+| Nomic                          | ✅     | - | ✅ [pkg](https://pkg.go.dev/github.com/amikos-tech/chroma-go/v2/pkg/embeddings/nomic) · [src](https://github.com/amikos-tech/chroma-go/tree/main/pkg/embeddings/nomic) |
+| OpenCLIP (Multimodal)          | ✅     | - | - |
+| Roboflow (Multimodal)          | ✅     | - | ✅ [pkg](https://pkg.go.dev/github.com/amikos-tech/chroma-go/v2/pkg/embeddings/roboflow) · [src](https://github.com/amikos-tech/chroma-go/tree/main/pkg/embeddings/roboflow) |
+| Sentence Transformers          | ✅     | ✅ [npm](https://www.npmjs.com/package/@chroma-core/sentence-transformer) · [src](https://github.com/chroma-core/chroma/tree/main/clients/js/packages/chromadb-core/src/embeddings) | - |
+| Text2Vec                       | ✅     | - | - |
+| Together AI                    | ✅     | ✅ [npm](https://www.npmjs.com/package/@chroma-core/together-ai) · [src](https://github.com/chroma-core/chroma/tree/main/clients/js/packages/chromadb-core/src/embeddings) | ✅ [pkg](https://pkg.go.dev/github.com/amikos-tech/chroma-go/v2/pkg/embeddings/together) · [src](https://github.com/amikos-tech/chroma-go/tree/main/pkg/embeddings/together) |
+| VoyageAI                       | ✅     | ✅ [npm](https://www.npmjs.com/package/@chroma-core/voyageai) · [src](https://github.com/chroma-core/chroma/tree/main/clients/js/packages/chromadb-core/src/embeddings) | ✅ [pkg](https://pkg.go.dev/github.com/amikos-tech/chroma-go/v2/pkg/embeddings/voyage) · [src](https://github.com/amikos-tech/chroma-go/tree/main/pkg/embeddings/voyage) |
+| Amazon Bedrock                 | ✅     | - | ✅ [pkg](https://pkg.go.dev/github.com/amikos-tech/chroma-go/v2/pkg/embeddings/bedrock) · [src](https://github.com/amikos-tech/chroma-go/tree/main/pkg/embeddings/bedrock) |
+| Baseten                        | ✅     | - | ✅ [pkg](https://pkg.go.dev/github.com/amikos-tech/chroma-go/v2/pkg/embeddings/baseten) · [src](https://github.com/amikos-tech/chroma-go/tree/main/pkg/embeddings/baseten) |
+| Chroma Cloud Qwen              | ✅     | ✅ [npm](https://www.npmjs.com/package/@chroma-core/chroma-cloud-qwen) · [src](https://github.com/chroma-core/chroma/tree/main/clients/js/packages/chromadb-core/src/embeddings) | - |
+
+Sparse embedding function integrations include:
+
+- Chroma BM25
+- Chroma Cloud Splade
+- Hugging Face sparse
+
+For broader language/provider support, see:
+
+- [Chroma Ecosystem Clients](../ecosystem/clients.md)
+- [Chroma Integrations](https://docs.trychroma.com/integrations/chroma-integrations)
+- [Upstream embedding functions reference](https://github.com/chroma-core/chroma/blob/main/docs/mintlify/docs/embeddings/embedding-functions.mdx)
+- [Upstream collection configuration reference](https://github.com/chroma-core/chroma/blob/main/docs/mintlify/docs/collections/configure.mdx)
+
+!!! note "Cross-check Scope"
+
+    Python/TypeScript support was cross-checked against Chroma Docs integrations and embedding functions pages.
+    Go package mappings were cross-checked against `github.com/amikos-tech/chroma-go/v2/pkg/embeddings/*`.
+
+Configure a persisted EF at collection creation:
+
+=== "Python"
+
+    ```python
+    import chromadb
+    from chromadb.utils.embedding_functions import OpenAIEmbeddingFunction
+
+    client = chromadb.HttpClient()
+
+    # 1) Set via embedding_function argument
+    ef = OpenAIEmbeddingFunction(model_name="text-embedding-3-small")
+    col = client.create_collection("with_openai_ef", embedding_function=ef)
+
+    # 2) Later calls auto-resolve persisted EF (no ef needed here)
+    same_col = client.get_collection("with_openai_ef")
+    ```
+
+=== "TypeScript"
+
+    ```typescript
+    import { ChromaClient } from "chromadb";
+
+    const client = new ChromaClient();
+
+    const collection = await client.createCollection({
+        name: "with_openai_ef",
+        configuration: {
+            embedding_function: {
+                name: "openai",
+                config: {
+                    model_name: "text-embedding-3-small",
+                    apiKeyEnvVar: "OPENAI_API_KEY",
+                },
+            },
+        },
+    });
+
+    const sameCollection = await client.getCollection({ name: "with_openai_ef" });
+    ```
+
+=== "Go"
+
+    ```go
+    package main
+
+    import (
+        "context"
+        "os"
+
+        chroma "github.com/amikos-tech/chroma-go/v2"
+        v2 "github.com/amikos-tech/chroma-go/v2/pkg/api/v2"
+        openai "github.com/amikos-tech/chroma-go/v2/pkg/embeddings/openai"
+    )
+
+    func main() {
+        ctx := context.Background()
+        client, _ := chroma.NewHTTPClient(ctx,
+            chroma.WithDefaultDatabase("default_database"),
+            chroma.WithDefaultTenant("default_tenant"),
+        )
+
+        ef, _ := openai.NewOpenAIEmbeddingFunction(os.Getenv("OPENAI_API_KEY"))
+        _, _ = client.CreateCollection(ctx, "with_openai_ef", v2.WithEmbeddingFunctionCreate(ef))
+
+        // Persisted EF is auto-resolved server-side
+        _, _ = client.GetCollection(ctx, "with_openai_ef")
+    }
+    ```
+
+Custom API key environment variable names:
+
+=== "Python"
+
+    ```python
+    from chromadb.utils.embedding_functions import OpenAIEmbeddingFunction
+
+    ef = OpenAIEmbeddingFunction(
+        model_name="text-embedding-3-small",
+        api_key_env_var="MY_CUSTOM_OPENAI_KEY",
+    )
+    ```
+
+=== "TypeScript"
+
+    ```typescript
+    import { OpenAIEmbeddingFunction } from "@chroma-core/openai";
+
+    const ef = new OpenAIEmbeddingFunction({
+        modelName: "text-embedding-3-small",
+        apiKeyEnvVar: "MY_CUSTOM_OPENAI_KEY",
+    });
+    ```
+
+Custom embedding function patterns:
+
+=== "Python"
+
+    ```python
+    from typing import Any, Dict
+    from chromadb import Documents, EmbeddingFunction, Embeddings
+    from chromadb.utils.embedding_functions import register_embedding_function
+
+    @register_embedding_function
+    class MyEmbeddingFunction(EmbeddingFunction):
+        def __call__(self, input: Documents) -> Embeddings:
+            # Produce embeddings for input documents
+            return [[0.0] * 3 for _ in input]
+
+        @staticmethod
+        def name() -> str:
+            return "my-embedding-function"
+
+        def get_config(self) -> Dict[str, Any]:
+            return {"model": "my-model-v1"}
+
+        @staticmethod
+        def build_from_config(config: Dict[str, Any]) -> "MyEmbeddingFunction":
+            return MyEmbeddingFunction()
+    ```
+
+=== "TypeScript"
+
+    ```typescript
+    import type { ChromaClient, EmbeddingFunction } from "chromadb";
+
+    type MyConfig = { model: string };
+
+    class MyEmbeddingFunction implements EmbeddingFunction {
+        public readonly name = "my-embedding-function";
+
+        constructor(private readonly config: MyConfig) {}
+
+        async generate(texts: string[]): Promise<number[][]> {
+            return texts.map(() => [0, 0, 0]);
+        }
+
+        getConfig(): MyConfig {
+            return this.config;
+        }
+
+        validateConfigUpdate(next: Record<string, unknown>) {
+            if ("model" in next) {
+                throw new Error("Model cannot be updated");
+            }
+        }
+
+        static buildFromConfig(config: MyConfig, _client?: ChromaClient): MyEmbeddingFunction {
+            return new MyEmbeddingFunction(config);
+        }
+    }
+    ```
+
+=== "Go"
+
+    ```go
+    package myef
+
+    import (
+        "context"
+
+        "github.com/amikos-tech/chroma-go/v2/pkg/embeddings"
+    )
+
+    type MyEmbeddingFunction struct{}
+
+    func (m *MyEmbeddingFunction) EmbedDocuments(_ context.Context, texts []string) ([]embeddings.Embedding, error) {
+        out := make([]embeddings.Embedding, len(texts))
+        for i := range texts {
+            out[i] = embeddings.NewEmbeddingFromFloat32([]float32{0, 0, 0})
+        }
+        return out, nil
+    }
+
+    func (m *MyEmbeddingFunction) EmbedQuery(_ context.Context, _ string) (embeddings.Embedding, error) {
+        return embeddings.NewEmbeddingFromFloat32([]float32{0, 0, 0}), nil
+    }
+
+    func (m *MyEmbeddingFunction) Name() string { return "my-embedding-function" }
+
+    func (m *MyEmbeddingFunction) GetConfig() embeddings.EmbeddingFunctionConfig {
+        return embeddings.EmbeddingFunctionConfig{"model": "my-model-v1"}
+    }
+
+    func (m *MyEmbeddingFunction) DefaultSpace() embeddings.DistanceMetric { return embeddings.COSINE }
+
+    func (m *MyEmbeddingFunction) SupportedSpaces() []embeddings.DistanceMetric {
+        return []embeddings.DistanceMetric{embeddings.COSINE}
+    }
+
+    func newMyEmbeddingFunctionFromConfig(_ embeddings.EmbeddingFunctionConfig) (embeddings.EmbeddingFunction, error) {
+        return &MyEmbeddingFunction{}, nil
+    }
+
+    func init() {
+        _ = embeddings.RegisterDense("my-embedding-function", newMyEmbeddingFunctionFromConfig)
+    }
+    ```
+
 !!! warn "Metadata with `get_or_create_collection()`"
 
     If the collection exists and metadata is provided in the method it will attempt to overwrite the existing metadata.

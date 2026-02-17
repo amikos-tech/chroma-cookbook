@@ -320,6 +320,11 @@ Starting with Chroma v1.1.13, embedding functions are persisted server-side. You
 the embedding function at collection creation time, and it will be automatically used on subsequent
 `get_collection` calls.
 
+Embedding function `name`/`config` payloads are defined by upstream schemas:
+
+- [Embedding Function Schemas](https://github.com/chroma-core/chroma/tree/main/schemas/embedding_functions)
+- [Schema README](https://github.com/chroma-core/chroma/blob/main/schemas/embedding_functions/README.md)
+
 === "Python"
 
     **Set via argument (recommended):**
