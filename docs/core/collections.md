@@ -13,36 +13,41 @@ Each collection is characterized by the following properties:
 - `metadata`: A dictionary of metadata associated with the collection. The metadata is a dictionary of key-value pairs.
   Keys can be strings, values can be strings, integers, floats, or booleans. Metadata can be changed
   using `collection.modify(metadata={"key": "value"})` (Note: Metadata is always overwritten when modified)
+- `configuration`: A dictionary of HNSW index configuration options. Configuration is set at collection creation time via the `configuration` parameter. See the example below.
 - `embedding_function`: The embedding function used to embed documents in the collection.
 
 Defaults:
 
-- Embedding Function - by default if `embedding_function` parameter is not provided at `get()` or `create_collection()`
+- Embedding Function - by default if `embedding_function` parameter is not provided at `create_collection()`
   or `get_or_create_collection()` time, Chroma uses `chromadb.utils.embedding_functions.DefaultEmbeddingFunction` to embed documents. The default embedding
   function uses [Onnx Runtime](https://onnxruntime.ai/)
   with [`all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) model.
-- distance metric - by default Chroma use L2 (Euclidean Distance Squared) distance metric for newly created collection.
-  You can change it at creation
-  time using `hnsw:space` metadata key. Possible values are `l2`, `cosine`, and 'ip' (inner product). (Note: `cosine` value returns `cosine distance` rather then `cosine similarity`. Ie. values close to 0 means the embeddings are more similar.)
-- Batch size, defined by `hnsw:batch_size` metadata key. Default is 100. The batch size defines the size of the
+- Distance metric - by default Chroma uses L2 (Euclidean Distance Squared) distance metric for newly created collections.
+  You can change it at creation time using the `configuration` parameter:
+  `configuration={"hnsw": {"space": "cosine"}}`. Possible values are `l2`, `cosine`, and `ip` (inner product). (Note: `cosine` value returns `cosine distance` rather than `cosine similarity`. I.e. values close to 0 means the embeddings are more similar.)
+- Batch size, defined by `configuration={"hnsw": {"batch_size": 100}}`. Default is 100. The batch size defines the size of the
   in-memory bruteforce index. Once the threshold is reached, vectors are added to the HNSW index and the bruteforce
-  index is cleared. Greater values may improve ingest performance. When updating also consider changing sync threshold
-- Sync threshold, defined by `hnsw:sync_threshold` metadata key. Default 1000. The sync threshold defines the limit at
+  index is cleared. Greater values may improve ingest performance. When updating also consider changing sync threshold.
+- Sync threshold, defined by `configuration={"hnsw": {"sync_threshold": 1000}}`. Default is 1000. The sync threshold defines the limit at
   which the HNSW index is synced to disk. This limit only applies to newly added vectors.
 
 !!! note "Keep in Mind"
 
-    Collection distance metric cannot be changed after the collection is created. 
-    To change the distance metric see #cloning-a-collection
+    Collection distance metric cannot be changed after the collection is created.
+    To change the distance metric see [Cloning a Collection](#cloning-a-collection).
+
+!!! note "Embedding Function Persistence"
+
+    Since Chroma v1.1.13, the embedding function configuration (EF) is persisted server-side. You no longer need to pass `embedding_function` when calling `get_collection` — Chroma will use the EF that was set at collection creation time.
 
 !!! warn "Name Restrictions"
 
     Collection names in Chroma must adhere to the following restrictions:
-  
-    (1) contains 3-63 characters
-    (2) starts and ends with an alphanumeric character
-    (3) otherwise contains only alphanumeric characters, underscores or hyphens (-)
-    (4) contains no two consecutive periods (..)
+
+    (1) contains 3-512 characters
+    (2) starts and ends with a lowercase letter or a digit
+    (3) can contain dots, dashes, and underscores in between
+    (4) cannot contain two consecutive periods (`..`)
     (5) is not a valid IPv4 address
 
 ### Creating a collection
@@ -57,29 +62,132 @@ Parameters:
 |----------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------|-------------------|
 | `name`               | Name of the collection to create. Parameter is required                     | N/A                                                           | String            |
 | `metadata`           | Metadata associated with the collection. This is an optional parameter      | `None`                                                        | Dictionary        |
+| `configuration`      | HNSW index configuration for the collection. This is an optional parameter  | `None`                                                        | Dictionary        |
 | `embedding_function` | Embedding function to use for the collection. This is an optional parameter | `chromadb.utils.embedding_functions.DefaultEmbeddingFunction` | EmbeddingFunction |
 
-```python
+=== "Python"
 
-import chromadb
+    ```python
+    import chromadb
 
-client = chromadb.PersistentClient(path="test")  # or HttpClient()
-col = client.create_collection("test")
-```
+    client = chromadb.PersistentClient(path="test")  # or HttpClient()
+    col = client.create_collection("test")
+    ```
+
+=== "TypeScript"
+
+    ```typescript
+    import { ChromaClient } from "chromadb";
+
+    const client = new ChromaClient();
+    const collection = await client.createCollection({ name: "test" });
+    ```
+
+=== "Go"
+
+    ```go
+    package main
+
+    import (
+        "context"
+        chroma "github.com/amikos-tech/chroma-go"
+    )
+
+    func main() {
+        ctx := context.Background()
+        client, _ := chroma.NewHTTPClient(ctx, chroma.WithDefaultDatabase("default_database"), chroma.WithDefaultTenant("default_tenant"))
+        col, _ := client.CreateCollection(ctx, "test", false)
+    }
+    ```
+
+=== "Rust"
+
+    ```rust
+    use chromadb::v2::ChromaClient;
+
+    #[tokio::main]
+    async fn main() {
+        let client = ChromaClient::new(Default::default()).await.unwrap();
+        let collection = client.create_collection("test", None, true).await.unwrap();
+    }
+    ```
 
 Alternatively you can use the `get_or_create_collection` method to create a collection if it doesn't exist already.
 
-```python
-import chromadb
+=== "Python"
 
-client = chromadb.PersistentClient(path="test")  # or HttpClient()
-col = client.get_or_create_collection("test", metadata={"key": "value"})
-```
+    ```python
+    import chromadb
+
+    client = chromadb.PersistentClient(path="test")  # or HttpClient()
+    col = client.get_or_create_collection("test", metadata={"key": "value"})
+    ```
+
+=== "TypeScript"
+
+    ```typescript
+    import { ChromaClient } from "chromadb";
+
+    const client = new ChromaClient();
+    const collection = await client.getOrCreateCollection({
+        name: "test",
+        metadata: { key: "value" },
+    });
+    ```
+
+=== "Go"
+
+    ```go
+    col, _ := client.GetOrCreateCollection(ctx, "test", nil)
+    ```
+
+=== "Rust"
+
+    ```rust
+    let collection = client.get_or_create_collection("test", None, true).await.unwrap();
+    ```
+
+Creating a collection with custom HNSW configuration:
+
+=== "Python"
+
+    ```python
+    import chromadb
+
+    client = chromadb.PersistentClient(path="test")  # or HttpClient()
+    col = client.create_collection(
+        "test",
+        configuration={
+            "hnsw": {
+                "space": "cosine",
+                "ef_construction": 200,
+                "max_neighbors": 32,
+            }
+        },
+    )
+    ```
+
+=== "TypeScript"
+
+    ```typescript
+    import { ChromaClient } from "chromadb";
+
+    const client = new ChromaClient();
+    const collection = await client.createCollection({
+        name: "test",
+        configuration: {
+            hnsw: {
+                space: "cosine",
+                efConstruction: 200,
+                maxNeighbors: 32,
+            },
+        },
+    });
+    ```
 
 !!! warn "Metadata with `get_or_create_collection()`"
 
     If the collection exists and metadata is provided in the method it will attempt to overwrite the existing metadata.
-    This behaviour may be fixed by this [GH issue](https://github.com/chroma-core/chroma/issues/2390)
 
 ### Deleting a collection
 
@@ -87,18 +195,45 @@ col = client.get_or_create_collection("test", metadata={"key": "value"})
 
     For more information on the `delete_collection` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/python/client#deletecollection).
 
+!!! danger "Destructive Operation"
+
+    Deleting a collection permanently removes all its data (embeddings, documents, and metadata). This action cannot be undone.
+
 Parameters:
 
 | Name   | Description                                             | Default Value | Type   |
 |--------|---------------------------------------------------------|---------------|--------|
 | `name` | Name of the collection to delete. Parameter is required | N/A           | String |
 
-```python
-import chromadb
+=== "Python"
 
-client = chromadb.PersistentClient(path="test")  # or HttpClient()
-client.delete_collection("test")
-```
+    ```python
+    import chromadb
+
+    client = chromadb.PersistentClient(path="test")  # or HttpClient()
+    client.delete_collection("test")
+    ```
+
+=== "TypeScript"
+
+    ```typescript
+    import { ChromaClient } from "chromadb";
+
+    const client = new ChromaClient();
+    await client.deleteCollection({ name: "test" });
+    ```
+
+=== "Go"
+
+    ```go
+    _, err := client.DeleteCollection(ctx, "test")
+    ```
+
+=== "Rust"
+
+    ```rust
+    client.delete_collection("test").await.unwrap();
+    ```
 
 ### Listing all collections
 
@@ -106,9 +241,7 @@ client.delete_collection("test")
 
     For more information on the `list_collections` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/python/client#listcollections).
 
-!!! note "Breaking Change in 0.6.0"
-
-    In ChromaDB 0.6.0, the `list_collections` method was updated to return a list of collection names (`Sequence[CollectionName]` where `CollectionName` is a string) instead of collection objects.
+The `list_collections` method returns `Collection` objects (name, metadata, configuration, and counts). Use `offset` and `limit` to paginate through large tenants or databases.
 
 Parameters:
 
@@ -117,13 +250,49 @@ Parameters:
 | `offset` | The starting offset for listing collections. This is an optional parameter                                                                                                            | `None`        | Positive Integer |
 | `limit`  | The number of collections to return. If the remaining collections from `offset` are fewer than this number then returned collection will also be fewer. This is an optional parameter | `None`        | Positive Integer |
 
-```python
+=== "Python"
 
-import chromadb
+    ```python
+    import chromadb
 
-client = chromadb.PersistentClient(path="test")  # or HttpClient()
-collections = client.list_collections() # in <0.6.0 returns the list of collection objects, in >=0.6.0 returns the list of collection names
-```
+    client = chromadb.PersistentClient(path="test")  # or HttpClient()
+    collections = client.list_collections()  # returns list of collection names
+
+    # with pagination
+    collections = client.list_collections(limit=10, offset=0)
+    ```
+
+=== "TypeScript"
+
+    ```typescript
+    import { ChromaClient } from "chromadb";
+
+    const client = new ChromaClient();
+    const collections = await client.listCollections({ limit: 10, offset: 0 });
+
+    // fetch the next page by advancing the offset
+    const nextPage = await client.listCollections({ limit: 10, offset: 10 });
+    ```
+
+=== "Go"
+
+    ```go
+    collections, _ := client.ListCollections(ctx, nil, nil)
+
+    // with pagination
+    limit := int32(10)
+    offset := int32(0)
+    collections, _ = client.ListCollections(ctx, &limit, &offset)
+    ```
+
+=== "Rust"
+
+    ```rust
+    let collections = client.list_collections(None, None).await.unwrap();
+
+    // with pagination
+    let collections = client.list_collections(Some(10), Some(0)).await.unwrap();
+    ```
 
 ### Getting a collection
 
@@ -131,19 +300,46 @@ collections = client.list_collections() # in <0.6.0 returns the list of collecti
 
     For more information on the `get_collection` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/python/client#getcollection).
 
+!!! note "Embedding Function Persistence"
+
+    Since Chroma v1.1.13, the embedding function is persisted server-side. You no longer need to pass `embedding_function` when calling `get_collection`. If you do pass one, it will override the persisted configuration for that client session.
+
 Parameters:
 
-| Name                 | Description                                                                 | Default Value                                                 | Type              |
-|----------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------|-------------------|
-| `name`               | Name of the collection to get. Parameter is required                        | N/A                                                           | String            |
-| `embedding_function` | Embedding function to use for the collection. This is an optional parameter | `chromadb.utils.embedding_functions.DefaultEmbeddingFunction` | EmbeddingFunction |
+| Name                 | Description                                                                                          | Default Value | Type              |
+|----------------------|------------------------------------------------------------------------------------------------------|---------------|-------------------|
+| `name`               | Name of the collection to get. Parameter is required                                                 | N/A           | String            |
+| `embedding_function` | Embedding function override for the collection. Optional — uses the persisted EF if not provided     | `None`        | EmbeddingFunction |
 
-```python
-import chromadb
+=== "Python"
 
-client = chromadb.PersistentClient(path="test")  # or HttpClient()
-col = client.get_collection("test")
-```
+    ```python
+    import chromadb
+
+    client = chromadb.PersistentClient(path="test")  # or HttpClient()
+    col = client.get_collection("test")
+    ```
+
+=== "TypeScript"
+
+    ```typescript
+    import { ChromaClient } from "chromadb";
+
+    const client = new ChromaClient();
+    const collection = await client.getCollection({ name: "test" });
+    ```
+
+=== "Go"
+
+    ```go
+    col, _ := client.GetCollection(ctx, "test", nil)
+    ```
+
+=== "Rust"
+
+    ```rust
+    let collection = client.get_collection("test").await.unwrap();
+    ```
 
 ### Modifying a collection
 
@@ -153,16 +349,16 @@ col = client.get_collection("test")
 
 !!! tip "Modify method on collection"
 
-    As the reader will observe `modify` method is called on the collection and node on the client as the rest of the collection lifecycle methods.
+    The `modify` method is called on the collection and not on the client, unlike the rest of the collection lifecycle methods.
 
 !!! note "Metadata Overwrite"
 
     Metadata is always overwritten when modified. If you want to add a new key-value pair to the metadata, you must
     first get the existing metadata and then add the new key-value pair to it.
 
-!!! warning "Changin HNSW parameters"
+!!! warning "Changing HNSW parameters"
 
-    While as of current version (`0.6.3`) you can create a collection and supply HNSW parameters in the metadata, it is not possible to change the HNSW parameters after initial creation.
+    HNSW configuration parameters (space, M, ef_construction, etc.) cannot be changed after the collection is created. To change these parameters, clone the collection — see [Cloning a Collection](#cloning-a-collection).
 
 Parameters:
 
@@ -171,15 +367,27 @@ Parameters:
 | `name`     | The new name of the collection. Parameter is required                  | N/A           | String     |
 | `metadata` | Metadata associated with the collection. This is an optional parameter | `None`        | Dictionary |
 
-Both collection properties (`name` and `metadata`) can be modified, separately ot together.
+Both collection properties (`name` and `metadata`) can be modified, separately or together.
 
-```python
-import chromadb
+=== "Python"
 
-client = chromadb.PersistentClient(path="test")  # or HttpClient()
-col = client.get_collection("test")
-col.modify(name="test2", metadata={"key": "value"})
-```
+    ```python
+    import chromadb
+
+    client = chromadb.PersistentClient(path="test")  # or HttpClient()
+    col = client.get_collection("test")
+    col.modify(name="test2", metadata={"key": "value"})
+    ```
+
+=== "TypeScript"
+
+    ```typescript
+    import { ChromaClient } from "chromadb";
+
+    const client = new ChromaClient();
+    const collection = await client.getCollection({ name: "test" });
+    await collection.modify({ name: "test2", metadata: { key: "value" } });
+    ```
 
 ### Counting Collections
 
@@ -189,14 +397,66 @@ Returns the number of collections for the currently configured tenant and databa
 
     For more information on the `count_collections` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/python/client#countcollections).
 
-```python
-import chromadb
+=== "Python"
 
-client = chromadb.PersistentClient(path="test")  # or HttpClient()
-col = client.get_or_create_collection("test")  # create a new collection
+    ```python
+    import chromadb
 
-collections_count = client.count_collections() # int
-```
+    client = chromadb.PersistentClient(path="test")  # or HttpClient()
+    col = client.get_or_create_collection("test")  # create a new collection
+
+    collections_count = client.count_collections()  # int
+    ```
+
+=== "TypeScript"
+
+    ```typescript
+    import { ChromaClient } from "chromadb";
+
+    const client = new ChromaClient();
+    const count = await client.countCollections();
+    ```
+
+### Convenience Methods
+
+The following methods are available on a collection instance:
+
+=== "Python"
+
+    ```python
+    import chromadb
+
+    client = chromadb.PersistentClient(path="test")  # or HttpClient()
+    col = client.get_or_create_collection("test")
+    col.add(ids=["1", "2"], documents=["hello world", "hello chroma"])
+
+    # peek at the first N items in the collection (default 10)
+    col.peek()
+    col.peek(limit=5)
+
+    # count the number of items in the collection
+    col.count()
+    ```
+
+=== "TypeScript"
+
+    ```typescript
+    import { ChromaClient } from "chromadb";
+
+    const client = new ChromaClient();
+    const collection = await client.getOrCreateCollection({ name: "test" });
+    await collection.add({
+        ids: ["1", "2"],
+        documents: ["hello world", "hello chroma"],
+    });
+
+    // peek at the first N items in the collection (default 10)
+    await collection.peek();
+    await collection.peek({ limit: 5 });
+
+    // count the number of items in the collection
+    await collection.count();
+    ```
 
 ## Iterating over a Collection
 
@@ -224,19 +484,19 @@ for i in range(0, existing_count, batch_size):
 
 ### Copying Collections
 
-    
-    
+
+
 === "Local To Remote"
 
     The following example demonstrates how to copy a local collection to a remote ChromaDB server. (it also works in
     reverse)
-    
+
     ```python
     import chromadb
-    
+
     client = chromadb.PersistentClient(path="my_local_data")
     remote_client = chromadb.HttpClient()
-    
+
     collection = client.get_or_create_collection("local_collection")
     collection.add(
         ids=["1", "2"],
@@ -257,11 +517,11 @@ for i in range(0, existing_count, batch_size):
             metadatas=batch["metadatas"],
             embeddings=batch["embeddings"])
     ```
-    
+
     !!! note "Using ChromaDB Data Pipes"
-    
+
           Using [ChromaDB Data Pipes](https://datapipes.chromadb.dev) package you can achieve the same result.
-      
+
           ```bash
           pip install chromadb-data-pipes
           cdp export "file://path/to_local_data/local_collection" | \
@@ -274,10 +534,10 @@ for i in range(0, existing_count, batch_size):
 
     ```python
     import chromadb
-    
+
     local_client = chromadb.PersistentClient(path="source")
     remote_client = chromadb.PersistentClient(path="target")
-    
+
     collection = local_client.get_or_create_collection("my_source_collection")
     collection.add(
         ids=["1", "2"],
@@ -298,11 +558,11 @@ for i in range(0, existing_count, batch_size):
             metadatas=batch["metadatas"],
             embeddings=batch["embeddings"])
     ```
-    
+
     !!! note "Using ChromaDB Data Pipes"
-    
+
           You can achieve the above with [ChromaDB Data Pipes](https://datapipes.chromadb.dev) package.
-      
+
           ```bash
           pip install chromadb-data-pipes
           cdp export "file://source_persist_dir/target_collection" | \
@@ -313,8 +573,8 @@ for i in range(0, existing_count, batch_size):
 
 Here are some reasons why you might want to clone a collection:
 
-- Change distance function (via metadata - `hnsw:space`)
-- Change HNSW hyper parameters (`hnsw:M`, `hnsw:construction_ef`, `hnsw:search_ef`)
+- Change distance function (via `configuration` — `hnsw.space`)
+- Change HNSW hyper parameters (`max_neighbors`, `ef_construction`, `search_ef`)
 
 ```python
 import chromadb
@@ -323,8 +583,8 @@ client = chromadb.PersistentClient(path="test")  # or HttpClient()
 col = client.get_or_create_collection("test")  # create a new collection with L2 (default)
 
 col.add(ids=[f"{i}" for i in range(1000)], documents=[f"document {i}" for i in range(1000)])
-newCol = client.get_or_create_collection("test1", metadata={
-    "hnsw:space": "cosine"})  # let's change the distance function to cosine
+newCol = client.get_or_create_collection("test1", configuration={
+    "hnsw": {"space": "cosine"}})  # change the distance function to cosine
 
 existing_count = col.count()
 batch_size = 10
@@ -359,7 +619,7 @@ for i in range(0, existing_count, batch_size):
     batch = col.get(include=["metadatas", "documents"], limit=batch_size, offset=i)
     newCol.add(ids=batch["ids"], documents=batch["documents"], metadatas=batch["metadatas"])
 # get first 10 documents with their OpenAI embeddings
-print(newCol.get(offset=0, limit=10,include=["metadatas", "documents", "embeddings"])) 
+print(newCol.get(offset=0, limit=10,include=["metadatas", "documents", "embeddings"]))
 ```
 
 #### Cloning a subset of a collection with query
@@ -379,8 +639,8 @@ client = chromadb.PersistentClient(path="test")  # or HttpClient()
 col = client.get_or_create_collection("test")  # create a new collection with L2 (default)
 
 col.add(ids=[f"{i}" for i in range(1000)], documents=[f"document {i}" for i in range(1000)])
-newCol = client.get_or_create_collection("test1", metadata={
-    "hnsw:space": "cosine", "hnsw:M": 32})  # let's change the distance function to cosine and M to 32
+newCol = client.get_or_create_collection("test1", configuration={
+    "hnsw": {"space": "cosine", "max_neighbors": 32}})
 query_where = {"metadata_key": "value"}
 query_where_document = {"$contains": "document"}
 select_ids = col.get(where_document=query_where_document, where=query_where, include=[])  # get only IDs
@@ -402,11 +662,9 @@ whitespace.
 Change the `update_metadata` function to suit your needs.
 
 ```python
-from chromadb import Settings
 import chromadb
 
-client = chromadb.PersistentClient(path="test", settings=Settings(allow_reset=True))
-client.reset()  # reset the database so we can run this script multiple times
+client = chromadb.PersistentClient(path="test")
 col = client.get_or_create_collection("test")
 count = col.count()
 
