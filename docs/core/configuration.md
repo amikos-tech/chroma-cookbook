@@ -302,21 +302,14 @@ the full index cannot fit in a single machine's memory.
             chroma.WithTenant("my-tenant"),
             chroma.WithDatabase("my-database"),
         )
-
-        spannCfg := v2.NewSpannConfig(
-            v2.WithSpannSearchNprobe(64),
-            v2.WithSpannEfSearch(200),
-        )
-        vectorCfg := v2.NewVectorIndexConfig(
-            v2.WithSpace(v2.SpaceCosine),
-            v2.WithSpann(spannCfg),
-        )
-        schema, _ := v2.NewSchema(
-            v2.WithDefaultVectorIndex(vectorCfg),
-        )
-
         col, _ := client.CreateCollection(ctx, "my_collection",
-            v2.WithSchemaCreate(schema),
+            v2.WithVectorIndexCreate(v2.NewVectorIndexConfig(
+                v2.WithSpace(v2.SpaceCosine),
+                v2.WithSpann(v2.NewSpannConfig(
+                    v2.WithSpannSearchNprobe(64),
+                    v2.WithSpannEfSearch(200),
+                )),
+            )),
         )
     }
     ```
