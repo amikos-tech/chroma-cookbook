@@ -47,7 +47,8 @@ Defaults:
     (1) contains 3-512 characters
     (2) starts and ends with a lowercase letter or a digit
     (3) can contain dots, dashes, and underscores in between
-    (4) is not a valid IPv4 address
+    (4) cannot contain two consecutive periods (`..`)
+    (5) is not a valid IPv4 address
 
 ### Creating a collection
 
@@ -240,7 +241,7 @@ Parameters:
 
     For more information on the `list_collections` method, see the [official ChromaDB documentation](https://docs.trychroma.com/reference/python/client#listcollections).
 
-The `list_collections` method returns a list of collection names. It supports pagination via `offset` and `limit` parameters.
+The `list_collections` method returns `Collection` objects (name, metadata, configuration, and counts). Use `offset` and `limit` to paginate through large tenants or databases.
 
 Parameters:
 
@@ -267,10 +268,10 @@ Parameters:
     import { ChromaClient } from "chromadb";
 
     const client = new ChromaClient();
-    const collections = await client.listCollections();
+    const collections = await client.listCollections({ limit: 10, offset: 0 });
 
-    // with pagination
-    const page = await client.listCollections({ limit: 10, offset: 0 });
+    // fetch the next page by advancing the offset
+    const nextPage = await client.listCollections({ limit: 10, offset: 10 });
     ```
 
 === "Go"
