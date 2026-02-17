@@ -453,100 +453,11 @@ CHROMA_ALLOW_RESET=true chroma run
 
 ### OpenTelemetry
 
-Chroma 1.x emits traces via OpenTelemetry (OTLP gRPC). To enable tracing, set the
-`open_telemetry` section in your config file or use environment variables.
-
 | Parameter | Description | Default |
 |-----------|-------------|---------|
 | `open_telemetry.endpoint` | OTLP gRPC endpoint | None (disabled) |
 | `open_telemetry.service_name` | Service name in traces | `chromadb` |
 | `open_telemetry.filters` | Per-crate log level filters | `[{crate_name: "chroma_frontend", filter_level: "trace"}]` |
-
-#### Local OTEL Stack with Docker Compose
-
-The following docker-compose setup runs Chroma with a local OpenTelemetry Collector
-and Jaeger for trace visualization.
-
-```yaml
-version: "3.8"
-
-services:
-  chroma:
-    image: chromadb/chroma:latest
-    ports:
-      - "8000:8000"
-    volumes:
-      - chroma-data:/chroma/chroma
-      - ./chroma-config.yaml:/etc/chroma/config.yaml
-    environment:
-      - CONFIG_PATH=/etc/chroma/config.yaml
-    depends_on:
-      - otel-collector
-
-  otel-collector:
-    image: otel/opentelemetry-collector:0.107.0
-    ports:
-      - "4317:4317"   # OTLP gRPC
-      - "4318:4318"   # OTLP HTTP
-    volumes:
-      - ./otel-config.yaml:/etc/otelcol/config.yaml
-
-  jaeger:
-    image: jaegertracing/all-in-one:1.56
-    ports:
-      - "16686:16686" # Jaeger UI
-      - "14268:14268"
-    environment:
-      - SPAN_STORAGE_TYPE=badger
-      - BADGER_EPHEMERAL=false
-      - BADGER_DIRECTORY_KEY=/badger/key
-      - BADGER_DIRECTORY_VALUE=/badger/data
-
-volumes:
-  chroma-data:
-```
-
-**`chroma-config.yaml`:**
-
-```yaml
-persist_path: "/chroma/chroma"
-open_telemetry:
-  service_name: "chroma"
-  endpoint: "http://otel-collector:4317"
-  filters:
-    - crate_name: "chroma_frontend"
-      filter_level: "info"
-```
-
-**`otel-config.yaml`:**
-
-```yaml
-receivers:
-  otlp:
-    protocols:
-      grpc:
-        endpoint: 0.0.0.0:4317
-      http:
-        endpoint: 0.0.0.0:4318
-
-processors:
-  batch:
-
-exporters:
-  otlp/jaeger:
-    endpoint: jaeger:4317
-    tls:
-      insecure: true
-
-service:
-  pipelines:
-    traces:
-      receivers: [otlp]
-      processors: [batch]
-      exporters: [otlp/jaeger]
-```
-
-After `docker compose up`, open **http://localhost:16686** to view traces in Jaeger.
 
 ### Example Configurations
 
