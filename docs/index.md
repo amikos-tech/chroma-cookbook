@@ -24,7 +24,7 @@ Latest ChromaDB version: [1.5.0](https://github.com/chroma-core/chroma/releases/
 - 🔥 [SSL-Terminating Proxies](security/ssl-proxies.md) - Learn how to secure Chroma server with `Envoy` or `Nginx` proxies - 📅`31-Jul-2024`
 - 🗑️ [WAL Pruning](core/advanced/wal-pruning.md#chroma-cli) - Learn how to prune (cleanup) your Chroma database (WAL) with Chroma's built-in CLI `vacuum` command - 📅`30-Jul-2024`
 - ✨ [Multi-Category Filtering](strategies/multi-category-filters.md) - Learn how to filter data based on multiple categories - 📅`15-Jul-2024`
-- 🔒 [Chroma Auth](security/auth.md) - Learn how to secure your Chroma deployment with Authentication - 📅`11-Jul-2024`
+- 🔒 [Chroma Auth](security/auth-1.0.x.md) - Learn how to secure your Chroma deployment with Authentication - 📅`11-Jul-2024`
 - 📦 [Async Http Client](core/clients.md#http-client) - Chroma now supports async HTTP clients - 📅`19-Jun-2024`
 - 🔒 [Security](security/index.md) - Learn how to secure your Chroma deployment - 📅`13-Jun-2024`
 - 🔧 [Installation](core/install.md) - Learn about the different ways to install Chroma - 📅`08-Jun-2024`
@@ -106,7 +106,7 @@ Below is a list of available clients for ChromaDB.
 - ✨ [Multi-User Basic Auth Plugin](strategies/multi-tenancy/multi-user-basic-auth.md) - learn how to build a multi-user
   basic authentication plugin for Chroma.
 - ✨ [CORS Configuration For JS Browser apps](strategies/cors.md) - learn how to configure CORS for Chroma.
-- ✨ [Running Chroma with SystemD](strategies/systemd-service.md) - learn how to start Chroma upon system boot.
+- ✨ [Running Chroma with SystemD](running/systemd-service.md) - learn how to start Chroma upon system boot.
 
 ## Get Help
 
