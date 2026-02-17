@@ -4,13 +4,19 @@
 
     This page is a work in progress and may not be complete.
 
-## Common Configurations Options
+## 1.0 Configuration (Current)
 
-## Server Configuration
+### HNSW Index Configuration
 
-### Core
 
-#### `IS_PERSISTENT`
+## Pre-1.0 Configuration (Legacy)
+### Common Configurations Options
+
+### Server Configuration
+
+#### Core
+
+##### `IS_PERSISTENT`
 
 Defines whether Chroma should persist data or not.
 
@@ -47,14 +53,14 @@ Default: `FALSE`
 
 
 
-#### `PERSIST_DIRECTORY`
+##### `PERSIST_DIRECTORY`
 
 Defines the directory where Chroma should persist data. This can be relative or absolute path. The directory must be
 writeable to Chroma process.
 
 Default: `./chroma`
 
-#### `ALLOW_RESET`
+##### `ALLOW_RESET`
 
 Defines whether Chroma should allow resetting the index (delete all data).
 
@@ -65,11 +71,11 @@ Possible values:
 
 Default: `FALSE`
 
-#### `CHROMA_MEMORY_LIMIT_BYTES`
+##### `CHROMA_MEMORY_LIMIT_BYTES`
 
-#### `CHROMA_SEGMENT_CACHE_POLICY`
+##### `CHROMA_SEGMENT_CACHE_POLICY`
 
-### Telemetry and Observability
+#### Telemetry and Observability
 
 In the current Chroma version (as of time or writing `0.6.3`) the only type of telemetry supported are traces.
 
@@ -77,7 +83,7 @@ The following configuration options allow you to configure the tracing service t
 
 In addition to traces Chroma also performs anonymized product telemetry. The product telemetry is enabled by default.
 
-#### `CHROMA_OTEL_COLLECTION_ENDPOINT`
+##### `CHROMA_OTEL_COLLECTION_ENDPOINT`
 
 Defines the endpoint of the tracing service that accepts OpenTelemetry traces via the OLTP GRPC endpoint.
 
@@ -92,7 +98,7 @@ export CHROMA_OTEL_COLLECTION_ENDPOINT=http://localhost:4317
 ```
 
 
-#### `CHROMA_OTEL_SERVICE_NAME`
+##### `CHROMA_OTEL_SERVICE_NAME`
 
 Defines the name of the service that will be used in the tracing service.
 
@@ -104,7 +110,7 @@ Default: `chroma`
 export CHROMA_OTEL_SERVICE_NAME=chroma-dev
 ```
 
-#### `CHROMA_OTEL_COLLECTION_HEADERS`
+##### `CHROMA_OTEL_COLLECTION_HEADERS`
 
 Defines the headers that will be sent with each trace/span.
 
@@ -116,7 +122,7 @@ Default: None
 export CHROMA_OTEL_COLLECTION_HEADERS='{"X-API-KEY":"1234567890"}'
 ```
 
-#### `CHROMA_OTEL_GRANULARITY`
+##### `CHROMA_OTEL_GRANULARITY`
 
 Defines the granularity of the traces.
 
@@ -135,7 +141,7 @@ Default: `none`
 export CHROMA_OTEL_GRANULARITY=all
 ```
 
-#### `CHROMA_PRODUCT_TELEMETRY_IMPL`
+##### `CHROMA_PRODUCT_TELEMETRY_IMPL`
 
 !!! warning "Do not change"
 
@@ -146,11 +152,11 @@ Defines the implementation of the product telemetry.
 Default: `chromadb.telemetry.product.posthog.Posthog`
 
 
-#### `CHROMA_TELEMETRY_IMPL`
+##### `CHROMA_TELEMETRY_IMPL`
 
 This is identical to `CHROMA_PRODUCT_TELEMETRY_IMPL` but for the anonymized telemetry but is kept for backwards compatibility.
 
-#### `ANONYMIZED_TELEMETRY`
+##### `ANONYMIZED_TELEMETRY`
 
 Enables or disables anonymized product telemetry.
 
@@ -170,9 +176,9 @@ Read more about how Chroma uses telemetry [here](https://docs.trychroma.com/tele
 export ANONYMIZED_TELEMETRY=FALSE
 ```
 
-### Maintenance
+#### Maintenance
 
-#### `MIGRATIONS`
+##### `MIGRATIONS`
 
 Defines how schema migrations are handled in Chroma.
 
@@ -184,7 +190,7 @@ Possible values:
 
 Default: `apply`
 
-#### `MIGRATIONS_HASH_ALGORITHM`
+##### `MIGRATIONS_HASH_ALGORITHM`
 
 Defines the algorithm used to hash the migrations. This configuration was introduces as some organizations have strict policies around use of cryptographic algorithms, considering the default `md5` being a weak hashing algorithm.
 
@@ -201,65 +207,65 @@ Default: `md5`
 export MIGRATIONS_HASH_ALGORITHM=sha256
 ```
 
-### Operations and Distributed
+#### Operations and Distributed
 
-#### `CHROMA_SYSDB_IMPL`
+##### `CHROMA_SYSDB_IMPL`
 
-#### `CHROMA_PRODUCER_IMPL`
+##### `CHROMA_PRODUCER_IMPL`
 
-#### `CHROMA_CONSUMER_IMPL`
+##### `CHROMA_CONSUMER_IMPL`
 
-#### `CHROMA_SEGMENT_MANAGER_IMPL`
+##### `CHROMA_SEGMENT_MANAGER_IMPL`
 
-#### `CHROMA_SEGMENT_DIRECTORY_IMPL`
+##### `CHROMA_SEGMENT_DIRECTORY_IMPL`
 
-#### `CHROMA_MEMBERLIST_PROVIDER_IMPL`
+##### `CHROMA_MEMBERLIST_PROVIDER_IMPL`
 
-#### `WORKER_MEMBERLIST_NAME`
+##### `WORKER_MEMBERLIST_NAME`
 
-#### `CHROMA_COORDINATOR_HOST`
+##### `CHROMA_COORDINATOR_HOST`
 
-#### `CHROMA_SERVER_GRPC_PORT`
+##### `CHROMA_SERVER_GRPC_PORT`
 
-#### `CHROMA_LOGSERVICE_HOST`
+##### `CHROMA_LOGSERVICE_HOST`
 
-#### `CHROMA_LOGSERVICE_PORT`
+##### `CHROMA_LOGSERVICE_PORT`
 
-#### `CHROMA_QUOTA_PROVIDER_IMPL`
+##### `CHROMA_QUOTA_PROVIDER_IMPL`
 
-#### `CHROMA_RATE_LIMITING_PROVIDER_IMPL`
+##### `CHROMA_RATE_LIMITING_PROVIDER_IMPL`
 
-### Authentication
+#### Authentication
 
-#### `CHROMA_AUTH_TOKEN_TRANSPORT_HEADER`
+##### `CHROMA_AUTH_TOKEN_TRANSPORT_HEADER`
 
-#### `CHROMA_CLIENT_AUTH_PROVIDER`
+##### `CHROMA_CLIENT_AUTH_PROVIDER`
 
-#### `CHROMA_CLIENT_AUTH_CREDENTIALS`
+##### `CHROMA_CLIENT_AUTH_CREDENTIALS`
 
-#### `CHROMA_SERVER_AUTH_IGNORE_PATHS`
+##### `CHROMA_SERVER_AUTH_IGNORE_PATHS`
 
-#### `CHROMA_OVERWRITE_SINGLETON_TENANT_DATABASE_ACCESS_FROM_AUTH`
+##### `CHROMA_OVERWRITE_SINGLETON_TENANT_DATABASE_ACCESS_FROM_AUTH`
 
-#### `CHROMA_SERVER_AUTHN_PROVIDER`
+##### `CHROMA_SERVER_AUTHN_PROVIDER`
 
-#### `CHROMA_SERVER_AUTHN_CREDENTIALS`
+##### `CHROMA_SERVER_AUTHN_CREDENTIALS`
 
-#### `CHROMA_SERVER_AUTHN_CREDENTIALS_FILE`
+##### `CHROMA_SERVER_AUTHN_CREDENTIALS_FILE`
 
-### Authorization
+#### Authorization
 
-#### `CHROMA_SERVER_AUTHZ_PROVIDER`
+##### `CHROMA_SERVER_AUTHZ_PROVIDER`
 
-#### `CHROMA_SERVER_AUTHZ_CONFIG`
+##### `CHROMA_SERVER_AUTHZ_CONFIG`
 
-#### `CHROMA_SERVER_AUTHZ_CONFIG_FILE`
+##### `CHROMA_SERVER_AUTHZ_CONFIG_FILE`
 
-## Client Configuration
+### Client Configuration
 
-### Authentication
+#### Authentication
 
-## HNSW Configuration
+### HNSW Configuration
 
 HNSW is the underlying library for Chroma vector indexing and search. Chroma exposes a number of parameters to configure
 HNSW for your use case. All HNSW parameters are configured as metadata for a collection.
@@ -269,7 +275,7 @@ HNSW for your use case. All HNSW parameters are configured as metadata for a col
     Some HNSW parameters cannot be changed after index creation via the standard method shown below. 
     If you which to change these parameters, you will need to clone the collection see an example [here](collections.md#cloning-a-collection).
 
-### `hnsw:space`
+#### `hnsw:space`
 
 **Description**: Controls the distance metric of the HNSW index. The space cannot be changed after index creation.
 
@@ -286,7 +292,7 @@ HNSW for your use case. All HNSW parameters are configured as metadata for a col
 res = client.create_collection("my_collection", metadata={ "hnsw:space": "cosine"})
 ```
 
-### `hnsw:construction_ef`
+#### `hnsw:construction_ef`
 
 **Description**: Controls the number of neighbours in the HNSW graph to explore when adding new vectors. The more
 neighbours HNSW
@@ -308,7 +314,7 @@ client.create_collection(
 )
 ```
 
-### `hnsw:M`
+#### `hnsw:M`
 
 **Description**: Controls the maximum number of neighbour connections (M), a newly inserted vector. A higher value
 results in a mode densely connected graph. The impact on this is slower but more accurate searches with increased memory
@@ -330,7 +336,7 @@ client.create_collection(
 )
 ```
 
-### `hnsw:search_ef`
+#### `hnsw:search_ef`
 
 **Description**: Controls the number of neighbours in the HNSW graph to explore when searching. Increasing this requires
 more memory for the HNSW algo to explore the nodes during knn search.
@@ -351,7 +357,7 @@ client.create_collection(
 )
 ```
 
-### `hnsw:num_threads`
+#### `hnsw:num_threads`
 
 **Description**: Controls how many threads HNSW algo use.
 
@@ -371,7 +377,7 @@ client.create_collection(
 )
 ```
 
-### `hnsw:resize_factor`
+#### `hnsw:resize_factor`
 
 **Description**: Controls the rate of growth of the graph (e.g. how many node capacity will be added) whenever the
 current graph capacity is reached.
@@ -392,7 +398,7 @@ client.create_collection(
 )
 ```
 
-### `hnsw:batch_size`
+#### `hnsw:batch_size`
 
 **Description**: Controls the size of the Bruteforce (in-memory) index. Once this threshold is crossed vectors from BF
 gets transferred to HNSW index. This value can be changed after index creation. The value must be less than
@@ -414,7 +420,7 @@ client.create_collection(
 )
 ```
 
-### `hnsw:sync_threshold`
+#### `hnsw:sync_threshold`
 
 **Description**: Controls the threshold when using HNSW index is written to disk.
 
@@ -425,7 +431,7 @@ client.create_collection(
 - Values must be positive integers.
 - Parameter **_can_** be changed after index creation.
 
-### Examples
+#### Examples
 
 Configuring HNSW parameters at creation time
 
