@@ -112,11 +112,11 @@ To install the Chroma JS/TS client package, use the following command depending 
 ## Go
 
 ```bash
-go get github.com/chroma-core/chroma/clients/go
+go get github.com/amikos-tech/chroma-go
 ```
 
 ## Rust
 
 ```bash
-cargo add chromadb
+cargo add chroma
 ```
