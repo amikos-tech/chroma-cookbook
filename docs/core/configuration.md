@@ -378,6 +378,36 @@ the embedding function at collection creation time, and it will be automatically
     });
     ```
 
+=== "Go"
+
+    ```go
+    package main
+
+    import (
+        "context"
+        "os"
+
+        chroma "github.com/amikos-tech/chroma-go/v2"
+        v2 "github.com/amikos-tech/chroma-go/v2/pkg/api/v2"
+        openai "github.com/amikos-tech/chroma-go/v2/pkg/embeddings/openai"
+    )
+
+    func main() {
+        ctx := context.Background()
+        client, _ := chroma.NewHTTPClient(ctx,
+            chroma.WithDefaultDatabase("default_database"),
+            chroma.WithDefaultTenant("default_tenant"),
+        )
+
+        ef, _ := openai.NewOpenAIEmbeddingFunction(os.Getenv("OPENAI_API_KEY"),
+            openai.WithModel(openai.TextEmbedding3Small),
+        )
+        col, _ := client.CreateCollection(ctx, "my_collection",
+            v2.WithEmbeddingFunctionCreate(ef),
+        )
+    }
+    ```
+
 ---
 
 ## Pre-1.0 Configuration (Legacy)
