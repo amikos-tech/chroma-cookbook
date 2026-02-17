@@ -13,13 +13,16 @@ Latest ChromaDB version: [1.5.0](https://github.com/chroma-core/chroma/releases/
 
 ## New and Noteworthy
 
+- 🔍 [Filters](core/filters.md) - Added multi-language filter examples and `$regex`/`$not_regex` operators - 📅`17-Feb-2026`
+- 🔧 [Installation](core/install.md) - Updated package names and added Go/Rust install examples - 📅`17-Feb-2026`
+- ⚒️ [Configuration](core/configuration.md) - Added 1.0 docs for HNSW, SPANN index, and embedding functions - 📅`17-Feb-2026`
+- 📦 [Clients](core/clients.md#cloud-client) - Added Cloud Client section and updated client examples - 📅`17-Feb-2026`
+- 📚 [Collections](core/collections.md) - Updated to current APIs with multi-language examples - 📅`17-Feb-2026`
 - 🏷️ [Array Metadata Filters](core/filters.md#array-metadata) - Chroma 1.5.0 adds support for array metadata with `$contains`/`$not_contains` operators - 📅`17-Feb-2026`
 - 🔑 [Authentication in Chroma v1.0.x](security/auth-1.0.x.md) - Chroma 1.0.x does not support native Authentication, in this article we cover how to secure your Chroma 1.0.x instance - 📅`28-May-2025`
 - ☁️ [Chroma Chart](https://github.com/amikos-tech/chromadb-chart) - We've released a new Chroma chart version that now supports Chroma 1.0.x or later. Go check it out! - 📅`23-May-2025`
-- 🔍 [Filters](core/filters.md) - New and improved guide to filtering.
 - 🔄 [Chroma Maintenance](running/maintenance.md) - Learn how to keep your Chroma database in tip-top shape - 📅`08-Feb-2025`
-- ⚒️ [Configuration](core/configuration.md) - Updated descriptions and added examples of Chroma configuration options - 📅`21-Nov-2024`
-- 🏎️ [Performance Tips](running/performance-tips.md) - Learn how to optimize the performance of yourChroma - 📅`16-Oct-2024`
+- 🏎️ [Performance Tips](running/performance-tips.md) - Learn how to optimize the performance of your Chroma - 📅`16-Oct-2024`
 - ⁉️[FAQs](faq/index.md) - Updated FAQ sections - 📅`15-Oct-2024`
 - 🔥 [SSL-Terminating Proxies](security/ssl-proxies.md) - Learn how to secure Chroma server with `Envoy` or `Nginx` proxies - 📅`31-Jul-2024`
 - 🗑️ [WAL Pruning](core/advanced/wal-pruning.md#chroma-cli) - Learn how to prune (cleanup) your Chroma database (WAL) with Chroma's built-in CLI `vacuum` command - 📅`30-Jul-2024`
@@ -27,7 +30,6 @@ Latest ChromaDB version: [1.5.0](https://github.com/chroma-core/chroma/releases/
 - 🔒 [Chroma Auth](security/auth-1.0.x.md) - Learn how to secure your Chroma deployment with Authentication - 📅`11-Jul-2024`
 - 📦 [Async Http Client](core/clients.md#http-client) - Chroma now supports async HTTP clients - 📅`19-Jun-2024`
 - 🔒 [Security](security/index.md) - Learn how to secure your Chroma deployment - 📅`13-Jun-2024`
-- 🔧 [Installation](core/install.md) - Learn about the different ways to install Chroma - 📅`08-Jun-2024`
 - 🧠 [Memory Management](strategies/memory-management.md) - Learn how to manage memory in ChromaDB - 📅`30-May-2024`
 - 📐 [Resource Requirements](core/resources.md) - Recently updated with temporary storage requirements - 📅`28-May-2024`
 

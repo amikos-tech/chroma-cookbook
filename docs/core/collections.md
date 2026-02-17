@@ -2,6 +2,17 @@
 
 Collections are the grouping mechanism for embeddings, documents, and metadata.
 
+!!! tip "Runnable Examples"
+
+    Complete, runnable collection examples for each language are available in the [examples/collections](https://github.com/amikos-tech/chroma-cookbook/tree/main/examples/collections) directory:
+
+    - [Python](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/collections/python/collection_examples.py)
+    - [TypeScript](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/collections/typescript/collection_examples.ts)
+    - [Go](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/collections/go/main.go)
+    - [Rust](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/collections/rust/src/main.rs)
+
+    All examples require a running Chroma server: `docker run -p 8000:8000 chromadb/chroma`
+
 ## Collection Basics
 
 ### Collection Properties
@@ -108,7 +119,7 @@ Parameters:
     #[tokio::main]
     async fn main() {
         let client = ChromaClient::new(Default::default()).await.unwrap();
-        let collection = client.create_collection("test", None, true).await.unwrap();
+        let collection = client.create_collection("test", None, None).await.unwrap();
     }
     ```
 
@@ -138,13 +149,13 @@ Alternatively you can use the `get_or_create_collection` method to create a coll
 === "Go"
 
     ```go
-    col, _ := client.GetOrCreateCollection(ctx, "test", nil)
+    col, _ := client.GetOrCreateCollection(ctx, "test")
     ```
 
 === "Rust"
 
     ```rust
-    let collection = client.get_or_create_collection("test", None, true).await.unwrap();
+    let collection = client.get_or_create_collection("test", None, None).await.unwrap();
     ```
 
 Creating a collection with custom HNSW configuration:
@@ -178,8 +189,8 @@ Creating a collection with custom HNSW configuration:
         configuration: {
             hnsw: {
                 space: "cosine",
-                efConstruction: 200,
-                maxNeighbors: 32,
+                ef_construction: 200,
+                max_neighbors: 32,
             },
         },
     });
@@ -277,21 +288,19 @@ Parameters:
 === "Go"
 
     ```go
-    collections, _ := client.ListCollections(ctx, nil, nil)
+    collections, _ := client.ListCollections(ctx)
 
     // with pagination
-    limit := int32(10)
-    offset := int32(0)
-    collections, _ = client.ListCollections(ctx, &limit, &offset)
+    collections, _ = client.ListCollections(ctx, chroma.ListWithLimit(10), chroma.ListWithOffset(0))
     ```
 
 === "Rust"
 
     ```rust
-    let collections = client.list_collections(None, None).await.unwrap();
+    let collections = client.list_collections(100, None).await.unwrap();
 
     // with pagination
-    let collections = client.list_collections(Some(10), Some(0)).await.unwrap();
+    let collections = client.list_collections(10, Some(0)).await.unwrap();
     ```
 
 ### Getting a collection
@@ -332,7 +341,7 @@ Parameters:
 === "Go"
 
     ```go
-    col, _ := client.GetCollection(ctx, "test", nil)
+    col, _ := client.GetCollection(ctx, "test")
     ```
 
 === "Rust"
@@ -456,6 +465,281 @@ The following methods are available on a collection instance:
 
     // count the number of items in the collection
     await collection.count();
+    ```
+
+## Query and Get Results
+
+`collection.get()` and `collection.query()` return column-oriented results.
+
+- Column values are aligned by index. For `get()`, `ids[i]` refers to the same record as `documents[i]`, `metadatas[i]`, and `embeddings[i]` (if included).
+- `query()` adds one level of nesting. `ids[q][k]` is the `k`-th match for query `q`, and aligns with `documents[q][k]`, `metadatas[q][k]`, and `distances[q][k]` (if included).
+- Use `include` to control which optional fields are returned.
+- Default `include` fields for `get()`: `documents` and `metadatas` (order may vary by client).
+- Default `include` fields for `query()`: `documents`, `metadatas`, and `distances` (order may vary by client).
+- `ids` are always returned, even when `include=[]`.
+
+### Result Type Shapes
+
+=== "Python"
+
+    ```python
+    class GetResult(TypedDict):
+        ids: List[ID]
+        embeddings: Optional[Union[Embeddings, PyEmbeddings, NDArray[Union[np.int32, np.float32]]]]
+        documents: Optional[List[Document]]
+        uris: Optional[URIs]
+        data: Optional[Loadable]
+        metadatas: Optional[List[Metadata]]
+        included: Include
+
+    class QueryResult(TypedDict):
+        ids: List[IDs]
+        embeddings: Optional[
+            Union[
+                List[Embeddings],
+                List[PyEmbeddings],
+                List[NDArray[Union[np.int32, np.float32]]],
+            ]
+        ]
+        documents: Optional[List[List[Document]]]
+        uris: Optional[List[List[URI]]]
+        data: Optional[List[Loadable]]
+        metadatas: Optional[List[List[Metadata]]]
+        distances: Optional[List[List[float]]]
+        included: Include
+    ```
+
+=== "TypeScript"
+
+    ```typescript
+    class GetResult<TMeta extends Metadata = Metadata> {
+        readonly ids: string[];
+        readonly documents: (string | null)[];
+        readonly metadatas: (TMeta | null)[];
+        readonly embeddings: number[][];
+        readonly uris: (string | null)[];
+        readonly include: Include[];
+        rows(): Array<{
+            id: string;
+            document?: string | null;
+            metadata?: TMeta | null;
+            embedding?: number[];
+            uri?: string | null;
+        }>;
+    }
+
+    class QueryResult<TMeta extends Metadata = Metadata> {
+        readonly ids: string[][];
+        readonly documents: (string | null)[][];
+        readonly metadatas: (TMeta | null)[][];
+        readonly embeddings: (number[] | null)[][];
+        readonly distances: (number | null)[][];
+        readonly uris: (string | null)[][];
+        readonly include: Include[];
+        rows(): QueryRowResult<TMeta>[][];
+    }
+    ```
+
+=== "Go"
+
+    ```go
+    // Selected methods shown for brevity.
+    type GetResult interface {
+        GetIDs() DocumentIDs
+        GetDocuments() Documents
+        GetMetadatas() DocumentMetadatas
+        GetEmbeddings() embeddings.Embeddings
+    }
+
+    type QueryResult interface {
+        GetIDGroups() []DocumentIDs
+        GetDocumentsGroups() []Documents
+        GetMetadatasGroups() []DocumentMetadatas
+        GetEmbeddingsGroups() []embeddings.Embeddings
+        GetDistancesGroups() []embeddings.Distances
+    }
+
+    type GetResultImpl struct {
+        Ids        DocumentIDs
+        Documents  Documents
+        Metadatas  DocumentMetadatas
+        Embeddings embeddings.Embeddings
+        Include    []Include
+    }
+
+    type QueryResultImpl struct {
+        IDLists         []DocumentIDs
+        DocumentsLists  []Documents
+        MetadatasLists  []DocumentMetadatas
+        EmbeddingsLists []embeddings.Embeddings
+        DistancesLists  []embeddings.Distances
+        Include         []Include
+    }
+
+    // Row helpers for iteration
+    func (r *GetResultImpl) Rows() []ResultRow
+    func (r *GetResultImpl) At(index int) (ResultRow, bool)
+    // Query.Rows() returns the first query group; use RowGroups() for all groups.
+    func (r *QueryResultImpl) Rows() []ResultRow
+    func (r *QueryResultImpl) RowGroups() [][]ResultRow
+    func (r *QueryResultImpl) At(group, index int) (ResultRow, bool)
+    ```
+
+=== "Rust"
+
+    ```rust
+    pub struct GetResponse {
+        pub ids: Vec<String>,
+        pub embeddings: Option<Vec<Vec<f32>>>,
+        pub documents: Option<Vec<Option<String>>>,
+        pub uris: Option<Vec<Option<String>>>,
+        pub metadatas: Option<Vec<Option<Metadata>>>,
+        pub include: Vec<Include>,
+    }
+
+    pub struct QueryResponse {
+        pub ids: Vec<Vec<String>>,
+        pub embeddings: Option<Vec<Vec<Option<Vec<f32>>>>>,
+        pub documents: Option<Vec<Vec<Option<String>>>>,
+        pub uris: Option<Vec<Vec<Option<String>>>>,
+        pub metadatas: Option<Vec<Vec<Option<Metadata>>>>,
+        pub distances: Option<Vec<Vec<Option<f32>>>>,
+        pub include: Vec<Include>,
+    }
+    ```
+
+### Iteration Patterns
+
+=== "Python"
+
+    ```python
+    # GET: zip aligned columns
+    result = collection.get(include=["documents", "metadatas"])
+    if result["documents"] is None or result["metadatas"] is None:
+        raise ValueError("include must contain documents and metadatas")
+
+    for doc_id, doc, meta in zip(
+        result["ids"],
+        result["documents"],
+        result["metadatas"],
+    ):
+        print(doc_id, doc, meta)
+
+    # QUERY: nested loop (queries -> matches)
+    q = collection.query(query_texts=["climate"], n_results=3, include=["documents", "distances"])
+    if q["documents"] is None or q["distances"] is None:
+        raise ValueError("include must contain documents and distances")
+
+    for q_idx, ids in enumerate(q["ids"]):
+        docs = q["documents"][q_idx]
+        distances = q["distances"][q_idx]
+        for doc_id, doc, distance in zip(ids, docs, distances):
+            print(q_idx, doc_id, distance, doc)
+    ```
+
+=== "TypeScript"
+
+    ```typescript
+    // Metadata type inference with generics
+    const getResult = await collection.get<{ page: number }>({
+        include: ["documents", "metadatas"],
+    });
+
+    for (const row of getResult.rows()) {
+        console.log(row.id, row.metadata?.page, row.document);
+    }
+
+    const queryResult = await collection.query<{ page: number }>({
+        queryTexts: ["climate"],
+        nResults: 3,
+        include: ["documents", "metadatas", "distances"],
+    });
+
+    for (const [queryIndex, rows] of queryResult.rows().entries()) {
+        for (const row of rows) {
+            console.log(queryIndex, row.id, row.distance, row.metadata?.page);
+        }
+    }
+    ```
+
+=== "Go"
+
+    ```go
+    // Keep example compact: panic on unexpected errors/types.
+    getResult, err := collection.Get(ctx, chroma.WithInclude(chroma.IncludeDocuments, chroma.IncludeMetadatas))
+    if err != nil {
+        panic(err)
+    }
+    getRows, ok := getResult.(*chroma.GetResultImpl)
+    if !ok {
+        panic(fmt.Sprintf("unexpected get result type %T", getResult))
+    }
+    for _, row := range getRows.Rows() {
+        fmt.Println(row.ID, row.Document, row.Metadata)
+    }
+    if row, ok := getRows.At(0); ok {
+        fmt.Println("first get row:", row.ID)
+    }
+
+    queryResult, err := collection.Query(ctx,
+        chroma.WithQueryTexts("climate"),
+        chroma.WithNResults(3),
+        chroma.WithInclude(chroma.IncludeDocuments, chroma.IncludeMetadatas, chroma.IncludeDistances),
+    )
+    if err != nil {
+        panic(err)
+    }
+    queryRows, ok := queryResult.(*chroma.QueryResultImpl)
+    if !ok {
+        panic(fmt.Sprintf("unexpected query result type %T", queryResult))
+    }
+    // Query.Rows() gives rows for the first query group.
+    for _, row := range queryRows.Rows() {
+        fmt.Println("q0", row.ID, row.Score, row.Document)
+    }
+    if row, ok := queryRows.At(0, 0); ok {
+        fmt.Println("first query row:", row.ID)
+    }
+    // Query.RowGroups() gives all query groups (useful for multi-query inputs).
+    for queryIndex, rows := range queryRows.RowGroups() {
+        for _, row := range rows {
+            fmt.Println(queryIndex, row.ID, row.Score, row.Document)
+        }
+    }
+    ```
+
+=== "Rust"
+
+    ```rust
+    // `None` include uses the Rust defaults:
+    // IncludeList::default_get() and IncludeList::default_query().
+    let get_result = collection.get(None, None, Some(10), Some(0), None).await?;
+    for (i, id) in get_result.ids.iter().enumerate() {
+        let doc = get_result
+            .documents
+            .as_ref()
+            .and_then(|docs| docs.get(i))
+            .and_then(|doc| doc.as_deref());
+        println!("{id}: {:?}", doc);
+    }
+
+    let query_result = collection
+        .query(vec![vec![0.1, 0.2, 0.3]], Some(3), None, None, None)
+        .await?;
+    for (i, ids) in query_result.ids.iter().enumerate() {
+        println!("query {i} has {} neighbors", ids.len());
+    }
+    for (query_index, ids) in query_result.ids.iter().enumerate() {
+        for (rank, id) in ids.iter().enumerate() {
+            let distance = query_result
+                .distances
+                .as_ref()
+                .and_then(|groups| groups.get(query_index))
+                .and_then(|group| group.get(rank))
+                .and_then(|v| *v);
+            println!("query={query_index} rank={rank} id={id} distance={distance:?}");
+        }
+    }
     ```
 
 ## Iterating over a Collection
@@ -600,6 +884,10 @@ print(newCol.get(offset=0, limit=10))  # get first 10 documents
 #### Changing the embedding function
 
 To change the embedding function of a collection, it must be cloned to a new collection with the desired embedding function.
+
+!!! note "External API Dependency"
+
+    This example requires an OpenAI API key (`OPENAI_API_KEY` environment variable). The [runnable example](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/collections/python/collection_examples.py) skips this section gracefully when the key is not set.
 
 ```python
 import os
