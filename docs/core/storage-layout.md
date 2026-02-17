@@ -48,11 +48,11 @@ The system database comprises the following tables:
   database - `default_database` related to the `default_tenant`.
 - `collections` - contains all the collections per database.
 - `collection_metadata` - contains all the metadata associated with each collection. The metadata for a collection
-  consists of any user-specified key-value pairs and the [`hnsw:*` keys](configuration.md#hnsw-configuration) that store
+  consists of any user-specified key-value pairs and the [`hnsw:*` keys](configuration.md#hnsw-configuration-legacy) that store
   the HNSW index parameters.
 - `segments` - contains all the segments per collection. Each collection gets two segments - `metadata` and `vector`.
 - `segment_metadata` - contains all the metadata associated with each segment. This table
-  contains [`hnsw:*` keys](configuration.md#hnsw-configuration) that store the HNSW index parameters for the vector
+  contains [`hnsw:*` keys](configuration.md#hnsw-configuration-legacy) that store the HNSW index parameters for the vector
   segment.
 
 #### WAL
