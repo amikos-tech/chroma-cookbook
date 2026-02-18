@@ -741,6 +741,63 @@ The following methods are available on a collection instance:
 - Default `include` fields for `query()`: `documents`, `metadatas`, and `distances` (order may vary by client).
 - `ids` are always returned, even when `include=[]`.
 
+### Constrain Query Candidates By ID
+
+Use the `ids` argument on `query()` to restrict similarity search to a known subset of records.
+This works alongside other query inputs like `query_texts`/`query_embeddings` and filters.
+If `n_results` is larger than the number of matching IDs, Chroma returns only the available matches.
+
+=== "Python"
+
+    ```python
+    results = collection.query(
+        query_texts=["climate"],
+        n_results=3,
+        ids=["doc-1", "doc-2", "doc-3"],
+    )
+    ```
+
+=== "TypeScript"
+
+    ```typescript
+    const results = await collection.query({
+        queryTexts: ["climate"],
+        nResults: 3,
+        ids: ["doc-1", "doc-2", "doc-3"],
+    });
+    ```
+
+=== "Go"
+
+    ```go
+    _, err := collection.Query(ctx,
+        chroma.WithQueryTexts("climate"),
+        chroma.WithNResults(3),
+        chroma.WithIDs("doc-1", "doc-2", "doc-3"),
+    )
+    if err != nil {
+        panic(err)
+    }
+    ```
+
+=== "Rust"
+
+    ```rust
+    let results = collection
+        .query(
+            vec![vec![0.1, 0.2, 0.3]],
+            Some(3),
+            None,
+            Some(vec![
+                "doc-1".to_string(),
+                "doc-2".to_string(),
+                "doc-3".to_string(),
+            ]),
+            None,
+        )
+        .await?;
+    ```
+
 ### Result Type Shapes
 
 === "Python"

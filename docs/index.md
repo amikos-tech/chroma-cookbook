@@ -13,6 +13,7 @@ Latest ChromaDB version: [1.5.0](https://github.com/chroma-core/chroma/releases/
 
 ## New and Noteworthy
 
+- 🎯 [Collections Query IDs](core/collections.md#constrain-query-candidates-by-id) - Documented `query(..., ids=...)` for restricting similarity search to specific records - 📅`17-Feb-2026`
 - 🔍 [Filters](core/filters.md) - Added multi-language filter examples and `$regex`/`$not_regex` operators - 📅`17-Feb-2026`
 - 🔧 [Installation](core/install.md) - Updated package names and added Go/Rust install examples - 📅`17-Feb-2026`
 - ⚒️ [Configuration](core/configuration.md) - Added 1.0 docs for HNSW, SPANN index, and embedding functions - 📅`17-Feb-2026`

@@ -175,6 +175,22 @@ func main() {
 		}
 	}
 
+	// ── Constrain Query Candidates By ID ──
+
+	constrainedResult, err := resCol.Query(ctx,
+		chroma.WithQueryEmbeddings(queryEmb),
+		chroma.WithNResults(3),
+		chroma.WithIDs("doc-1", "doc-2", "doc-3"),
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+	constrainedRows, ok := constrainedResult.(*chroma.QueryResultImpl)
+	if !ok {
+		log.Fatalf("unexpected constrained result type %T", constrainedResult)
+	}
+	fmt.Printf("constrained query returned %d results (max 3 from 3 candidates)\n", len(constrainedRows.Rows()))
+
 	// ── Cleanup ──
 
 	for _, name := range cleanup {

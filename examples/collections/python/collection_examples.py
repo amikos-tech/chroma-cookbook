@@ -130,8 +130,9 @@ for doc_id, doc, meta in zip(
 print(f"get iteration: {len(result['ids'])} records")
 
 # QUERY: nested loop (queries -> matches)
+query_emb = rand_emb()
 q = col.query(
-    query_embeddings=[rand_emb()], n_results=3, include=["documents", "distances"]
+    query_embeddings=[query_emb], n_results=3, include=["documents", "distances"]
 )
 if q["documents"] is None or q["distances"] is None:
     raise ValueError("include must contain documents and distances")
@@ -141,6 +142,15 @@ for q_idx, ids in enumerate(q["ids"]):
     distances = q["distances"][q_idx]
     for doc_id, doc, distance in zip(ids, docs, distances):
         print(f"  query[{q_idx}] {doc_id}: dist={distance:.4f} {doc}")
+
+# ── Constrain Query Candidates By ID ──
+
+constrained = col.query(
+    query_embeddings=[query_emb],
+    n_results=3,
+    ids=["doc-1", "doc-2", "doc-3"],
+)
+print(f"constrained query returned {len(constrained['ids'][0])} results (max 3 from 3 candidates)")
 
 # ── Iterating over a Collection (batched) ──
 
