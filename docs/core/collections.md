@@ -741,6 +741,60 @@ The following methods are available on a collection instance:
 - Default `include` fields for `query()`: `documents`, `metadatas`, and `distances` (order may vary by client).
 - `ids` are always returned, even when `include=[]`.
 
+### Constrain Query Candidates By ID
+
+Use the `ids` argument on `query()` to search only within a known subset of records.
+Provide one query input (`query_texts` or `query_embeddings`) and an `ids` list.
+By default, Chroma returns up to 10 results per query, capped by matching IDs.
+
+=== "Python"
+
+    ```python
+    collection.query(
+        query_texts=["climate"],
+        ids=["doc-1", "doc-2", "doc-3"],
+    )
+    ```
+
+=== "TypeScript"
+
+    ```typescript
+    await collection.query({
+        queryTexts: ["climate"],
+        ids: ["doc-1", "doc-2", "doc-3"],
+    });
+    ```
+
+=== "Go"
+
+    ```go
+    _, err := collection.Query(ctx,
+        chroma.WithQueryTexts("climate"),
+        chroma.WithIDs("doc-1", "doc-2", "doc-3"),
+    )
+    if err != nil {
+        panic(err)
+    }
+    ```
+
+=== "Rust"
+
+    ```rust
+    let _results = collection
+        .query(
+            vec![vec![0.1, 0.2, 0.3]],
+            None,
+            None,
+            Some(vec![
+                "doc-1".to_string(),
+                "doc-2".to_string(),
+                "doc-3".to_string(),
+            ]),
+            None,
+        )
+        .await?;
+    ```
+
 ### Result Type Shapes
 
 === "Python"

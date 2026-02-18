@@ -126,6 +126,26 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     }
 
+    // ── Constrain Query Candidates By ID ──
+
+    let constrained = res_col
+        .query(
+            vec![vec![0.1, 0.2, 0.3]],
+            Some(3),
+            None,
+            Some(vec![
+                "doc-1".to_string(),
+                "doc-2".to_string(),
+                "doc-3".to_string(),
+            ]),
+            None,
+        )
+        .await?;
+    println!(
+        "constrained query returned {} results (max 3 from 3 candidates)",
+        constrained.ids[0].len()
+    );
+
     // ── Cleanup ──
 
     for name in &cleanup {

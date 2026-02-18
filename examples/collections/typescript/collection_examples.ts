@@ -147,6 +147,15 @@ for (const [queryIndex, rows] of queryResult.rows().entries()) {
     }
 }
 
+// ── Constrain Query Candidates By ID ──
+
+const constrained = await resCol.query({
+    queryTexts: ["topic 1"],
+    nResults: 3,
+    ids: ["doc-1", "doc-2", "doc-3"],
+});
+console.log(`constrained query returned ${constrained.ids[0].length} results (max 3 from 3 candidates)`);
+
 // ── Cleanup ──
 
 for (const name of CLEANUP) {
