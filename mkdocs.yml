@@ -44,8 +44,10 @@ extra:
 extra_javascript:
   - javascripts/gtag.js
   - javascripts/ethicalads-init.js
+  - javascripts/concepts-pipeline.js
 extra_css:
   - stylesheets/ethicalads.css
+  - stylesheets/concepts-flow.css
 markdown_extensions:
   - abbr
   - admonition
