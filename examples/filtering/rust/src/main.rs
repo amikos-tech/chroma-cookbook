@@ -114,11 +114,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         ..Default::default()
     });
 
+    let collection_name = "filter_demo_rust";
+
     // Clean up if exists
-    let _ = client.delete_collection("filter_demo").await;
+    let _ = client.delete_collection(collection_name).await;
 
     let collection = client
-        .get_or_create_collection("filter_demo", None, None)
+        .get_or_create_collection(collection_name, None, None)
         .await?;
 
     // Seed data
@@ -136,7 +138,57 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         Some("Deep learning models require large datasets for training.".into()),
     ];
 
-    let metadatas: Vec<Option<Metadata>> = vec![
+    let ids = vec![
+        "doc-1".into(),
+        "doc-2".into(),
+        "doc-3".into(),
+        "doc-4".into(),
+    ];
+
+    let metadatas_with_arrays: Vec<Option<Metadata>> = vec![
+        {
+            let mut m = Metadata::new();
+            m.insert("category".into(), "ml".into());
+            m.insert("year".into(), MetadataValue::Int(2024));
+            m.insert("citations".into(), MetadataValue::Int(150));
+            m.insert("authors".into(), vec!["Chen", "Okafor"].into());
+            m.insert("topics".into(), vec!["ml", "healthcare"].into());
+            m.insert("review_scores".into(), vec![9i64, 8, 9].into());
+            Some(m)
+        },
+        {
+            let mut m = Metadata::new();
+            m.insert("category".into(), "quantum".into());
+            m.insert("year".into(), MetadataValue::Int(2023));
+            m.insert("citations".into(), MetadataValue::Int(80));
+            m.insert("authors".into(), vec!["Patel", "Johansson"].into());
+            m.insert("topics".into(), vec!["quantum", "cryptography"].into());
+            m.insert("review_scores".into(), vec![7i64, 8, 7].into());
+            Some(m)
+        },
+        {
+            let mut m = Metadata::new();
+            m.insert("category".into(), "energy".into());
+            m.insert("year".into(), MetadataValue::Int(2024));
+            m.insert("citations".into(), MetadataValue::Int(45));
+            m.insert("authors".into(), vec!["Chen", "Williams"].into());
+            m.insert("topics".into(), vec!["energy", "climate"].into());
+            m.insert("review_scores".into(), vec![8i64, 7, 8].into());
+            Some(m)
+        },
+        {
+            let mut m = Metadata::new();
+            m.insert("category".into(), "ml".into());
+            m.insert("year".into(), MetadataValue::Int(2022));
+            m.insert("citations".into(), MetadataValue::Int(300));
+            m.insert("authors".into(), vec!["Nguyen", "Singh"].into());
+            m.insert("topics".into(), vec!["ml", "training"].into());
+            m.insert("review_scores".into(), vec![9i64, 9, 8].into());
+            Some(m)
+        },
+    ];
+
+    let metadatas_scalar: Vec<Option<Metadata>> = vec![
         {
             let mut m = Metadata::new();
             m.insert("category".into(), "ml".into());
@@ -167,63 +219,125 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         },
     ];
 
-    collection
+    let mut array_metadata_supported = true;
+    if let Err(_err) = collection
         .add(
-            vec!["doc-1".into(), "doc-2".into(), "doc-3".into(), "doc-4".into()],
-            embeds,
-            Some(documents),
+            ids.clone(),
+            embeds.clone(),
+            Some(documents.clone()),
             None,
-            Some(metadatas),
+            Some(metadatas_with_arrays),
         )
-        .await?;
+        .await
+    {
+        // Older Chroma versions reject array metadata.
+        array_metadata_supported = false;
+        collection
+            .add(ids, embeds, Some(documents), None, Some(metadatas_scalar))
+            .await?;
+        println!("array metadata examples skipped (requires Chroma >= 1.5.0)");
+    }
 
     let query_emb = vec![vec![0.1, 0.2, 0.3]];
 
     // --- Metadata Filters (using get/query API) ---
 
     // Equality ($eq)
-    let r = collection.get(None, Some(eq_str("category", "ml")), None, None, None).await?;
+    let r = collection
+        .get(None, Some(eq_str("category", "ml")), None, None, None)
+        .await?;
     println!("$eq: {:?}", r.ids);
 
     // Inequality ($ne)
-    let r = collection.get(None, Some(ne_str("category", "ml")), None, None, None).await?;
+    let r = collection
+        .get(None, Some(ne_str("category", "ml")), None, None, None)
+        .await?;
     println!("$ne: {:?}", r.ids);
 
     // Greater than ($gt)
-    let r = collection.get(None, Some(gt_int("citations", 100)), None, None, None).await?;
+    let r = collection
+        .get(None, Some(gt_int("citations", 100)), None, None, None)
+        .await?;
     println!("$gt: {:?}", r.ids);
 
     // Greater than or equal ($gte)
-    let r = collection.get(None, Some(gte_int("year", 2024)), None, None, None).await?;
+    let r = collection
+        .get(None, Some(gte_int("year", 2024)), None, None, None)
+        .await?;
     println!("$gte: {:?}", r.ids);
 
     // Less than ($lt)
-    let r = collection.get(None, Some(lt_int("citations", 100)), None, None, None).await?;
+    let r = collection
+        .get(None, Some(lt_int("citations", 100)), None, None, None)
+        .await?;
     println!("$lt: {:?}", r.ids);
 
     // Less than or equal ($lte)
-    let r = collection.get(None, Some(lte_int("year", 2023)), None, None, None).await?;
+    let r = collection
+        .get(None, Some(lte_int("year", 2023)), None, None, None)
+        .await?;
     println!("$lte: {:?}", r.ids);
 
     // In ($in)
-    let r = collection.get(None, Some(in_str("category", &["ml", "quantum"])), None, None, None).await?;
+    let r = collection
+        .get(
+            None,
+            Some(in_str("category", &["ml", "quantum"])),
+            None,
+            None,
+            None,
+        )
+        .await?;
     println!("$in: {:?}", r.ids);
 
     // Not in ($nin)
-    let r = collection.get(None, Some(nin_str("category", &["ml", "quantum"])), None, None, None).await?;
+    let r = collection
+        .get(
+            None,
+            Some(nin_str("category", &["ml", "quantum"])),
+            None,
+            None,
+            None,
+        )
+        .await?;
     println!("$nin: {:?}", r.ids);
+
+    // --- Array Metadata (Chroma >= 1.5.0) ---
+    // Array metadata filtering in the Rust client currently uses Search API (Chroma Cloud).
+    // Here we verify array metadata is stored and returned in get() responses.
+    if array_metadata_supported {
+        let r = collection
+            .get(Some(vec!["doc-1".into()]), None, None, None, None)
+            .await?;
+        println!("array metadata (doc-1): {:?}", r.metadatas);
+    }
 
     // --- Logical Operators ---
 
     // AND
     let r = collection
-        .get(None, Some(and(vec![eq_str("category", "ml"), gte_int("year", 2024)])), None, None, None)
+        .get(
+            None,
+            Some(and(vec![eq_str("category", "ml"), gte_int("year", 2024)])),
+            None,
+            None,
+            None,
+        )
         .await?;
     println!("$and: {:?}", r.ids);
 
     // OR
     let r = collection
-        .get(None, Some(or(vec![eq_str("category", "quantum"), eq_str("category", "energy")])), None, None, None)
+        .get(
+            None,
+            Some(or(vec![
+                eq_str("category", "quantum"),
+                eq_str("category", "energy"),
+            ])),
+            None,
+            None,
+            None,
+        )
         .await?;
     println!("$or: {:?}", r.ids);
 
@@ -233,16 +347,27 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             None,
             Some(and(vec![
                 gte_int("year", 2023),
-                or(vec![eq_str("category", "ml"), eq_str("category", "quantum")]),
+                or(vec![
+                    eq_str("category", "ml"),
+                    eq_str("category", "quantum"),
+                ]),
             ])),
-            None, None, None,
+            None,
+            None,
+            None,
         )
         .await?;
     println!("nested: {:?}", r.ids);
 
     // --- Query with metadata filter ---
     let r = collection
-        .query(query_emb.clone(), Some(4), Some(eq_str("category", "ml")), None, None)
+        .query(
+            query_emb.clone(),
+            Some(4),
+            Some(eq_str("category", "ml")),
+            None,
+            None,
+        )
         .await?;
     println!("query + metadata: {:?}", r.ids);
 
@@ -295,7 +420,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // println!("combined metadata + doc: {:?}", r.ids[0]);
 
     // Cleanup
-    client.delete_collection("filter_demo").await?;
+    client.delete_collection(collection_name).await?;
     println!("\nrust: all filter examples passed");
 
     Ok(())

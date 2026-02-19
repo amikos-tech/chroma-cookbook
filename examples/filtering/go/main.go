@@ -43,10 +43,12 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// Clean up if exists
-	_ = client.DeleteCollection(ctx, "filter_demo")
+	collectionName := "filter_demo_go"
 
-	collection, err := client.CreateCollection(ctx, "filter_demo")
+	// Clean up if exists
+	_ = client.DeleteCollection(ctx, collectionName)
+
+	collection, err := client.CreateCollection(ctx, collectionName)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -79,52 +81,68 @@ func main() {
 
 	queryEmb := embeddings.NewEmbeddingFromFloat32([]float32{0.1, 0.2, 0.3})
 
+	mustGet := func(label string, opts ...chroma.CollectionGetOption) chroma.GetResult {
+		r, err := collection.Get(ctx, opts...)
+		if err != nil {
+			log.Fatalf("%s failed: %v", label, err)
+		}
+		return r
+	}
+
+	mustQuery := func(label string, opts ...chroma.CollectionQueryOption) chroma.QueryResult {
+		r, err := collection.Query(ctx, opts...)
+		if err != nil {
+			log.Fatalf("%s failed: %v", label, err)
+		}
+		return r
+	}
+
 	// --- Metadata Filters ---
 
 	// Equality ($eq)
-	results, _ := collection.Get(ctx,
+	results := mustGet("$eq",
 		chroma.WithWhere(chroma.EqString("category", "ml")),
 	)
 	fmt.Printf("$eq: %v\n", results.GetIDs())
 
 	// Inequality ($ne)
-	results, _ = collection.Get(ctx,
+	results = mustGet("$ne",
 		chroma.WithWhere(chroma.NotEqString("category", "ml")),
 	)
 	fmt.Printf("$ne: %v\n", results.GetIDs())
 
 	// Greater than ($gt)
-	results, _ = collection.Get(ctx,
+	results = mustGet("$gt",
 		chroma.WithWhere(chroma.GtInt("citations", 100)),
 	)
 	fmt.Printf("$gt: %v\n", results.GetIDs())
 
 	// Greater than or equal ($gte)
-	results, _ = collection.Get(ctx,
+	results = mustGet("$gte",
 		chroma.WithWhere(chroma.GteInt("year", 2024)),
 	)
 	fmt.Printf("$gte: %v\n", results.GetIDs())
 
 	// Less than ($lt)
-	results, _ = collection.Get(ctx,
+	results = mustGet("$lt",
 		chroma.WithWhere(chroma.LtInt("citations", 100)),
 	)
 	fmt.Printf("$lt: %v\n", results.GetIDs())
 
 	// Less than or equal ($lte)
-	results, _ = collection.Get(ctx,
+	results = mustGet("$lte",
 		chroma.WithWhere(chroma.LteInt("year", 2023)),
 	)
 	fmt.Printf("$lte: %v\n", results.GetIDs())
 
 	// In ($in)
-	results, _ = collection.Get(ctx,
+	results = mustGet("$in",
 		chroma.WithWhere(chroma.InString("category", "ml", "quantum")),
 	)
 	fmt.Printf("$in: %v\n", results.GetIDs())
 
 	// Not in ($nin)
-	results, _ = collection.Get(ctx,
+	results = mustGet("$nin",
 		chroma.WithWhere(chroma.NinString("category", "ml", "quantum")),
 	)
 	fmt.Printf("$nin: %v\n", results.GetIDs())
@@ -132,7 +150,7 @@ func main() {
 	// --- Logical Operators ---
 
 	// $and
-	results, _ = collection.Get(ctx,
+	results = mustGet("$and",
 		chroma.WithWhere(chroma.And(
 			chroma.EqString("category", "ml"),
 			chroma.GteInt("year", 2024),
@@ -141,7 +159,7 @@ func main() {
 	fmt.Printf("$and: %v\n", results.GetIDs())
 
 	// $or
-	results, _ = collection.Get(ctx,
+	results = mustGet("$or",
 		chroma.WithWhere(chroma.Or(
 			chroma.EqString("category", "quantum"),
 			chroma.EqString("category", "energy"),
@@ -150,7 +168,7 @@ func main() {
 	fmt.Printf("$or: %v\n", results.GetIDs())
 
 	// Nested logical operators
-	results, _ = collection.Get(ctx,
+	results = mustGet("nested",
 		chroma.WithWhere(chroma.And(
 			chroma.GteInt("year", 2023),
 			chroma.Or(
@@ -164,7 +182,7 @@ func main() {
 	// --- Document Filters ---
 
 	// $contains
-	qResults, _ := collection.Query(ctx,
+	qResults := mustQuery("doc $contains",
 		chroma.WithQueryEmbeddings(queryEmb),
 		chroma.WithNResults(4),
 		chroma.WithWhereDocument(chroma.Contains("learning")),
@@ -172,7 +190,7 @@ func main() {
 	fmt.Printf("doc $contains: %v\n", qResults.GetIDGroups())
 
 	// $not_contains
-	qResults, _ = collection.Query(ctx,
+	qResults = mustQuery("doc $not_contains",
 		chroma.WithQueryEmbeddings(queryEmb),
 		chroma.WithNResults(4),
 		chroma.WithWhereDocument(chroma.NotContains("learning")),
@@ -180,7 +198,7 @@ func main() {
 	fmt.Printf("doc $not_contains: %v\n", qResults.GetIDGroups())
 
 	// $regex
-	qResults, _ = collection.Query(ctx,
+	qResults = mustQuery("doc $regex",
 		chroma.WithQueryEmbeddings(queryEmb),
 		chroma.WithNResults(4),
 		chroma.WithWhereDocument(chroma.Regex("learning.*training")),
@@ -188,7 +206,7 @@ func main() {
 	fmt.Printf("doc $regex: %v\n", qResults.GetIDGroups())
 
 	// $not_regex
-	qResults, _ = collection.Query(ctx,
+	qResults = mustQuery("doc $not_regex",
 		chroma.WithQueryEmbeddings(queryEmb),
 		chroma.WithNResults(4),
 		chroma.WithWhereDocument(chroma.NotRegex("quantum.*crypto")),
@@ -196,7 +214,7 @@ func main() {
 	fmt.Printf("doc $not_regex: %v\n", qResults.GetIDGroups())
 
 	// Document filter with $and
-	qResults, _ = collection.Query(ctx,
+	qResults = mustQuery("doc $and",
 		chroma.WithQueryEmbeddings(queryEmb),
 		chroma.WithNResults(4),
 		chroma.WithWhereDocument(chroma.AndDocument(
@@ -208,20 +226,20 @@ func main() {
 
 	// --- Pagination ---
 
-	page1, _ := collection.Get(ctx,
+	page1 := mustGet("page 1",
 		chroma.WithLimit(2),
 		chroma.WithOffset(0),
 	)
 	fmt.Printf("page 1: %v\n", page1.GetIDs())
 
-	page2, _ := collection.Get(ctx,
+	page2 := mustGet("page 2",
 		chroma.WithLimit(2),
 		chroma.WithOffset(2),
 	)
 	fmt.Printf("page 2: %v\n", page2.GetIDs())
 
 	// --- Combined: metadata + document filters ---
-	qResults, _ = collection.Query(ctx,
+	qResults = mustQuery("combined metadata + doc",
 		chroma.WithQueryEmbeddings(queryEmb),
 		chroma.WithNResults(4),
 		chroma.WithWhere(chroma.EqString("category", "ml")),

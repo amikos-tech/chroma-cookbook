@@ -9,12 +9,12 @@ Those familiar with MongoDB queries will find Chroma's filters very similar.
 
 !!! tip "Runnable Examples"
 
-    Complete, runnable filtering examples for each language are available in the [examples/filtering](https://github.com/chroma-core/chroma-cookbook/tree/main/examples/filtering) directory:
+    Complete, runnable filtering examples for each language are available in the [examples/filtering](https://github.com/amikos-tech/chroma-cookbook/tree/main/examples/filtering) directory:
 
-    - [Python](https://github.com/chroma-core/chroma-cookbook/blob/main/examples/filtering/python/filter_examples.py)
-    - [TypeScript](https://github.com/chroma-core/chroma-cookbook/blob/main/examples/filtering/typescript/filter_examples.ts)
-    - [Go](https://github.com/chroma-core/chroma-cookbook/blob/main/examples/filtering/go/main.go)
-    - [Rust](https://github.com/chroma-core/chroma-cookbook/blob/main/examples/filtering/rust/src/main.rs)
+    - [Python](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/python/filter_examples.py)
+    - [TypeScript](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/typescript/filter_examples.ts)
+    - [Go](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/go/main.go)
+    - [Rust](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/rust/src/main.rs)
 
 ## Metadata Filters
 
@@ -741,6 +741,14 @@ Supported array element types: `string`, `integer`, `float`, `boolean`
 - Empty arrays are not allowed
 - Nested arrays (arrays of arrays) are not supported
 - All elements must be the same type (no mixed-type arrays)
+
+!!! tip "Runnable Array Examples"
+
+    End-to-end array metadata examples are included in the filtering examples:
+
+    - [Python](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/python/filter_examples.py)
+    - [TypeScript](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/typescript/filter_examples.ts)
+    - [Rust](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/rust/src/main.rs)
 
 #### Storing Array Metadata
 

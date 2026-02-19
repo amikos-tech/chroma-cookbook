@@ -1,27 +1,90 @@
-"""Chroma filtering examples - metadata filters, document filters, and pagination."""
+"""Chroma filtering examples - metadata filters, document filters, and pagination.
+
+Requires a running Chroma server, for example:
+    docker run -p 8000:8000 chromadb/chroma:1.5.0
+"""
 
 import chromadb
 
-client = chromadb.Client()
-collection = client.create_collection("filter_demo")
+client = chromadb.HttpClient(host="localhost", port=8000)
+collection_name = "filter_demo_python"
+
+# Clean up if exists
+try:
+    client.delete_collection(name=collection_name)
+except Exception:
+    pass
+
+collection = client.create_collection(name=collection_name)
 
 # Seed data
-collection.add(
-    ids=["doc-1", "doc-2", "doc-3", "doc-4"],
-    documents=[
-        "Machine learning is transforming healthcare diagnostics.",
-        "Quantum computing may revolutionize cryptography.",
-        "Renewable energy adoption is accelerating worldwide.",
-        "Deep learning models require large datasets for training.",
-    ],
-    metadatas=[
-        {"category": "ml", "year": 2024, "citations": 150},
-        {"category": "quantum", "year": 2023, "citations": 80},
-        {"category": "energy", "year": 2024, "citations": 45},
-        {"category": "ml", "year": 2022, "citations": 300},
-    ],
-    embeddings=[[0.1, 0.2, 0.3], [0.4, 0.5, 0.6], [0.7, 0.8, 0.9], [0.2, 0.3, 0.4]],
-)
+ids = ["doc-1", "doc-2", "doc-3", "doc-4"]
+documents = [
+    "Machine learning is transforming healthcare diagnostics.",
+    "Quantum computing may revolutionize cryptography.",
+    "Renewable energy adoption is accelerating worldwide.",
+    "Deep learning models require large datasets for training.",
+]
+embeddings = [[0.1, 0.2, 0.3], [0.4, 0.5, 0.6], [0.7, 0.8, 0.9], [0.2, 0.3, 0.4]]
+array_metadatas = [
+    {
+        "category": "ml",
+        "year": 2024,
+        "citations": 150,
+        "authors": ["Chen", "Okafor"],
+        "topics": ["ml", "healthcare"],
+        "review_scores": [9, 8, 9],
+    },
+    {
+        "category": "quantum",
+        "year": 2023,
+        "citations": 80,
+        "authors": ["Patel", "Johansson"],
+        "topics": ["quantum", "cryptography"],
+        "review_scores": [7, 8, 7],
+    },
+    {
+        "category": "energy",
+        "year": 2024,
+        "citations": 45,
+        "authors": ["Chen", "Williams"],
+        "topics": ["energy", "climate"],
+        "review_scores": [8, 7, 8],
+    },
+    {
+        "category": "ml",
+        "year": 2022,
+        "citations": 300,
+        "authors": ["Nguyen", "Singh"],
+        "topics": ["ml", "training"],
+        "review_scores": [9, 9, 8],
+    },
+]
+scalar_metadatas = [
+    {"category": "ml", "year": 2024, "citations": 150},
+    {"category": "quantum", "year": 2023, "citations": 80},
+    {"category": "energy", "year": 2024, "citations": 45},
+    {"category": "ml", "year": 2022, "citations": 300},
+]
+
+array_metadata_supported = True
+try:
+    collection.add(
+        ids=ids,
+        documents=documents,
+        metadatas=array_metadatas,
+        embeddings=embeddings,
+    )
+except ValueError:
+    # Older Chroma versions reject array metadata.
+    array_metadata_supported = False
+    collection.add(
+        ids=ids,
+        documents=documents,
+        metadatas=scalar_metadatas,
+        embeddings=embeddings,
+    )
+    print("array metadata examples skipped (requires Chroma >= 1.5.0)")
 
 # --- Metadata Filters ---
 
@@ -60,6 +123,32 @@ print(f"$in: {results['ids']}")
 # Not in ($nin)
 results = collection.get(where={"category": {"$nin": ["ml", "quantum"]}})
 print(f"$nin: {results['ids']}")
+
+if array_metadata_supported:
+    # --- Array Metadata Filters (Chroma >= 1.5.0) ---
+
+    # Contains in array metadata ($contains)
+    results = collection.get(where={"authors": {"$contains": "Chen"}})
+    print(f"array $contains (authors): {results['ids']}")
+
+    results = collection.get(where={"review_scores": {"$contains": 9}})
+    print(f"array $contains (review_scores): {results['ids']}")
+
+    # Not contains in array metadata ($not_contains)
+    results = collection.get(where={"topics": {"$not_contains": "quantum"}})
+    print(f"array $not_contains (topics): {results['ids']}")
+
+    # Combining array + scalar filters
+    results = collection.get(
+        where={
+            "$and": [
+                {"authors": {"$contains": "Chen"}},
+                {"topics": {"$contains": "energy"}},
+                {"year": {"$eq": 2024}},
+            ]
+        }
+    )
+    print(f"array combined $and: {results['ids']}")
 
 # --- Logical Operators ---
 

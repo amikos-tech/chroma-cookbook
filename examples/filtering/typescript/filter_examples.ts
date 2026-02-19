@@ -7,40 +7,93 @@
 import { ChromaClient } from "chromadb";
 
 const client = new ChromaClient({ host: "localhost", port: 8000 });
+const collectionName = "filter_demo_typescript";
 
 // Clean up if exists
 try {
-    await client.deleteCollection({ name: "filter_demo" });
+    await client.deleteCollection({ name: collectionName });
 } catch {
     // ignore
 }
 
 const collection = await client.createCollection({
-    name: "filter_demo",
+    name: collectionName,
 });
 
 // Seed data
-await collection.add({
-    ids: ["doc-1", "doc-2", "doc-3", "doc-4"],
-    documents: [
-        "Machine learning is transforming healthcare diagnostics.",
-        "Quantum computing may revolutionize cryptography.",
-        "Renewable energy adoption is accelerating worldwide.",
-        "Deep learning models require large datasets for training.",
-    ],
-    metadatas: [
-        { category: "ml", year: 2024, citations: 150 },
-        { category: "quantum", year: 2023, citations: 80 },
-        { category: "energy", year: 2024, citations: 45 },
-        { category: "ml", year: 2022, citations: 300 },
-    ],
-    embeddings: [
-        [0.1, 0.2, 0.3],
-        [0.4, 0.5, 0.6],
-        [0.7, 0.8, 0.9],
-        [0.2, 0.3, 0.4],
-    ],
-});
+const ids = ["doc-1", "doc-2", "doc-3", "doc-4"];
+const documents = [
+    "Machine learning is transforming healthcare diagnostics.",
+    "Quantum computing may revolutionize cryptography.",
+    "Renewable energy adoption is accelerating worldwide.",
+    "Deep learning models require large datasets for training.",
+];
+const embeddings = [
+    [0.1, 0.2, 0.3],
+    [0.4, 0.5, 0.6],
+    [0.7, 0.8, 0.9],
+    [0.2, 0.3, 0.4],
+];
+const arrayMetadatas = [
+    {
+        category: "ml",
+        year: 2024,
+        citations: 150,
+        authors: ["Chen", "Okafor"],
+        topics: ["ml", "healthcare"],
+        review_scores: [9, 8, 9],
+    },
+    {
+        category: "quantum",
+        year: 2023,
+        citations: 80,
+        authors: ["Patel", "Johansson"],
+        topics: ["quantum", "cryptography"],
+        review_scores: [7, 8, 7],
+    },
+    {
+        category: "energy",
+        year: 2024,
+        citations: 45,
+        authors: ["Chen", "Williams"],
+        topics: ["energy", "climate"],
+        review_scores: [8, 7, 8],
+    },
+    {
+        category: "ml",
+        year: 2022,
+        citations: 300,
+        authors: ["Nguyen", "Singh"],
+        topics: ["ml", "training"],
+        review_scores: [9, 9, 8],
+    },
+];
+const scalarMetadatas = [
+    { category: "ml", year: 2024, citations: 150 },
+    { category: "quantum", year: 2023, citations: 80 },
+    { category: "energy", year: 2024, citations: 45 },
+    { category: "ml", year: 2022, citations: 300 },
+];
+
+let arrayMetadataSupported = true;
+try {
+    await collection.add({
+        ids,
+        documents,
+        metadatas: arrayMetadatas,
+        embeddings,
+    });
+} catch {
+    // Older Chroma versions reject array metadata.
+    arrayMetadataSupported = false;
+    await collection.add({
+        ids,
+        documents,
+        metadatas: scalarMetadatas,
+        embeddings,
+    });
+    console.log("array metadata examples skipped (requires Chroma >= 1.5.0)");
+}
 
 // --- Metadata Filters ---
 
@@ -95,6 +148,39 @@ results = await collection.get({
     where: { category: { $nin: ["ml", "quantum"] } },
 });
 console.log(`$nin: ${JSON.stringify(results.ids)}`);
+
+if (arrayMetadataSupported) {
+    // --- Array Metadata Filters (Chroma >= 1.5.0) ---
+
+    // Contains in array metadata ($contains)
+    results = await collection.get({
+        where: { authors: { $contains: "Chen" } },
+    });
+    console.log(`array $contains (authors): ${JSON.stringify(results.ids)}`);
+
+    results = await collection.get({
+        where: { review_scores: { $contains: 9 } },
+    });
+    console.log(`array $contains (review_scores): ${JSON.stringify(results.ids)}`);
+
+    // Not contains in array metadata ($not_contains)
+    results = await collection.get({
+        where: { topics: { $not_contains: "quantum" } },
+    });
+    console.log(`array $not_contains (topics): ${JSON.stringify(results.ids)}`);
+
+    // Combining array + scalar filters
+    results = await collection.get({
+        where: {
+            $and: [
+                { authors: { $contains: "Chen" } },
+                { topics: { $contains: "energy" } },
+                { year: { $eq: 2024 } },
+            ],
+        },
+    });
+    console.log(`array combined $and: ${JSON.stringify(results.ids)}`);
+}
 
 // --- Logical Operators ---
 
