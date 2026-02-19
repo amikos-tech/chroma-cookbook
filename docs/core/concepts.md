@@ -46,6 +46,21 @@ Metadata values can be of the following types:
 - integers
 - floats (float32)
 - booleans
+- arrays of strings, integers, floats, or booleans (`Chroma >= 1.5.0`)
+
+Array metadata constraints:
+
+- All elements must be the same type
+- Empty arrays are not allowed
+- Nested arrays are not supported
+
+See [Array Metadata](filters.md#array-metadata) for query examples using `$contains` / `$not_contains`.
+
+Runnable examples:
+
+- [Python](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/python/filter_examples.py)
+- [TypeScript](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/typescript/filter_examples.ts)
+- [Rust](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/rust/src/main.rs)
 
 ## Embedding Function
 
