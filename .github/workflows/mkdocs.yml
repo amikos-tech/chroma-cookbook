@@ -23,6 +23,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install mkdocs-material
           pip install mkdocs-git-revision-date-localized-plugin
+          pip install mkdocs-llmstxt
 
       - name: Build the MkDocs site
         run: mkdocs build
