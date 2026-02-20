@@ -51,6 +51,8 @@
     
       <link rel="stylesheet" href="stylesheets/ethicalads.css">
     
+      <link rel="stylesheet" href="stylesheets/concepts-flow.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -2997,6 +2999,7 @@
 <p>Latest ChromaDB version: <a href="https://github.com/chroma-core/chroma/releases/tag/1.5.0">1.5.0</a></p>
 <h2 id="new-and-noteworthy">New and Noteworthy<a class="headerlink" href="#new-and-noteworthy" title="Permanent link">&para;</a></h2>
 <ul>
+<li>🧭 <a href="core/concepts/">Core Concepts</a> - Reworked into General vs Power Users tracks, with interactive local/distributed execution diagrams and data-flow visuals - 📅<code>19-Feb-2026</code></li>
 <li>🎯 <a href="core/collections/#constrain-query-candidates-by-id">Collections Query IDs</a> - Documented <code>query(..., ids=...)</code> for restricting similarity search to specific records - 📅<code>17-Feb-2026</code></li>
 <li>🔍 <a href="core/filters/">Filters</a> - Added multi-language filter examples and <code>$regex</code>/<code>$not_regex</code> operators - 📅<code>17-Feb-2026</code></li>
 <li>🔧 <a href="core/install/">Installation</a> - Updated package names and added Go/Rust install examples - 📅<code>17-Feb-2026</code></li>
@@ -3019,8 +3022,11 @@
 <li>📐 <a href="core/resources/">Resource Requirements</a> - Recently updated with temporary storage requirements - 📅<code>28-May-2024</code></li>
 </ul>
 <h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
-<p>We suggest you first head to the <a href="core/concepts/">Concepts</a> section to get familiar with ChromaDB concepts, such as
-Documents, Metadata, Embeddings, etc.</p>
+<p>We suggest you first head to the <a href="core/concepts/">Concepts</a> section. It now has two tracks:</p>
+<ul>
+<li><a href="core/concepts/#for-general-users">For General Users</a> - tenancy, collections, metadata, embeddings, and cloud data-flow basics</li>
+<li><a href="core/concepts/#for-power-users">For Power Users</a> - local SQLite + HNSW path, distributed frontend dispatch path, and core internals</li>
+</ul>
 <p>Once you're comfortable with the concepts, you can jump to the <a href="core/install/">Installation</a> section to install
 ChromaDB.</p>
 <p><strong>Core Topics:</strong></p>
@@ -3113,7 +3119,7 @@ out on <a href="https://discord.gg/MMeYNTmh3x">Discord</a> (look for <code>@taz<
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 18, 2026 03:53:31 UTC">February 18, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 19, 2026 16:03:43 UTC">February 19, 2026</span>
   </span>
 
     
@@ -3291,6 +3297,8 @@ out on <a href="https://discord.gg/MMeYNTmh3x">Discord</a> (look for <code>@taz<
         <script src="javascripts/gtag.js"></script>
       
         <script src="javascripts/ethicalads-init.js"></script>
+      
+        <script src="javascripts/concepts-pipeline.js"></script>
       
     
   </body>

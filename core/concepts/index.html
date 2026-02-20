@@ -53,6 +53,8 @@
     
       <link rel="stylesheet" href="../../stylesheets/ethicalads.css">
     
+      <link rel="stylesheet" href="../../stylesheets/concepts-flow.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -634,6 +636,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#for-general-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For General Users
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="For General Users">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#tenancy-and-db-hierarchies" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -643,8 +657,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#tenants" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -654,8 +668,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#databases" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -665,8 +679,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#collections" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -676,8 +690,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#documents" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -687,8 +701,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#metadata" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -698,8 +712,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#embedding-function" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -709,30 +723,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#distance-function" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Distance Function
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#embedding-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Embedding Model
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#embeddings" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -742,26 +734,125 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata-segment" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#distance-function" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Metadata Segment
+        Distance Function
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#vector-segment" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#how-data-flows-through-chroma-cloud-distributed-chroma" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Vector Segment
+        How Data Flows Through Chroma Cloud (Distributed Chroma)
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-power-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Power Users
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="For Power Users">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#execution-paths-code-backed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution Paths (Code-Backed)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distributed-architecture-main-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributed Architecture (Main Services)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#main-primitives-and-index-families" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Primitives and Index Families
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spann-in-distributed-chroma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SPANN in Distributed Chroma
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blockfile-format-and-update-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Blockfile Format and Update Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compaction-and-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compaction and Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#garbage-collection-index-files-wal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Garbage Collection (Index Files + WAL)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2872,6 +2963,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#for-general-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For General Users
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="For General Users">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#tenancy-and-db-hierarchies" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2881,8 +2984,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#tenants" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2892,8 +2995,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#databases" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2903,8 +3006,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#collections" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2914,8 +3017,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#documents" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2925,8 +3028,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#metadata" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2936,8 +3039,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#embedding-function" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2947,30 +3050,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#distance-function" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Distance Function
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#embedding-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Embedding Model
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#embeddings" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2980,26 +3061,125 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata-segment" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#distance-function" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Metadata Segment
+        Distance Function
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#vector-segment" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#how-data-flows-through-chroma-cloud-distributed-chroma" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Vector Segment
+        How Data Flows Through Chroma Cloud (Distributed Chroma)
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-power-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Power Users
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="For Power Users">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#execution-paths-code-backed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution Paths (Code-Backed)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distributed-architecture-main-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distributed Architecture (Main Services)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#main-primitives-and-index-families" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Primitives and Index Families
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spann-in-distributed-chroma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SPANN in Distributed Chroma
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blockfile-format-and-update-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Blockfile Format and Update Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compaction-and-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compaction and Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#garbage-collection-index-files-wal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Garbage Collection (Index Files + WAL)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3024,90 +3204,284 @@
 
 
 <h1 id="concepts">Concepts<a class="headerlink" href="#concepts" title="Permanent link">&para;</a></h1>
-<h2 id="tenancy-and-db-hierarchies">Tenancy and DB Hierarchies<a class="headerlink" href="#tenancy-and-db-hierarchies" title="Permanent link">&para;</a></h2>
+<p>This page has two tracks:</p>
+<ul>
+<li><a href="#for-general-users">For General Users</a></li>
+<li><a href="#for-power-users">For Power Users</a></li>
+</ul>
+<h2 id="for-general-users">For General Users<a class="headerlink" href="#for-general-users" title="Permanent link">&para;</a></h2>
+<h3 id="tenancy-and-db-hierarchies">Tenancy and DB Hierarchies<a class="headerlink" href="#tenancy-and-db-hierarchies" title="Permanent link">&para;</a></h3>
 <p>The following picture illustrates the tenancy and DB hierarchy in Chroma:</p>
 <p><img alt="Tenancy and DB Hierarchy" src="../../assets/images/chroma-tenancy-hierarchy.png" /></p>
 <div class="admonition warn">
 <p class="admonition-title">Storage</p>
 <p>In Chroma single-node, all data about tenancy, databases, collections and documents is stored in a single SQLite database.</p>
 </div>
-<h2 id="tenants">Tenants<a class="headerlink" href="#tenants" title="Permanent link">&para;</a></h2>
-<p>A tenant is a logical grouping for a set of databases. A tenant is designed to model a single organization or user. A
-tenant can have multiple databases.</p>
-<h2 id="databases">Databases<a class="headerlink" href="#databases" title="Permanent link">&para;</a></h2>
-<p>A database is a logical grouping for a set of collections. A database is designed to model a single application or
-project. A database can have multiple collections.</p>
-<h2 id="collections">Collections<a class="headerlink" href="#collections" title="Permanent link">&para;</a></h2>
+<h3 id="tenants">Tenants<a class="headerlink" href="#tenants" title="Permanent link">&para;</a></h3>
+<p>A tenant is a logical grouping for a set of databases. A tenant is designed to model a single organization or user. A tenant can have multiple databases.</p>
+<h3 id="databases">Databases<a class="headerlink" href="#databases" title="Permanent link">&para;</a></h3>
+<p>A database is a logical grouping for a set of collections. A database is designed to model a single application or project. A database can have multiple collections.</p>
+<h3 id="collections">Collections<a class="headerlink" href="#collections" title="Permanent link">&para;</a></h3>
 <p>Collections are the grouping mechanism for embeddings, documents, and metadata.</p>
-<h2 id="documents">Documents<a class="headerlink" href="#documents" title="Permanent link">&para;</a></h2>
+<h3 id="documents">Documents<a class="headerlink" href="#documents" title="Permanent link">&para;</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Chunks of text</p>
-<p>Documents in ChromaDB lingo are chunks of text that fits within the embedding model's context window. 
-Unlike other frameworks that use the term "document" to mean a file, 
-ChromaDB uses the term "document" to mean a chunk of text.</p>
+<p>Documents in ChromaDB lingo are chunks of text that fit within the embedding model's context window.
+Unlike other frameworks that use the term "document" to mean a file, ChromaDB uses the term "document" to mean a chunk of text.</p>
 </div>
-<p>Documents are raw chunks of text that are associated with an embedding. Documents are stored in the database and can be
-queried for.</p>
-<h2 id="metadata">Metadata<a class="headerlink" href="#metadata" title="Permanent link">&para;</a></h2>
-<p>Metadata is a dictionary of key-value pairs that can be associated with an embedding. Metadata is stored in the
-database and can be queried for.</p>
-<p>Metadata values can be of the following types:</p>
+<p>Documents are raw chunks of text that are associated with an embedding. Documents are stored in the database and can be queried.</p>
+<h3 id="metadata">Metadata<a class="headerlink" href="#metadata" title="Permanent link">&para;</a></h3>
+<p>Metadata is a dictionary of key-value pairs associated with an embedding.</p>
+<p>Metadata values can be:</p>
 <ul>
 <li>strings</li>
 <li>integers</li>
-<li>floats (float32)</li>
+<li>floats (<code>float32</code>)</li>
 <li>booleans</li>
 <li>arrays of strings, integers, floats, or booleans (<code>Chroma &gt;= 1.5.0</code>)</li>
 </ul>
 <p>Array metadata constraints:</p>
 <ul>
-<li>All elements must be the same type</li>
-<li>Empty arrays are not allowed</li>
-<li>Nested arrays are not supported</li>
+<li>all elements must be the same type</li>
+<li>empty arrays are not allowed</li>
+<li>nested arrays are not supported</li>
 </ul>
-<p>See <a href="../filters/#array-metadata">Array Metadata</a> for query examples using <code>$contains</code> / <code>$not_contains</code>.</p>
-<p>Runnable examples:</p>
+<p>See <a href="../filters/#array-metadata">Array Metadata</a> for examples with <code>$contains</code> / <code>$not_contains</code>.</p>
+<p>Runnable filter examples:</p>
 <ul>
 <li><a href="https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/python/filter_examples.py">Python</a></li>
 <li><a href="https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/typescript/filter_examples.ts">TypeScript</a></li>
 <li><a href="https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/rust/src/main.rs">Rust</a></li>
 </ul>
-<h2 id="embedding-function">Embedding Function<a class="headerlink" href="#embedding-function" title="Permanent link">&para;</a></h2>
-<p>Also referred to as embedding model, embedding functions in ChromaDB are wrappers that expose a consistent interface for
-generating embedding vectors from documents or text queries.</p>
-<p>For a list of supported embedding functions see Chroma's
-official <a href="https://docs.trychroma.com/integrations#%F0%9F%A7%AC-embedding-integrations">documentation</a>.</p>
-<h2 id="distance-function">Distance Function<a class="headerlink" href="#distance-function" title="Permanent link">&para;</a></h2>
-<p>Distance functions help in calculating the difference (distance) between two embedding vectors. ChromaDB supports the
-following distance functions:</p>
+<h3 id="embedding-function">Embedding Function<a class="headerlink" href="#embedding-function" title="Permanent link">&para;</a></h3>
+<p>Embedding functions (embedding models) expose a consistent interface for generating vectors from documents or queries.</p>
+<p>See Chroma's official <a href="https://docs.trychroma.com/integrations#%F0%9F%A7%AC-embedding-integrations">embedding integrations</a>.</p>
+<h3 id="embeddings">Embeddings<a class="headerlink" href="#embeddings" title="Permanent link">&para;</a></h3>
+<p>An embedding is a vector representation of a document, typically a list of <code>float32</code> values.</p>
+<h3 id="distance-function">Distance Function<a class="headerlink" href="#distance-function" title="Permanent link">&para;</a></h3>
+<p>Distance functions define similarity between vectors:</p>
 <ul>
-<li>Cosine - Useful for text similarity</li>
-<li>Euclidean (L2) - Useful for text similarity, more sensitive to noise than <code>cosine</code></li>
-<li>Inner Product (IP) - Recommender systems</li>
+<li>Cosine: common for semantic text similarity</li>
+<li>Euclidean (<code>l2</code>): geometric distance</li>
+<li>Inner Product (<code>ip</code>): common in recommendation-like scenarios</li>
 </ul>
-<h2 id="embedding-model">Embedding Model<a class="headerlink" href="#embedding-model" title="Permanent link">&para;</a></h2>
-<h2 id="embeddings">Embeddings<a class="headerlink" href="#embeddings" title="Permanent link">&para;</a></h2>
-<p>A representation of a document in the embedding model's latent space in the form of a vector, list of 32-bit floats (or
-ints).</p>
-<h2 id="metadata-segment">Metadata Segment<a class="headerlink" href="#metadata-segment" title="Permanent link">&para;</a></h2>
-<p>The metadata segment holds both the documents and their respective metadata fields (if any). The metadata segment is
-stored in sqlite3 under <code>&lt;persistent_dir&gt;/chroma.sqlite3</code>.</p>
-<h2 id="vector-segment">Vector Segment<a class="headerlink" href="#vector-segment" title="Permanent link">&para;</a></h2>
-<div class="admonition tip">
-<p class="admonition-title">Segment or Index?</p>
-<p>In the below paragraphs we use, the terms "segment" and "index" are used interchangeably.</p>
+<h3 id="how-data-flows-through-chroma-cloud-distributed-chroma">How Data Flows Through Chroma Cloud (Distributed Chroma)<a class="headerlink" href="#how-data-flows-through-chroma-cloud-distributed-chroma" title="Permanent link">&para;</a></h3>
+<p>The animated flows below model Chroma Cloud / distributed Chroma, where gateway, WAL, compaction, and query execution are separate services. In local or single-node deployments, the same logical stages still apply but are often co-located in one process.</p>
+<h4 id="write-path-add-update-upsert-delete">Write Path (Add / Update / Upsert / Delete)<a class="headerlink" href="#write-path-add-update-upsert-delete" title="Permanent link">&para;</a></h4>
+<div class="concept-flow-card">
+  <div class="concept-flow-header">
+    <span class="concept-flow-title">Write Path</span>
+    <span class="concept-flow-badge">Cloud/distributed: durable first, indexed asynchronously</span>
+  </div>
+  <div class="concept-flow-line" role="img" aria-label="Client to gateway to write-ahead log service to compactor to indexes">
+    <div class="concept-node">Client</div>
+    <div class="concept-link"><span class="concept-pulse"></span></div>
+    <div class="concept-node">Gateway</div>
+    <div class="concept-link"><span class="concept-pulse"></span></div>
+    <div class="concept-node">WAL Service</div>
+    <div class="concept-link"><span class="concept-pulse"></span></div>
+    <div class="concept-node">Compactor</div>
+    <div class="concept-link"><span class="concept-pulse"></span></div>
+    <div class="concept-node">Indexes</div>
+  </div>
+  <p class="concept-flow-note">In distributed Chroma, writes are acknowledged after WAL durability. Compaction materializes new index versions in the background.</p>
 </div>
-<p>Under the hood Chroma uses its
-own <a href="https://github.com/chroma-core/hnswlib">fork</a> <a href="https://github.com/nmslib/hnswlib">HNSW lib</a> for indexing and
-searching vectors.</p>
-<p>In a single-node mode, Chroma will create a single vector index for each collection. The index is stored in a UUID-named
-subdir in
-your persistent dir, named after the vector segment of the collection.</p>
-<p>The HNSW lib uses <a href="https://arxiv.org/abs/1603.09320">fast ANN</a> algo to search the vectors in the index.</p>
-<p>In addition to the HNSW index, Chroma uses Brute Force index to buffer embeddings in memory before they are added to the
-HNSW index (see <a href="../configuration/#hnswbatch_size"><code>batch_size</code></a>). As the name suggests the search in the Brute Force
-index is done by iterating over all the vectors in the index and comparing them to the query using the
-distance_function. Brute Force index search is exhaustive and works well on small datasets.</p>
+
+<h4 id="query-path-get-query-search">Query Path (Get / Query / Search)<a class="headerlink" href="#query-path-get-query-search" title="Permanent link">&para;</a></h4>
+<div class="concept-flow-card">
+  <div class="concept-flow-header">
+    <span class="concept-flow-title">Query Path</span>
+    <span class="concept-flow-badge">Cloud/distributed: index + WAL consistency</span>
+  </div>
+  <div class="concept-flow-line" role="img" aria-label="Client to gateway to query executor to filter and plan to vector, full-text, and metadata indexes to ranked results">
+    <div class="concept-node">Client</div>
+    <div class="concept-link"><span class="concept-pulse"></span></div>
+    <div class="concept-node">Gateway</div>
+    <div class="concept-link"><span class="concept-pulse"></span></div>
+    <div class="concept-node">Query Engine</div>
+    <div class="concept-link"><span class="concept-pulse"></span></div>
+    <div class="concept-node">Filter + Plan</div>
+    <div class="concept-link"><span class="concept-pulse"></span></div>
+    <div class="concept-node">Vector / FTS / Metadata</div>
+    <div class="concept-link"><span class="concept-pulse"></span></div>
+    <div class="concept-node">Ranked Results</div>
+  </div>
+  <p class="concept-flow-note">In distributed Chroma, strongly consistent reads combine indexed state with recent WAL state.</p>
+</div>
+
+<p>The detailed query pipeline is described in <a href="../advanced/queries/">Advanced Queries</a>.</p>
+<p>Implementation-level (code-backed) local-vs-distributed query diagrams are in the <a href="#for-power-users">For Power Users</a> section below.</p>
+<h2 id="for-power-users">For Power Users<a class="headerlink" href="#for-power-users" title="Permanent link">&para;</a></h2>
+<p>This section is a code-oriented map of distributed Chroma, based on the Rust workspace (<code>rust/</code>) and the distributed architecture docs.</p>
+<h3 id="execution-paths-code-backed">Execution Paths (Code-Backed)<a class="headerlink" href="#execution-paths-code-backed" title="Permanent link">&para;</a></h3>
+<p>These diagrams are traced from the Rust frontend/segment/log implementation (<code>rust/frontend</code>, <code>rust/segment</code>, <code>rust/log</code>).</p>
+<h4 id="interactive-local-query-path-single-node-sqlite-hnsw">Interactive Local Query Path (Single-Node SQLite + HNSW)<a class="headerlink" href="#interactive-local-query-path-single-node-sqlite-hnsw" title="Permanent link">&para;</a></h4>
+<div class="concept-query-card" data-concept-pipeline>
+  <div class="concept-query-header">
+    <span class="concept-query-title">Interactive Local Query Pipeline</span>
+    <span class="concept-query-badge">Single-node: SQLite + HNSW Local</span>
+  </div>
+  <p class="concept-query-help">Click any stage to inspect what happens in the local executor path. First read triggers backfill/purge into local metadata + HNSW segments.</p>
+
+  <div class="concept-query-diagram" role="group" aria-label="Interactive local query pipeline for single-node Chroma">
+    <button class="concept-query-node concept-query-node--main concept-query-stage-validation is-active" type="button" data-stage="local_validation" data-title="Validation + Segment Resolve" data-service="FrontendServer + ServiceBasedFrontend" data-description="Request validation/auth happens in frontend, then collection + segment ids are resolved before plan execution." data-related="">Validation + Resolve</button>
+    <div class="concept-query-down concept-query-down--1" aria-hidden="true"></div>
+
+    <button class="concept-query-node concept-query-node--main concept-query-stage-prefilter" type="button" data-stage="local_metadata_prefilter" data-title="Metadata Pre-Filter" data-service="LocalExecutor + SqliteMetadataReader" data-description="Filter predicates are executed against the SQLite metadata segment to narrow candidate user ids." data-related="local_prefilter_get,local_sqlite_meta_prefilter">Metadata Pre-Filter</button>
+    <div class="concept-query-call concept-query-call--prefilter" data-edge="local_prefilter_get" aria-hidden="true">
+      <span class="concept-query-call-label">get</span>
+      <span class="concept-query-call-arrow"></span>
+    </div>
+    <button class="concept-query-node concept-query-node--remote concept-query-stage-meta-a" type="button" data-stage="local_sqlite_meta_prefilter" data-title="SQLite Metadata Segment" data-service="SqliteMetadataReader" data-description="Rows are read from local SQLite metadata tables for candidate selection." data-related="local_prefilter_get,local_metadata_prefilter">SQLite Metadata</button>
+
+    <div class="concept-query-down concept-query-down--2" aria-hidden="true"></div>
+    <button class="concept-query-node concept-query-node--main concept-query-stage-knn" type="button" data-stage="local_knn_search" data-title="KNN Search" data-service="LocalExecutor + LocalSegmentManager" data-description="LocalExecutor gets an HNSW reader and runs ANN query over local vector data." data-related="local_knn_query,local_hnsw_segment">KNN Search</button>
+    <div class="concept-query-call concept-query-call--knn" data-edge="local_knn_query" aria-hidden="true">
+      <span class="concept-query-call-label">query</span>
+      <span class="concept-query-call-arrow"></span>
+    </div>
+    <button class="concept-query-node concept-query-node--remote concept-query-stage-hnsw" type="button" data-stage="local_hnsw_segment" data-title="HNSW Local Persisted Segment" data-service="LocalHnswSegmentReader" data-description="ANN neighbors are retrieved from the local HNSW persisted segment." data-related="local_knn_query,local_knn_search">HNSW Local</button>
+
+    <div class="concept-query-down concept-query-down--3" aria-hidden="true"></div>
+    <button class="concept-query-node concept-query-node--main concept-query-stage-fetch" type="button" data-stage="local_metadata_fetch" data-title="Metadata Fetch" data-service="LocalExecutor + SqliteMetadataReader" data-description="Top ids are hydrated with document + metadata via a second local SQLite metadata read." data-related="local_fetch_get,local_sqlite_meta_fetch">Metadata Fetch</button>
+    <div class="concept-query-call concept-query-call--fetch" data-edge="local_fetch_get" aria-hidden="true">
+      <span class="concept-query-call-label">get</span>
+      <span class="concept-query-call-arrow"></span>
+    </div>
+    <button class="concept-query-node concept-query-node--remote concept-query-stage-meta-b" type="button" data-stage="local_sqlite_meta_fetch" data-title="SQLite Metadata Hydration" data-service="SqliteMetadataReader" data-description="Local SQLite metadata/document payloads are loaded for final response assembly." data-related="local_fetch_get,local_metadata_fetch">SQLite Metadata</button>
+
+    <div class="concept-query-down concept-query-down--4" aria-hidden="true"></div>
+    <button class="concept-query-node concept-query-node--main concept-query-stage-result" type="button" data-stage="local_result_aggregation" data-title="Result Aggregation" data-service="ServiceBasedFrontend" data-description="Query response payload is assembled and returned to the client." data-related="">Result Aggregation</button>
+  </div>
+
+  <div class="concept-query-detail" aria-live="polite">
+    <p class="concept-query-detail-label">Selected stage</p>
+    <p class="concept-query-detail-title" data-pipeline-detail-title>Validation + Segment Resolve</p>
+    <p class="concept-query-detail-service"><strong>Service:</strong> <span data-pipeline-detail-service>FrontendServer + ServiceBasedFrontend</span></p>
+    <p class="concept-query-detail-text" data-pipeline-detail-text>Request validation/auth happens in frontend, then collection + segment ids are resolved before plan execution.</p>
+  </div>
+</div>
+
+<h4 id="distributed-frontend-dispatch-path-cloud">Distributed Frontend Dispatch Path (Cloud)<a class="headerlink" href="#distributed-frontend-dispatch-path-cloud" title="Permanent link">&para;</a></h4>
+<div class="concept-flow-card">
+  <div class="concept-flow-header">
+    <span class="concept-flow-title">Distributed Query Path in Frontend</span>
+    <span class="concept-flow-badge">Cloud: frontend dispatches, workers execute</span>
+  </div>
+  <div class="concept-flow-line concept-flow-line--dense" role="img" aria-label="Client to frontend api to resolver and executor to query worker over gRPC to worker indexes to results">
+    <div class="concept-node">Client</div>
+    <div class="concept-link"><span class="concept-pulse"></span></div>
+    <div class="concept-node">Frontend API</div>
+    <div class="concept-link"><span class="concept-pulse"></span></div>
+    <div class="concept-node">Resolver + Executor</div>
+    <div class="concept-link"><span class="concept-pulse"></span></div>
+    <div class="concept-node">gRPC Query Worker</div>
+    <div class="concept-link"><span class="concept-pulse"></span></div>
+    <div class="concept-node">Worker Indexes</div>
+    <div class="concept-link"><span class="concept-pulse"></span></div>
+    <div class="concept-node">Results</div>
+  </div>
+  <p class="concept-flow-note">In distributed mode, frontend routes Knn/Get/Search plans to query workers over gRPC. Worker-side execution uses distributed segment/index types (HnswDistributed or Spann with blockfile segments), not frontend-local SQLite + HNSW providers.</p>
+</div>
+
+<p>Code references for the two paths:</p>
+<ul>
+<li>Local segment types on collection create: <a href="https://github.com/chroma-core/chroma/blob/main/rust/frontend/src/impls/service_based_frontend.rs"><code>Executor::Local</code> creates <code>HnswLocalPersisted</code> + <code>Sqlite</code></a></li>
+<li>Local query execution: <a href="https://github.com/chroma-core/chroma/blob/main/rust/frontend/src/executor/local.rs"><code>LocalExecutor</code> uses <code>SqliteMetadataReader</code> + <code>LocalSegmentManager::get_hnsw_reader</code></a></li>
+<li>Distributed query execution: <a href="https://github.com/chroma-core/chroma/blob/main/rust/frontend/src/executor/distributed.rs"><code>DistributedExecutor</code> dispatches <code>knn/get/search</code> via gRPC query clients</a></li>
+</ul>
+<h3 id="distributed-architecture-main-services">Distributed Architecture (Main Services)<a class="headerlink" href="#distributed-architecture-main-services" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Gateway / frontend API service: <code>rust/frontend</code> (<a href="https://github.com/chroma-core/chroma/blob/main/rust/frontend/src/server.rs">server</a>)</li>
+<li>Query executor service: <code>rust/worker</code> (<a href="https://github.com/chroma-core/chroma/blob/main/rust/worker/src/lib.rs">query entrypoint</a>, <a href="https://github.com/chroma-core/chroma/blob/main/rust/worker/src/server.rs">query server</a>)</li>
+<li>Compaction service: <code>rust/worker</code> (<a href="https://github.com/chroma-core/chroma/blob/main/rust/worker/src/execution/orchestration/compact.rs">compaction orchestrator</a>)</li>
+<li>Write-ahead log: <code>rust/wal3</code> (<a href="https://github.com/chroma-core/chroma/blob/main/rust/wal3/README.md">design README</a>)</li>
+<li>Garbage collector service: <code>rust/garbage_collector</code> (<a href="https://github.com/chroma-core/chroma/blob/main/rust/garbage_collector/src/garbage_collector_orchestrator_v2.rs">orchestrator</a>)</li>
+</ul>
+<p>See also the official architecture doc: <a href="https://github.com/chroma-core/chroma/blob/main/docs/mintlify/docs/overview/architecture.mdx">Distributed Chroma Architecture</a>.</p>
+<h3 id="main-primitives-and-index-families">Main Primitives and Index Families<a class="headerlink" href="#main-primitives-and-index-families" title="Permanent link">&para;</a></h3>
+<p>At the segment/type level (<code>rust/types/src/segment.rs</code>), distributed Chroma uses segment types such as:</p>
+<ul>
+<li><code>BlockfileMetadata</code>, <code>BlockfileRecord</code></li>
+<li><code>HnswDistributed</code></li>
+<li><code>Spann</code>, <code>QuantizedSpann</code></li>
+<li><code>Sqlite</code></li>
+</ul>
+<p>And at the index crate level (<code>rust/index/src</code>), major families include:</p>
+<ul>
+<li>Vector ANN: <code>hnsw</code>, <code>spann</code>, <code>quantized_spann</code></li>
+<li>Full text: <code>fulltext</code></li>
+<li>Metadata: <code>metadata</code></li>
+<li>Sparse retrieval support: <code>sparse</code></li>
+</ul>
+<h3 id="spann-in-distributed-chroma">SPANN in Distributed Chroma<a class="headerlink" href="#spann-in-distributed-chroma" title="Permanent link">&para;</a></h3>
+<p>Core implementation: <code>rust/index/src/spann/types.rs</code>.</p>
+<p>Operationally, SPANN combines:</p>
+<ul>
+<li>a head/center ANN structure (HNSW over centers)</li>
+<li>posting lists keyed by center/head id (blockfile-backed)</li>
+<li>a versions map (<code>doc_offset_id -&gt; version</code>) to filter stale entries</li>
+<li>a persisted <code>max_head_id</code> for deterministic head allocation across compactions</li>
+</ul>
+<p>The write-side behavior includes:</p>
+<ul>
+<li>add/update/delete on posting lists and versions map</li>
+<li>splitting oversized posting lists into new heads</li>
+<li>reassigning points to nearby heads after split/merge operations</li>
+<li>optional garbage collection policies:</li>
+<li>posting-list random-sample cleanup</li>
+<li>HNSW full rebuild or delete-percentage-triggered rebuild</li>
+</ul>
+<h3 id="blockfile-format-and-update-model">Blockfile Format and Update Model<a class="headerlink" href="#blockfile-format-and-update-model" title="Permanent link">&para;</a></h3>
+<p>Core implementation: <code>rust/blockstore/src/arrow</code>.</p>
+<p>Production blockfiles are Arrow-backed and use:</p>
+<ul>
+<li>immutable blocks for persisted data</li>
+<li>an in-memory sparse index mapping key ranges to block ids</li>
+<li>writer-side deltas for mutation batching (<code>set</code>/<code>delete</code>)</li>
+<li>copy-on-write for updates via <code>fork(...)</code></li>
+</ul>
+<p>Update lifecycle:</p>
+<ol>
+<li>Writer mutates deltas and may split blocks when over target block size.</li>
+<li>Sparse index is updated to point at new block ids.</li>
+<li><code>commit()</code> converts deltas into immutable blocks and prepares a flusher.</li>
+<li><code>flush()</code> persists blocks, then atomically persists root metadata/sparse index.</li>
+</ol>
+<p>Relevant code:</p>
+<ul>
+<li><a href="https://github.com/chroma-core/chroma/blob/main/rust/blockstore/src/arrow/provider.rs">provider</a></li>
+<li><a href="https://github.com/chroma-core/chroma/blob/main/rust/blockstore/src/arrow/blockfile.rs">blockfile writer</a></li>
+<li><a href="https://github.com/chroma-core/chroma/blob/main/rust/blockstore/src/arrow/flusher.rs">flusher</a></li>
+<li><a href="https://github.com/chroma-core/chroma/blob/main/rust/blockstore/src/arrow/root.rs">root + sparse index</a></li>
+</ul>
+<h3 id="compaction-and-registration">Compaction and Registration<a class="headerlink" href="#compaction-and-registration" title="Permanent link">&para;</a></h3>
+<p>Compaction in distributed mode (<code>rust/worker/src/execution/orchestration/compact.rs</code>) follows an explicit staged flow:</p>
+<ul>
+<li>fetch and materialize logs</li>
+<li>apply to segment writers (record/metadata/vector)</li>
+<li>commit and flush segment artifacts</li>
+<li>register new segment metadata and offsets in sysdb/log metadata</li>
+</ul>
+<p>This is the core bridge from WAL durability to read-optimized segment versions.</p>
+<h3 id="garbage-collection-index-files-wal">Garbage Collection (Index Files + WAL)<a class="headerlink" href="#garbage-collection-index-files-wal" title="Permanent link">&para;</a></h3>
+<p>Two GC tracks run in the Rust implementation:</p>
+<ul>
+<li>Segment/index artifact GC in <code>rust/garbage_collector</code>:</li>
+<li>construct collection version graph (including fork dependencies)</li>
+<li>compute versions to delete using cutoff + min-versions retention</li>
+<li>compute unreferenced files and clean up (dry-run / rename / delete)</li>
+<li>WAL GC in <code>wal3</code>:</li>
+<li>three-phase GC dance (compute garbage, manifest synchronization, delete)</li>
+<li>cursor-driven safety so required log ranges remain pinned</li>
+</ul>
+<p>Relevant code:</p>
+<ul>
+<li><a href="https://github.com/chroma-core/chroma/blob/main/rust/garbage_collector/src/construct_version_graph_orchestrator.rs">version graph construction</a></li>
+<li><a href="https://github.com/chroma-core/chroma/blob/main/rust/garbage_collector/src/operators/compute_versions_to_delete_from_graph.rs">version deletion policy</a></li>
+<li><a href="https://github.com/chroma-core/chroma/blob/main/rust/garbage_collector/src/operators/delete_unused_files.rs">unused file cleanup</a></li>
+<li><a href="https://github.com/chroma-core/chroma/blob/main/rust/garbage_collector/src/operators/delete_unused_logs.rs">unused WAL cleanup</a></li>
+</ul>
 
 
 
@@ -3128,7 +3502,7 @@ distance_function. Brute Force index search is exhaustive and works well on smal
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 19, 2026 10:35:18 UTC">February 19, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 19, 2026 15:30:54 UTC">February 19, 2026</span>
   </span>
 
     
@@ -3306,6 +3680,8 @@ distance_function. Brute Force index search is exhaustive and works well on smal
         <script src="../../javascripts/gtag.js"></script>
       
         <script src="../../javascripts/ethicalads-init.js"></script>
+      
+        <script src="../../javascripts/concepts-pipeline.js"></script>
       
     
   </body>
