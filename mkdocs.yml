@@ -1,5 +1,6 @@
 site_name: Chroma Cookbook
 site_url: https://cookbook.chromadb.dev
+site_description: Recipes and operational guides for building with Chroma.
 repo_url: https://github.com/amikos-tech/chroma-cookbook
 copyright: "Amikos Tech LTD, 2025 (Chroma contributors)"
 theme:
@@ -8,7 +9,7 @@ theme:
   palette:
     primary: black
   logo: assets/images/logo.png
-  favicon: assets/images/favicon.png
+  favicon: favicon.ico
   font:
     text: Roboto
     code: Roboto Mono
@@ -77,3 +78,36 @@ plugins:
   - tags
   - search
   - git-revision-date-localized
+  - llmstxt:
+      markdown_description: >-
+        This llms.txt index points to the Chroma Cookbook pages that are most
+        useful for agents and LLM-based tooling.
+      full_output: llms-full.txt
+      sections:
+        Getting Started:
+          - index.md: Chroma Cookbook overview and navigation
+          - contributing/*.md: Contribution guide and local workflow notes
+        Core Concepts:
+          - core/*.md
+          - core/**/*.md
+        Running Chroma:
+          - running/*.md
+          - running/**/*.md
+        Integrations:
+          - integrations/*.md
+          - integrations/**/*.md
+        Embeddings:
+          - embeddings/*.md
+          - embeddings/**/*.md
+        Security:
+          - security/*.md
+          - security/**/*.md
+        Strategies:
+          - strategies/*.md
+          - strategies/**/*.md
+        FAQ:
+          - faq/*.md
+          - faq/**/*.md
+        Ecosystem:
+          - ecosystem/*.md
+          - ecosystem/**/*.md

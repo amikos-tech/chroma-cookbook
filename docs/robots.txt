@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /cdn-cgi/
+
+# AI usage policy (content signals)
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+Sitemap: https://cookbook.chromadb.dev/sitemap.xml
