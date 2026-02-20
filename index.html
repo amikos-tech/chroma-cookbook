@@ -53,6 +53,8 @@
     
       <link rel="stylesheet" href="stylesheets/concepts-flow.css">
     
+      <link rel="stylesheet" href="stylesheets/custom.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -2991,14 +2993,79 @@
 
 <h1 id="get-cooking">Get Cooking<a class="headerlink" href="#get-cooking" title="Permanent link">&para;</a></h1>
 <p>This is a collection of small guides and recipes to help you get started with Chroma.</p>
-<div class="admonition note">
-<p class="admonition-title">Chroma 1.0</p>
-<p>New updated content for Chroma 1.0.x is coming soon. Official announcement <a href="https://trychroma.com/project/1.0.0">here</a>.</p>
-<p>It is the goal of this site to make your Chroma experience as pleasant as possible regardless of your technical expertise.</p>
+<p>Latest ChromaDB version: <a href="https://github.com/chroma-core/chroma/releases/tag/1.5.1">1.5.1</a></p>
+<div class="api-changelog">
+<details class="info">
+<summary>API Changelog (1.5.1 and 1.5.0)</summary>
+<p><strong>Version <a href="https://github.com/chroma-core/chroma/releases/tag/1.5.1">1.5.1</a> (February 19, 2026)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>API-facing change</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Advanced Search</td>
+<td>Removed beta label from Advanced Search API</td>
+<td><a href="https://github.com/chroma-core/chroma/pull/6396">#6396</a></td>
+</tr>
+<tr>
+<td>Collections</td>
+<td>Reject <code>fork_collection</code> for multi-region databases</td>
+<td><a href="https://github.com/chroma-core/chroma/pull/6400">#6400</a></td>
+</tr>
+<tr>
+<td>Schema / FTS</td>
+<td>Added option to disable FTS in schema</td>
+<td><a href="https://github.com/chroma-core/chroma/pull/6214">#6214</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Version <a href="https://github.com/chroma-core/chroma/releases/tag/1.5.0">1.5.0</a> (February 9, 2026)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>API-facing change</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Search</td>
+<td>Exported search options parameter</td>
+<td><a href="https://github.com/chroma-core/chroma/pull/6160">#6160</a></td>
+</tr>
+<tr>
+<td>Collections</td>
+<td>Rust sysdb impl for <code>get collections</code></td>
+<td><a href="https://github.com/chroma-core/chroma/pull/6146">#6146</a></td>
+</tr>
+<tr>
+<td>Collections</td>
+<td>Rust sysdb impl for <code>get collection with segments</code></td>
+<td><a href="https://github.com/chroma-core/chroma/pull/6147">#6147</a></td>
+</tr>
+<tr>
+<td>Collections</td>
+<td>Rust sysdb impl for <code>update collection</code></td>
+<td><a href="https://github.com/chroma-core/chroma/pull/6163">#6163</a></td>
+</tr>
+<tr>
+<td>Schema</td>
+<td>Added option to enable quantization in schema</td>
+<td><a href="https://github.com/chroma-core/chroma/pull/6295">#6295</a></td>
+</tr>
+</tbody>
+</table>
+</details>
 </div>
-<p>Latest ChromaDB version: <a href="https://github.com/chroma-core/chroma/releases/tag/1.5.0">1.5.0</a></p>
 <h2 id="new-and-noteworthy">New and Noteworthy<a class="headerlink" href="#new-and-noteworthy" title="Permanent link">&para;</a></h2>
 <ul>
+<li>🚀 <a href="running/running-chroma/">Running Chroma</a> - Refreshed CLI/Docker/Compose/Minikube guidance, aligned Helm chart notes, and added collapsed optional YAML config examples - 📅<code>20-Feb-2026</code></li>
 <li>🧭 <a href="core/concepts/">Core Concepts</a> - Reworked into General vs Power Users tracks, with interactive local/distributed execution diagrams and data-flow visuals - 📅<code>19-Feb-2026</code></li>
 <li>🎯 <a href="core/collections/#constrain-query-candidates-by-id">Collections Query IDs</a> - Documented <code>query(..., ids=...)</code> for restricting similarity search to specific records - 📅<code>17-Feb-2026</code></li>
 <li>🔍 <a href="core/filters/">Filters</a> - Added multi-language filter examples and <code>$regex</code>/<code>$not_regex</code> operators - 📅<code>17-Feb-2026</code></li>
@@ -3008,18 +3075,6 @@
 <li>📚 <a href="core/collections/">Collections</a> - Updated to current APIs with multi-language examples - 📅<code>17-Feb-2026</code></li>
 <li>🏷️ <a href="core/filters/#array-metadata">Array Metadata Filters</a> - Chroma 1.5.0 adds support for array metadata with <code>$contains</code>/<code>$not_contains</code> operators - 📅<code>17-Feb-2026</code></li>
 <li>🔑 <a href="security/auth-1.0.x/">Authentication in Chroma v1.0.x</a> - Chroma 1.0.x does not support native Authentication, in this article we cover how to secure your Chroma 1.0.x instance - 📅<code>28-May-2025</code></li>
-<li>☁️ <a href="https://github.com/amikos-tech/chromadb-chart">Chroma Chart</a> - We've released a new Chroma chart version that now supports Chroma 1.0.x or later. Go check it out! - 📅<code>23-May-2025</code></li>
-<li>🔄 <a href="running/maintenance/">Chroma Maintenance</a> - Learn how to keep your Chroma database in tip-top shape - 📅<code>08-Feb-2025</code></li>
-<li>🏎️ <a href="running/performance-tips/">Performance Tips</a> - Learn how to optimize the performance of your Chroma - 📅<code>16-Oct-2024</code></li>
-<li>⁉️<a href="faq/">FAQs</a> - Updated FAQ sections - 📅<code>15-Oct-2024</code></li>
-<li>🔥 <a href="security/ssl-proxies/">SSL-Terminating Proxies</a> - Learn how to secure Chroma server with <code>Envoy</code> or <code>Nginx</code> proxies - 📅<code>31-Jul-2024</code></li>
-<li>🗑️ <a href="core/advanced/wal-pruning/#chroma-cli">WAL Pruning</a> - Learn how to prune (cleanup) your Chroma database (WAL) with Chroma's built-in CLI <code>vacuum</code> command - 📅<code>30-Jul-2024</code></li>
-<li>✨ <a href="strategies/multi-category-filters/">Multi-Category Filtering</a> - Learn how to filter data based on multiple categories - 📅<code>15-Jul-2024</code></li>
-<li>🔒 <a href="security/auth-1.0.x/">Chroma Auth</a> - Learn how to secure your Chroma deployment with Authentication - 📅<code>11-Jul-2024</code></li>
-<li>📦 <a href="core/clients/#http-client">Async Http Client</a> - Chroma now supports async HTTP clients - 📅<code>19-Jun-2024</code></li>
-<li>🔒 <a href="security/">Security</a> - Learn how to secure your Chroma deployment - 📅<code>13-Jun-2024</code></li>
-<li>🧠 <a href="strategies/memory-management/">Memory Management</a> - Learn how to manage memory in ChromaDB - 📅<code>30-May-2024</code></li>
-<li>📐 <a href="core/resources/">Resource Requirements</a> - Recently updated with temporary storage requirements - 📅<code>28-May-2024</code></li>
 </ul>
 <h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
 <p>We suggest you first head to the <a href="core/concepts/">Concepts</a> section. It now has two tracks:</p>
@@ -3039,7 +3094,7 @@ ChromaDB.</p>
 <ul>
 <li><a href="running/running-chroma/#chroma-cli">CLI</a> - Running ChromaDB via the CLI</li>
 <li><a href="running/running-chroma/#docker">Docker</a> - Running ChromaDB in Docker</li>
-<li><a href="running/running-chroma/#docker-compose-cloned-repo">Docker Compose</a> - Running ChromaDB in Docker Compose</li>
+<li><a href="running/running-chroma/#docker-compose">Docker Compose</a> - Running ChromaDB in Docker Compose</li>
 <li><a href="running/running-chroma/#minikube-with-helm-chart">Kubernetes</a> - Running ChromaDB in Kubernetes (Minikube)</li>
 </ul>
 <h2 id="integrations">Integrations<a class="headerlink" href="#integrations" title="Permanent link">&para;</a></h2>
@@ -3119,7 +3174,7 @@ out on <a href="https://discord.gg/MMeYNTmh3x">Discord</a> (look for <code>@taz<
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 19, 2026 16:03:43 UTC">February 19, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 20, 2026 20:41:26 UTC">February 20, 2026</span>
   </span>
 
     
