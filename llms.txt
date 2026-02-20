@@ -1,0 +1,91 @@
+# Chroma Cookbook
+
+> Recipes and operational guides for building with Chroma.
+
+This llms.txt index points to the Chroma Cookbook pages that are most useful for agents and LLM-based tooling.
+
+## Getting Started
+
+- [Get Cooking](https://cookbook.chromadb.dev/index.md): Chroma Cookbook overview and navigation
+- [Getting Started with Contributing to Chroma](https://cookbook.chromadb.dev/contributing/getting-started/index.md): Contribution guide and local workflow notes
+- [Useful Shortcuts for Contributors](https://cookbook.chromadb.dev/contributing/useful-shortcuts/index.md): Contribution guide and local workflow notes
+
+## Core Concepts
+
+- [Index](https://cookbook.chromadb.dev/core/index.md)
+- [Chroma API](https://cookbook.chromadb.dev/core/api/index.md)
+- [Chroma Clients](https://cookbook.chromadb.dev/core/clients/index.md)
+- [Collections](https://cookbook.chromadb.dev/core/collections/index.md)
+- [Concepts](https://cookbook.chromadb.dev/core/concepts/index.md)
+- [Configuration](https://cookbook.chromadb.dev/core/configuration/index.md)
+- [Document IDs](https://cookbook.chromadb.dev/core/document-ids/index.md)
+- [Filters](https://cookbook.chromadb.dev/core/filters/index.md)
+- [Installation](https://cookbook.chromadb.dev/core/install/index.md)
+- [Resource Requirements](https://cookbook.chromadb.dev/core/resources/index.md)
+- [Storage Layout](https://cookbook.chromadb.dev/core/storage-layout/index.md)
+- [Chroma System Constraints](https://cookbook.chromadb.dev/core/system_constraints/index.md)
+- [Tenants and Databases](https://cookbook.chromadb.dev/core/tenants-and-databases/index.md)
+- [Chroma Queries](https://cookbook.chromadb.dev/core/advanced/queries/index.md)
+- [Write-ahead Log (WAL) Pruning](https://cookbook.chromadb.dev/core/advanced/wal-pruning/index.md)
+- [Write-ahead Log (WAL)](https://cookbook.chromadb.dev/core/advanced/wal/index.md)
+
+## Running Chroma
+
+- [Deployment Patterns](https://cookbook.chromadb.dev/running/deployment-patterns/index.md)
+- [Health Checks](https://cookbook.chromadb.dev/running/health-checks/index.md)
+- [Maintenance](https://cookbook.chromadb.dev/running/maintenance/index.md)
+- [Performance Tips](https://cookbook.chromadb.dev/running/performance-tips/index.md)
+- [Road To Production](https://cookbook.chromadb.dev/running/road-to-prod/index.md)
+- [Running Chroma](https://cookbook.chromadb.dev/running/running-chroma/index.md)
+- [Systemd service](https://cookbook.chromadb.dev/running/systemd-service/index.md)
+
+## Integrations
+
+- [Chroma Integrations With LangChain](https://cookbook.chromadb.dev/integrations/langchain/index.md)
+- [Langchain Embeddings](https://cookbook.chromadb.dev/integrations/langchain/embeddings/index.md)
+- [🦜⛓️ Langchain Retriever](https://cookbook.chromadb.dev/integrations/langchain/retrievers/index.md)
+- [Chroma Integrations With LlamaIndex](https://cookbook.chromadb.dev/integrations/llamaindex/index.md)
+- [LlamaIndex Embeddings](https://cookbook.chromadb.dev/integrations/llamaindex/embeddings/index.md)
+- [Chroma Integrations With Ollama](https://cookbook.chromadb.dev/integrations/ollama/index.md)
+- [Ollama](https://cookbook.chromadb.dev/integrations/ollama/embeddings/index.md)
+
+## Embeddings
+
+- [Creating your own embedding function](https://cookbook.chromadb.dev/embeddings/bring-your-own-embeddings/index.md)
+- [Cross-Encoders Reranking](https://cookbook.chromadb.dev/embeddings/cross-encoders/index.md)
+- [Embedding Models](https://cookbook.chromadb.dev/embeddings/embedding-models/index.md)
+- [Embedding Functions GPU Support](https://cookbook.chromadb.dev/embeddings/gpu-support/index.md)
+
+## Security
+
+- [Security](https://cookbook.chromadb.dev/security/index.md)
+- [Authentication in Chroma v1.0.x](https://cookbook.chromadb.dev/security/auth-1.0.x/index.md)
+- [SSL/TLS Certificates in Chroma](https://cookbook.chromadb.dev/security/chroma-ssl-cert/index.md)
+- [Chroma-native Auth (Legacy)](https://cookbook.chromadb.dev/security/legacy-auth/index.md)
+- [SSL/TLS Proxy](https://cookbook.chromadb.dev/security/ssl-proxies/index.md)
+
+## Strategies
+
+- [ChromaDB Backups](https://cookbook.chromadb.dev/strategies/backup/index.md)
+- [Batching](https://cookbook.chromadb.dev/strategies/batching/index.md)
+- [CORS Configuration for Browser-Based Access](https://cookbook.chromadb.dev/strategies/cors/index.md)
+- [Keyword Search](https://cookbook.chromadb.dev/strategies/keyword-search/index.md)
+- [Memory Management](https://cookbook.chromadb.dev/strategies/memory-management/index.md)
+- [Multi-Category/Tag Filters](https://cookbook.chromadb.dev/strategies/multi-category-filters/index.md)
+- [Privacy Strategies](https://cookbook.chromadb.dev/strategies/privacy/index.md)
+- [Rebuilding Chroma DB](https://cookbook.chromadb.dev/strategies/rebuilding/index.md)
+- [Time-based Queries](https://cookbook.chromadb.dev/strategies/time-based-queries/index.md)
+- [Multi-Tenancy Strategies](https://cookbook.chromadb.dev/strategies/multi-tenancy/index.md)
+- [Implementing OpenFGA Authorization Model In Chroma](https://cookbook.chromadb.dev/strategies/multi-tenancy/authorization-model-impl-with-openfga/index.md)
+- [Chroma Authorization Model with OpenFGA](https://cookbook.chromadb.dev/strategies/multi-tenancy/authorization-model-with-openfga/index.md)
+- [Multi-User Basic Auth](https://cookbook.chromadb.dev/strategies/multi-tenancy/multi-user-basic-auth/index.md)
+- [Naive Multi-tenancy Strategies](https://cookbook.chromadb.dev/strategies/multi-tenancy/naive-multi-tenancy/index.md)
+
+## FAQ
+
+- [Frequently Asked Questions and Commonly Encountered Issues](https://cookbook.chromadb.dev/faq/index.md)
+
+## Ecosystem
+
+- [Chroma Ecosystem Clients](https://cookbook.chromadb.dev/ecosystem/clients/index.md)
+
