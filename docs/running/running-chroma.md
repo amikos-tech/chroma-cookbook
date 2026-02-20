@@ -8,19 +8,90 @@
 
 ### Chroma CLI
 
-The simplest way to run Chroma locally is via the Chroma `cli` which is part of the core Chroma package.
+The simplest way to run Chroma locally is via the Chroma `cli`.
 
 Prerequisites:
 
-- Python 3.8 to 3.11 - [Download Python | Python.org](https://www.python.org/downloads/)
+- Python 3.9+ (for `pip`, `pipx`, or `uv`) - [Download Python | Python.org](https://www.python.org/downloads/)
+- Node.js (for `npm`, `pnpm`, `bun`, or `yarn`) - [Download Node.js | nodejs.org](https://nodejs.org/en/download)
+- `curl` (or Windows PowerShell) for standalone CLI install script
+
+Install Chroma CLI with any of the following:
+
+#### Python
+
+=== "pip"
+
+    ```shell
+    pip install chromadb
+    ```
+
+=== "uv (pip-compatible)"
+
+    ```shell
+    uv venv .venv
+    source .venv/bin/activate  # macOS/Linux
+    # Windows (PowerShell): .venv\Scripts\Activate.ps1
+    uv pip install chromadb
+    ```
+
+=== "pipx"
+
+    ```shell
+    pipx install chromadb
+    ```
+
+=== "uv tool (pipx-like)"
+
+    ```shell
+    uv tool install chromadb
+    ```
+
+#### JavaScript (Global)
+
+=== "npm"
+
+    ```shell
+    npm install -g chromadb
+    ```
+
+=== "pnpm"
+
+    ```shell
+    pnpm add -g chromadb
+    ```
+
+=== "bun"
+
+    ```shell
+    bun add -g chromadb
+    ```
+
+=== "yarn"
+
+    ```shell
+    yarn global add chromadb
+    ```
+
+#### Standalone Installer
+
+=== "cURL (macOS/Linux)"
+
+    ```shell
+    curl -sSL https://raw.githubusercontent.com/chroma-core/chroma/main/rust/cli/install/install.sh | bash
+    ```
+
+=== "Windows (PowerShell)"
+
+    ```powershell
+    iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/chroma-core/chroma/main/rust/cli/install/install.ps1'))
+    ```
 
 ```shell
-pip install chromadb
 chroma run --host localhost --port 8000 --path ./my_chroma_data
 ```
 
-`--host` The host to which to listen to, by default it is `[localhost](http://localhost:8000/docs)` , but if you want to
-expose it to your entire network then you can specify `0.0.0.0``
+`--host` The host to bind to, by default `localhost`. Use `0.0.0.0` to expose it on your local network.
 
 `--port` The port on which to listen to, by default this is `8000`.
 
@@ -29,7 +100,27 @@ expose it to your entire network then you can specify `0.0.0.0``
 !!! tip "Target Path Install"
 
     It is possible to install Chroma in a specific directory by running `pip install chromadb -t /path/to/dir`.
-    To run Chroma CLI from the installation dir expor the Python Path `export PYTHONPATH=$PYTHONPATH:/path/to/dir`.
+    To run Chroma CLI from that install location, execute:
+    `/path/to/dir/bin/chroma run --path ./my_chroma_data`
+
+For advanced 1.x server settings (YAML config and `CHROMA_` overrides), see
+[Chroma Configuration](../core/configuration.md).
+
+??? example "Optional: CLI with YAML config (collapsed)"
+
+    ```yaml title="chroma.local.yaml"
+    port: 8000
+    listen_address: "127.0.0.1"
+    persist_path: "./my_chroma_data"
+    allow_reset: false
+    sqlitedb:
+      hash_type: "md5"
+      migration_mode: "apply"
+    ```
+
+    ```shell
+    CONFIG_PATH=./chroma.local.yaml chroma run
+    ```
 
 ### Docker
 
@@ -40,93 +131,101 @@ Prerequisites:
 - Docker - [Overview of Docker Desktop | Docker Docs](https://docs.docker.com/desktop/)
 
 ```shell
-docker run -d --rm --name chromadb -p 8000:8000 -v ./chroma:/chroma/chroma -e IS_PERSISTENT=TRUE -e ANONYMIZED_TELEMETRY=TRUE chromadb/chroma:0.6.3
+docker run -d --rm --name chromadb \
+  -p 8000:8000 \
+  -v ./chroma-data:/data \
+  chromadb/chroma:1.5.1
 ```
 
 Options:
 
 - `-p 8000:8000` specifies the port on which the Chroma server will be exposed.
 - `-v` specifies a local dir which is where Chroma will store its data so when the container is destroyed the data
-  remains. Note: If you are using `-e PERSIST_DIRECTORY` then you need to point the volume to that directory.
-- `-e` `IS_PERSISTENT=TRUE` let’s Chroma know to persist data
-- `-e` `PERSIST_DIRECTORY=/path/in/container` specifies the path in the container where the data will be stored, by
-  default it is `/chroma/chroma`
-- `-e ANONYMIZED_TELEMETRY=TRUE` allows you to turn on (`TRUE`) or off (`FALSE`) anonymous product telemetry which helps
-  the Chroma team in making informed decisions about Chroma OSS and commercial direction.
-- `chromadb/chroma:5.11` indicates the Chroma release version.
+  remains. For current Chroma server images, mount `/data` to persist DB files.
+- `chromadb/chroma:1.5.1` indicates the Chroma release version.
 
-### Docker Compose (Cloned Repo)
+!!! note "Current v1.x Images"
 
-If you are feeling adventurous you can also use the Chroma `main` branch to run a local Chroma server with the latest
-changes:
+    Legacy environment variables such as `IS_PERSISTENT`, `PERSIST_DIRECTORY`, and `ANONYMIZED_TELEMETRY`
+    are from older server configuration flows and should not be used in the default v1.x Docker run setup.
+
+??? example "Optional: Docker with YAML config file (collapsed)"
+
+    ```yaml title="chroma.docker.yaml"
+    port: 8000
+    listen_address: "0.0.0.0"
+    persist_path: "/data"
+    allow_reset: false
+    sqlitedb:
+      hash_type: "md5"
+      migration_mode: "apply"
+    ```
+
+    ```shell
+    docker run -d --rm --name chromadb \
+      -p 8000:8000 \
+      -v ./chroma-data:/data \
+      -v ./chroma.docker.yaml:/chroma/config.yaml:ro \
+      -e CONFIG_PATH=/chroma/config.yaml \
+      chromadb/chroma:1.5.1
+    ```
+
+### Docker Compose
+
+Chroma server can also be run with Docker Compose by creating a `docker-compose.yaml`.
 
 Prerequisites:
 
 - Docker - [Overview of Docker Desktop | Docker Docs](https://docs.docker.com/desktop/)
-- Git - [Git - Downloads (git-scm.com)](https://git-scm.com/downloads)
-
-```shell
-git clone https://github.com/chroma-core/chroma && cd chroma
-docker compose up -d --build
-```
-
-If you want to run a specific version of Chroma you can checkout the version tag you need:
-
-```shell
-git checkout release/0.6.3
-```
-
-### Docker Compose (Without Cloning the Repo)
-
-If you do not wish or are able to clone the repo locally, Chroma server can also be run with docker compose by
-creating (or using a gist) a `docker-compose.yaml`
-
-Prerequisites:
-
-- Docker - [Overview of Docker Desktop | Docker Docs](https://docs.docker.com/desktop/)
-- cURL (if you want to use the gist approach)
 
 ```yaml
-version: '3.9'
-
-networks:
-  net:
-    driver: bridge
 services:
   chromadb:
-    image: chromadb/chroma:0.6.3
+    image: chromadb/chroma:1.5.1
     volumes:
-      - ./chromadb:/chroma/chroma
-    environment:
-      - IS_PERSISTENT=TRUE
-      - PERSIST_DIRECTORY=/chroma/chroma # this is the default path, change it as needed
-      - ANONYMIZED_TELEMETRY=${ANONYMIZED_TELEMETRY:-TRUE}
+      - ./chroma-data:/data
     ports:
-      - 8000:8000
-    networks:
-      - net
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v2/heartbeat"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 ```
 
-The above will create a container with the latest Chroma (`chromadb/chroma:0.6.3`), will expose it to port `8000` on
-the local machine and will persist data in `./chromadb` relative path from where the `docker-compose.yaml` has been ran.
+The above will create a container with Chroma `1.5.1`, expose it on local port `8000`, and persist data in
+`./chroma-data` relative to where `docker-compose.yaml` is run.
+
+??? example "Optional: Docker Compose with YAML config file (collapsed)"
+
+    ```yaml
+    services:
+      chromadb:
+        image: chromadb/chroma:1.5.1
+        volumes:
+          - ./chroma-data:/data
+          - ./chroma.docker.yaml:/chroma/config.yaml:ro
+        environment:
+          - CONFIG_PATH=/chroma/config.yaml
+        ports:
+          - "8000:8000"
+    ```
 
 !!! tip "Versioning"
 
     When running Chroma with docker compose try to pin the version to a specific release. This will ensure intentional upgrades and avoid potential issues (usually with clients).
 
-We have also created a small gist with the above file for convenience:
-
-```bash
-curl -s https://gist.githubusercontent.com/tazarov/4fd933274bbacb3b9f286b15c01e904b/raw/87268142d64d8ee0f7f98c27a62a5d089923a1df/docker-compose.yaml | docker-compose -f - up
-```
-
 ### Minikube With Helm Chart
 
-> Note: This deployment can just as well be done with `KinD` depending on your preference.
+!!! note "KinD Alternative"
+
+    This deployment can also be done with `KinD`, depending on your preference.
 
 A more advanced approach to running Chroma locally (but also on a remote cluster) is to deploy it using a Helm chart.
 
-> Disclaimer: The chart used here is not a 1st party chart, but is contributed by a core contributor to Chroma.
+!!! note "Community-Maintained Chart"
+
+    The chart used here is not a first-party Chroma chart and is maintained by a core contributor.
 
 Prerequisites:
 
@@ -135,7 +234,7 @@ Prerequisites:
 - kubectl - [Install Tools | Kubernetes](https://kubernetes.io/docs/tasks/tools/#kubectl)
 - Helm - [Helm | Installing Helm](https://helm.sh/docs/intro/install/)
 
-Once you have all of the above running Chroma in a local `minikube` cluster quite simple
+Once you have all of the above, running Chroma in a local `minikube` cluster is quite simple.
 
 Create a `minikube` cluster:
 
@@ -149,16 +248,14 @@ Get and install the chart:
 ```bash
 helm repo add chroma https://amikos-tech.github.io/chromadb-chart/
 helm repo update
-helm install chroma chroma/chromadb --set chromadb.apiVersion="0.6.3"
+helm install chroma chroma/chromadb \
+  --set image.tag="1.5.1"
 ```
 
-By default the chart will enable authentication in Chroma. To get the token run the following:
+??? note "Auth values for Chroma `>= 1.0.0`"
 
-```bash
-kubectl --namespace default get secret chromadb-auth -o jsonpath="{.data.token}" | base64 --decode
-# or use this to directly export variable
-export CHROMA_TOKEN=$(kubectl --namespace default get secret chromadb-auth -o jsonpath="{.data.token}" | base64 --decode)
-```
+    Chart values under `chromadb.auth.*` are legacy and ignored.
+    Use network-level controls (private networking, ingress auth, API gateway, mTLS) when needed.
 
 The first step to connect and start using Chroma is to forward your port:
 
@@ -166,30 +263,24 @@ The first step to connect and start using Chroma is to forward your port:
 minikube service chroma-chromadb --url
 ```
 
-The above should print something like this:
+The command returns a local URL such as `http://127.0.0.1:61892`.
 
-```bash
-http://127.0.0.1:61892
-❗  Because you are using a Docker driver on darwin, the terminal needs to be open to run it.
-```
+??? tip "Driver-specific behavior"
 
-> Note: Depending on your OS the message might be slightly different.
+    On some setups (for example Docker driver on macOS), this command runs a local tunnel in the foreground.
+    Keep that terminal open while you use the URL.
 
 Test it out (`pip install chromadb`):
 
 ```python
 import chromadb
-from chromadb.config import Settings
 
-client = chromadb.HttpClient(host="http://127.0.0.1:61892",
-                             settings=Settings(
-                                 chroma_client_auth_provider="chromadb.auth.token.TokenAuthClientProvider",
-                                 chroma_client_auth_credentials="<your_chroma_token>"))
-client.heartbeat()  # this should work with or without authentication - it is a public endpoint
+client = chromadb.HttpClient(host="http://127.0.0.1:61892")
+client.heartbeat()  # public endpoint
 
-client.get_version()  # this should work with or without authentication - it is a public endpoint
+client.get_version()  # public endpoint
 
-client.list_collections()  # this is a protected endpoint and requires authentication
+client.list_collections()  # expected to work in this local chart setup
 ```
 
-For more information about the helm chart consult - https://github.com/amikos-tech/chromadb-chart
+For more information about the Helm chart, see [amikos-tech/chromadb-chart](https://github.com/amikos-tech/chromadb-chart) or [Artifact Hub](https://artifacthub.io/packages/helm/chromadb-helm/chromadb).

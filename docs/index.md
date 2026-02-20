@@ -2,17 +2,36 @@
 
 This is a collection of small guides and recipes to help you get started with Chroma.
 
-!!! note "Chroma 1.0"
+Latest ChromaDB version: [1.5.1](https://github.com/chroma-core/chroma/releases/tag/1.5.1)
 
-    New updated content for Chroma 1.0.x is coming soon. Official announcement [here](https://trychroma.com/project/1.0.0).
+<div class="api-changelog" markdown="1">
 
-    It is the goal of this site to make your Chroma experience as pleasant as possible regardless of your technical expertise.
+??? info "API Changelog (1.5.1 and 1.5.0)"
 
-Latest ChromaDB version: [1.5.0](https://github.com/chroma-core/chroma/releases/tag/1.5.0)
+    **Version [1.5.1](https://github.com/chroma-core/chroma/releases/tag/1.5.1) (February 19, 2026)**
+
+    | Area | API-facing change | Reference |
+    |---|---|---|
+    | Advanced Search | Removed beta label from Advanced Search API | [#6396](https://github.com/chroma-core/chroma/pull/6396) |
+    | Collections | Reject `fork_collection` for multi-region databases | [#6400](https://github.com/chroma-core/chroma/pull/6400) |
+    | Schema / FTS | Added option to disable FTS in schema | [#6214](https://github.com/chroma-core/chroma/pull/6214) |
+
+    **Version [1.5.0](https://github.com/chroma-core/chroma/releases/tag/1.5.0) (February 9, 2026)**
+
+    | Area | API-facing change | Reference |
+    |---|---|---|
+    | Search | Exported search options parameter | [#6160](https://github.com/chroma-core/chroma/pull/6160) |
+    | Collections | Rust sysdb impl for `get collections` | [#6146](https://github.com/chroma-core/chroma/pull/6146) |
+    | Collections | Rust sysdb impl for `get collection with segments` | [#6147](https://github.com/chroma-core/chroma/pull/6147) |
+    | Collections | Rust sysdb impl for `update collection` | [#6163](https://github.com/chroma-core/chroma/pull/6163) |
+    | Schema | Added option to enable quantization in schema | [#6295](https://github.com/chroma-core/chroma/pull/6295) |
+
+</div>
 
 
 ## New and Noteworthy
 
+- 🚀 [Running Chroma](running/running-chroma.md) - Refreshed CLI/Docker/Compose/Minikube guidance, aligned Helm chart notes, and added collapsed optional YAML config examples - 📅`20-Feb-2026`
 - 🧭 [Core Concepts](core/concepts.md) - Reworked into General vs Power Users tracks, with interactive local/distributed execution diagrams and data-flow visuals - 📅`19-Feb-2026`
 - 🎯 [Collections Query IDs](core/collections.md#constrain-query-candidates-by-id) - Documented `query(..., ids=...)` for restricting similarity search to specific records - 📅`17-Feb-2026`
 - 🔍 [Filters](core/filters.md) - Added multi-language filter examples and `$regex`/`$not_regex` operators - 📅`17-Feb-2026`
@@ -22,18 +41,6 @@ Latest ChromaDB version: [1.5.0](https://github.com/chroma-core/chroma/releases/
 - 📚 [Collections](core/collections.md) - Updated to current APIs with multi-language examples - 📅`17-Feb-2026`
 - 🏷️ [Array Metadata Filters](core/filters.md#array-metadata) - Chroma 1.5.0 adds support for array metadata with `$contains`/`$not_contains` operators - 📅`17-Feb-2026`
 - 🔑 [Authentication in Chroma v1.0.x](security/auth-1.0.x.md) - Chroma 1.0.x does not support native Authentication, in this article we cover how to secure your Chroma 1.0.x instance - 📅`28-May-2025`
-- ☁️ [Chroma Chart](https://github.com/amikos-tech/chromadb-chart) - We've released a new Chroma chart version that now supports Chroma 1.0.x or later. Go check it out! - 📅`23-May-2025`
-- 🔄 [Chroma Maintenance](running/maintenance.md) - Learn how to keep your Chroma database in tip-top shape - 📅`08-Feb-2025`
-- 🏎️ [Performance Tips](running/performance-tips.md) - Learn how to optimize the performance of your Chroma - 📅`16-Oct-2024`
-- ⁉️[FAQs](faq/index.md) - Updated FAQ sections - 📅`15-Oct-2024`
-- 🔥 [SSL-Terminating Proxies](security/ssl-proxies.md) - Learn how to secure Chroma server with `Envoy` or `Nginx` proxies - 📅`31-Jul-2024`
-- 🗑️ [WAL Pruning](core/advanced/wal-pruning.md#chroma-cli) - Learn how to prune (cleanup) your Chroma database (WAL) with Chroma's built-in CLI `vacuum` command - 📅`30-Jul-2024`
-- ✨ [Multi-Category Filtering](strategies/multi-category-filters.md) - Learn how to filter data based on multiple categories - 📅`15-Jul-2024`
-- 🔒 [Chroma Auth](security/auth-1.0.x.md) - Learn how to secure your Chroma deployment with Authentication - 📅`11-Jul-2024`
-- 📦 [Async Http Client](core/clients.md#http-client) - Chroma now supports async HTTP clients - 📅`19-Jun-2024`
-- 🔒 [Security](security/index.md) - Learn how to secure your Chroma deployment - 📅`13-Jun-2024`
-- 🧠 [Memory Management](strategies/memory-management.md) - Learn how to manage memory in ChromaDB - 📅`30-May-2024`
-- 📐 [Resource Requirements](core/resources.md) - Recently updated with temporary storage requirements - 📅`28-May-2024`
 
 ## Getting Started
 
@@ -55,7 +62,7 @@ ChromaDB.
 
 - [CLI](running/running-chroma.md#chroma-cli) - Running ChromaDB via the CLI
 - [Docker](running/running-chroma.md#docker) - Running ChromaDB in Docker
-- [Docker Compose](running/running-chroma.md#docker-compose-cloned-repo) - Running ChromaDB in Docker Compose
+- [Docker Compose](running/running-chroma.md#docker-compose) - Running ChromaDB in Docker Compose
 - [Kubernetes](running/running-chroma.md#minikube-with-helm-chart) - Running ChromaDB in Kubernetes (Minikube)
 
 ## Integrations

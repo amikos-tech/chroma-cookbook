@@ -48,6 +48,7 @@ extra_javascript:
 extra_css:
   - stylesheets/ethicalads.css
   - stylesheets/concepts-flow.css
+  - stylesheets/custom.css
 markdown_extensions:
   - abbr
   - admonition
