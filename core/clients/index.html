@@ -582,6 +582,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#client-implementations-and-source-repos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Client implementations and source repos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#persistent-client" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -671,10 +682,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#environmental-variable-configured-client" class="md-nav__link">
+  <a href="#environment-variable-configured-client" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Environmental Variable Configured Client
+        Environment Variable Configured Client
       
     </span>
   </a>
@@ -2844,6 +2855,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#client-implementations-and-source-repos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Client implementations and source repos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#persistent-client" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2933,10 +2955,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#environmental-variable-configured-client" class="md-nav__link">
+  <a href="#environment-variable-configured-client" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Environmental Variable Configured Client
+        Environment Variable Configured Client
       
     </span>
   </a>
@@ -2967,11 +2989,43 @@
 <div class="admonition tip">
 <p class="admonition-title">Chroma Settings Object</p>
 <p>The below is only a partial list of Chroma configuration options. For full list check the code
-<a href="https://github.com/chroma-core/chroma/blob/c665838b0d143e2c2ceb82c4ade7404dc98124ff/chromadb/config.py#L83"><code>chromadb.config.Settings</code></a> or
+<a href="https://github.com/chroma-core/chroma/blob/main/chromadb/config.py"><code>chromadb.config.Settings</code></a> or
 the <a href="../configuration/">ChromaDB Configuration</a> page.</p>
 </div>
+<h2 id="client-implementations-and-source-repos">Client implementations and source repos<a class="headerlink" href="#client-implementations-and-source-repos" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Constructors covered on this page</th>
+<th>Source repository</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td><code>PersistentClient</code>, <code>HttpClient</code>, <code>AsyncHttpClient</code>, <code>CloudClient</code>, <code>EphemeralClient</code>, <code>Client</code></td>
+<td><a href="https://github.com/chroma-core/chroma/tree/main/chromadb"><code>chroma-core/chroma</code></a></td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td><code>ChromaClient</code>, <code>CloudClient</code></td>
+<td><a href="https://github.com/chroma-core/chroma/tree/main/clients/js"><code>chroma-core/chroma</code> (JS client)</a></td>
+</tr>
+<tr>
+<td>Go</td>
+<td><code>NewHTTPClient</code>, <code>NewCloudClient</code></td>
+<td><a href="https://github.com/amikos-tech/chroma-go/tree/main/pkg/api/v2"><code>amikos-tech/chroma-go</code></a></td>
+</tr>
+<tr>
+<td>Rust</td>
+<td><code>ChromaHttpClient</code></td>
+<td><a href="https://github.com/chroma-core/chroma/tree/main/rust/chroma"><code>chroma-core/chroma</code> (Rust crate)</a></td>
+</tr>
+</tbody>
+</table>
 <h2 id="persistent-client">Persistent Client<a class="headerlink" href="#persistent-client" title="Permanent link">&para;</a></h2>
-<p>To create your a local persistent client use the <code>PersistentClient</code> class. This client will store all data locally in a
+<p>To create a local persistent client, use the <code>PersistentClient</code> class. This client stores data locally in a
 directory on your machine at the path you specify.</p>
 <div class="admonition tip">
 <p class="admonition-title">Authentication</p>
@@ -2988,14 +3042,42 @@ directory on your machine at the path you specify.</p>
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">)</span>
 </span></code></pre></div>
 <p><strong>Parameters</strong>:</p>
-<ol>
-<li><code>path</code> - parameter must be a local path on the machine where Chroma is running. If the path does not exist, it will
-   be created. The path can be relative or absolute. If the path is not specified, the default is <code>./chroma</code> in the
-   current working directory.</li>
-<li><code>settings</code> - Chroma settings object.</li>
-<li><code>tenant</code> - the tenant to use. Default is <code>default_tenant</code>.</li>
-<li><code>database</code> - the database to use. Default is <code>default_database</code>.</li>
-</ol>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default / Allowed values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>path</code></td>
+<td><code>str \| Path</code></td>
+<td>Local path on the machine where Chroma runs. Created if it does not exist. Can be relative or absolute.</td>
+<td><code>./chroma</code></td>
+</tr>
+<tr>
+<td><code>settings</code></td>
+<td><code>Settings \| None</code></td>
+<td>Chroma settings object.</td>
+<td><code>None</code> (uses <code>Settings()</code>)</td>
+</tr>
+<tr>
+<td><code>tenant</code></td>
+<td><code>str</code></td>
+<td>Tenant to use.</td>
+<td><code>default_tenant</code></td>
+</tr>
+<tr>
+<td><code>database</code></td>
+<td><code>str</code></td>
+<td>Database to use.</td>
+<td><code>default_database</code></td>
+</tr>
+</tbody>
+</table>
 <div class="admonition tip">
 <p class="admonition-title">Positional Parameters</p>
 <p>Chroma <code>PersistentClient</code> parameters are positional, unless keyword arguments are used.</p>
@@ -3014,7 +3096,7 @@ directory on your machine at the path you specify.</p>
 <div class="admonition warn">
 <p class="admonition-title">The right tool for the job</p>
 <p>When evaluating the use of local <code>PersistentClient</code> one should always factor in the scale of the application. 
-Similar to SQLite vs Posgres/MySQL, <code>PersistentClient</code> vs <code>HTTPClient</code> with Chroma server, application architectural
+Similar to SQLite vs Postgres/MySQL, <code>PersistentClient</code> vs <code>HTTPClient</code> with Chroma server, application architectural
 characteristics (such as complexity, scale, performance etc) should be considered when deciding to use one or the other.</p>
 </div>
 <h2 id="http-client">HTTP Client<a class="headerlink" href="#http-client" title="Permanent link">&para;</a></h2>
@@ -3041,16 +3123,60 @@ remote ChromaDB server. The HTTP client can operate in synchronous or asynchrono
 </span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">)</span>
 </span></code></pre></div>
 <p><strong>Parameters</strong>:</p>
-<ol>
-<li><code>host</code> - The host of the remote server. If not specified, the default is <code>localhost</code>.</li>
-<li><code>port</code> - The port of the remote server. If not specified, the default is <code>8000</code>.</li>
-<li><code>ssl</code> - If <code>True</code>, the client will use HTTPS. If not specified, the default is <code>False</code>.</li>
-<li><code>headers</code> - (optional): The headers to be sent to the server. The setting can be used to pass additional headers to the
-    server. An example of this can be auth headers.</li>
-<li><code>settings</code> - Chroma settings object.</li>
-<li><code>tenant</code> - the tenant to use. Default is <code>default_tenant</code>.</li>
-<li><code>database</code> - the database to use. Default is <code>default_database</code>.</li>
-</ol>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default / Allowed values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>host</code></td>
+<td><code>str</code></td>
+<td>Hostname of the remote server. You can also pass a full URL (including a path prefix).</td>
+<td><code>localhost</code></td>
+</tr>
+<tr>
+<td><code>port</code></td>
+<td><code>int</code></td>
+<td>Port of the remote server.</td>
+<td><code>8000</code></td>
+</tr>
+<tr>
+<td><code>ssl</code></td>
+<td><code>bool</code></td>
+<td>Uses HTTPS when <code>True</code>.</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td><code>dict[str, str] \| None</code></td>
+<td>Additional headers sent with each request (for example auth headers).</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>settings</code></td>
+<td><code>Settings \| None</code></td>
+<td>Chroma settings object.</td>
+<td><code>None</code> (uses <code>Settings()</code>)</td>
+</tr>
+<tr>
+<td><code>tenant</code></td>
+<td><code>str</code></td>
+<td>Tenant to use.</td>
+<td><code>default_tenant</code></td>
+</tr>
+<tr>
+<td><code>database</code></td>
+<td><code>str</code></td>
+<td>Database to use.</td>
+<td><code>default_database</code></td>
+</tr>
+</tbody>
+</table>
 <div class="admonition tip">
 <p class="admonition-title">Positional Parameters</p>
 <p>Chroma <code>HttpClient</code> parameters are positional, unless keyword arguments are used.</p>
@@ -3059,35 +3185,81 @@ remote ChromaDB server. The HTTP client can operate in synchronous or asynchrono
 <div class="tabbed-block">
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">chromadb</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># Apply nest_asyncio to allow running nested event loops in jupyter notebook</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># import nest_asyncio # import this if running in jupyter notebook</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># nest_asyncio.apply() # apply this if running in jupyter notebook</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_collections</span><span class="p">():</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">client</span> <span class="o">=</span> <span class="k">await</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">AsyncHttpClient</span><span class="p">(</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">ssl</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="n">settings</span><span class="o">=</span><span class="n">Settings</span><span class="p">(),</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="n">tenant</span><span class="o">=</span><span class="n">DEFAULT_TENANT</span><span class="p">,</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="n">database</span><span class="o">=</span><span class="n">DEFAULT_DATABASE</span><span class="p">,</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="p">)</span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="k">return</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">list_collections</span><span class="p">()</span>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="n">result</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">list_collections</span><span class="p">())</span>
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">chromadb.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">DEFAULT_TENANT</span><span class="p">,</span> <span class="n">DEFAULT_DATABASE</span><span class="p">,</span> <span class="n">Settings</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Apply nest_asyncio to allow running nested event loops in jupyter notebook</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># import nest_asyncio # import this if running in jupyter notebook</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># nest_asyncio.apply() # apply this if running in jupyter notebook</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_collections</span><span class="p">():</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">client</span> <span class="o">=</span> <span class="k">await</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">AsyncHttpClient</span><span class="p">(</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        <span class="n">ssl</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        <span class="n">settings</span><span class="o">=</span><span class="n">Settings</span><span class="p">(),</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        <span class="n">tenant</span><span class="o">=</span><span class="n">DEFAULT_TENANT</span><span class="p">,</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        <span class="n">database</span><span class="o">=</span><span class="n">DEFAULT_DATABASE</span><span class="p">,</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="p">)</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    <span class="k">return</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">list_collections</span><span class="p">()</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="n">result</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">list_collections</span><span class="p">())</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </span></code></pre></div>
 <p><strong>Parameters</strong>:</p>
-<ol>
-<li><code>host</code> - The host of the remote server. If not specified, the default is <code>localhost</code>.</li>
-<li><code>port</code> - The port of the remote server. If not specified, the default is <code>8000</code>.</li>
-<li><code>ssl</code> - If <code>True</code>, the client will use HTTPS. If not specified, the default is <code>False</code>.</li>
-<li><code>headers</code> - (optional): The headers to be sent to the server. The setting can be used to pass additional headers to the
-    server. An example of this can be auth headers.</li>
-<li><code>settings</code> - Chroma settings object.</li>
-<li><code>tenant</code> - the tenant to use. Default is <code>default_tenant</code>.</li>
-<li><code>database</code> - the database to use. Default is <code>default_database</code>.</li>
-</ol>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default / Allowed values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>host</code></td>
+<td><code>str</code></td>
+<td>Hostname of the remote server. You can also pass a full URL (including a path prefix).</td>
+<td><code>localhost</code></td>
+</tr>
+<tr>
+<td><code>port</code></td>
+<td><code>int</code></td>
+<td>Port of the remote server.</td>
+<td><code>8000</code></td>
+</tr>
+<tr>
+<td><code>ssl</code></td>
+<td><code>bool</code></td>
+<td>Uses HTTPS when <code>True</code>.</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>headers</code></td>
+<td><code>dict[str, str] \| None</code></td>
+<td>Additional headers sent with each request (for example auth headers).</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>settings</code></td>
+<td><code>Settings \| None</code></td>
+<td>Chroma settings object.</td>
+<td><code>None</code> (uses <code>Settings()</code>)</td>
+</tr>
+<tr>
+<td><code>tenant</code></td>
+<td><code>str</code></td>
+<td>Tenant to use.</td>
+<td><code>default_tenant</code></td>
+</tr>
+<tr>
+<td><code>database</code></td>
+<td><code>str</code></td>
+<td>Database to use.</td>
+<td><code>default_database</code></td>
+</tr>
+</tbody>
+</table>
 <div class="admonition tip">
 <p class="admonition-title">Positional Parameters</p>
 <p>Chroma <code>AsyncHttpClient</code> parameters are positional, unless keyword arguments are used.</p>
@@ -3097,23 +3269,59 @@ remote ChromaDB server. The HTTP client can operate in synchronous or asynchrono
 <div class="language-typescript highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ChromaClient</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;chromadb&quot;</span><span class="p">;</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ChromaClient</span><span class="p">({</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nx">host</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nx">port</span><span class="o">:</span><span class="w"> </span><span class="kt">8000</span><span class="p">,</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nx">ssl</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x-chroma-token&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;your_token_here&quot;</span><span class="w"> </span><span class="p">},</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="nx">tenant</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;default_tenant&quot;</span><span class="p">,</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nx">database</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;default_database&quot;</span><span class="p">,</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">});</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:8000&quot;</span><span class="p">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nx">auth</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="nx">provider</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;token&quot;</span><span class="p">,</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="nx">credentials</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;your_token_here&quot;</span><span class="p">,</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">        </span><span class="nx">tokenHeaderType</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;X_CHROMA_TOKEN&quot;</span><span class="p">,</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nx">tenant</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;default_tenant&quot;</span><span class="p">,</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nx">database</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;default_database&quot;</span><span class="p">,</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">});</span>
 </span></code></pre></div>
 <p><strong>Parameters</strong>:</p>
-<ul>
-<li><code>host</code> - The hostname of the remote server. Default is <code>localhost</code>.</li>
-<li><code>port</code> - The port of the remote server. Default is <code>8000</code>.</li>
-<li><code>ssl</code> - If <code>true</code>, the client will use HTTPS. Default is <code>false</code>.</li>
-<li><code>headers</code> - Custom HTTP headers (e.g. authentication tokens).</li>
-<li><code>tenant</code> - the tenant to use. Default is <code>default_tenant</code>.</li>
-<li><code>database</code> - the database to use. Default is <code>default_database</code>.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default / Allowed values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>path</code></td>
+<td><code>string</code></td>
+<td>Base URL for the Chroma API.</td>
+<td><code>http://localhost:8000</code></td>
+</tr>
+<tr>
+<td><code>auth</code></td>
+<td><code>AuthOptions</code></td>
+<td>Authentication config.</td>
+<td>Optional. <code>provider</code> values: <code>"basic"</code> or <code>"token"</code></td>
+</tr>
+<tr>
+<td><code>fetchOptions</code></td>
+<td><code>RequestInit</code></td>
+<td>Fetch options passed to HTTP calls (for example custom headers).</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td><code>tenant</code></td>
+<td><code>string</code></td>
+<td>Tenant to use.</td>
+<td><code>default_tenant</code></td>
+</tr>
+<tr>
+<td><code>database</code></td>
+<td><code>string</code></td>
+<td>Database to use.</td>
+<td><code>default_database</code></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="tabbed-block">
 <p><div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>go<span class="w"> </span>get<span class="w"> </span>github.com/amikos-tech/chroma-go@latest
@@ -3141,12 +3349,54 @@ remote ChromaDB server. The HTTP client can operate in synchronous or asynchrono
 </span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="p">}</span>
 </span></code></pre></div></p>
 <p><strong>Parameters</strong>:</p>
-<ul>
-<li><code>WithBaseURL()</code> - the Chroma endpoint URL e.g. <code>http://localhost:8000</code>.</li>
-<li><code>WithAuth()</code> - Chroma authentication provider (see more <a href="https://go-client.chromadb.dev/auth/">here</a>).</li>
-<li><code>WithDatabaseAndTenant()</code> - set database and tenant explicitly.</li>
-<li><code>WithDefaultDatabaseAndTenant()</code> - use <code>default_tenant</code> and <code>default_database</code>.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default / Allowed values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WithBaseURL()</code></td>
+<td><code>func(string) ClientOption</code></td>
+<td>Sets Chroma endpoint URL. <code>/api/v2</code> is appended if missing.</td>
+<td>Default base URL is <code>http://localhost:8000/api/v2</code></td>
+</tr>
+<tr>
+<td><code>WithAuth()</code></td>
+<td><code>func(CredentialsProvider) ClientOption</code></td>
+<td>Sets auth provider (see <a href="https://go-client.chromadb.dev/auth/">Go auth docs</a>).</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td><code>WithDatabaseAndTenant()</code></td>
+<td><code>func(database string, tenant string) ClientOption</code></td>
+<td>Sets database and tenant explicitly.</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td><code>WithDatabaseAndTenantFromEnv()</code></td>
+<td><code>func() ClientOption</code></td>
+<td>Reads <code>CHROMA_DATABASE</code> and <code>CHROMA_TENANT</code> when present.</td>
+<td>Applied by default in <code>NewHTTPClient</code></td>
+</tr>
+<tr>
+<td><code>WithDefaultDatabaseAndTenant()</code></td>
+<td><code>func() ClientOption</code></td>
+<td>Fills missing values with defaults.</td>
+<td><code>default_database</code> and <code>default_tenant</code></td>
+</tr>
+<tr>
+<td><code>WithTimeout()</code></td>
+<td><code>func(time.Duration) ClientOption</code></td>
+<td>Sets request timeout.</td>
+<td>Optional</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="tabbed-block">
 <p><div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cargo<span class="w"> </span>add<span class="w"> </span>chroma
@@ -3162,12 +3412,48 @@ remote ChromaDB server. The HTTP client can operate in synchronous or asynchrono
 </span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="p">}</span>
 </span></code></pre></div></p>
 <p><strong>Parameters</strong> (<code>ChromaHttpClientOptions</code>):</p>
-<ul>
-<li><code>endpoint</code> - Server base URL. Default is <code>http://localhost:8000</code>.</li>
-<li><code>auth_method</code> - Authentication strategy. Default is <code>ChromaAuthMethod::None</code>.</li>
-<li><code>tenant_id</code> - Tenant identifier. Auto-resolved if omitted.</li>
-<li><code>database_name</code> - Database name. Auto-resolved if omitted.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default / Allowed values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>endpoint</code></td>
+<td><code>reqwest::Url</code></td>
+<td>Server base URL.</td>
+<td><code>http://localhost:8000</code></td>
+</tr>
+<tr>
+<td><code>auth_method</code></td>
+<td><code>ChromaAuthMethod</code></td>
+<td>Authentication strategy.</td>
+<td><code>ChromaAuthMethod::None</code></td>
+</tr>
+<tr>
+<td><code>retry_options</code></td>
+<td><code>ChromaRetryOptions</code></td>
+<td>Retry/backoff behavior for failed requests.</td>
+<td><code>max_retries=3</code>, <code>min_delay=200ms</code>, <code>max_delay=5s</code>, <code>jitter=true</code></td>
+</tr>
+<tr>
+<td><code>tenant_id</code></td>
+<td><code>Option&lt;String&gt;</code></td>
+<td>Tenant identifier override.</td>
+<td><code>None</code> (resolved from identity when possible)</td>
+</tr>
+<tr>
+<td><code>database_name</code></td>
+<td><code>Option&lt;String&gt;</code></td>
+<td>Database name override.</td>
+<td><code>None</code> (resolved when possible; explicit value recommended if multiple DBs are accessible)</td>
+</tr>
+</tbody>
+</table>
 <p>You can also construct a client from environment variables (<code>CHROMA_ENDPOINT</code>, <code>CHROMA_TENANT</code>, <code>CHROMA_DATABASE</code>):</p>
 <div class="language-rust highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">let</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ChromaHttpClient</span><span class="p">::</span><span class="n">from_env</span><span class="p">()</span><span class="o">?</span><span class="p">;</span>
 </span></code></pre></div>
@@ -3191,7 +3477,7 @@ important to note that there are trade-offs associated with using HTTP client:</
   to server-side issues.</li>
 </ul>
 <h3 id="host-parameter-special-cases-python-only">Host parameter special cases (Python-only)<a class="headerlink" href="#host-parameter-special-cases-python-only" title="Permanent link">&para;</a></h3>
-<p>The <code>host</code> parameter supports a more advanced syntax than just the hostname. You can specify the whole endpoint ULR (
+<p>The <code>host</code> parameter supports a more advanced syntax than just the hostname. You can specify the whole endpoint URL (
 without the API paths), e.g. <code>https://chromadb.example.com:8000/my_server/path/</code>. This is useful when you want to use a
 reverse proxy or load balancer in front of your ChromaDB server.</p>
 <h2 id="cloud-client">Cloud Client<a class="headerlink" href="#cloud-client" title="Permanent link">&para;</a></h2>
@@ -3199,10 +3485,38 @@ reverse proxy or load balancer in front of your ChromaDB server.</p>
 configuration automatically.</p>
 <div class="admonition note">
 <p class="admonition-title">Environment Variables</p>
-<p>All languages support configuration via environment variables. When <code>CHROMA_API_KEY</code>, <code>CHROMA_TENANT</code>, and
-<code>CHROMA_DATABASE</code> are set, the client can be instantiated with no arguments.</p>
-<p>If your API key is scoped to a single database, tenant and database are auto-resolved from the key —
-you only need to provide the API key.</p>
+<p>Cloud environment variable handling differs by language:</p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>API key</th>
+<th>Tenant / database</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td><code>api_key</code> arg or <code>CHROMA_API_KEY</code></td>
+<td><code>tenant</code>/<code>database</code> args, or <code>CHROMA_TENANT</code>/<code>CHROMA_DATABASE</code>, or auto-resolved from scoped credentials</td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td><code>apiKey</code> arg or <code>CHROMA_API_KEY</code></td>
+<td>Constructor args (<code>tenant</code>, <code>database</code>)</td>
+</tr>
+<tr>
+<td>Go</td>
+<td><code>WithCloudAPIKey()</code> or <code>CHROMA_API_KEY</code></td>
+<td><code>WithDatabaseAndTenant()</code> or <code>CHROMA_TENANT</code> + <code>CHROMA_DATABASE</code></td>
+</tr>
+<tr>
+<td>Rust</td>
+<td><code>ChromaHttpClientOptions::cloud(...)</code> or <code>CHROMA_API_KEY</code></td>
+<td>Explicit options or <code>CHROMA_TENANT</code>/<code>CHROMA_DATABASE</code>; otherwise resolved from identity when possible</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">TypeScript</label><label for="__tabbed_2_3">Go</label><label for="__tabbed_2_4">Rust</label></div>
 <div class="tabbed-content">
@@ -3220,12 +3534,60 @@ you only need to provide the API key.</p>
 </span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="p">)</span>
 </span></code></pre></div>
 <p><strong>Parameters</strong>:</p>
-<ul>
-<li><code>api_key</code> - Chroma Cloud API key. Falls back to <code>CHROMA_API_KEY</code> env var.</li>
-<li><code>tenant</code> - Tenant identifier. Falls back to <code>CHROMA_TENANT</code> env var, or auto-resolved from API key.</li>
-<li><code>database</code> - Database name. Falls back to <code>CHROMA_DATABASE</code> env var, or auto-resolved from API key.</li>
-<li><code>settings</code> - Chroma Settings object to override defaults.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default / Allowed values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>api_key</code></td>
+<td><code>str \| None</code></td>
+<td>Chroma Cloud API key.</td>
+<td>Required. Falls back to <code>CHROMA_API_KEY</code></td>
+</tr>
+<tr>
+<td><code>tenant</code></td>
+<td><code>str \| None</code></td>
+<td>Tenant identifier.</td>
+<td>Falls back to <code>CHROMA_TENANT</code>, then auth-based resolution</td>
+</tr>
+<tr>
+<td><code>database</code></td>
+<td><code>str \| None</code></td>
+<td>Database name.</td>
+<td>Falls back to <code>CHROMA_DATABASE</code>, then auth-based resolution</td>
+</tr>
+<tr>
+<td><code>settings</code></td>
+<td><code>Settings \| None</code></td>
+<td>Settings override.</td>
+<td><code>None</code> (uses <code>Settings()</code>)</td>
+</tr>
+<tr>
+<td><code>cloud_host</code></td>
+<td><code>str</code></td>
+<td>Cloud API hostname (keyword-only; primarily for testing).</td>
+<td><code>api.trychroma.com</code></td>
+</tr>
+<tr>
+<td><code>cloud_port</code></td>
+<td><code>int</code></td>
+<td>Cloud API port (keyword-only; primarily for testing).</td>
+<td><code>443</code></td>
+</tr>
+<tr>
+<td><code>enable_ssl</code></td>
+<td><code>bool</code></td>
+<td>Enables TLS (keyword-only; primarily for testing).</td>
+<td><code>True</code></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="tabbed-block">
 <div class="language-typescript highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">CloudClient</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;chromadb&quot;</span><span class="p">;</span>
@@ -3237,11 +3599,48 @@ you only need to provide the API key.</p>
 </span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="p">});</span>
 </span></code></pre></div>
 <p><strong>Parameters</strong>:</p>
-<ul>
-<li><code>apiKey</code> - Chroma Cloud API key. Falls back to <code>CHROMA_API_KEY</code> env var.</li>
-<li><code>tenant</code> - Tenant identifier. Falls back to <code>CHROMA_TENANT</code> env var.</li>
-<li><code>database</code> - Database name. Falls back to <code>CHROMA_DATABASE</code> env var.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default / Allowed values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiKey</code></td>
+<td><code>string \| undefined</code></td>
+<td>Chroma Cloud API key.</td>
+<td>Required. Falls back to <code>CHROMA_API_KEY</code></td>
+</tr>
+<tr>
+<td><code>tenant</code></td>
+<td><code>string \| undefined</code></td>
+<td>Tenant identifier.</td>
+<td>Optional. Defaults to <code>default_tenant</code> in underlying <code>ChromaClient</code></td>
+</tr>
+<tr>
+<td><code>database</code></td>
+<td><code>string \| undefined</code></td>
+<td>Database name.</td>
+<td>Optional. Defaults to <code>default_database</code> in underlying <code>ChromaClient</code></td>
+</tr>
+<tr>
+<td><code>cloudHost</code></td>
+<td><code>string \| undefined</code></td>
+<td>Cloud host prefix.</td>
+<td><code>https://api.trychroma.com</code></td>
+</tr>
+<tr>
+<td><code>cloudPort</code></td>
+<td><code>string \| undefined</code></td>
+<td>Cloud port suffix.</td>
+<td><code>8000</code></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="tabbed-block">
 <div class="language-go highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
@@ -3267,11 +3666,43 @@ you only need to provide the API key.</p>
 </span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="p">}</span>
 </span></code></pre></div>
 <p><strong>Parameters</strong>:</p>
-<ul>
-<li><code>WithCloudAPIKey()</code> - Chroma Cloud API key. Falls back to <code>CHROMA_API_KEY</code> env var.</li>
-<li><code>WithDatabaseAndTenant()</code> - Set database and tenant explicitly.</li>
-<li><code>WithTimeout()</code> - Request timeout.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default / Allowed values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WithCloudAPIKey()</code></td>
+<td><code>func(string) ClientOption</code></td>
+<td>Sets Chroma Cloud API key.</td>
+<td>Falls back to <code>CHROMA_API_KEY</code></td>
+</tr>
+<tr>
+<td><code>WithDatabaseAndTenant()</code></td>
+<td><code>func(database string, tenant string) ClientOption</code></td>
+<td>Sets database and tenant explicitly.</td>
+<td>Required unless both env vars are set</td>
+</tr>
+<tr>
+<td><code>WithDatabaseAndTenantFromEnv()</code></td>
+<td><code>func() ClientOption</code></td>
+<td>Reads <code>CHROMA_DATABASE</code> and <code>CHROMA_TENANT</code>.</td>
+<td>Applied by default in <code>NewCloudClient</code></td>
+</tr>
+<tr>
+<td><code>WithTimeout()</code></td>
+<td><code>func(time.Duration) ClientOption</code></td>
+<td>Sets request timeout.</td>
+<td>Optional</td>
+</tr>
+</tbody>
+</table>
+<p><code>NewCloudClient</code> requires non-default tenant and database values and also requires an API key.</p>
 <details class="note">
 <summary>Go Client Package</summary>
 <p>The Go client is maintained at <a href="https://github.com/amikos-tech/chroma-go"><code>amikos-tech/chroma-go</code></a>
@@ -3300,17 +3731,67 @@ import path.</p>
 </span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="p">}</span>
 </span></code></pre></div>
 <p><strong>Parameters</strong> (<code>ChromaHttpClientOptions::cloud()</code>):</p>
-<ul>
-<li><code>api_key</code> - Chroma Cloud API key.</li>
-<li><code>database_name</code> - Database name. Tenant is auto-resolved.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default / Allowed values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>api_key</code></td>
+<td><code>impl Into&lt;String&gt;</code></td>
+<td>Chroma Cloud API key.</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>database_name</code></td>
+<td><code>impl Into&lt;String&gt;</code></td>
+<td>Database name used for collection operations.</td>
+<td>Required</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Environment-based</strong> (<code>ChromaHttpClient::cloud()</code>):</p>
-<ul>
-<li><code>CHROMA_API_KEY</code> (required)</li>
-<li><code>CHROMA_ENDPOINT</code> (optional, defaults to <code>https://api.trychroma.com</code>)</li>
-<li><code>CHROMA_TENANT</code> (optional, auto-resolved)</li>
-<li><code>CHROMA_DATABASE</code> (optional, auto-resolved)</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Required</th>
+<th>Description</th>
+<th>Default / Allowed values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CHROMA_API_KEY</code></td>
+<td>Yes</td>
+<td>Cloud API key.</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>CHROMA_ENDPOINT</code></td>
+<td>No</td>
+<td>Cloud endpoint override.</td>
+<td><code>https://api.trychroma.com</code></td>
+</tr>
+<tr>
+<td><code>CHROMA_TENANT</code></td>
+<td>No</td>
+<td>Tenant override.</td>
+<td>If omitted, resolved from identity when possible</td>
+</tr>
+<tr>
+<td><code>CHROMA_DATABASE</code></td>
+<td>No</td>
+<td>Database override.</td>
+<td>If omitted, resolved from identity when possible</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -3327,36 +3808,82 @@ started with an ephemeral client, use the <code>EphemeralClient</code> class.</p
 </span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="p">)</span>
 </span></code></pre></div>
 <p><strong>Parameters</strong>:</p>
-<ol>
-<li><code>settings</code> - Chroma settings object.</li>
-<li><code>tenant</code> - the tenant to use. Default is <code>default_tenant</code>.</li>
-<li><code>database</code>  - the database to use. Default is <code>default_database</code>.</li>
-</ol>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default / Allowed values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>settings</code></td>
+<td><code>Settings \| None</code></td>
+<td>Chroma settings object.</td>
+<td><code>None</code> (uses <code>Settings()</code>)</td>
+</tr>
+<tr>
+<td><code>tenant</code></td>
+<td><code>str</code></td>
+<td>Tenant to use.</td>
+<td><code>default_tenant</code></td>
+</tr>
+<tr>
+<td><code>database</code></td>
+<td><code>str</code></td>
+<td>Database to use.</td>
+<td><code>default_database</code></td>
+</tr>
+</tbody>
+</table>
 <div class="admonition tip">
 <p class="admonition-title">Positional Parameters</p>
-<p>Chroma <code>PersistentClient</code> parameters are positional, unless keyword arguments are used.</p>
+<p>Chroma <code>EphemeralClient</code> parameters are positional, unless keyword arguments are used.</p>
 </div>
-<h2 id="environmental-variable-configured-client">Environmental Variable Configured Client<a class="headerlink" href="#environmental-variable-configured-client" title="Permanent link">&para;</a></h2>
-<p>You can also configure the client using environmental variables. This is useful when you want to configure any of the
-client configurations listed above via environmental variables.</p>
+<h2 id="environment-variable-configured-client">Environment Variable Configured Client<a class="headerlink" href="#environment-variable-configured-client" title="Permanent link">&para;</a></h2>
+<p>You can also configure the client using environment variables. This is useful when you want to configure any of the
+client options listed above via environment variables.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">chromadb</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">chromadb.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">DEFAULT_TENANT</span><span class="p">,</span> <span class="n">DEFAULT_DATABASE</span><span class="p">,</span> <span class="n">Settings</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span>
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="n">settings</span><span class="o">=</span><span class="n">Settings</span><span class="p">(),</span>
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="n">tenant</span><span class="o">=</span><span class="n">DEFAULT_TENANT</span><span class="p">,</span>
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>    <span class="n">database</span><span class="o">=</span><span class="n">DEFAULT_DATABASE</span><span class="p">,</span>
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="p">)</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="c1"># Uses configured defaults from environment/.env/settings.</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
 </span></code></pre></div>
 <p><strong>Parameters</strong>:</p>
-<ol>
-<li><code>settings</code> - Chroma settings object.</li>
-<li><code>tenant</code> - the tenant to use. Default is <code>default_tenant</code>.</li>
-<li><code>database</code> - the database to use. Default is <code>default_database</code>.</li>
-</ol>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default / Allowed values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>settings</code></td>
+<td><code>Settings</code></td>
+<td>Settings object for environment and runtime configuration.</td>
+<td>Current global settings (<code>chromadb.get_settings()</code>)</td>
+</tr>
+<tr>
+<td><code>tenant</code></td>
+<td><code>str</code></td>
+<td>Tenant to use.</td>
+<td><code>default_tenant</code></td>
+</tr>
+<tr>
+<td><code>database</code></td>
+<td><code>str</code></td>
+<td>Database to use.</td>
+<td><code>default_database</code></td>
+</tr>
+</tbody>
+</table>
 <div class="admonition tip">
 <p class="admonition-title">Positional Parameters</p>
-<p>Chroma <code>PersistentClient</code> parameters are positional, unless keyword arguments are used.</p>
+<p>Chroma <code>Client</code> parameters are positional, unless keyword arguments are used.</p>
 </div>
 
 
@@ -3378,7 +3905,7 @@ client configurations listed above via environmental variables.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 17, 2026 10:06:04 UTC">February 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 20, 2026 21:22:47 UTC">February 20, 2026</span>
   </span>
 
     
