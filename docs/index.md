@@ -13,6 +13,7 @@ Latest ChromaDB version: [1.5.0](https://github.com/chroma-core/chroma/releases/
 
 ## New and Noteworthy
 
+- 🧭 [Core Concepts](core/concepts.md) - Reworked into General vs Power Users tracks, with interactive local/distributed execution diagrams and data-flow visuals - 📅`19-Feb-2026`
 - 🎯 [Collections Query IDs](core/collections.md#constrain-query-candidates-by-id) - Documented `query(..., ids=...)` for restricting similarity search to specific records - 📅`17-Feb-2026`
 - 🔍 [Filters](core/filters.md) - Added multi-language filter examples and `$regex`/`$not_regex` operators - 📅`17-Feb-2026`
 - 🔧 [Installation](core/install.md) - Updated package names and added Go/Rust install examples - 📅`17-Feb-2026`
@@ -36,8 +37,10 @@ Latest ChromaDB version: [1.5.0](https://github.com/chroma-core/chroma/releases/
 
 ## Getting Started
 
-We suggest you first head to the [Concepts](core/concepts.md) section to get familiar with ChromaDB concepts, such as
-Documents, Metadata, Embeddings, etc.
+We suggest you first head to the [Concepts](core/concepts.md) section. It now has two tracks:
+
+- [For General Users](core/concepts.md#for-general-users) - tenancy, collections, metadata, embeddings, and cloud data-flow basics
+- [For Power Users](core/concepts.md#for-power-users) - local SQLite + HNSW path, distributed frontend dispatch path, and core internals
 
 Once you're comfortable with the concepts, you can jump to the [Installation](core/install.md) section to install
 ChromaDB.
