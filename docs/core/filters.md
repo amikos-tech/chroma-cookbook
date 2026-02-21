@@ -16,6 +16,15 @@ Those familiar with MongoDB queries will find Chroma's filters very similar.
     - [Go](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/go/main.go)
     - [Rust](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/rust/src/main.rs)
 
+<div class="filter-builder-hero">
+  <p class="filter-builder-hero__eyebrow">Interactive playground</p>
+  <p class="filter-builder-hero__title">Build filters interactively</p>
+  <p class="filter-builder-hero__body">
+    Compose <code>where</code> and <code>where_document</code>, preview payloads, and copy Cloud or Local starter code.
+  </p>
+  <a class="filter-builder-hero__button" href="#interactive-filter-playground">Open Interactive Playground</a>
+</div>
+
 ## Metadata Filters
 
 ### Schema
@@ -1756,3 +1765,230 @@ Logical Operators can be nested.
         None,       // include
     ).await?;
     ```
+
+<a id="interactive-filter-playground"></a>
+## Interactive Filter Playground (Cloud + Local)
+
+Use this interactive sandbox to sketch a filter payload before running Chroma. Switch between **Cloud** and **Local** tabs to see how the client code changes while the filter shape remains consistent.
+For nested logic and full schema control, switch either section to **JSON mode**.
+
+<div class="filter-builder" data-filter-builder>
+    <div class="filter-builder__header">
+      <p class="filter-builder__title">Filter Playground</p>
+      <p class="filter-builder__subtitle">
+        Build metadata (<code>where</code>) or document-text (<code>where_document</code>) filters and preview generated code.
+      </p>
+    </div>
+
+    <div class="filter-builder__toolbar">
+      <div class="filter-builder__tabs" role="tablist" aria-label="Client mode">
+        <button type="button" class="filter-builder__tab is-active" data-env-tab="cloud" role="tab" aria-selected="true">Cloud</button>
+        <button type="button" class="filter-builder__tab" data-env-tab="local" role="tab" aria-selected="false">Local</button>
+      </div>
+      <div class="filter-builder__actions">
+        <button type="button" data-action="reset">Reset</button>
+      </div>
+    </div>
+
+    <p class="filter-builder__mode-note" data-output="mode-note"></p>
+
+    <div class="filter-builder__advanced" data-role="cloud-advanced-wrapper">
+      <div class="filter-builder__advanced-head">
+        <p class="filter-builder__advanced-title">Cloud advanced options</p>
+        <button type="button" data-action="toggle-cloud-advanced" aria-expanded="false">Expand</button>
+      </div>
+      <div class="filter-builder__advanced-body" data-role="cloud-advanced" hidden>
+        <div class="filter-builder__advanced-row">
+          <label class="filter-builder__field filter-builder__field--inline">
+            <span>Ranking</span>
+            <select data-input="cloud-rank-mode">
+              <option value="knn" selected>Vector KNN</option>
+              <option value="hybrid_rrf">Hybrid RRF</option>
+              <option value="none">No rank expression</option>
+            </select>
+          </label>
+          <label class="filter-builder__field filter-builder__field--inline">
+            <span>Dense query</span>
+            <input type="text" class="filter-builder__input" data-input="cloud-dense-query" value="example query" />
+          </label>
+          <label class="filter-builder__field filter-builder__field--inline">
+            <span>KNN limit</span>
+            <input type="number" class="filter-builder__input" data-input="cloud-dense-limit" min="1" value="5" />
+          </label>
+        </div>
+
+        <div class="filter-builder__advanced-row">
+          <label class="filter-builder__field filter-builder__field--inline">
+            <span>Hybrid sparse query</span>
+            <input type="text" class="filter-builder__input" data-input="cloud-sparse-query" value="example query" />
+          </label>
+          <label class="filter-builder__field filter-builder__field--inline">
+            <span>Sparse key</span>
+            <input type="text" class="filter-builder__input" data-input="cloud-sparse-key" value="sparse_embedding" />
+          </label>
+          <label class="filter-builder__field filter-builder__field--inline">
+            <span>RRF (k, weights)</span>
+            <div class="filter-builder__compound">
+              <input type="number" class="filter-builder__input" data-input="cloud-rrf-k" min="1" value="60" />
+              <input type="text" class="filter-builder__input" data-input="cloud-rrf-weights" value="0.7,0.3" />
+            </div>
+          </label>
+        </div>
+
+        <div class="filter-builder__advanced-row">
+          <label class="filter-builder__switch">
+            <input type="checkbox" data-input="cloud-pagination-enabled" />
+            <span>Pagination</span>
+          </label>
+          <label class="filter-builder__field filter-builder__field--inline">
+            <span>Limit</span>
+            <input type="number" class="filter-builder__input" data-input="cloud-page-limit" min="1" value="20" />
+          </label>
+          <label class="filter-builder__field filter-builder__field--inline">
+            <span>Offset</span>
+            <input type="number" class="filter-builder__input" data-input="cloud-page-offset" min="0" value="0" />
+          </label>
+        </div>
+
+        <div class="filter-builder__advanced-row">
+          <label class="filter-builder__switch">
+            <input type="checkbox" data-input="cloud-selection-enabled" />
+            <span>Field selection</span>
+          </label>
+          <div class="filter-builder__checks">
+            <label class="filter-builder__check"><input type="checkbox" data-input="cloud-select-document" checked />#document</label>
+            <label class="filter-builder__check"><input type="checkbox" data-input="cloud-select-score" checked />#score</label>
+            <label class="filter-builder__check"><input type="checkbox" data-input="cloud-select-metadata" />#metadata</label>
+            <label class="filter-builder__check"><input type="checkbox" data-input="cloud-select-embedding" />#embedding</label>
+          </div>
+          <label class="filter-builder__field filter-builder__field--inline filter-builder__field--grow">
+            <span>Metadata keys (csv)</span>
+            <input type="text" class="filter-builder__input" data-input="cloud-select-fields" value="title,author" />
+          </label>
+        </div>
+
+        <div class="filter-builder__advanced-row">
+          <label class="filter-builder__switch">
+            <input type="checkbox" data-input="cloud-group-enabled" />
+            <span>Grouping / aggregation</span>
+          </label>
+          <label class="filter-builder__field filter-builder__field--inline filter-builder__field--grow">
+            <span>Group keys (csv)</span>
+            <input type="text" class="filter-builder__input" data-input="cloud-group-keys" value="category" />
+          </label>
+          <label class="filter-builder__field filter-builder__field--inline">
+            <span>min_k</span>
+            <input type="number" class="filter-builder__input" data-input="cloud-group-min-k" min="1" value="1" />
+          </label>
+          <label class="filter-builder__field filter-builder__field--inline">
+            <span>max_k</span>
+            <input type="number" class="filter-builder__input" data-input="cloud-group-max-k" min="1" value="3" />
+          </label>
+        </div>
+
+        <div class="filter-builder__advanced-row">
+          <label class="filter-builder__switch">
+            <input type="checkbox" data-input="cloud-batch-enabled" />
+            <span>Batch operations</span>
+          </label>
+          <label class="filter-builder__field filter-builder__field--inline">
+            <span>Batch size</span>
+            <input type="number" class="filter-builder__input" data-input="cloud-batch-count" min="2" value="3" />
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-builder__advanced" data-role="local-advanced-wrapper" hidden>
+      <div class="filter-builder__advanced-head">
+        <p class="filter-builder__advanced-title">Local query options</p>
+        <button type="button" data-action="toggle-local-advanced" aria-expanded="false">Expand</button>
+      </div>
+      <div class="filter-builder__advanced-body" data-role="local-advanced" hidden>
+        <div class="filter-builder__advanced-row">
+          <label class="filter-builder__field filter-builder__field--inline">
+            <span>Call</span>
+            <select data-input="local-call-mode">
+              <option value="query" selected>query()</option>
+              <option value="get">get()</option>
+            </select>
+          </label>
+          <label class="filter-builder__field filter-builder__field--inline">
+            <span>Limit</span>
+            <input type="number" class="filter-builder__input" data-input="local-limit" min="1" value="5" />
+          </label>
+          <label class="filter-builder__field filter-builder__field--inline">
+            <span>Offset (get)</span>
+            <input type="number" class="filter-builder__input" data-input="local-offset" min="0" value="0" />
+          </label>
+        </div>
+
+        <div class="filter-builder__advanced-row">
+          <label class="filter-builder__switch">
+            <input type="checkbox" data-input="local-include-enabled" />
+            <span>Include fields</span>
+          </label>
+          <div class="filter-builder__checks">
+            <label class="filter-builder__check"><input type="checkbox" data-input="local-include-documents" checked />documents</label>
+            <label class="filter-builder__check"><input type="checkbox" data-input="local-include-metadatas" checked />metadatas</label>
+            <label class="filter-builder__check"><input type="checkbox" data-input="local-include-distances" checked />distances</label>
+            <label class="filter-builder__check"><input type="checkbox" data-input="local-include-embeddings" />embeddings</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-builder__section">
+      <div class="filter-builder__section-head">
+        <p class="filter-builder__section-title">Metadata filters (<code>where</code>)</p>
+      <label class="filter-builder__field filter-builder__field--inline">
+        <span>Join</span>
+        <select data-input="metadata-logic">
+          <option value="$and" selected>$and</option>
+          <option value="$or">$or</option>
+        </select>
+      </label>
+      <div class="filter-builder__section-actions">
+        <button type="button" data-action="toggle-metadata-raw">JSON mode</button>
+        <button type="button" data-action="add-metadata-rule">Add condition</button>
+      </div>
+    </div>
+    <div class="filter-builder__rules" data-role="metadata-rules" aria-live="polite"></div>
+  </div>
+
+    <div class="filter-builder__section">
+      <div class="filter-builder__section-head">
+        <p class="filter-builder__section-title">Document filters (<code>where_document</code>)</p>
+      <label class="filter-builder__field filter-builder__field--inline">
+        <span>Join</span>
+        <select data-input="document-logic">
+          <option value="$and" selected>$and</option>
+          <option value="$or">$or</option>
+        </select>
+      </label>
+      <div class="filter-builder__section-actions">
+        <button type="button" data-action="toggle-document-raw">JSON mode</button>
+        <button type="button" data-action="add-document-rule">Add condition</button>
+      </div>
+    </div>
+    <div class="filter-builder__rules" data-role="document-rules" aria-live="polite"></div>
+  </div>
+
+    <div class="filter-builder__output-tabs" role="tablist" aria-label="Output format">
+      <button type="button" class="filter-builder__output-tab is-active" data-output-tab="json" role="tab" aria-selected="true">Filter JSON</button>
+      <button type="button" class="filter-builder__output-tab" data-output-tab="python" role="tab" aria-selected="false">Python</button>
+      <button type="button" class="filter-builder__output-tab" data-output-tab="typescript" role="tab" aria-selected="false">TypeScript</button>
+    </div>
+
+    <div class="filter-builder__output-card">
+      <div class="filter-builder__output-head">
+        <p class="filter-builder__output-title" data-output="title">Filter JSON</p>
+        <button type="button" class="filter-builder__copy" data-action="copy-output">Copy</button>
+      </div>
+      <pre><code data-output="active"></code></pre>
+    </div>
+  </div>
+
+<p class="filter-builder__footnote">
+  Playground scope: this is a learning aid for composing filter payloads and starter client code; it is not a full schema validator.
+</p>
