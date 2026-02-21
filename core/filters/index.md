@@ -16,6 +16,14 @@ Complete, runnable filtering examples for each language are available in the [ex
 - [Go](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/go/main.go)
 - [Rust](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/rust/src/main.rs)
 
+Interactive playground
+
+Build filters interactively
+
+Compose `where` and `where_document`, preview payloads, and copy Cloud or Local starter code.
+
+[Open Interactive Playground](#interactive-filter-playground)
+
 ## Metadata Filters
 
 ### Schema
@@ -1527,3 +1535,97 @@ let results = collection.get(
     None,       // include
 ).await?;
 ```
+
+## Interactive Filter Playground (Cloud + Local)
+
+Use this interactive sandbox to sketch a filter payload before running Chroma. Switch between **Cloud** and **Local** tabs to see how the client code changes while the filter shape remains consistent. For nested logic and full schema control, switch either section to **JSON mode**.
+
+Filter Playground
+
+Build metadata (`where`) or document-text (`where_document`) filters and preview generated code.
+
+Cloud Local
+
+Reset
+
+Cloud advanced options
+
+Expand
+
+Ranking
+
+Vector KNN Hybrid RRF No rank expression
+
+Dense query
+
+KNN limit
+
+Hybrid sparse query
+
+Sparse key
+
+RRF (k, weights)
+
+Pagination
+
+Limit
+
+Offset
+
+Field selection
+
+#document #score #metadata #embedding
+
+Metadata keys (csv)
+
+Grouping / aggregation
+
+Group keys (csv)
+
+min_k
+
+max_k
+
+Batch operations
+
+Batch size
+
+Local query options
+
+Expand
+
+Call
+
+query() get()
+
+Limit
+
+Offset (get)
+
+Include fields
+
+documents metadatas distances embeddings
+
+Metadata filters (`where`)
+
+Join
+
+$and $or
+
+JSON mode Add condition
+
+Document filters (`where_document`)
+
+Join
+
+$and $or
+
+JSON mode Add condition
+
+Filter JSON Python TypeScript
+
+Filter JSON
+
+Copy
+
+Playground scope: this is a learning aid for composing filter payloads and starter client code; it is not a full schema validator.
