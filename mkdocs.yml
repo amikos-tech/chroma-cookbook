@@ -46,6 +46,7 @@ extra_javascript:
   - javascripts/gtag.js
   - javascripts/ethicalads-init.js
   - javascripts/concepts-pipeline.js
+  - javascripts/resource-calculator.js
 extra_css:
   - stylesheets/ethicalads.css
   - stylesheets/concepts-flow.css
