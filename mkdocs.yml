@@ -47,10 +47,12 @@ extra_javascript:
   - javascripts/ethicalads-init.js
   - javascripts/concepts-pipeline.js
   - javascripts/resource-calculator.js
+  - javascripts/filter-builder.js
 extra_css:
   - stylesheets/ethicalads.css
   - stylesheets/concepts-flow.css
   - stylesheets/custom.css
+  - stylesheets/filter-builder.css
 markdown_extensions:
   - abbr
   - admonition
