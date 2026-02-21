@@ -31,6 +31,7 @@ Latest ChromaDB version: [1.5.1](https://github.com/chroma-core/chroma/releases/
 
 ## New and Noteworthy
 
+- 📊 [Resource Requirements](core/resources.md) - Added an interactive sizing calculator, clearer RAM formulas, and explicit disk caveats for large documents and FTS index overhead - 📅`21-Feb-2026`
 - 🚀 [Running Chroma](running/running-chroma.md) - Refreshed CLI/Docker/Compose/Minikube guidance, aligned Helm chart notes, and added collapsed optional YAML config examples - 📅`20-Feb-2026`
 - 🧭 [Core Concepts](core/concepts.md) - Reworked into General vs Power Users tracks, with interactive local/distributed execution diagrams and data-flow visuals - 📅`19-Feb-2026`
 - 🎯 [Collections Query IDs](core/collections.md#constrain-query-candidates-by-id) - Documented `query(..., ids=...)` for restricting similarity search to specific records - 📅`17-Feb-2026`
