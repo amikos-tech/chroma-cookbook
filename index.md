@@ -26,6 +26,7 @@ API Changelog (1.5.1 and 1.5.0)
 
 ## New and Noteworthy
 
+- 📊 [Resource Requirements](https://cookbook.chromadb.dev/core/resources/index.md) - Added an interactive sizing calculator, clearer RAM formulas, and explicit disk caveats for large documents and FTS index overhead - 📅`21-Feb-2026`
 - 🚀 [Running Chroma](https://cookbook.chromadb.dev/running/running-chroma/index.md) - Refreshed CLI/Docker/Compose/Minikube guidance, aligned Helm chart notes, and added collapsed optional YAML config examples - 📅`20-Feb-2026`
 - 🧭 [Core Concepts](https://cookbook.chromadb.dev/core/concepts/index.md) - Reworked into General vs Power Users tracks, with interactive local/distributed execution diagrams and data-flow visuals - 📅`19-Feb-2026`
 - 🎯 [Collections Query IDs](https://cookbook.chromadb.dev/core/collections/#constrain-query-candidates-by-id) - Documented `query(..., ids=...)` for restricting similarity search to specific records - 📅`17-Feb-2026`

@@ -791,6 +791,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#quick-resource-calculator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Resource Calculator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#disk" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2807,6 +2818,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#quick-resource-calculator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Resource Calculator
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#disk" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2868,16 +2890,81 @@
 <h1 id="resource-requirements">Resource Requirements<a class="headerlink" href="#resource-requirements" title="Permanent link">&para;</a></h1>
 <p>Chroma makes use of the following compute resources:</p>
 <ul>
-<li>RAM - Chroma stores the vector HNSW index in-memory. This allows it to perform blazing fast semantic searches.</li>
-<li>Disk - Chroma persists all data to disk. This includes the vector HNSW index, metadata index, system DB, and the
-  write-ahead log (WAL).</li>
-<li>CPU - Chroma uses CPU for indexing and searching vectors.</li>
+<li>RAM - In single-node/self-hosted deployments, Chroma keeps vector search structures in memory for low-latency search.</li>
+<li>Disk - Chroma persists data to disk, including the vector index files, metadata index, system DB, and write-ahead
+  log (WAL).</li>
+<li>CPU - Chroma uses CPU for ingest, indexing, filtering, and search execution.</li>
 </ul>
-<p>Here are some formulas and heuristics to help you estimate the resources you need to run Chroma.</p>
+<p>Use the formulas and heuristics below to estimate Chroma resource needs.</p>
+<div class="admonition info">
+<p class="admonition-title">Scope</p>
+<p>This page is primarily for single-node/self-hosted sizing (HNSW-based indexing).
+Distributed/Cloud deployments use different index internals (SPANN) and different resource behavior.
+See <a href="../concepts/#how-data-flows-through-chroma-cloud-distributed-chroma">Core Concepts</a> and
+<a href="../configuration/#spann-index-configuration">SPANN Index Configuration</a> for the distributed model.</p>
+</div>
 <h2 id="ram">RAM<a class="headerlink" href="#ram" title="Permanent link">&para;</a></h2>
-<p>Once you select your embedding model, use the following formula for calculating RAM storage requirements for the vector
-HNSW index:</p>
-<p><code>number of vectors</code> * <code>dimensionality of vectors</code> * <code>4 bytes</code> = <code>RAM required</code></p>
+<p>Once you select your embedding model, start with this lower-bound estimate for vector payload memory:</p>
+<div class="resource-formula" role="group" aria-label="Vector payload formulas">
+  <math class="resource-formula__math" display="block" aria-label="payload bytes equals vectors times dimensions times 4">
+    <mrow>
+      <mtext>payload_bytes</mtext>
+      <mo>=</mo>
+      <mtext>vectors</mtext>
+      <mo>&#x00D7;</mo>
+      <mtext>dimensions</mtext>
+      <mo>&#x00D7;</mo>
+      <mn>4</mn>
+    </mrow>
+  </math>
+  <math class="resource-formula__math" display="block" aria-label="payload gib equals payload bytes divided by 1024 cubed">
+    <mrow>
+      <mtext>payload_gib</mtext>
+      <mo>=</mo>
+      <mfrac>
+        <mtext>payload_bytes</mtext>
+        <msup>
+          <mn>1024</mn>
+          <mn>3</mn>
+        </msup>
+      </mfrac>
+    </mrow>
+  </math>
+</div>
+
+<p>Example (<code>10,000,000</code> vectors, <code>1536</code> dimensions):</p>
+<div class="resource-formula resource-formula--example" role="group" aria-label="Vector payload example">
+  <math class="resource-formula__math" display="block" aria-label="payload bytes equals ten million times 1536 times 4 equals 61440000000">
+    <mrow>
+      <mtext>payload_bytes</mtext>
+      <mo>=</mo>
+      <mn>10,000,000</mn>
+      <mo>&#x00D7;</mo>
+      <mn>1536</mn>
+      <mo>&#x00D7;</mo>
+      <mn>4</mn>
+      <mo>=</mo>
+      <mn>61,440,000,000</mn>
+    </mrow>
+  </math>
+  <math class="resource-formula__math" display="block" aria-label="payload gib equals 61440000000 divided by 1024 cubed approximately 57.2">
+    <mrow>
+      <mtext>payload_gib</mtext>
+      <mo>=</mo>
+      <mfrac>
+        <mn>61,440,000,000</mn>
+        <msup>
+          <mn>1024</mn>
+          <mn>3</mn>
+        </msup>
+      </mfrac>
+      <mo>&#x2248;</mo>
+      <mn>57.2</mn>
+      <mtext>&#x00A0;GiB</mtext>
+    </mrow>
+  </math>
+</div>
+
 <ul>
 <li><code>number of vectors</code> - This is the number of vectors you plan to index. These are the documents in your Chroma
   collection (or chunks if you use LlamaIndex or LangChain terminology).</li>
@@ -2886,12 +2973,105 @@ HNSW index:</p>
 <li><code>4 bytes</code> - This is the size of each component of a vector. Chroma relies on HNSW lib implementation that uses 32bit
   floats.</li>
 </ul>
+<p>Treat this as a lower-bound estimate. Real memory usage is higher because of:</p>
+<ul>
+<li>HNSW graph/link overhead (affected by HNSW settings such as <code>hnsw:M</code> and <code>hnsw:construction_ef</code>)</li>
+<li>In-memory bruteforce buffer (<code>hnsw:batch_size</code>) before vectors are merged into HNSW</li>
+<li>Query-time and filter working memory, plus normal process overhead</li>
+</ul>
+<p>For production sizing, add headroom and validate under realistic load.</p>
+<h2 id="quick-resource-calculator">Quick Resource Calculator<a class="headerlink" href="#quick-resource-calculator" title="Permanent link">&para;</a></h2>
+<p>Use this lightweight estimator to get a practical starting point.</p>
+<div class="resource-calc" data-resource-calculator>
+  <div class="resource-calc__inputs">
+    <label class="resource-calc__field resource-calc__field--vectors">
+      <span>Dataset size (number of vectors)</span>
+      <input data-input="vector_stop" type="range" min="0" max="3" step="1" value="2" />
+      <div class="resource-calc__ticks" aria-hidden="true">
+        <span>10k</span>
+        <span>100k</span>
+        <span>1M</span>
+        <span>10M</span>
+      </div>
+      <div class="resource-calc__current">
+        Selected:
+        <strong data-output="vector_count">-</strong>
+      </div>
+    </label>
+    <label class="resource-calc__field resource-calc__field--model">
+      <span>Embedding model (dimension)</span>
+      <select data-input="model_dimension">
+        <option value="384">MiniLM (384)</option>
+        <option value="1024">Cohere (1024)</option>
+        <option value="1536" selected>OAI 3-small (1536)</option>
+        <option value="3072">OAI 3-large (3072)</option>
+      </select>
+    </label>
+    <label class="resource-calc__field resource-calc__field--memory">
+      <span>Memory profile</span>
+      <select data-input="memory_profile">
+        <option value="balanced" selected>Balanced (+30%)</option>
+        <option value="lean">Lean prototype (+15%)</option>
+        <option value="heavy">Heavy query load (+50%)</option>
+      </select>
+    </label>
+    <label class="resource-calc__field resource-calc__field--storage">
+      <span>Storage profile</span>
+      <select data-input="storage_profile">
+        <option value="typical" selected>Typical mixed (~3x)</option>
+        <option value="vector_heavy">Vector-heavy (~2x)</option>
+        <option value="metadata_heavy">Metadata-heavy (~4x)</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="resource-calc__results">
+    <div class="resource-calc__card">
+      <div class="resource-calc__label">Vector payload</div>
+      <div class="resource-calc__value" data-output="payload_gib">-</div>
+    </div>
+    <div class="resource-calc__card">
+      <div class="resource-calc__label">Estimated RAM</div>
+      <div class="resource-calc__value" data-output="ram_gib">-</div>
+    </div>
+    <div class="resource-calc__card">
+      <div class="resource-calc__label">Estimated Disk</div>
+      <div class="resource-calc__value" data-output="disk_gib">-</div>
+    </div>
+    <div class="resource-calc__card">
+      <div class="resource-calc__label">CPU hint</div>
+      <div class="resource-calc__value" data-output="vcpu_hint">-</div>
+    </div>
+  </div>
+
+  <p class="resource-calc__note">
+    This calculator is for single-node/self-hosted sizing. For distributed/cloud (SPANN), see
+    <a href="../concepts/#how-data-flows-through-chroma-cloud-distributed-chroma">Core Concepts</a> and
+    <a href="../configuration/#spann-index-configuration">SPANN Index Configuration</a>.
+  </p>
+</div>
+
+<div class="admonition warning">
+<p class="admonition-title">Important: vector-first estimate</p>
+<p>This calculator is <strong>vector-first</strong> and does not fully model document or index growth.
+If you store large documents (near model context limits), <strong>document and metadata storage can exceed vector storage</strong>.
+Chroma also maintains a SQLite full-text index (<code>embedding_fulltext_search</code>) used by <code>where_document</code> queries, which adds disk overhead.
+See <a href="../storage-layout/#metadata-segment">Storage Layout</a> and <a href="../filters/">Filters</a> for details.</p>
+</div>
 <h2 id="disk">Disk<a class="headerlink" href="#disk" title="Permanent link">&para;</a></h2>
-<p>Disk storage requirements mainly depend on what metadata you store and the number of vectors you index. The heuristics
-is at least 2-4x the RAM required for the vector HNSW index.</p>
+<p>Disk storage requirements depend on vectors, documents, metadata, and WAL behavior.</p>
+<p>Use these heuristics:</p>
+<ul>
+<li>Start with at least the raw vector footprint plus several GB for metadata/documents/system data</li>
+<li>In many workloads, <code>2-4x</code> the vector payload estimate is a reasonable planning range</li>
+<li>If you store large documents/metadata blobs, disk needs can exceed that range</li>
+<li>If you rely on document filtering (<code>where_document</code>), plan additional space for SQLite FTS index structures</li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">WAL Cleanup</p>
-<p>Since version <code>0.5.6</code> Chroma automatically cleans up the WAL file.</p>
+<p>Recent Chroma versions support automatic WAL pruning.
+If your persistent data directory was created on older versions, or if auto-pruning is disabled, run WAL cleanup once and verify WAL config.
+See <a href="../advanced/wal-pruning/">WAL Pruning</a> and <a href="../../running/maintenance/#wal-configuration">Maintenance</a>.</p>
 </div>
 <h3 id="temporary-disk-space">Temporary Disk Space<a class="headerlink" href="#temporary-disk-space" title="Permanent link">&para;</a></h3>
 <p>Chroma uses temporary storage for its SQLite3 related operations - sorting and buffering large queries. By default,
@@ -2929,7 +3109,7 @@ relates to index and search speeds.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 19, 2024 15:42:24 UTC">November 19, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 21, 2026 11:54:12 UTC">February 21, 2026</span>
   </span>
 
     
@@ -3109,6 +3289,8 @@ relates to index and search speeds.</p>
         <script src="../../javascripts/ethicalads-init.js"></script>
       
         <script src="../../javascripts/concepts-pipeline.js"></script>
+      
+        <script src="../../javascripts/resource-calculator.js"></script>
       
     
   </body>
