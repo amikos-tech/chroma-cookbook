@@ -12,7 +12,7 @@ This llms.txt index points to the Chroma Cookbook pages that are most useful for
 
 ## Core Concepts
 
-- [Index](https://cookbook.chromadb.dev/core/index.md)
+- [Chroma Core: Concepts and APIs](https://cookbook.chromadb.dev/core/index.md)
 - [Chroma API](https://cookbook.chromadb.dev/core/api/index.md)
 - [Chroma Clients](https://cookbook.chromadb.dev/core/clients/index.md)
 - [Collections](https://cookbook.chromadb.dev/core/collections/index.md)
