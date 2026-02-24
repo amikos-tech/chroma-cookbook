@@ -753,6 +753,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#search-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Concepts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#how-data-flows-through-chroma-cloud-distributed-chroma" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3080,6 +3091,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#search-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Concepts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#how-data-flows-through-chroma-cloud-distributed-chroma" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3215,20 +3237,30 @@
 <li><a href="#for-general-users">For General Users</a></li>
 <li><a href="#for-power-users">For Power Users</a></li>
 </ul>
+<p>If you're new to Chroma, start with <strong>For General Users</strong>.</p>
 <h2 id="for-general-users">For General Users<a class="headerlink" href="#for-general-users" title="Permanent link">&para;</a></h2>
 <h3 id="tenancy-and-db-hierarchies">Tenancy and DB Hierarchies<a class="headerlink" href="#tenancy-and-db-hierarchies" title="Permanent link">&para;</a></h3>
 <p>The following picture illustrates the tenancy and DB hierarchy in Chroma:</p>
 <p><img alt="Tenancy and DB Hierarchy" src="../../assets/images/chroma-tenancy-hierarchy.png" /></p>
+<p>Quick mental model:</p>
+<ul>
+<li><strong>Tenant</strong> = the top-level account or organization boundary</li>
+<li><strong>Database</strong> = a project/app space inside that tenant</li>
+<li><strong>Collection</strong> = a dataset (your searchable records) inside that database</li>
+</ul>
 <div class="admonition warn">
 <p class="admonition-title">Storage</p>
 <p>In Chroma single-node, all data about tenancy, databases, collections and documents is stored in a single SQLite database.</p>
 </div>
 <h3 id="tenants">Tenants<a class="headerlink" href="#tenants" title="Permanent link">&para;</a></h3>
-<p>A tenant is a logical grouping for a set of databases. A tenant is designed to model a single organization or user. A tenant can have multiple databases.</p>
+<p>A tenant is the top-level container for data isolation. In practice, this is usually one team, company, or app owner.</p>
+<p>Example: <code>acme-inc</code> as one tenant.</p>
 <h3 id="databases">Databases<a class="headerlink" href="#databases" title="Permanent link">&para;</a></h3>
-<p>A database is a logical grouping for a set of collections. A database is designed to model a single application or project. A database can have multiple collections.</p>
+<p>A database is a project space inside a tenant. One database can hold many collections.</p>
+<p>Example: inside tenant <code>acme-inc</code>, you might have databases <code>support-bot</code>, <code>website-search</code>, and <code>analytics-rag</code>.</p>
 <h3 id="collections">Collections<a class="headerlink" href="#collections" title="Permanent link">&para;</a></h3>
-<p>Collections are the grouping mechanism for embeddings, documents, and metadata.</p>
+<p>A collection is the dataset you query. It stores records (IDs, documents, metadata, embeddings) together.</p>
+<p>Example: <code>support_articles_v1</code>.</p>
 <h3 id="documents">Documents<a class="headerlink" href="#documents" title="Permanent link">&para;</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Chunks of text</p>
@@ -3236,8 +3268,18 @@
 Unlike other frameworks that use the term "document" to mean a file, ChromaDB uses the term "document" to mean a chunk of text.</p>
 </div>
 <p>Documents are raw chunks of text that are associated with an embedding. Documents are stored in the database and can be queried.</p>
+<p>Example document:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&quot;To reset SSO, rotate your IdP certificate and re-run domain verification.&quot;
+</span></code></pre></div>
 <h3 id="metadata">Metadata<a class="headerlink" href="#metadata" title="Permanent link">&para;</a></h3>
 <p>Metadata is a dictionary of key-value pairs associated with an embedding.</p>
+<p>Example metadata:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;product_area&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;auth&quot;</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;published&quot;</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2025</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">}</span>
+</span></code></pre></div>
 <p>Metadata values can be:</p>
 <ul>
 <li>strings</li>
@@ -3260,10 +3302,16 @@ Unlike other frameworks that use the term "document" to mean a file, ChromaDB us
 <li><a href="https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/filtering/rust/src/main.rs">Rust</a></li>
 </ul>
 <h3 id="embedding-function">Embedding Function<a class="headerlink" href="#embedding-function" title="Permanent link">&para;</a></h3>
-<p>Embedding functions (embedding models) expose a consistent interface for generating vectors from documents or queries.</p>
+<p>An embedding function is the model/API that turns text into vectors.</p>
+<p>You run it on:</p>
+<ul>
+<li>documents (when writing data)</li>
+<li>queries (when searching)</li>
+</ul>
 <p>See Chroma's official <a href="https://docs.trychroma.com/integrations#%F0%9F%A7%AC-embedding-integrations">embedding integrations</a>.</p>
 <h3 id="embeddings">Embeddings<a class="headerlink" href="#embeddings" title="Permanent link">&para;</a></h3>
-<p>An embedding is a vector representation of a document, typically a list of <code>float32</code> values.</p>
+<p>An embedding is the numeric vector representation of text, typically a list of <code>float32</code> values.</p>
+<p>You can think of it as a machine-friendly fingerprint of meaning.</p>
 <h3 id="distance-function">Distance Function<a class="headerlink" href="#distance-function" title="Permanent link">&para;</a></h3>
 <p>Distance functions define similarity between vectors:</p>
 <ul>
@@ -3271,8 +3319,102 @@ Unlike other frameworks that use the term "document" to mean a file, ChromaDB us
 <li>Euclidean (<code>l2</code>): geometric distance</li>
 <li>Inner Product (<code>ip</code>): common in recommendation-like scenarios</li>
 </ul>
+<p>In most query outputs, <strong>lower distance means closer match</strong>.</p>
+<h3 id="search-concepts">Search Concepts<a class="headerlink" href="#search-concepts" title="Permanent link">&para;</a></h3>
+<p>Most search systems follow this flow: <strong>eligible pool -&gt; ranked list -&gt; optional fusion -&gt; optional grouping -&gt; returned page</strong>.</p>
+<p>Use this running example:</p>
+<ul>
+<li>Query intent: "Find troubleshooting docs about SSO login failures."</li>
+<li>Constraints: only <code>status=published</code> from <code>year &gt;= 2024</code>.</li>
+<li>Output goal: top 20 results (<code>title</code> + <code>score</code>), without one product area dominating.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>What it decides</th>
+<th>Chroma concept</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Candidate selection</td>
+<td>Which records are allowed to compete</td>
+<td><code>where</code>, <code>where_document</code></td>
+</tr>
+<tr>
+<td>2. Relevance ranking</td>
+<td>Which eligible records appear first</td>
+<td><code>Knn</code> / ranking expressions</td>
+</tr>
+<tr>
+<td>3. Hybrid fusion (optional)</td>
+<td>How multiple ranked lists are combined</td>
+<td><code>Rrf</code></td>
+</tr>
+<tr>
+<td>4. Diversity / dedup (optional)</td>
+<td>How many records to keep per bucket</td>
+<td><code>GroupBy</code> + <code>MinK</code> / <code>MaxK</code></td>
+</tr>
+<tr>
+<td>5. Response shaping</td>
+<td>How much and which fields to return</td>
+<td><code>limit</code>, pagination, <code>select</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-filters-decide-eligibility-not-relevance">1) Filters decide eligibility (not relevance)<a class="headerlink" href="#1-filters-decide-eligibility-not-relevance" title="Permanent link">&para;</a></h4>
+<p>Filters answer: "Can this record be considered?"</p>
+<ul>
+<li><code>where</code> filters metadata (for example <code>status=published</code>, <code>year &gt;= 2024</code>).</li>
+<li><code>where_document</code> filters document text content.</li>
+<li>Filters remove non-matching records, but they do not define final ranking order.</li>
+</ul>
+<h4 id="2-ranking-decides-order-among-eligible-records">2) Ranking decides order among eligible records<a class="headerlink" href="#2-ranking-decides-order-among-eligible-records" title="Permanent link">&para;</a></h4>
+<p>Ranking answers: "Among the records that passed filters, which are most relevant?"</p>
+<ul>
+<li><code>Knn</code> computes similarity/distance ordering for eligible records.</li>
+<li>In Search API scoring, lower scores represent better matches.</li>
+</ul>
+<p>For the running example, ranking pushes SSO/login-related incidents closest to the top after the eligibility filters are applied.</p>
+<h4 id="3-rrf-fuses-multiple-rankings-when-score-scales-differ">3) RRF fuses multiple rankings when score scales differ<a class="headerlink" href="#3-rrf-fuses-multiple-rankings-when-score-scales-differ" title="Permanent link">&para;</a></h4>
+<p>Hybrid fusion answers: "How do we merge strong semantic matches with strong keyword matches?"</p>
+<ul>
+<li><code>Rrf</code> combines rankings by position, not raw score magnitude.</li>
+<li>This is useful when dense and sparse ranking scores are on different scales.</li>
+</ul>
+<p>In the running example, dense retrieval might catch "authentication outage", while sparse retrieval catches exact tokens like "SSO" and "SAML"; <code>Rrf</code> blends both lists.</p>
+<h4 id="4-groupingaggregation-shapes-the-final-mix">4) Grouping/aggregation shapes the final mix<a class="headerlink" href="#4-groupingaggregation-shapes-the-final-mix" title="Permanent link">&para;</a></h4>
+<p>Grouping answers: "How do we avoid one category dominating the top results?"</p>
+<ul>
+<li><code>GroupBy</code> partitions ranked results by one or more keys.</li>
+<li><code>MinK</code> / <code>MaxK</code> keep top-k rows per group before flattening.</li>
+</ul>
+<p>In the running example, grouping by <code>product_area</code> with <code>k=2</code> can prevent ten near-duplicate auth incidents from crowding out other useful categories.</p>
+<h4 id="5-response-shaping-controls-what-comes-back">5) Response shaping controls what comes back<a class="headerlink" href="#5-response-shaping-controls-what-comes-back" title="Permanent link">&para;</a></h4>
+<p>Response shaping answers: "How much should the API return, and which fields do you actually need?"</p>
+<ul>
+<li>Pagination controls page size and offset.</li>
+<li><code>select</code> controls the returned payload.</li>
+</ul>
+<p>This keeps responses smaller and focused for downstream UI or agent use.</p>
+<p>Example: if search found 2,000 matches, you might return only the first 20 IDs, titles, and scores.</p>
+<p>See:</p>
+<ul>
+<li><a href="../filters/">Filters</a> for <code>where</code> / <code>where_document</code> syntax and operators.</li>
+<li><a href="../advanced/queries/#advanced-search-semantics">Advanced Search Semantics</a> for execution-stage behavior and tradeoffs.</li>
+<li><a href="https://docs.trychroma.com/cloud/search-api/overview">Search API Overview</a> for the full query model.</li>
+<li><a href="https://docs.trychroma.com/cloud/search-api/ranking">Ranking and Scoring</a>, <a href="https://docs.trychroma.com/cloud/search-api/hybrid-search">Hybrid Search with RRF</a>, and <a href="https://docs.trychroma.com/cloud/search-api/group-by">Group By &amp; Aggregation</a> for ranking primitives and grouping concepts.</li>
+<li><a href="https://docs.trychroma.com/cloud/search-api/examples">Examples &amp; Patterns</a> for concrete Search API implementations.</li>
+</ul>
 <h3 id="how-data-flows-through-chroma-cloud-distributed-chroma">How Data Flows Through Chroma Cloud (Distributed Chroma)<a class="headerlink" href="#how-data-flows-through-chroma-cloud-distributed-chroma" title="Permanent link">&para;</a></h3>
 <p>The animated flows below model Chroma Cloud / distributed Chroma, where gateway, WAL, compaction, and query execution are separate services. In local or single-node deployments, the same logical stages still apply but are often co-located in one process.</p>
+<p>What this means:</p>
+<ul>
+<li>On writes: Chroma saves changes durably first, then updates indexes in the background.</li>
+<li>On reads: Chroma combines indexed data and recent log data so results stay up to date.</li>
+</ul>
 <h4 id="write-path-add-update-upsert-delete">Write Path (Add / Update / Upsert / Delete)<a class="headerlink" href="#write-path-add-update-upsert-delete" title="Permanent link">&para;</a></h4>
 <div class="concept-flow-card">
   <div class="concept-flow-header">
@@ -3319,8 +3461,10 @@ Unlike other frameworks that use the term "document" to mean a file, ChromaDB us
 <p>Implementation-level (code-backed) local-vs-distributed query diagrams are in the <a href="#for-power-users">For Power Users</a> section below.</p>
 <h2 id="for-power-users">For Power Users<a class="headerlink" href="#for-power-users" title="Permanent link">&para;</a></h2>
 <p>This section is a code-oriented map of distributed Chroma, based on the Rust workspace (<code>rust/</code>) and the distributed architecture docs.</p>
+<p>If you mostly care about product behavior, you can skip this section. This part is for readers who want to connect concepts to Rust implementation details.</p>
 <h3 id="execution-paths-code-backed">Execution Paths (Code-Backed)<a class="headerlink" href="#execution-paths-code-backed" title="Permanent link">&para;</a></h3>
 <p>These diagrams are traced from the Rust frontend/segment/log implementation (<code>rust/frontend</code>, <code>rust/segment</code>, <code>rust/log</code>).</p>
+<p>Tip: treat these as "what service does what" maps, not required reading for everyday app development.</p>
 <h4 id="interactive-local-query-path-single-node-sqlite-hnsw">Interactive Local Query Path (Single-Node SQLite + HNSW)<a class="headerlink" href="#interactive-local-query-path-single-node-sqlite-hnsw" title="Permanent link">&para;</a></h4>
 <div class="concept-query-card" data-concept-pipeline>
   <div class="concept-query-header">
@@ -3398,11 +3542,11 @@ Unlike other frameworks that use the term "document" to mean a file, ChromaDB us
 </ul>
 <h3 id="distributed-architecture-main-services">Distributed Architecture (Main Services)<a class="headerlink" href="#distributed-architecture-main-services" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Gateway / frontend API service: <code>rust/frontend</code> (<a href="https://github.com/chroma-core/chroma/blob/main/rust/frontend/src/server.rs">server</a>)</li>
-<li>Query executor service: <code>rust/worker</code> (<a href="https://github.com/chroma-core/chroma/blob/main/rust/worker/src/lib.rs">query entrypoint</a>, <a href="https://github.com/chroma-core/chroma/blob/main/rust/worker/src/server.rs">query server</a>)</li>
-<li>Compaction service: <code>rust/worker</code> (<a href="https://github.com/chroma-core/chroma/blob/main/rust/worker/src/execution/orchestration/compact.rs">compaction orchestrator</a>)</li>
-<li>Write-ahead log: <code>rust/wal3</code> (<a href="https://github.com/chroma-core/chroma/blob/main/rust/wal3/README.md">design README</a>)</li>
-<li>Garbage collector service: <code>rust/garbage_collector</code> (<a href="https://github.com/chroma-core/chroma/blob/main/rust/garbage_collector/src/garbage_collector_orchestrator_v2.rs">orchestrator</a>)</li>
+<li>Gateway / frontend API service: <code>rust/frontend</code> (receives API calls and dispatches work) (<a href="https://github.com/chroma-core/chroma/blob/main/rust/frontend/src/server.rs">server</a>)</li>
+<li>Query executor service: <code>rust/worker</code> (runs query operators and orchestrators) (<a href="https://github.com/chroma-core/chroma/blob/main/rust/worker/src/lib.rs">query entrypoint</a>, <a href="https://github.com/chroma-core/chroma/blob/main/rust/worker/src/server.rs">query server</a>)</li>
+<li>Compaction service: <code>rust/worker</code> (turns WAL/log history into read-optimized segment versions) (<a href="https://github.com/chroma-core/chroma/blob/main/rust/worker/src/execution/orchestration/compact.rs">compaction orchestrator</a>)</li>
+<li>Write-ahead log: <code>rust/wal3</code> (durable append-only change log) (<a href="https://github.com/chroma-core/chroma/blob/main/rust/wal3/README.md">design README</a>)</li>
+<li>Garbage collector service: <code>rust/garbage_collector</code> (cleans old index/log artifacts safely) (<a href="https://github.com/chroma-core/chroma/blob/main/rust/garbage_collector/src/garbage_collector_orchestrator_v2.rs">orchestrator</a>)</li>
 </ul>
 <p>See also the official architecture doc: <a href="https://github.com/chroma-core/chroma/blob/main/docs/mintlify/docs/overview/architecture.mdx">Distributed Chroma Architecture</a>.</p>
 <h3 id="main-primitives-and-index-families">Main Primitives and Index Families<a class="headerlink" href="#main-primitives-and-index-families" title="Permanent link">&para;</a></h3>
@@ -3413,6 +3557,12 @@ Unlike other frameworks that use the term "document" to mean a file, ChromaDB us
 <li><code>Spann</code>, <code>QuantizedSpann</code></li>
 <li><code>Sqlite</code></li>
 </ul>
+<p>In simple terms:</p>
+<ul>
+<li><code>Blockfile*</code> segments store compacted record/metadata data.</li>
+<li><code>HnswDistributed</code> / <code>Spann</code> / <code>QuantizedSpann</code> are vector-search structures.</li>
+<li><code>Sqlite</code> is still used for specific metadata/system concerns.</li>
+</ul>
 <p>And at the index crate level (<code>rust/index/src</code>), major families include:</p>
 <ul>
 <li>Vector ANN: <code>hnsw</code>, <code>spann</code>, <code>quantized_spann</code></li>
@@ -3422,6 +3572,7 @@ Unlike other frameworks that use the term "document" to mean a file, ChromaDB us
 </ul>
 <h3 id="spann-in-distributed-chroma">SPANN in Distributed Chroma<a class="headerlink" href="#spann-in-distributed-chroma" title="Permanent link">&para;</a></h3>
 <p>Core implementation: <code>rust/index/src/spann/types.rs</code>.</p>
+<p>Quick intuition: instead of searching one giant graph, SPANN first searches cluster centers, then looks inside the best matching posting lists.</p>
 <p>Operationally, SPANN combines:</p>
 <ul>
 <li>a head/center ANN structure (HNSW over centers)</li>
@@ -3440,6 +3591,7 @@ Unlike other frameworks that use the term "document" to mean a file, ChromaDB us
 </ul>
 <h3 id="blockfile-format-and-update-model">Blockfile Format and Update Model<a class="headerlink" href="#blockfile-format-and-update-model" title="Permanent link">&para;</a></h3>
 <p>Core implementation: <code>rust/blockstore/src/arrow</code>.</p>
+<p>Quick intuition: blockfiles are immutable Arrow-backed data blocks with copy-on-write updates, so reads stay stable while writes build new versions.</p>
 <p>Production blockfiles are Arrow-backed and use:</p>
 <ul>
 <li>immutable blocks for persisted data</li>
@@ -3470,6 +3622,7 @@ Unlike other frameworks that use the term "document" to mean a file, ChromaDB us
 <li>register new segment metadata and offsets in sysdb/log metadata</li>
 </ul>
 <p>This is the core bridge from WAL durability to read-optimized segment versions.</p>
+<p>What this means: compaction is the "make recent writes fast to read" job.</p>
 <h3 id="garbage-collection-index-files-wal">Garbage Collection (Index Files + WAL)<a class="headerlink" href="#garbage-collection-index-files-wal" title="Permanent link">&para;</a></h3>
 <p>Two GC tracks run in the Rust implementation:</p>
 <ul>
@@ -3478,9 +3631,10 @@ Unlike other frameworks that use the term "document" to mean a file, ChromaDB us
 <li>compute versions to delete using cutoff + min-versions retention</li>
 <li>compute unreferenced files and clean up (dry-run / rename / delete)</li>
 <li>WAL GC in <code>wal3</code>:</li>
-<li>three-phase GC dance (compute garbage, manifest synchronization, delete)</li>
+<li>three-phase GC flow (compute garbage, manifest synchronization, delete)</li>
 <li>cursor-driven safety so required log ranges remain pinned</li>
 </ul>
+<p>What this means: GC removes storage that is no longer needed, but only after safety checks confirm active readers won't break.</p>
 <p>Relevant code:</p>
 <ul>
 <li><a href="https://github.com/chroma-core/chroma/blob/main/rust/garbage_collector/src/construct_version_graph_orchestrator.rs">version graph construction</a></li>
@@ -3508,7 +3662,7 @@ Unlike other frameworks that use the term "document" to mean a file, ChromaDB us
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 19, 2026 15:30:54 UTC">February 19, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 24, 2026 09:40:20 UTC">February 24, 2026</span>
   </span>
 
     

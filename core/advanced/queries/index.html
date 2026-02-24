@@ -951,30 +951,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#basic-concepts" class="md-nav__link">
+  <a href="#core-concepts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Basic concepts
+        Core Concepts
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Basic concepts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#metadata-index" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Metadata Index
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -987,8 +970,63 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Query Pipeline">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-search-semantics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Search Semantics (Cloud + Local)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Search Semantics (Cloud + Local)">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stage-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boundary-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boundary Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-tradeoffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Tradeoffs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-to-go-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to go next
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#validation" class="md-nav__link">
@@ -1024,10 +1062,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#post-search-query-to-fetch-metadata" class="md-nav__link">
+  <a href="#post-search-field-loading-projection-hydration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Post-Search Query to Fetch Metadata
+        Post-Search Field Loading (Projection / Hydration)
       
     </span>
   </a>
@@ -2850,30 +2888,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#basic-concepts" class="md-nav__link">
+  <a href="#core-concepts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Basic concepts
+        Core Concepts
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Basic concepts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#metadata-index" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Metadata Index
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2886,8 +2907,63 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Query Pipeline">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-search-semantics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Search Semantics (Cloud + Local)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Search Semantics (Cloud + Local)">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stage-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boundary-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boundary Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-tradeoffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Tradeoffs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-to-go-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where to go next
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#validation" class="md-nav__link">
@@ -2923,10 +2999,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#post-search-query-to-fetch-metadata" class="md-nav__link">
+  <a href="#post-search-field-loading-projection-hydration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Post-Search Query to Fetch Metadata
+        Post-Search Field Loading (Projection / Hydration)
       
     </span>
   </a>
@@ -2970,41 +3046,149 @@
 
 
 <h1 id="chroma-queries">Chroma Queries<a class="headerlink" href="#chroma-queries" title="Permanent link">&para;</a></h1>
-<p>This document attempts to capture how Chroma performs queries.</p>
-<h2 id="basic-concepts">Basic concepts<a class="headerlink" href="#basic-concepts" title="Permanent link">&para;</a></h2>
-<p>Chroma uses two types of indices (segments) which it queries over:</p>
+<p>This page explains what happens after you call <code>get()</code>, <code>query()</code>, or <code>search()</code>.</p>
+<p>We reuse the same running example from <a href="../../concepts/#search-concepts">Search Concepts</a>:</p>
 <ul>
-<li>Metadata Index - this is stored in the <code>chroma.sqlite3</code> and queried with SQL. Chroma stores metadata for all
-  collections in this index.</li>
-<li>Vector Index - this is the <code>HNSW</code> index stored under the UUID-named dirs under chroma persistent dir (or in memory for
-  EphemeralClient). One index per collection.</li>
+<li>Query intent: "Find troubleshooting docs about SSO login failures."</li>
+<li>Constraints: only <code>status=published</code>, <code>year &gt;= 2024</code></li>
+<li>Output goal: top 20 results (<code>title</code> + <code>score</code>), without one product area dominating.</li>
 </ul>
-<h3 id="metadata-index">Metadata Index<a class="headerlink" href="#metadata-index" title="Permanent link">&para;</a></h3>
-<p>The metadata index consists of two tables:</p>
+<h2 id="core-concepts">Core Concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
+<p>Modern Rust Chroma has two query execution paths:</p>
 <ul>
-<li><code>embeddings</code> - this is one-to-one mapping with the vectors stored in your collections</li>
-<li><code>embedding_metadata</code> - this is N+1 mapping to the vectors stored in your collections. Where <code>N</code> represents the number
-  of metadata fields per record and can vary for records. There is at least one entry in the <code>embedding_metadata</code> table
-  per embedding which represents the document.</li>
+<li><strong>Local single-node</strong> (<code>query()/get()</code> path): local executor over <code>Sqlite</code> metadata + local HNSW segments.</li>
+<li><strong>Distributed / Cloud</strong> (<code>search()</code> / distributed query workers): worker orchestrators over distributed segments (<code>BlockfileMetadata</code>, <code>BlockfileRecord</code>, <code>HnswDistributed</code>, <code>Spann</code>, <code>QuantizedSpann</code>) plus WAL/log materialization.</li>
 </ul>
+<p>When a query runs, Chroma pulls from three storage/index families:</p>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Local single-node</th>
+<th>Distributed / Cloud</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Metadata + documents</td>
+<td>SQLite tables + FTS5 (<code>where_document</code>) in <code>chroma.sqlite3</code></td>
+<td>Blockfile-backed record/metadata segments + recent log materialization</td>
+</tr>
+<tr>
+<td>Vector ANN</td>
+<td>Local HNSW segments (persisted or memory)</td>
+<td><code>HnswDistributed</code>, <code>Spann</code>, or <code>QuantizedSpann</code> (by collection config)</td>
+</tr>
+<tr>
+<td>Ranking primitives</td>
+<td>KNN (<code>query</code>)</td>
+<td>KNN + sparse paths + rank expressions/fusion (<code>search</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>For deeper Rust internals (segment families and Arrow-backed blockfiles), see <a href="../../concepts/#main-primitives-and-index-families">Concepts</a> and <a href="../../concepts/#blockfile-format-and-update-model">Blockfile Format and Update Model</a>.</p>
 <h2 id="query-pipeline">Query Pipeline<a class="headerlink" href="#query-pipeline" title="Permanent link">&para;</a></h2>
-<p>The query pipeline in Chroma:</p>
-<ul>
-<li>Validation - the query is validated</li>
-<li>Metadata pre-filter - Chroma plans a SQL query to select IDs to pass to KNN search. This step is skipped if <code>where</code>
-  or <code>where_document</code> are not provided.</li>
-<li>KNN search in HNSW index - Similarity search with based on the embedded user query(ies). If metadata pre-filter
-  returned any IDs to search on, only those IDs are searched. The KNN search will also return actual vectors should
-  <code>included</code> contain <code>embeddings</code>.</li>
-<li>Post-search query to fetch metadata - Fetch metadata for the IDs returned from the KNN search.</li>
-<li>Result aggregation - Aggregate the results from the metadata and the KNN search and ensure all <code>included</code> fields are
-  populated.</li>
-</ul>
+<p>Quick flow:</p>
+<ol>
+<li><strong>Validation</strong>: reject malformed requests early.</li>
+<li><strong>Candidate selection</strong>: apply filters/IDs to decide which records can compete.</li>
+<li><strong>KNN/rank evaluation</strong>: score and order eligible records.</li>
+<li><strong>Field loading (projection/select)</strong>: fetch the fields you asked for.</li>
+<li><strong>Result aggregation</strong>: return final rows in the requested shape.</li>
+</ol>
+<p>The same idea in one line: <strong>filter -&gt; score -&gt; load fields -&gt; return page</strong>.</p>
 <details class="note">
 <summary>Query Pipeline?</summary>
 <p>Why is it called a pipeline? Because each step in the query process depends on its predecessor's output.</p>
 </details>
 <p><img alt="Query Pipeline" src="../../../assets/images/query-pipeline.png" /></p>
+<h2 id="advanced-search-semantics">Advanced Search Semantics (Cloud + Local)<a class="headerlink" href="#advanced-search-semantics" title="Permanent link">&para;</a></h2>
+<p>This section explains how query composition works beyond filter syntax.</p>
+<h3 id="stage-model">Stage Model<a class="headerlink" href="#stage-model" title="Permanent link">&para;</a></h3>
+<p>The same query intent is typically expressed as:</p>
+<ol>
+<li>Candidate selection (filters)</li>
+<li>Relevance ranking</li>
+<li>Optional ranking fusion (hybrid)</li>
+<li>Optional grouping/aggregation</li>
+<li>Response shaping (pagination + field selection)</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>What it controls</th>
+<th>Local <code>query()/get()</code></th>
+<th>Cloud Search API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Candidate selection</td>
+<td>Which records are eligible</td>
+<td><code>where</code>, <code>where_document</code></td>
+<td><code>where(...)</code></td>
+</tr>
+<tr>
+<td>Relevance ranking</td>
+<td>Order of eligible records</td>
+<td>KNN over query embeddings</td>
+<td><code>rank(Knn(...))</code> or other rank expressions</td>
+</tr>
+<tr>
+<td>Hybrid fusion</td>
+<td>Merge multiple ranking signals</td>
+<td>Not available as native query primitive</td>
+<td><code>rank(Rrf(...))</code></td>
+</tr>
+<tr>
+<td>Grouping/aggregation</td>
+<td>Per-group diversity and caps</td>
+<td>Not available as native query primitive</td>
+<td><code>groupBy(...)</code> (<code>MinK</code>/<code>MaxK</code>)</td>
+</tr>
+<tr>
+<td>Response shaping</td>
+<td>Size and returned fields</td>
+<td><code>limit</code>, <code>offset</code>, <code>include</code></td>
+<td><code>limit</code>, pagination, <code>select</code></td>
+</tr>
+</tbody>
+</table>
+<p>What each stage means:</p>
+<ul>
+<li><strong>Filters</strong> decide what gets into the eligible pool.</li>
+<li><strong>Ranking</strong> decides what goes first.</li>
+<li><strong>Fusion/grouping</strong> decide how to balance quality and diversity.</li>
+<li><strong>Response shaping</strong> decides what the client actually gets back.</li>
+</ul>
+<h3 id="boundary-rules">Boundary Rules<a class="headerlink" href="#boundary-rules" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Filters (<code>where</code>, <code>where_document</code>) define eligibility, not final order.</li>
+<li>Ranking defines order among eligible candidates.</li>
+<li>RRF is a rank-fusion step for combining multiple ranked lists.</li>
+<li>Grouping/aggregation reshapes already-ranked results.</li>
+<li>Pagination and field selection shape the final payload.</li>
+</ul>
+<h3 id="practical-tradeoffs">Practical Tradeoffs<a class="headerlink" href="#practical-tradeoffs" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Filter selectivity affects latency</strong>: tighter filters reduce the eligible pool before similarity search.</li>
+<li><strong>Ranking depth affects recall and latency</strong>: deeper rank windows can improve recall but increase cost.</li>
+<li><strong>Hybrid helps lexical plus semantic intent</strong>: use RRF when exact token matches and semantic matches both matter.</li>
+<li><strong>Grouping improves diversity</strong>: use group caps when one category can dominate top results.</li>
+</ul>
+<p>Example:</p>
+<ul>
+<li>Without grouping, top results might all come from <code>product_area=auth</code>.</li>
+<li>With <code>groupBy(product_area)</code> and a per-group cap, results are more balanced across areas.</li>
+</ul>
+<h3 id="where-to-go-next">Where to go next<a class="headerlink" href="#where-to-go-next" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="../../filters/">Filters</a> for exact operator syntax.</li>
+<li><a href="../../concepts/#search-concepts">Search Concepts</a> for the conceptual pipeline.</li>
+<li><a href="https://docs.trychroma.com/cloud/search-api/overview">Search API Overview</a> for request composition.</li>
+<li><a href="https://docs.trychroma.com/cloud/search-api/ranking">Ranking and Scoring</a>, <a href="https://docs.trychroma.com/cloud/search-api/hybrid-search">Hybrid Search with RRF</a>, and <a href="https://docs.trychroma.com/cloud/search-api/group-by">Group By &amp; Aggregation</a> for Cloud behavior details.</li>
+</ul>
 <h3 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h3>
 <p>The following validations are performed:</p>
 <ul>
@@ -3013,15 +3197,85 @@
 <li>Ensure collection exists</li>
 <li>Validate query embeddings dimensions match that of the collection</li>
 </ul>
+<p>Common failure patterns:</p>
+<ul>
+<li>typo in filter operator</li>
+<li>querying a collection with incompatible embedding dimensions</li>
+<li>requesting unsupported fields/options for the chosen API path</li>
+</ul>
 <h3 id="metadata-pre-filter">Metadata Pre-Filter<a class="headerlink" href="#metadata-pre-filter" title="Permanent link">&para;</a></h3>
-<p>TBD</p>
+<p>Metadata pre-filter is the first narrowing step for filtered queries.</p>
+<ul>
+<li>In local/single-node Chroma, this stage evaluates <code>where</code> and <code>where_document</code> against the SQLite metadata segment.</li>
+<li><code>where_document</code> is backed by SQLite FTS5 (<code>embedding_fulltext_search</code>) as documented in <a href="../../storage-layout/#metadata-segment">Storage Layout</a>.</li>
+<li>The output is an eligible ID set passed to the ANN stage; if no filters are provided, this stage is skipped.</li>
+</ul>
+<p>Why this matters:</p>
+<ul>
+<li>Executing predicates before ANN search reduces unnecessary distance computations.</li>
+<li>Highly selective filters can reduce latency, but may also reduce the number of final hits if few records satisfy the predicate.</li>
+</ul>
+<p>In our running example:</p>
+<ul>
+<li><code>where: {"status":"published","year":{"$gte":2024}}</code></li>
+<li><code>where_document: {"$contains":"SSO"}</code></li>
+<li>Only matching IDs move on to KNN/rank.</li>
+</ul>
+<p>Research context:</p>
+<ul>
+<li>Filtered ANN is known to be harder than unfiltered ANN because vector proximity and predicate selectivity can be weakly correlated.</li>
+<li>See <a href="https://arxiv.org/abs/2403.04871">ACORN (Patel et al., 2024)</a> and <a href="https://doi.org/10.1145/3543507.3583552">Filtered-DiskANN (Gollapudi et al., WWW 2023)</a> for predicate-aware ANN design tradeoffs.</li>
+</ul>
 <h3 id="knn-search-in-hnsw-index">KNN Search in HNSW Index<a class="headerlink" href="#knn-search-in-hnsw-index" title="Permanent link">&para;</a></h3>
-<p>TBD</p>
-<h3 id="post-search-query-to-fetch-metadata">Post-Search Query to Fetch Metadata<a class="headerlink" href="#post-search-query-to-fetch-metadata" title="Permanent link">&para;</a></h3>
-<p>TBD</p>
+<p>This stage runs approximate nearest-neighbor search over the collection's HNSW vector index.</p>
+<ul>
+<li>Chroma local stores one HNSW index per collection (see <a href="../../storage-layout/#collection-subdirectories">Storage Layout</a>).</li>
+<li>If metadata pre-filter produced eligible IDs, the KNN stage searches within that constrained set.</li>
+<li>If <code>include</code> requests embeddings, vectors can be returned as part of this stage.</li>
+</ul>
+<p>In our running example:</p>
+<ul>
+<li>Chroma scores the query embedding against only the allowed IDs.</li>
+<li>Lower distance means closer semantic match.</li>
+</ul>
+<p>Tuning and tradeoffs:</p>
+<ul>
+<li><code>ef_search</code> controls how many neighbors are explored at query time; increasing it typically improves recall at higher latency/memory cost.</li>
+<li>Construction knobs such as <code>max_neighbors</code> (HNSW <code>M</code>) and <code>ef_construction</code> influence graph quality and memory/ingest cost.</li>
+<li>Use current index configuration surfaces (<code>configuration.hnsw</code> / <code>configuration.spann</code>) rather than legacy <code>metadata</code> keys (see <a href="../../configuration/#hnsw-index-configuration">Configuration</a>).</li>
+<li>For Cloud's schema-based configuration model (<code>VectorIndexConfig</code>, <code>HnswConfig</code>, <code>SpannConfig</code>), see <a href="https://docs.trychroma.com/cloud/schema/index-reference">Index Configuration Reference</a> and <a href="https://docs.trychroma.com/cloud/schema/schema-basics">Schema Basics</a>.</li>
+</ul>
+<p>Research context:</p>
+<ul>
+<li>HNSW's core idea is hierarchical small-world graph traversal with strong empirical recall/latency tradeoffs (<a href="https://arxiv.org/abs/1603.09320">Malkov &amp; Yashunin, 2016/2018</a>).</li>
+<li>For Cloud Search API ranking semantics (distance-style ordering, candidate limits, and expression behavior), see <a href="https://docs.trychroma.com/cloud/search-api/ranking">Ranking and Scoring</a>.</li>
+</ul>
+<h3 id="post-search-field-loading-projection-hydration">Post-Search Field Loading (Projection / Hydration)<a class="headerlink" href="#post-search-field-loading-projection-hydration" title="Permanent link">&para;</a></h3>
+<p>After KNN returns ranked records (<code>offset_id</code> + score), Chroma loads the requested fields to build the final payload.</p>
+<ul>
+<li><strong>Local single-node path</strong>: the local executor performs an explicit follow-up <code>Get</code> over returned IDs to load documents/metadata when requested.</li>
+<li><strong>Distributed/Cloud query path</strong>: worker execution uses <code>ProjectionOrchestrator</code>/<code>KnnProjection</code> (for <code>query/knn</code>) or <code>Select</code> in <code>RankOrchestrator</code> (for <code>search</code>) to load fields from record segments plus recent logs.</li>
+<li>In distributed execution, this is not a SQLite post-query; it is an operator-stage merge of compacted segment data and WAL/log materialization.</li>
+</ul>
+<p>What this means:</p>
+<ul>
+<li>Ranking can stay fast because it moves IDs/scores first.</li>
+<li>Field loading happens afterward, only for the rows you keep.</li>
+</ul>
+<p>Why this stage exists:</p>
+<ul>
+<li>ANN structures are optimized for vector neighborhood traversal, not full document/metadata row retrieval.</li>
+<li>Decoupling ANN from payload hydration is a common system pattern in vector retrieval pipelines.</li>
+</ul>
+<p>Operational guidance:</p>
+<ul>
+<li>Requested fields directly affect this stage cost: keep payload small (<code>include</code> in local APIs, <code>select</code> in Cloud Search API) when low latency is important.</li>
+<li>For Cloud query composition and output shaping, see <a href="https://docs.trychroma.com/cloud/search-api/overview">Search API Overview</a> and <a href="https://docs.trychroma.com/cloud/search-api/pagination-selection">Pagination &amp; Selection</a>.</li>
+<li>For single-node metadata/FTS storage details, see <a href="../../storage-layout/#metadata-segment">Storage Layout</a>.</li>
+</ul>
 <h3 id="result-aggregation">Result Aggregation<a class="headerlink" href="#result-aggregation" title="Permanent link">&para;</a></h3>
-<p>Result aggregation makes sure that results from the metadata fetch and the KNN search are fused together into the final
-result set.</p>
+<p>Result aggregation fuses ranked neighbors with hydrated payloads and requested fields into the final response shape.</p>
+<p>Example: if your request asks for <code>id</code>, <code>document</code>, and <code>score</code>, this is the stage that combines them into final rows (plus pagination/grouping effects, if configured).</p>
 
 
 
@@ -3042,7 +3296,7 @@ result set.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 25, 2024 08:39:05 UTC">July 25, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 24, 2026 09:40:20 UTC">February 24, 2026</span>
   </span>
 
     
