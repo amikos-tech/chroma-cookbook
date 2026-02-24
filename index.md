@@ -26,6 +26,7 @@ API Changelog (1.5.1 and 1.5.0)
 
 ## New and Noteworthy
 
+- 🧩 [Deployment Patterns](https://cookbook.chromadb.dev/running/deployment-patterns/index.md) - Added two practical deployment walkthroughs: embed Chroma directly in a Python app, or run it as a standalone server and connect with `HttpClient` - 📅`24-Feb-2026`
 - 📊 [Resource Requirements](https://cookbook.chromadb.dev/core/resources/index.md) - Added an interactive sizing calculator, clearer RAM formulas, and explicit disk caveats for large documents and FTS index overhead - 📅`21-Feb-2026`
 - 🚀 [Running Chroma](https://cookbook.chromadb.dev/running/running-chroma/index.md) - Refreshed CLI/Docker/Compose/Minikube guidance, aligned Helm chart notes, and added collapsed optional YAML config examples - 📅`20-Feb-2026`
 - 🧭 [Core Concepts](https://cookbook.chromadb.dev/core/concepts/index.md) - Reworked into General vs Power Users tracks, with interactive local/distributed execution diagrams and data-flow visuals - 📅`19-Feb-2026`
@@ -55,6 +56,7 @@ Once you're comfortable with the concepts, you can jump to the [Installation](ht
 
 ## Running ChromaDB
 
+- [Deployment Patterns](https://cookbook.chromadb.dev/running/deployment-patterns/index.md) - Decide between embedded (`PersistentClient`) and standalone server (`HttpClient`) with copy/paste examples
 - [CLI](https://cookbook.chromadb.dev/running/running-chroma/#chroma-cli) - Running ChromaDB via the CLI
 - [Docker](https://cookbook.chromadb.dev/running/running-chroma/#docker) - Running ChromaDB in Docker
 - [Docker Compose](https://cookbook.chromadb.dev/running/running-chroma/#docker-compose) - Running ChromaDB in Docker Compose
