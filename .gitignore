@@ -48,3 +48,6 @@ examples/collections/go/go.sum
 examples/collections/go/chroma-collection-examples
 examples/collections/python/__pycache__/
 examples/collections/rust/target/
+
+# Local Playwright CLI state
+.playwright-cli/
