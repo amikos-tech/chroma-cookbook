@@ -31,6 +31,7 @@ Latest ChromaDB version: [1.5.1](https://github.com/chroma-core/chroma/releases/
 
 ## New and Noteworthy
 
+- 🧩 [Deployment Patterns](running/deployment-patterns.md) - Added two practical deployment walkthroughs: embed Chroma directly in a Python app, or run it as a standalone server and connect with `HttpClient` - 📅`24-Feb-2026`
 - 📊 [Resource Requirements](core/resources.md) - Added an interactive sizing calculator, clearer RAM formulas, and explicit disk caveats for large documents and FTS index overhead - 📅`21-Feb-2026`
 - 🚀 [Running Chroma](running/running-chroma.md) - Refreshed CLI/Docker/Compose/Minikube guidance, aligned Helm chart notes, and added collapsed optional YAML config examples - 📅`20-Feb-2026`
 - 🧭 [Core Concepts](core/concepts.md) - Reworked into General vs Power Users tracks, with interactive local/distributed execution diagrams and data-flow visuals - 📅`19-Feb-2026`
@@ -61,6 +62,7 @@ ChromaDB.
 
 ## Running ChromaDB
 
+- [Deployment Patterns](running/deployment-patterns.md) - Decide between embedded (`PersistentClient`) and standalone server (`HttpClient`) with copy/paste examples
 - [CLI](running/running-chroma.md#chroma-cli) - Running ChromaDB via the CLI
 - [Docker](running/running-chroma.md#docker) - Running ChromaDB in Docker
 - [Docker Compose](running/running-chroma.md#docker-compose) - Running ChromaDB in Docker Compose
