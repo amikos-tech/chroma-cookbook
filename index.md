@@ -116,4 +116,4 @@ Below is a list of available clients for ChromaDB.
 
 ## Get Help
 
-Missing something? Let us know by [opening an issue](https://github.com/amikos-tech/chroma-cookbook/issues/new), reach out on [Discord](https://discord.gg/MMeYNTmh3x) (look for `@taz`).
+Missing something? Let us know by [opening an issue](https://github.com/amikos-tech/chroma-cookbook/issues/new), reach out on [Discord](https://discord.gg/MMeYNTmh3x) (look for `@taz`), or message us on [Twitter](https://twitter.com/AmikosTech).
