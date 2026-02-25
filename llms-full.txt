@@ -6,7 +6,7 @@ This llms.txt index points to the Chroma Cookbook pages that are most useful for
 
 # Getting Started
 
-# Get Cooking
+# Home
 
 This is a collection of small guides and recipes to help you get started with Chroma.
 

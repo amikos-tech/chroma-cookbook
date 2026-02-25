@@ -6,7 +6,7 @@ This llms.txt index points to the Chroma Cookbook pages that are most useful for
 
 ## Getting Started
 
-- [Get Cooking](https://cookbook.chromadb.dev/index.md): Chroma Cookbook overview and navigation
+- [Home](https://cookbook.chromadb.dev/index.md): Chroma Cookbook overview and navigation
 - [Getting Started with Contributing to Chroma](https://cookbook.chromadb.dev/contributing/getting-started/index.md): Contribution guide and local workflow notes
 - [Useful Shortcuts for Contributors](https://cookbook.chromadb.dev/contributing/useful-shortcuts/index.md): Contribution guide and local workflow notes
 
