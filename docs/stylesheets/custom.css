@@ -1,3 +1,11 @@
+.md-sidebar--primary .md-nav--primary > .md-nav__title {
+  display: none;
+}
+
+.md-sidebar--primary .md-nav--primary .md-nav__link {
+  font-size: 0.8rem;
+}
+
 .md-typeset .md-typeset__table {
   display: block;
   width: 100%;
