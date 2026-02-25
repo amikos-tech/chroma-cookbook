@@ -42,7 +42,7 @@ This llms.txt index points to the Chroma Cookbook pages that are most useful for
 ## Integrations
 
 - [Chroma Integrations With LangChain](https://cookbook.chromadb.dev/integrations/langchain/index.md)
-- [Langchain Embeddings](https://cookbook.chromadb.dev/integrations/langchain/embeddings/index.md)
+- [LangChain Embeddings](https://cookbook.chromadb.dev/integrations/langchain/embeddings/index.md)
 - [🦜⛓️ Langchain Retriever](https://cookbook.chromadb.dev/integrations/langchain/retrievers/index.md)
 - [Chroma Integrations With LlamaIndex](https://cookbook.chromadb.dev/integrations/llamaindex/index.md)
 - [LlamaIndex Embeddings](https://cookbook.chromadb.dev/integrations/llamaindex/embeddings/index.md)

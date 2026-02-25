@@ -7376,130 +7376,119 @@ In the above example, we use `Type=simple` because the Chroma CLI runs in the fo
 
 # Chroma Integrations With LangChain
 
-- [Embeddings](https://cookbook.chromadb.dev/integrations/langchain/embeddings/index.md) - learn how to use Chroma Embedding functions with LC and vice versa
-- [Retrievers](https://cookbook.chromadb.dev/integrations/langchain/retrievers/index.md) - learn how to use LangChain retrievers with Chroma
+Last updated: **February 25, 2026**
 
-# Langchain Embeddings
+## What's New In This Refresh
 
-## Embedding Functions
+- Updated embeddings guidance for Chroma `1.5.1`.
+- Replaced legacy vector store imports with `from langchain_chroma import Chroma`.
+- Replaced deprecated adapter usage with `ChromaLangchainEmbeddingFunction`.
+- Added a full runnable example: [examples/langchain/python/embeddings_example.py](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/langchain/python/embeddings_example.py)
+- Added example dependencies: [examples/langchain/requirements.txt](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/langchain/requirements.txt)
+- Documented a Chroma `1.5.1` query workaround for wrapped LangChain embeddings.
 
-Chroma and Langchain both offer embedding functions which are wrappers on top of popular embedding models.
+## Guides
 
-Unfortunately Chroma and LC's embedding functions are not compatible with each other. Below we offer two adapters to convert Chroma's embedding functions to LC's and vice versa.
+- [Embeddings](https://cookbook.chromadb.dev/integrations/langchain/embeddings/index.md) - use LangChain embedding models with Chroma collections and `langchain_chroma`.
+- [Retrievers](https://cookbook.chromadb.dev/integrations/langchain/retrievers/index.md) - use LangChain retrievers with Chroma.
 
-**Links**:
+# LangChain Embeddings
 
-- [Chroma Embedding Functions Definition](https://github.com/chroma-core/chroma/blob/ddb7ab13bee394cf942bc8a976629884cd0f4294/chromadb/api/types.py#L185-L201)
-- [Langchain Embedding Functions Definition](https://github.com/langchain-ai/langchain/blob/master/libs/core/langchain_core/embeddings/embeddings.py)
+This page shows the current Chroma (`1.5.1`) and LangChain embedding integration patterns.
 
-### Chroma Built-in Langchain Adapter
+## Use LangChain Embeddings With Chroma Collections
 
-As of version `0.5.x` Chroma offers a built-in two-way adapter to convert Langchain's embedding function to an adapted embeddings that can be used by both LC and Chroma. Implementation can be found [here](https://github.com/chroma-core/chroma/blob/main/chromadb/utils/embedding_functions/chroma_langchain_embedding_function.py).
+In Chroma `1.5.1`, wrap a LangChain `Embeddings` implementation with `ChromaLangchainEmbeddingFunction`.
 
-Find out more about Langchain's HuggingFace embeddings [here](https://python.langchain.com/docs/integrations/platforms/huggingface/#embedding-models).
+Query workaround in 1.5.1
+
+If `collection.query(query_texts=[...])` raises an error with wrapped LangChain embeddings, use `query_embeddings=[lc_embeddings.embed_query("...")]` instead.
 
 ```python
-# pip install chromadb langchain langchain-huggingface langchain-chroma
+# pip install chromadb==1.5.1 langchain-core langchain-huggingface sentence-transformers
 import chromadb
-from chromadb.utils.embedding_functions import create_langchain_embedding
+from chromadb.utils.embedding_functions import ChromaLangchainEmbeddingFunction
 from langchain_huggingface import HuggingFaceEmbeddings
 
-langchain_embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+lc_embeddings = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
+chroma_ef = ChromaLangchainEmbeddingFunction(embedding_function=lc_embeddings)
 
-ef = create_langchain_embedding(langchain_embeddings)
-client = chromadb.PersistentClient(path="./chroma-data")
-collection = client.get_or_create_collection(name="my_collection", embedding_function=ef)
-
-collection.add(ids=["1"],documents=["test document goes here"])
+client = chromadb.PersistentClient(path="./chroma-langchain-data")
+collection = client.get_or_create_collection(
+    name="my_collection",
+    embedding_function=chroma_ef,
+)
+collection.add(ids=["1"], documents=["test document goes here"])
 ```
 
-Find out more about Langchain's OpenAI embeddings [here](https://python.langchain.com/docs/integrations/text_embedding/openai/).
-
 ```python
-# pip install chromadb langchain langchain-openai langchain-chroma
+# pip install chromadb==1.5.1 langchain-core langchain-openai
 import chromadb
-from chromadb.utils.embedding_functions import create_langchain_embedding
+from chromadb.utils.embedding_functions import ChromaLangchainEmbeddingFunction
 from langchain_openai import OpenAIEmbeddings
 
-langchain_embeddings = OpenAIEmbeddings(
-    model="text-embedding-3-large",
-    api_key=os.environ["OPENAI_API_KEY"],
-)
-ef = create_langchain_embedding(langchain_embeddings)
-client = chromadb.PersistentClient(path="/chroma-data")
-collection = client.get_or_create_collection(name="my_collection", embedding_function=ef)
+lc_embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+chroma_ef = ChromaLangchainEmbeddingFunction(embedding_function=lc_embeddings)
 
-collection.add(ids=["1"],documents=["test document goes here"])
+client = chromadb.PersistentClient(path="./chroma-langchain-data")
+collection = client.get_or_create_collection(
+    name="my_collection",
+    embedding_function=chroma_ef,
+)
+collection.add(ids=["1"], documents=["test document goes here"])
 ```
 
-### Custom Adapter
+## Use Chroma As A LangChain Vector Store
 
-Here is the adapter to convert Chroma's embedding functions to LC's:
+For LangChain vector stores, use the `langchain-chroma` package:
 
 ```python
-from langchain_core.embeddings import Embeddings
+# pip install chromadb==1.5.1 langchain-core langchain-chroma langchain-openai
+from langchain_chroma import Chroma
+from langchain_openai import OpenAIEmbeddings
+
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+
+vector_store = Chroma(
+    collection_name="docs_store",
+    persist_directory="./chroma-langchain-store",
+    embedding_function=embeddings,
+)
+
+vector_store.add_texts(
+    texts=["foo", "bar", "baz"],
+    metadatas=[{"topic": "a"}, {"topic": "b"}, {"topic": "c"}],
+    ids=["1", "2", "3"],
+)
+
+results = vector_store.similarity_search("foo", k=2, filter={"topic": "a"})
+```
+
+## Optional: Manual Adapter (Chroma -> LangChain)
+
+If you already have a Chroma embedding function and want to use it in LangChain, you can adapt it to LangChain's `Embeddings` interface:
+
+```python
 from chromadb.api.types import EmbeddingFunction
+from langchain_core.embeddings import Embeddings
 
 
 class ChromaEmbeddingsAdapter(Embeddings):
-    def __init__(self, ef: EmbeddingFunction):
+    def __init__(self, ef: EmbeddingFunction) -> None:
         self.ef = ef
 
-    def embed_documents(self, texts):
+    def embed_documents(self, texts: list[str]) -> list[list[float]]:
         return self.ef(texts)
 
-    def embed_query(self, query):
+    def embed_query(self, query: str) -> list[float]:
         return self.ef([query])[0]
 ```
 
-Here is the adapter to convert [LC's embedding function](https://github.com/langchain-ai/langchain/blob/master/libs/core/langchain_core/embeddings/embeddings.py) s to Chroma's:
+## Full Working Example
 
-```python
-from langchain_core.embeddings import Embeddings
-from chromadb.api.types import EmbeddingFunction, Documents
-
-
-class LangChainEmbeddingAdapter(EmbeddingFunction[Documents]):
-    def __init__(self, ef: Embeddings):
-        self.ef = ef
-
-    def __call__(self, input: Documents) -> Embeddings:
-        # LC EFs also have embed_query but Chroma doesn't support that so we just use embed_documents
-        # TODO: better type checking
-        return self.ef.embed_documents(input)
-```
-
-### Example Usage
-
-Using Chroma Embedding Functions with Langchain:
-
-```python
-# pip install chromadb langchain langchain-huggingface langchain-chroma
-from langchain.vectorstores.chroma import Chroma
-from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
-
-texts = ["foo", "bar", "baz"]
-
-docs_vectorstore = Chroma.from_texts(
-    texts=texts,
-    collection_name="docs_store",
-    embedding=ChromaEmbeddingsAdapter(SentenceTransformerEmbeddingFunction(model_name="all-MiniLM-L6-v2")),
-)
-```
-
-Using Langchain Embedding Functions with Chroma:
-
-```python
-# pip install chromadb langchain langchain-huggingface langchain-chroma
-from langchain_huggingface import HuggingFaceEmbeddings
-import chromadb
-
-client = chromadb.Client()
-
-collection = client.get_or_create_collection("test", embedding_function=LangChainEmbeddingAdapter(
-    HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")))
-collection.add(ids=["1", "2", "3"], documents=["foo", "bar", "baz"])
-```
+See [examples/langchain/python/embeddings_example.py](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/langchain/python/embeddings_example.py) for a complete runnable script and dependency list. The example uses `DeterministicFakeEmbedding` so it runs without API keys.
 
 # 🦜⛓️ Langchain Retriever
 
