@@ -36,14 +36,11 @@ theme:
     - navigation.tracking
     - navigation.indexes
 extra:
-  homepage: https://www.trychroma.com
+  homepage: /
   social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/chroma-core/chroma
-      name: Chroma on GitHub
     - icon: fontawesome/brands/twitter
-      link: https://twitter.com/trychroma
-      name: Chroma on Twitter
+      link: https://twitter.com/AmikosTech
+      name: Amikos on Twitter
     - icon: fontawesome/brands/github
       link: https://github.com/amikos-tech
       name: Amikos on GitHub
