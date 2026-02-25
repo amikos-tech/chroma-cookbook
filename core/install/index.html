@@ -687,6 +687,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#chroma-cli-standalone-installer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chroma CLI (Standalone Installer)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#python" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2852,6 +2863,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#chroma-cli-standalone-installer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chroma CLI (Standalone Installer)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#python" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2919,7 +2941,7 @@
 <p>Chroma provides packages for Python, JavaScript/TypeScript, Go, and Rust.</p>
 <h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
 <p>Get a Chroma server running quickly with the CLI or Docker:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CLI</label><label for="__tabbed_1_2">Docker</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CLI (pip)</label><label for="__tabbed_1_2">CLI (Standalone cURL)</label><label for="__tabbed_1_3">Docker</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>chromadb
@@ -2927,11 +2949,39 @@
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>chromadb/chroma<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>chromadb/chroma
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>-sSL<span class="w"> </span>https://raw.githubusercontent.com/chroma-core/chroma/main/rust/cli/install/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>chroma<span class="w"> </span>run<span class="w"> </span>--path<span class="w"> </span>./getting-started
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>chromadb/chroma:1.5.1<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>chromadb/chroma:1.5.1
+</span></code></pre></div>
+<details class="tip">
+<summary>Version pinning</summary>
+<p>Avoid relying on <code>latest</code> for production or repeatable environments.
+Pin to a specific image tag (for example <code>chromadb/chroma:1.5.1</code>) and upgrade intentionally after validation.</p>
+</details>
+</div>
+</div>
+</div>
+<h2 id="chroma-cli-standalone-installer">Chroma CLI (Standalone Installer)<a class="headerlink" href="#chroma-cli-standalone-installer" title="Permanent link">&para;</a></h2>
+<p>If you prefer not to install Chroma through Python or JavaScript package managers, use the standalone CLI installer:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">cURL (macOS/Linux)</label><label for="__tabbed_2_2">Windows (PowerShell)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span>-sSL<span class="w"> </span>https://raw.githubusercontent.com/chroma-core/chroma/main/rust/cli/install/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">iex </span><span class="p">((</span><span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/chroma-core/chroma/main/rust/cli/install/install.ps1&#39;</span><span class="p">))</span>
 </span></code></pre></div>
 </div>
 </div>
 </div>
+<p>The standalone installer installs the <code>chroma</code> CLI binary so you can run:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>chroma<span class="w"> </span>run<span class="w"> </span>--path<span class="w"> </span>./getting-started
+</span></code></pre></div>
+<p>For the full CLI installation matrix (<code>pip</code>, <code>pipx</code>, <code>uv</code>, <code>npm</code>, <code>pnpm</code>, <code>bun</code>, <code>yarn</code>, and standalone installers), see <a href="../../running/running-chroma/#chroma-cli">Running Chroma</a> and the <a href="https://docs.trychroma.com/docs/cli/install">official CLI installation docs</a>.</p>
 <h2 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h2>
 <p>The <code>chromadb</code> package includes everything needed for both local (embedded) usage and connecting to a remote Chroma server.
 Here's a <a href="https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/install/python/verify.py">minimal working example</a> to confirm your installation.</p>
@@ -2945,34 +2995,34 @@ of Chroma, you cannot downgrade to an older version.</p>
 <summary>Releases</summary>
 <p>You can find Chroma releases on PyPI <a href="https://pypi.org/project/chromadb/#history">here</a>.</p>
 </details>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Latest Release</label><label for="__tabbed_2_2">Latest main branch</label><label for="__tabbed_2_3">Specific Version</label><label for="__tabbed_2_4">From PR Branch</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Latest Release</label><label for="__tabbed_3_2">Latest main branch</label><label for="__tabbed_3_3">Specific Version</label><label for="__tabbed_3_4">From PR Branch</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pip<span class="w"> </span>install<span class="w"> </span>chromadb
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>pip<span class="w"> </span>install<span class="w"> </span>chromadb
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
 <p>Directly from GitHub:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/chroma-core/chroma.git@main
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/chroma-core/chroma.git@main
 </span></code></pre></div>
 <p>From test PyPI:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--index-url<span class="w"> </span>https://test.pypi.org/simple/<span class="w"> </span>chromadb
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--index-url<span class="w"> </span>https://test.pypi.org/simple/<span class="w"> </span>chromadb
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
 <p>Installing a specific version of Chroma is useful when you want to ensure that your code works with a specific
 version of Chroma. To install a specific version of Chroma, run:</p>
 <p>From PyPI:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">chromadb</span><span class="o">==</span>&lt;x.y.z&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">chromadb</span><span class="o">==</span>&lt;x.y.z&gt;
 </span></code></pre></div>
 <p>Directly from GitHub (replace <code>x.y.z</code> with the <a href="https://github.com/chroma-core/chroma/tags">tag</a> of the version you want to install):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/chroma-core/chroma.git@x.y.z
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/chroma-core/chroma.git@x.y.z
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
 <p>It is sometimes useful to install a version of Chroma that has still some unreleased functionality. Like a PR that either fixes a bug or brings
 in a new functionality you may need. To test such unreleased code it is possible to install directly from a GH PR branch.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/chroma-core/chroma.git@&lt;branch_name&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/chroma-core/chroma.git@&lt;branch_name&gt;
 </span></code></pre></div>
 </div>
 </div>
@@ -2980,18 +3030,18 @@ in a new functionality you may need. To test such unreleased code it is possible
 <h2 id="javascripttypescript">JavaScript/TypeScript<a class="headerlink" href="#javascripttypescript" title="Permanent link">&para;</a></h2>
 <p>To install the Chroma JS/TS client package, use the following command depending on your package manager.
 Here's a <a href="https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/install/js/verify.mjs">minimal working example</a> to confirm your installation.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Yarn</label><label for="__tabbed_3_2">NPM</label><label for="__tabbed_3_3">PNPM</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Yarn</label><label for="__tabbed_4_2">NPM</label><label for="__tabbed_4_3">PNPM</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>yarn<span class="w"> </span>add<span class="w"> </span>chromadb<span class="w"> </span>@chroma-core/default-embed
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>yarn<span class="w"> </span>add<span class="w"> </span>chromadb<span class="w"> </span>@chroma-core/default-embed
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>npm<span class="w"> </span>install<span class="w"> </span>--save<span class="w"> </span>chromadb<span class="w"> </span>@chroma-core/default-embed
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>npm<span class="w"> </span>install<span class="w"> </span>--save<span class="w"> </span>chromadb<span class="w"> </span>@chroma-core/default-embed
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>pnpm<span class="w"> </span>add<span class="w"> </span>chromadb<span class="w"> </span>@chroma-core/default-embed
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>pnpm<span class="w"> </span>add<span class="w"> </span>chromadb<span class="w"> </span>@chroma-core/default-embed
 </span></code></pre></div>
 </div>
 </div>
@@ -3006,11 +3056,11 @@ Here's a <a href="https://github.com/amikos-tech/chroma-cookbook/blob/main/examp
 </ul>
 </details>
 <h2 id="go">Go<a class="headerlink" href="#go" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>go<span class="w"> </span>get<span class="w"> </span>github.com/amikos-tech/chroma-go
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>go<span class="w"> </span>get<span class="w"> </span>github.com/amikos-tech/chroma-go
 </span></code></pre></div>
 <p>Here's a <a href="https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/install/go/main.go">minimal working example</a> to confirm your installation.</p>
 <h2 id="rust">Rust<a class="headerlink" href="#rust" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>cargo<span class="w"> </span>add<span class="w"> </span>chroma
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>cargo<span class="w"> </span>add<span class="w"> </span>chroma
 </span></code></pre></div>
 <p>Here's a <a href="https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/install/rust/src/main.rs">minimal working example</a> to confirm your installation.</p>
 
@@ -3033,7 +3083,7 @@ Here's a <a href="https://github.com/amikos-tech/chroma-cookbook/blob/main/examp
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 17, 2026 13:04:44 UTC">February 17, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 25, 2026 10:49:49 UTC">February 25, 2026</span>
   </span>
 
     
