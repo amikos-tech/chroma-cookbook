@@ -6,18 +6,54 @@ Chroma provides packages for Python, JavaScript/TypeScript, Go, and Rust.
 
 Get a Chroma server running quickly with the CLI or Docker:
 
-=== "CLI"
+=== "CLI (pip)"
 
     ```bash
     pip install chromadb
     chroma run --path ./getting-started
     ```
 
+=== "CLI (Standalone cURL)"
+
+    ```bash
+    curl -sSL https://raw.githubusercontent.com/chroma-core/chroma/main/rust/cli/install/install.sh | bash
+    chroma run --path ./getting-started
+    ```
+
 === "Docker"
 
     ```bash
-    docker pull chromadb/chroma && docker run -p 8000:8000 chromadb/chroma
+    docker pull chromadb/chroma:1.5.1 && docker run -p 8000:8000 chromadb/chroma:1.5.1
     ```
+
+    ??? tip "Version pinning"
+
+        Avoid relying on `latest` for production or repeatable environments.
+        Pin to a specific image tag (for example `chromadb/chroma:1.5.1`) and upgrade intentionally after validation.
+
+## Chroma CLI (Standalone Installer)
+
+If you prefer not to install Chroma through Python or JavaScript package managers, use the standalone CLI installer:
+
+=== "cURL (macOS/Linux)"
+
+    ```bash
+    curl -sSL https://raw.githubusercontent.com/chroma-core/chroma/main/rust/cli/install/install.sh | bash
+    ```
+
+=== "Windows (PowerShell)"
+
+    ```powershell
+    iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/chroma-core/chroma/main/rust/cli/install/install.ps1'))
+    ```
+
+The standalone installer installs the `chroma` CLI binary so you can run:
+
+```bash
+chroma run --path ./getting-started
+```
+
+For the full CLI installation matrix (`pip`, `pipx`, `uv`, `npm`, `pnpm`, `bun`, `yarn`, and standalone installers), see [Running Chroma](../running/running-chroma.md#chroma-cli) and the [official CLI installation docs](https://docs.trychroma.com/docs/cli/install).
 
 ## Python
 
