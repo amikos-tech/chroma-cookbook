@@ -7,6 +7,15 @@ If you are building with Chroma, you usually start with one of two setups:
 
 You do not need to pick forever. Many teams start embedded, then move to server mode when they need shared access across apps or machines.
 
+!!! tip "Runnable Examples"
+
+    Complete, standalone files for this page are in [examples/deployment-patterns](https://github.com/amikos-tech/chroma-cookbook/tree/main/examples/deployment-patterns):
+
+    - [Embedded Python app (`app_embedded.py`)](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/deployment-patterns/embedded/python/app_embedded.py)
+    - [Server Python app (`app_http.py`)](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/deployment-patterns/server/python/app_http.py)
+    - [Docker Compose (`docker-compose.yml`)](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/deployment-patterns/server/docker-compose.yml)
+    - [Python dependencies (`requirements.txt`)](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/deployment-patterns/requirements.txt)
+
 ## Embedded in your application
 
 This is the easiest way to get moving: your app and Chroma run in the same Python process, and data is stored in a local folder.
@@ -29,7 +38,15 @@ Pick this when you want:
 pip install chromadb
 ```
 
-2. Create `app_embedded.py`:
+If you are running the repo examples directly, use pinned dependencies:
+
+```bash
+pip install -r examples/deployment-patterns/requirements.txt
+```
+
+2. Create `app_embedded.py`.
+
+A complete runnable version is available at [`examples/deployment-patterns/embedded/python/app_embedded.py`](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/deployment-patterns/embedded/python/app_embedded.py).
 
 ```python
 import chromadb
@@ -77,7 +94,7 @@ if __name__ == "__main__":
     )
 
     result = kb.search(query_embedding=[0.10, 0.19, 0.32], product="billing")
-    print(result["documents"][0])
+    print("Top match:", result["documents"][0])
 ```
 
 3. Run it:
@@ -100,7 +117,9 @@ Pick this when you want:
 
 ### Example 2: Typical server deployment + Python `HttpClient`
 
-1. Start Chroma server with Docker Compose:
+1. Start Chroma server with Docker Compose.
+
+A complete runnable version is available at [`examples/deployment-patterns/server/docker-compose.yml`](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/deployment-patterns/server/docker-compose.yml).
 
 ```yaml title="docker-compose.yml"
 services:
@@ -121,7 +140,9 @@ services:
 docker compose up -d
 ```
 
-2. Connect from your Python app with `HttpClient`:
+2. Create `app_http.py` and connect with `HttpClient`.
+
+A complete runnable version is available at [`examples/deployment-patterns/server/python/app_http.py`](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/deployment-patterns/server/python/app_http.py).
 
 ```python
 import os
@@ -147,14 +168,16 @@ if __name__ == "__main__":
         ids=["a3"],
         documents=["Password reset links expire after 15 minutes."],
         embeddings=[[0.09, 0.22, 0.28]],
+        metadatas=[{"product": "platform"}],
     )
 
     result = collection.query(
         query_embeddings=[[0.10, 0.21, 0.29]],
         n_results=1,
+        where={"product": "platform"},
         include=["documents", "distances"],
     )
-    print(result["documents"][0])
+    print("Top match:", result["documents"][0])
 ```
 
 3. Set host/port when needed (for example in containers):

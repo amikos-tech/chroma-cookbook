@@ -46,8 +46,14 @@ examples/collections/typescript/node_modules/
 examples/collections/typescript/package-lock.json
 examples/collections/go/go.sum
 examples/collections/go/chroma-collection-examples
-examples/collections/python/__pycache__/
 examples/collections/rust/target/
+
+# Examples runtime artifacts
+__pycache__/
+/chroma_data/
+/examples/**/__pycache__/
+/examples/**/chroma_data/
+/examples/**/chroma-data/
 
 # Local Playwright CLI state
 .playwright-cli/
