@@ -100,7 +100,7 @@ theme:
   favicon: favicon.ico
   font:
     text: Roboto
-    code: Roboto Mono
+    code: JetBrains Mono
   features:
     - content.code.annotate
     - content.code.copy
