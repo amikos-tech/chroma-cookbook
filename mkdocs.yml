@@ -3,6 +3,79 @@ site_url: https://cookbook.chromadb.dev
 site_description: Recipes and operational guides for building with Chroma.
 repo_url: https://github.com/amikos-tech/chroma-cookbook
 copyright: "Amikos Tech LTD, 2025 (Chroma contributors)"
+nav:
+  - index.md
+  - Core:
+      - core/index.md
+      - core/api.md
+      - core/clients.md
+      - core/collections.md
+      - core/concepts.md
+      - core/configuration.md
+      - core/document-ids.md
+      - core/filters.md
+      - core/install.md
+      - core/resources.md
+      - core/storage-layout.md
+      - core/system_constraints.md
+      - core/tenants-and-databases.md
+      - Advanced:
+          - core/advanced/queries.md
+          - core/advanced/wal-pruning.md
+          - core/advanced/wal.md
+  - Running:
+      - running/deployment-patterns.md
+      - running/health-checks.md
+      - running/maintenance.md
+      - running/performance-tips.md
+      - running/road-to-prod.md
+      - running/running-chroma.md
+      - running/systemd-service.md
+  - Embedding:
+      - embeddings/bring-your-own-embeddings.md
+      - embeddings/cross-encoders.md
+      - embeddings/embedding-models.md
+      - embeddings/gpu-support.md
+  - Integrations:
+      - Langchain:
+          - integrations/langchain/index.md
+          - integrations/langchain/embeddings.md
+          - integrations/langchain/retrievers.md
+      - Llamaindex:
+          - integrations/llamaindex/index.md
+          - integrations/llamaindex/embeddings.md
+      - Ollama:
+          - integrations/ollama/index.md
+          - integrations/ollama/embeddings.md
+  - Strategies:
+      - strategies/backup.md
+      - strategies/batching.md
+      - strategies/cors.md
+      - strategies/keyword-search.md
+      - strategies/memory-management.md
+      - strategies/multi-category-filters.md
+      - strategies/privacy.md
+      - strategies/rebuilding.md
+      - strategies/time-based-queries.md
+      - Multi-Tenancy:
+          - strategies/multi-tenancy/index.md
+          - strategies/multi-tenancy/authorization-model-impl-with-openfga.md
+          - strategies/multi-tenancy/authorization-model-with-openfga.md
+          - strategies/multi-tenancy/multi-user-basic-auth.md
+          - strategies/multi-tenancy/naive-multi-tenancy.md
+  - Security:
+      - security/index.md
+      - security/auth-1.0.x.md
+      - security/chroma-ssl-cert.md
+      - security/legacy-auth.md
+      - security/ssl-proxies.md
+  - Ecosystem:
+      - ecosystem/clients.md
+  - Contributing:
+      - contributing/getting-started.md
+      - contributing/useful-shortcuts.md
+  - FAQ:
+      - faq/index.md
 theme:
   name: material
   custom_dir: overrides
