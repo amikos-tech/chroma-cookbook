@@ -26,6 +26,7 @@ API Changelog (1.5.1 and 1.5.0)
 
 ## New and Noteworthy
 
+- 🔎 [Keyword Search](https://cookbook.chromadb.dev/strategies/keyword-search/index.md) - Expanded with Rust/Go guidance, regex (`$regex`/`$not_regex`) patterns, composition hints, and full runnable Python/TypeScript/Go/Rust examples - 📅`26-Feb-2026`
 - ✅ [Metadata Schema Validation](https://cookbook.chromadb.dev/strategies/metadata-schema-validation/index.md) - Added app-layer metadata contract patterns with short snippets and runnable Python/TypeScript/Go/Rust examples - 📅`26-Feb-2026`
 - 🧩 [Deployment Patterns](https://cookbook.chromadb.dev/running/deployment-patterns/index.md) - Added two practical deployment walkthroughs: embed Chroma directly in a Python app, or run it as a standalone server and connect with `HttpClient` - 📅`24-Feb-2026`
 - 📊 [Resource Requirements](https://cookbook.chromadb.dev/core/resources/index.md) - Added an interactive sizing calculator, clearer RAM formulas, and explicit disk caveats for large documents and FTS index overhead - 📅`21-Feb-2026`
@@ -104,7 +105,7 @@ Below is a list of available clients for ChromaDB.
 - [Backup](https://cookbook.chromadb.dev/strategies/backup/index.md) - Backing up ChromaDB data
 - [Batch Imports](https://cookbook.chromadb.dev/strategies/batching/index.md) - Importing data in batches
 - [Multi-Tenancy](https://cookbook.chromadb.dev/strategies/multi-tenancy/index.md) - Running multiple ChromaDB instances
-- [Keyword Search](https://cookbook.chromadb.dev/strategies/keyword-search/index.md) - Searching for keywords in ChromaDB
+- [Keyword Search](https://cookbook.chromadb.dev/strategies/keyword-search/index.md) - Keyword and regex document filtering with concise snippets plus runnable Python/TypeScript/Go/Rust examples
 - [Memory Management](https://cookbook.chromadb.dev/strategies/memory-management/index.md) - Managing memory in ChromaDB
 - [Metadata Schema Validation](https://cookbook.chromadb.dev/strategies/metadata-schema-validation/index.md) - Enforcing metadata contracts in your app layer (Pydantic/Zod/Go validator/Rust validator)
 - [Time-based Queries](https://cookbook.chromadb.dev/strategies/time-based-queries/index.md) - Querying data based on timestamps
