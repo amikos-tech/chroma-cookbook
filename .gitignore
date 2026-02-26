@@ -47,6 +47,10 @@ examples/collections/typescript/package-lock.json
 examples/collections/go/go.sum
 examples/collections/go/chroma-collection-examples
 examples/collections/rust/target/
+examples/keyword-search/typescript/node_modules/
+examples/keyword-search/typescript/package-lock.json
+examples/keyword-search/go/go.sum
+examples/keyword-search/rust/target/
 
 # Examples runtime artifacts
 __pycache__/
