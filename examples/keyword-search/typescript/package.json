@@ -1,0 +1,15 @@
+{
+  "name": "chroma-keyword-search-examples",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@chroma-core/default-embed": "latest",
+    "chromadb": "latest"
+  },
+  "devDependencies": {
+    "tsx": "latest"
+  },
+  "scripts": {
+    "start": "npx tsx keyword_search.ts"
+  }
+}
