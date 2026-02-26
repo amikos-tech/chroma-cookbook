@@ -52,6 +52,7 @@ nav:
       - strategies/batching.md
       - strategies/cors.md
       - strategies/keyword-search.md
+      - strategies/metadata-schema-validation.md
       - strategies/memory-management.md
       - strategies/multi-category-filters.md
       - strategies/privacy.md

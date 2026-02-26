@@ -1,0 +1,12 @@
+[package]
+name = "chroma-metadata-schema-examples"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+chroma = "0.13"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+url = "2"
+validator = { version = "0.18", features = ["derive"] }

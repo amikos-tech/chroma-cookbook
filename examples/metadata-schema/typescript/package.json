@@ -1,0 +1,16 @@
+{
+  "name": "chroma-metadata-schema-examples",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@chroma-core/default-embed": "latest",
+    "chromadb": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "tsx": "latest"
+  },
+  "scripts": {
+    "start": "npx tsx schema_validation.ts"
+  }
+}
