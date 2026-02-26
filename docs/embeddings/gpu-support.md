@@ -106,3 +106,6 @@ After [PR #1806](https://github.com/chroma-core/chroma/pull/1806):
 from chromadb.utils.embedding_functions import OpenCLIPEmbeddingFunction
 embedding_function = OpenCLIPEmbeddingFunction(device="cuda")
 ```
+
+For a full local walkthrough (index image URIs + text/image queries), see
+[Image Search](../strategies/image-search.md).

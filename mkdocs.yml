@@ -51,6 +51,7 @@ nav:
       - strategies/backup.md
       - strategies/batching.md
       - strategies/cors.md
+      - strategies/image-search.md
       - strategies/keyword-search.md
       - strategies/metadata-schema-validation.md
       - strategies/memory-management.md
