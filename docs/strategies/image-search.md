@@ -8,6 +8,11 @@ You can index image URIs and query by:
 
 This is useful when you need one collection to support both semantic text prompts and visual similarity search.
 
+!!! note "Language Scope"
+
+    This strategy currently ships with a Python runnable example.
+    The OpenCLIP + `ImageLoader` workflow demonstrated here is Python-centric in this cookbook.
+
 ## Quick Start Pattern
 
 Use this default flow:
@@ -81,11 +86,12 @@ Expected output includes:
 - CPU-only execution works but is slower than GPU.
 - Keep image files accessible on disk if you store local URIs.
 - Use metadata (`where`) to scope search in multi-tenant or multi-source pipelines.
+- Example data is written under `examples/image-search/python/chroma_data/image_search_example`.
 
 ## Core References
 
 - [Collections API (`add`, `query`, result shapes)](../core/collections.md)
-- [Embedding Models (modality tradeoffs)](../embeddings/embedding-models.md)
+- [Embedding Models (overview of supported models)](../embeddings/embedding-models.md)
 - [Embedding Functions GPU Support (OpenCLIP)](../embeddings/gpu-support.md)
 
 ## Full Runnable Example

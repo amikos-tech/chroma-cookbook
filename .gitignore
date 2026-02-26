@@ -58,6 +58,7 @@ __pycache__/
 /examples/**/__pycache__/
 /examples/**/chroma_data/
 /examples/**/chroma-data/
+/examples/**/.venv/
 
 # Local Playwright CLI state
 .playwright-cli/

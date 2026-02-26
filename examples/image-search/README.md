@@ -19,5 +19,5 @@ python image_search.py
 Notes:
 
 - The first run downloads the OpenCLIP model weights and may take longer.
-- Data is stored in `chroma_data/image_search_example`.
+- Data is stored in `examples/image-search/python/chroma_data/image_search_example`.
 - Sample images are included under `examples/image-search/python/images`.

@@ -107,5 +107,5 @@ from chromadb.utils.embedding_functions import OpenCLIPEmbeddingFunction
 embedding_function = OpenCLIPEmbeddingFunction(device="cuda")
 ```
 
-For a full local walkthrough (index image URIs + text/image queries), see
+For a full local walkthrough (index image URIs + text-to-image and image-to-image queries), see
 [Image Search](../strategies/image-search.md).
