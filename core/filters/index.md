@@ -28,6 +28,10 @@ Compose `where` and `where_document`, preview payloads, and copy Cloud or Local 
 
 ### Schema
 
+Filter Schema vs Record Metadata Schema
+
+The JSON schema below validates `where` filter expressions, not the metadata contract of records you ingest. For application-layer metadata validation/enforcement patterns, see [Metadata Schema Validation](https://cookbook.chromadb.dev/strategies/metadata-schema-validation/index.md).
+
 You can use the following JSON schema to validate your `where` filters:
 
 ```json

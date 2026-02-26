@@ -71,6 +71,7 @@ This llms.txt index points to the Chroma Cookbook pages that are most useful for
 - [CORS Configuration for Browser-Based Access](https://cookbook.chromadb.dev/strategies/cors/index.md)
 - [Keyword Search](https://cookbook.chromadb.dev/strategies/keyword-search/index.md)
 - [Memory Management](https://cookbook.chromadb.dev/strategies/memory-management/index.md)
+- [Metadata Schema Validation (Application Layer)](https://cookbook.chromadb.dev/strategies/metadata-schema-validation/index.md)
 - [Multi-Category/Tag Filters](https://cookbook.chromadb.dev/strategies/multi-category-filters/index.md)
 - [Privacy Strategies](https://cookbook.chromadb.dev/strategies/privacy/index.md)
 - [Rebuilding Chroma DB](https://cookbook.chromadb.dev/strategies/rebuilding/index.md)

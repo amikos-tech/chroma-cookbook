@@ -90,11 +90,11 @@ func main() {
 ```
 
 ```rust
-use chromadb::v2::ChromaClient;
+use chroma::{ChromaHttpClient, ChromaHttpClientOptions};
 
 #[tokio::main]
 async fn main() {
-    let client = ChromaClient::new(Default::default()).await.unwrap();
+    let client = ChromaHttpClient::new(ChromaHttpClientOptions::default());
     let collection = client.create_collection("test", None, None).await.unwrap();
 }
 ```
