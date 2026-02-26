@@ -31,6 +31,7 @@ Latest ChromaDB version: [1.5.1](https://github.com/chroma-core/chroma/releases/
 
 ## New and Noteworthy
 
+- ✅ [Metadata Schema Validation](strategies/metadata-schema-validation.md) - Added app-layer metadata contract patterns with short snippets and runnable Python/TypeScript/Go/Rust examples - 📅`26-Feb-2026`
 - 🧩 [Deployment Patterns](running/deployment-patterns.md) - Added two practical deployment walkthroughs: embed Chroma directly in a Python app, or run it as a standalone server and connect with `HttpClient` - 📅`24-Feb-2026`
 - 📊 [Resource Requirements](core/resources.md) - Added an interactive sizing calculator, clearer RAM formulas, and explicit disk caveats for large documents and FTS index overhead - 📅`21-Feb-2026`
 - 🚀 [Running Chroma](running/running-chroma.md) - Refreshed CLI/Docker/Compose/Minikube guidance, aligned Helm chart notes, and added collapsed optional YAML config examples - 📅`20-Feb-2026`
@@ -113,6 +114,7 @@ Below is a list of available clients for ChromaDB.
 - [Multi-Tenancy](strategies/multi-tenancy/index.md) - Running multiple ChromaDB instances
 - [Keyword Search](strategies/keyword-search.md) - Searching for keywords in ChromaDB
 - [Memory Management](strategies/memory-management.md) - Managing memory in ChromaDB
+- [Metadata Schema Validation](strategies/metadata-schema-validation.md) - Enforcing metadata contracts in your app layer (Pydantic/Zod/Go validator/Rust validator)
 - [Time-based Queries](strategies/time-based-queries.md) - Querying data based on timestamps
 - ✨ `Coming Soon` Testing with Chroma - learn how to test your GenAI apps that include Chroma.
 - ✨ `Coming Soon` Monitoring Chroma - learn how to monitor your Chroma instance.

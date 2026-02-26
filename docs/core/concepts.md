@@ -86,6 +86,12 @@ Array metadata constraints:
 - empty arrays are not allowed
 - nested arrays are not supported
 
+!!! info "No Built-In Metadata Contract Enforcement"
+
+    Chroma validates metadata value types, but it does not enforce a per-collection metadata schema contract.
+    If you need required keys, enums, or numeric ranges, validate metadata in your app before `add()` / `upsert()`.
+    See [Metadata Schema Validation](../strategies/metadata-schema-validation.md).
+
 See [Array Metadata](filters.md#array-metadata) for examples with `$contains` / `$not_contains`.
 
 Runnable filter examples:
