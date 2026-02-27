@@ -768,6 +768,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Operational Modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deployment-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2865,6 +2882,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Operational Modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deployment-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2891,36 +2925,69 @@
 <p>This section contains common constraints of Chroma.</p>
 <ul>
 <li>Chroma is thread-safe</li>
-<li>Chroma is not process-safe</li>
-<li>Multiple Chroma Clients (Ephemeral, Persistent, Http) can be created from one or more threads within the same process</li>
-<li>A collection's name is unique within a Tenant and DB</li>
-<li>A collection's dimensions cannot change after creation =&gt; you cannot change the embedding function after creation</li>
-<li>Chroma operates in two modes - standalone (PersistentClient, EphemeralClient) and client/server (HttpClient with
-  ChromaServer)</li>
+<li>Chroma is not process-safe for concurrent writers sharing the same local persistence path</li>
+<li>Multiple Chroma clients can be created from one or more threads within the same process (<code>PersistentClient</code>, <code>EphemeralClient</code>/<code>Client</code>, <code>HttpClient</code>, <code>AsyncHttpClient</code>, <code>CloudClient</code>)</li>
+<li>A collection's name is unique within a database (and therefore unique for a given Tenant + DB pair)</li>
+<li>A collection's dimension is fixed once embeddings are first written; subsequent writes and query embeddings must match that dimension</li>
+<li>Treat embedding function + distance metric as part of a collection's retrieval contract. Even where compatible embedding-function configuration updates are accepted, existing vectors are not re-embedded; switching models for existing data requires creating a new collection and re-indexing.</li>
+<li>Chroma is commonly used in two deployment patterns in this cookbook: embedded (local <code>PersistentClient</code>/<code>EphemeralClient</code>) and client/server (<code>HttpClient</code>/<code>AsyncHttpClient</code> with a running Chroma server, including managed cloud deployments)</li>
 <li>The distance function cannot be changed after collection creation.</li>
+<li>In embedded/single-node deployments, vector index segments are loaded into process memory on use. Memory growth follows the active working set unless you configure segment-cache controls (for example LRU with a memory limit).</li>
+<li>For single-node deployments, scaling is primarily vertical. For horizontal scale across larger workloads, use distributed Chroma/Cloud (or application-managed sharding across multiple single-node instances).</li>
 </ul>
 <h2 id="operational-modes">Operational Modes<a class="headerlink" href="#operational-modes" title="Permanent link">&para;</a></h2>
-<p>Chroma can be operated in two modes:</p>
+<p>In this cookbook, Chroma is shown in two deployment patterns:</p>
 <ul>
-<li>Standalone - This allows embedding Chroma in your python application without the need to communicate with external
-  processes.</li>
-<li>Client/Server - This allows embedding Chroma in your python application as a thin-client with minimal dependencies and
-  communicating with it via REST API. This is useful when you want to use Chroma from multiple processes or even
-  multiple machines.</li>
+<li>Embedded (local process) - Chroma runs in your application process with local persistence.</li>
+<li>Client/Server - Chroma runs as a separate server process and clients connect over HTTP. This includes both self-hosted servers and managed cloud deployments.</li>
 </ul>
 <p>Depending on the mode you choose, you will need to consider the following component responsibilities:</p>
 <ul>
-<li>Standalone:<ul>
-<li>Clients (Persistent, Ephemeral) - Responsible for persistence, embedding, querying</li>
+<li>Embedded:<ul>
+<li>Local clients (<code>PersistentClient</code>, <code>EphemeralClient</code>, <code>Client</code>) - Responsible for persistence, embedding (if configured), and querying in the same process</li>
 </ul>
 </li>
 <li>Client/Server:<ul>
-<li>Clients (HttpClient) - Responsible for embedding, communication with Chroma server via REST API</li>
-<li>Server - Responsible for persistence and querying</li>
+<li>HTTP clients (<code>HttpClient</code>, <code>AsyncHttpClient</code>, JS/TS <code>ChromaClient</code>, <code>CloudClient</code>) - Responsible for embedding calls (or providing precomputed embeddings) and communication with the Chroma server APIs</li>
+<li>Server - Responsible for persistence, indexing, and query execution</li>
 </ul>
 </li>
 </ul>
-<p><img alt="Responsibilities of Clients" src="../../assets/images/operational-modes-responsibilities.png" /></p>
+<h3 id="deployment-comparison">Deployment Comparison<a class="headerlink" href="#deployment-comparison" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Deployment Pattern</th>
+<th>Client Responsibilities</th>
+<th>Server Responsibilities</th>
+<th>Scaling Pattern</th>
+<th>Best Fit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Embedded (local process)</td>
+<td>Embed (if configured), write/read/query locally</td>
+<td>N/A (in-process)</td>
+<td>Primarily vertical</td>
+<td>Local dev, small deployments, lowest latency</td>
+</tr>
+<tr>
+<td>Client/Server (single-node server)</td>
+<td>Embed or provide embeddings, call API</td>
+<td>Persistence, indexing, query execution</td>
+<td>Primarily vertical for DB node; app tier can scale out</td>
+<td>Shared server across apps/processes</td>
+</tr>
+<tr>
+<td>Distributed / Cloud</td>
+<td>Embed or provide embeddings, call API</td>
+<td>Distributed persistence/indexing/query services</td>
+<td>Horizontal</td>
+<td>Large scale, high concurrency, operational isolation</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -2941,7 +3008,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 15, 2024 11:56:13 UTC">January 15, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 27, 2026 07:13:58 UTC">February 27, 2026</span>
   </span>
 
     
