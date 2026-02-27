@@ -10,29 +10,31 @@
       
       
       
-        <link rel="canonical" href="https://cookbook.chromadb.dev/faq/">
+        <link rel="canonical" href="https://cookbook.chromadb.dev/strategies/image-search/">
       
       
-        <link rel="prev" href="../contributing/useful-shortcuts/">
+        <link rel="prev" href="../cors/">
       
+      
+        <link rel="next" href="../keyword-search/">
       
       
         
       
       
-      <link rel="icon" href="../favicon.ico">
+      <link rel="icon" href="../../favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
-        <title>Frequently Asked Questions and Commonly Encountered Issues - Chroma Cookbook</title>
+        <title>Image Search (Multimodal Retrieval) - Chroma Cookbook</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,15 +53,15 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/ethicalads.css">
+      <link rel="stylesheet" href="../../stylesheets/ethicalads.css">
     
-      <link rel="stylesheet" href="../stylesheets/concepts-flow.css">
+      <link rel="stylesheet" href="../../stylesheets/concepts-flow.css">
     
-      <link rel="stylesheet" href="../stylesheets/custom.css">
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
     
-      <link rel="stylesheet" href="../stylesheets/filter-builder.css">
+      <link rel="stylesheet" href="../../stylesheets/filter-builder.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -97,7 +99,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#frequently-asked-questions-and-commonly-encountered-issues" class="md-skip">
+        <a href="#image-search-multimodal-retrieval" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +117,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="/" title="Chroma Cookbook" class="md-header__button md-logo" aria-label="Chroma Cookbook" data-md-component="logo">
       
-  <img src="../assets/images/logo.png" alt="logo">
+  <img src="../../assets/images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -132,7 +134,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Frequently Asked Questions and Commonly Encountered Issues
+              Image Search (Multimodal Retrieval)
             
           </span>
         </div>
@@ -272,7 +274,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="/" title="Chroma Cookbook" class="md-nav__button md-logo" aria-label="Chroma Cookbook" data-md-component="logo">
       
-  <img src="../assets/images/logo.png" alt="logo">
+  <img src="../../assets/images/logo.png" alt="logo">
 
     </a>
     Chroma Cookbook
@@ -299,7 +301,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -370,7 +372,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../core/" class="md-nav__link ">
+            <a href="../../core/" class="md-nav__link ">
               
   
   
@@ -414,7 +416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/api/" class="md-nav__link">
+      <a href="../../core/api/" class="md-nav__link">
         
   
   
@@ -442,7 +444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/clients/" class="md-nav__link">
+      <a href="../../core/clients/" class="md-nav__link">
         
   
   
@@ -470,7 +472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/collections/" class="md-nav__link">
+      <a href="../../core/collections/" class="md-nav__link">
         
   
   
@@ -498,7 +500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/concepts/" class="md-nav__link">
+      <a href="../../core/concepts/" class="md-nav__link">
         
   
   
@@ -526,7 +528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/configuration/" class="md-nav__link">
+      <a href="../../core/configuration/" class="md-nav__link">
         
   
   
@@ -554,7 +556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/document-ids/" class="md-nav__link">
+      <a href="../../core/document-ids/" class="md-nav__link">
         
   
   
@@ -582,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/filters/" class="md-nav__link">
+      <a href="../../core/filters/" class="md-nav__link">
         
   
   
@@ -610,7 +612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/install/" class="md-nav__link">
+      <a href="../../core/install/" class="md-nav__link">
         
   
   
@@ -638,7 +640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/resources/" class="md-nav__link">
+      <a href="../../core/resources/" class="md-nav__link">
         
   
   
@@ -666,7 +668,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/storage-layout/" class="md-nav__link">
+      <a href="../../core/storage-layout/" class="md-nav__link">
         
   
   
@@ -694,7 +696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/system_constraints/" class="md-nav__link">
+      <a href="../../core/system_constraints/" class="md-nav__link">
         
   
   
@@ -722,7 +724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/tenants-and-databases/" class="md-nav__link">
+      <a href="../../core/tenants-and-databases/" class="md-nav__link">
         
   
   
@@ -805,7 +807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/advanced/queries/" class="md-nav__link">
+      <a href="../../core/advanced/queries/" class="md-nav__link">
         
   
   
@@ -833,7 +835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/advanced/wal-pruning/" class="md-nav__link">
+      <a href="../../core/advanced/wal-pruning/" class="md-nav__link">
         
   
   
@@ -861,7 +863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core/advanced/wal/" class="md-nav__link">
+      <a href="../../core/advanced/wal/" class="md-nav__link">
         
   
   
@@ -967,7 +969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running/deployment-patterns/" class="md-nav__link">
+      <a href="../../running/deployment-patterns/" class="md-nav__link">
         
   
   
@@ -995,7 +997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running/health-checks/" class="md-nav__link">
+      <a href="../../running/health-checks/" class="md-nav__link">
         
   
   
@@ -1023,7 +1025,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running/maintenance/" class="md-nav__link">
+      <a href="../../running/maintenance/" class="md-nav__link">
         
   
   
@@ -1051,7 +1053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running/performance-tips/" class="md-nav__link">
+      <a href="../../running/performance-tips/" class="md-nav__link">
         
   
   
@@ -1079,7 +1081,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running/road-to-prod/" class="md-nav__link">
+      <a href="../../running/road-to-prod/" class="md-nav__link">
         
   
   
@@ -1107,7 +1109,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running/running-chroma/" class="md-nav__link">
+      <a href="../../running/running-chroma/" class="md-nav__link">
         
   
   
@@ -1135,7 +1137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../running/systemd-service/" class="md-nav__link">
+      <a href="../../running/systemd-service/" class="md-nav__link">
         
   
   
@@ -1227,7 +1229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../embeddings/bring-your-own-embeddings/" class="md-nav__link">
+      <a href="../../embeddings/bring-your-own-embeddings/" class="md-nav__link">
         
   
   
@@ -1255,7 +1257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../embeddings/cross-encoders/" class="md-nav__link">
+      <a href="../../embeddings/cross-encoders/" class="md-nav__link">
         
   
   
@@ -1283,7 +1285,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../embeddings/embedding-models/" class="md-nav__link">
+      <a href="../../embeddings/embedding-models/" class="md-nav__link">
         
   
   
@@ -1311,7 +1313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../embeddings/gpu-support/" class="md-nav__link">
+      <a href="../../embeddings/gpu-support/" class="md-nav__link">
         
   
   
@@ -1423,7 +1425,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../integrations/langchain/" class="md-nav__link ">
+            <a href="../../integrations/langchain/" class="md-nav__link ">
               
   
   
@@ -1467,7 +1469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../integrations/langchain/embeddings/" class="md-nav__link">
+      <a href="../../integrations/langchain/embeddings/" class="md-nav__link">
         
   
   
@@ -1495,7 +1497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../integrations/langchain/retrievers/" class="md-nav__link">
+      <a href="../../integrations/langchain/retrievers/" class="md-nav__link">
         
   
   
@@ -1551,7 +1553,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../integrations/llamaindex/" class="md-nav__link ">
+            <a href="../../integrations/llamaindex/" class="md-nav__link ">
               
   
   
@@ -1595,7 +1597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../integrations/llamaindex/embeddings/" class="md-nav__link">
+      <a href="../../integrations/llamaindex/embeddings/" class="md-nav__link">
         
   
   
@@ -1651,7 +1653,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../integrations/ollama/" class="md-nav__link ">
+            <a href="../../integrations/ollama/" class="md-nav__link ">
               
   
   
@@ -1695,7 +1697,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../integrations/ollama/embeddings/" class="md-nav__link">
+      <a href="../../integrations/ollama/embeddings/" class="md-nav__link">
         
   
   
@@ -1735,8 +1737,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1768,11 +1772,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -1793,7 +1797,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1811,7 +1815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../strategies/backup/" class="md-nav__link">
+      <a href="../backup/" class="md-nav__link">
         
   
   
@@ -1839,7 +1843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../strategies/batching/" class="md-nav__link">
+      <a href="../batching/" class="md-nav__link">
         
   
   
@@ -1867,7 +1871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../strategies/cors/" class="md-nav__link">
+      <a href="../cors/" class="md-nav__link">
         
   
   
@@ -1892,10 +1896,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../strategies/image-search/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Image Search (Multimodal Retrieval)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1911,6 +1942,94 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start Pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#short-snippet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Short Snippet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-to-end-python-walkthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        End-to-End Python Walkthrough
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core References
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-runnable-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full Runnable Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1923,7 +2042,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../strategies/keyword-search/" class="md-nav__link">
+      <a href="../keyword-search/" class="md-nav__link">
         
   
   
@@ -1951,7 +2070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../strategies/metadata-schema-validation/" class="md-nav__link">
+      <a href="../metadata-schema-validation/" class="md-nav__link">
         
   
   
@@ -1979,7 +2098,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../strategies/memory-management/" class="md-nav__link">
+      <a href="../memory-management/" class="md-nav__link">
         
   
   
@@ -2007,7 +2126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../strategies/multi-category-filters/" class="md-nav__link">
+      <a href="../multi-category-filters/" class="md-nav__link">
         
   
   
@@ -2035,7 +2154,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../strategies/privacy/" class="md-nav__link">
+      <a href="../privacy/" class="md-nav__link">
         
   
   
@@ -2063,7 +2182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../strategies/rebuilding/" class="md-nav__link">
+      <a href="../rebuilding/" class="md-nav__link">
         
   
   
@@ -2091,7 +2210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../strategies/time-based-queries/" class="md-nav__link">
+      <a href="../time-based-queries/" class="md-nav__link">
         
   
   
@@ -2145,7 +2264,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../strategies/multi-tenancy/" class="md-nav__link ">
+            <a href="../multi-tenancy/" class="md-nav__link ">
               
   
   
@@ -2189,7 +2308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../strategies/multi-tenancy/authorization-model-impl-with-openfga/" class="md-nav__link">
+      <a href="../multi-tenancy/authorization-model-impl-with-openfga/" class="md-nav__link">
         
   
   
@@ -2217,7 +2336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../strategies/multi-tenancy/authorization-model-with-openfga/" class="md-nav__link">
+      <a href="../multi-tenancy/authorization-model-with-openfga/" class="md-nav__link">
         
   
   
@@ -2245,7 +2364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../strategies/multi-tenancy/multi-user-basic-auth/" class="md-nav__link">
+      <a href="../multi-tenancy/multi-user-basic-auth/" class="md-nav__link">
         
   
   
@@ -2273,7 +2392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../strategies/multi-tenancy/naive-multi-tenancy/" class="md-nav__link">
+      <a href="../multi-tenancy/naive-multi-tenancy/" class="md-nav__link">
         
   
   
@@ -2342,7 +2461,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../security/" class="md-nav__link ">
+            <a href="../../security/" class="md-nav__link ">
               
   
   
@@ -2386,7 +2505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../security/auth-1.0.x/" class="md-nav__link">
+      <a href="../../security/auth-1.0.x/" class="md-nav__link">
         
   
   
@@ -2414,7 +2533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../security/chroma-ssl-cert/" class="md-nav__link">
+      <a href="../../security/chroma-ssl-cert/" class="md-nav__link">
         
   
   
@@ -2442,7 +2561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../security/legacy-auth/" class="md-nav__link">
+      <a href="../../security/legacy-auth/" class="md-nav__link">
         
   
   
@@ -2470,7 +2589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../security/ssl-proxies/" class="md-nav__link">
+      <a href="../../security/ssl-proxies/" class="md-nav__link">
         
   
   
@@ -2556,7 +2675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ecosystem/clients/" class="md-nav__link">
+      <a href="../../ecosystem/clients/" class="md-nav__link">
         
   
   
@@ -2644,7 +2763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../contributing/getting-started/" class="md-nav__link">
+      <a href="../../contributing/getting-started/" class="md-nav__link">
         
   
   
@@ -2672,7 +2791,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../contributing/useful-shortcuts/" class="md-nav__link">
+      <a href="../../contributing/useful-shortcuts/" class="md-nav__link">
         
   
   
@@ -2704,8 +2823,6 @@
       
   
   
-    
-  
   
   
     
@@ -2719,15 +2836,15 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
+            <a href="../../faq/" class="md-nav__link ">
               
   
   
@@ -2746,7 +2863,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2795,179 +2912,68 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#frequently-asked-questions" class="md-nav__link">
+  <a href="#quick-start-pattern" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Frequently Asked Questions
+        Quick Start Pattern
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Frequently Asked Questions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#distances-and-similarity" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Distances and Similarity
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#what-does-chroma-use-to-index-embedding-vectors" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What does Chroma use to index embedding vectors?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-to-set-dimensionality-of-my-collections" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How to set dimensionality of my collections?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#can-i-use-transformers-models-with-chroma" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Can I use transformers models with Chroma?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#should-i-store-my-documents-in-chroma" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Should I store my documents in Chroma?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dude-wheres-my-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        "Dude, where's my data?"
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#commonly-encountered-problems" class="md-nav__link">
+  <a href="#short-snippet" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Commonly Encountered Problems
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Commonly Encountered Problems">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#collection-dimensionality-mismatch" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Collection Dimensionality Mismatch
+        Short Snippet
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#large-distances-in-search-results" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#end-to-end-python-walkthrough" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Large Distances in Search Results
+        End-to-End Python Walkthrough
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#operationalerror-no-such-column-collectionstopic" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#operational-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        OperationalError: no such column: collections.topic
+        Operational Notes
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#sqlite3operationalerror-database-or-disk-is-full" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#core-references" class="md-nav__link">
     <span class="md-ellipsis">
       
-        sqlite3.OperationalError: database or disk is full
+        Core References
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#runtimeerror-chroma-is-running-in-http-only-client-mode-and-can-only-be-run-with-chromadbapifastapifastapi" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#full-runnable-example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        RuntimeError: Chroma is running in http-only client mode, and can only be run with 'chromadb.api.fastapi.FastAPI'
+        Full Runnable Example
       
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#valueerror-you-must-provide-an-embedding-function-to-compute-embeddings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ValueError: You must provide an embedding function to compute embeddings
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adding-documents-is-slow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Adding documents is slow
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2991,281 +2997,101 @@
   
 
 
-<h1 id="frequently-asked-questions-and-commonly-encountered-issues">Frequently Asked Questions and Commonly Encountered Issues<a class="headerlink" href="#frequently-asked-questions-and-commonly-encountered-issues" title="Permanent link">&para;</a></h1>
-<p>This section provides answers to frequently asked questions and information on commonly encountered problem when working
-with Chroma. These information below is based on interactions with the Chroma community.</p>
-<div class="admonition warn">
-<p class="admonition-title">404 Answer Not Found</p>
-<p>If you have a question that is not answered here, please reach out to us on our <a href="https://discord.gg/MMeYNTmh3x">Discord @taz</a>
-or <a href="https://github.com/chroma-core/chroma/issues">GitHub Issues</a></p>
+<h1 id="image-search-multimodal-retrieval">Image Search (Multimodal Retrieval)<a class="headerlink" href="#image-search-multimodal-retrieval" title="Permanent link">&para;</a></h1>
+<p>This page covers local/OSS image search with Chroma using OpenCLIP embeddings.
+You can index image URIs and query by:</p>
+<ul>
+<li>text (<code>query_texts</code>) for text-to-image retrieval</li>
+<li>image URI (<code>query_uris</code>) for image-to-image retrieval</li>
+</ul>
+<p>This is useful when you need one collection to support both semantic text prompts and visual similarity search.</p>
+<div class="admonition note">
+<p class="admonition-title">Language Scope</p>
+<p>This strategy currently ships with a Python runnable example.
+The OpenCLIP + <code>ImageLoader</code> workflow demonstrated here is Python-centric in this cookbook.</p>
 </div>
-<h2 id="frequently-asked-questions">Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permanent link">&para;</a></h2>
-<h3 id="distances-and-similarity">Distances and Similarity<a class="headerlink" href="#distances-and-similarity" title="Permanent link">&para;</a></h3>
-<p>Chroma uses distance metrics to measure how dissimilar a result is from a query. A distance of 0 indicates that the two items are identical, while larger distances indicate greater dissimilarity. This approach starts at 0 and increases upward, aligning with the intuitive notion of distance.</p>
-<p>In contrast, similarity metrics measure how similar two items are, often on a scale where higher values represent greater similarity. For example:</p>
-<ul>
-<li>Cosine Similarity ranges from -1 to 1, where:<ul>
-<li>1 indicates identical orientation (maximum similarity),</li>
-<li>0 indicates orthogonality (no similarity),</li>
-<li>-1 indicates opposite orientation (maximum dissimilarity).</li>
-</ul>
-</li>
-<li>Dot Product can range from negative to positive infinity, depending on the vectors' magnitudes and directions. When vectors are normalized and non-negative, the dot product ranges from 0 to 1.</li>
-</ul>
-<h4 id="why-does-chroma-use-distance-metrics">Why Does Chroma Use Distance Metrics?<a class="headerlink" href="#why-does-chroma-use-distance-metrics" title="Permanent link">&para;</a></h4>
-<p>Chroma uses distance metrics because they provide a straightforward way to quantify dissimilarity between vectors. Consistency is another key aspect - irrespecitve of the distance metric used, distance results follow the same conceptual framework. Finally, distance is is an intuitive metric which makes Chroma more accessible to a wider audience.</p>
-<h3 id="what-does-chroma-use-to-index-embedding-vectors">What does Chroma use to index embedding vectors?<a class="headerlink" href="#what-does-chroma-use-to-index-embedding-vectors" title="Permanent link">&para;</a></h3>
-<p>Chroma uses its own <a href="https://github.com/chroma-core/hnswlib">fork</a> of HNSW lib for indexing and searching embeddings. In addition to HNSW, Chroma also uses a
-Brute Force index, which acts as a buffer (prior to updating the HNSW graph) and performs exhaustive search using the
-same distance metric as the HNSW index.</p>
-<p><strong>Alternative Questions:</strong></p>
-<ul>
-<li>What library does Chroma use for vector index and search?</li>
-<li>What algorithm does Chroma use for vector search?</li>
-</ul>
-<h3 id="how-to-set-dimensionality-of-my-collections">How to set dimensionality of my collections?<a class="headerlink" href="#how-to-set-dimensionality-of-my-collections" title="Permanent link">&para;</a></h3>
-<p>When creating a collection, its dimensionality is determined by the dimensionality of the first embedding added to it.
-Once the dimensionality is set, it cannot be changed. Therefore, it is important to consistently use embeddings of the
-same dimensionality when adding or querying a collection.</p>
-<p><strong>Example:</strong></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">chromadb</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">collection</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>  <span class="c1"># dimensionality is not set yet</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># add an embedding to the collection</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id1&quot;</span><span class="p">],</span> <span class="n">embeddings</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>  <span class="c1"># dimensionality is set to 3</span>
-</span></code></pre></div>
-<p><strong>Alternative Questions:</strong></p>
-<ul>
-<li>Can I change the dimensionality of a collection?</li>
-</ul>
-<h3 id="can-i-use-transformers-models-with-chroma">Can I use <code>transformers</code> models with Chroma?<a class="headerlink" href="#can-i-use-transformers-models-with-chroma" title="Permanent link">&para;</a></h3>
-<p>Generally, yes you can use <code>transformers</code> models with Chroma. Although Chroma does not provide a wrapper for this, you
-can use <code>SentenceTransformerEmbeddingFunction</code> to achieve the same result. The sentence-transformer library will
-implicitly do mean-pooling on the last hidden layer, and you'll get a warning about
-it - <code>No sentence-transformers model found with name [model name]. Creating a new one with MEAN pooling.</code></p>
-<p><strong>Example:</strong></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">chromadb.utils.embedding_functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">SentenceTransformerEmbeddingFunction</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">ef</span> <span class="o">=</span> <span class="n">SentenceTransformerEmbeddingFunction</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;FacebookAI/xlm-roberta-large-finetuned-conll03-english&quot;</span><span class="p">)</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">ef</span><span class="p">([</span><span class="s2">&quot;test&quot;</span><span class="p">]))</span>
-</span></code></pre></div>
-<div class="admonition warn">
-<p class="admonition-title">Warning</p>
-<p>Not all models will work with the above method. Also mean pooling may not be the best strategy for the model. 
-Read the model card and try to understand what if any pooling the creators recommend. You may also want to normalize
-the embeddings before adding them to Chroma (pass <code>normalize_embeddings=True</code> to the <code>SentenceTransformerEmbeddingFunction</code> 
-EF constructor).</p>
+<h2 id="quick-start-pattern">Quick Start Pattern<a class="headerlink" href="#quick-start-pattern" title="Permanent link">&para;</a></h2>
+<p>Use this default flow:</p>
+<ol>
+<li>Create a collection with <code>OpenCLIPEmbeddingFunction</code> and <code>ImageLoader</code>.</li>
+<li>Add local image URIs via <code>collection.add(..., uris=[...])</code>.</li>
+<li>Query by text for discovery (<code>query_texts=["a photo of a dog"]</code>).</li>
+<li>Query by image URI for visual nearest-neighbor lookup (<code>query_uris=[...]</code>).</li>
+<li>Add metadata filters (<code>where</code>) when you need constrained retrieval by source, category, or tenant.</li>
+</ol>
+<h2 id="short-snippet">Short Snippet<a class="headerlink" href="#short-snippet" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Concept Snippet</p>
+<p>This snippet is intentionally small and may omit setup.
+Use the runnable example for an end-to-end script.</p>
 </div>
-<h3 id="should-i-store-my-documents-in-chroma">Should I store my documents in Chroma?<a class="headerlink" href="#should-i-store-my-documents-in-chroma" title="Permanent link">&para;</a></h3>
-<blockquote>
-<p>Note: This applies to Chroma single-node and local embedded clients. (Chroma version ca. 0.5.x)</p>
-</blockquote>
-<p>Chroma allows users to store both embeddings and documents, alongside metadata, in collections. Documents and metadata
-are both optional and depending on your use case you may choose to store them in Chroma or externally, or not at all.</p>
-<p>Here are some pros/cons to help you decide whether to store your documents in Chroma:</p>
-<p><strong>Pros:</strong></p>
-<ul>
-<li>Keeps all the data in the same place. You don't have to manage a separate DB for the documents</li>
-<li>Allows you to do keyword searches on the documents</li>
-</ul>
-<p><strong>Cons:</strong></p>
-<ul>
-<li>The database can grow substantially in size because documents are effectively duplicated - once for storing them as
-  metadata for queries and another for the FTS5 index.</li>
-<li>Queries performance hit</li>
-</ul>
-<h3 id="dude-wheres-my-data">"Dude, where's my data?"<a class="headerlink" href="#dude-wheres-my-data" title="Permanent link">&para;</a></h3>
-<p>If you are new to Chroma, you might be asking yourself: "Where is my data been stored?". As, per usual, the answer is: "It depends".</p>
-<p>Generally Chroma uses <code>PERSIST_DIRECTORY</code> to store the data, but when running in CLI mode, this is overridden by the CLI itself.</p>
-<ul>
-<li>Running in CLI mode (<code>--path</code> is not specified) data is stored in the <code>./chroma_data</code> directory.</li>
-<li>Running in Jupyter notebook, Colab or directly using <code>PersistentClient</code> (unless <code>path</code> is specified or env var <code>PERSIST_DIRECTORY</code> is set), data is stored in the <code>./chroma</code> directory.</li>
-<li>Running with docker compose (from source repo), the data is stored in docker volume named <code>chroma-data</code> (unless an explicit volume binding is specified)</li>
-<li>Running with <code>docker run</code> (no volume binding with <code>-v</code>) the data is stored in the container and is lost ☠️ when the container is removed.</li>
-</ul>
-<p>In all other cases where env var, parameter or binding is specified, the data is stored in your specified directory.</p>
-<h2 id="commonly-encountered-problems">Commonly Encountered Problems<a class="headerlink" href="#commonly-encountered-problems" title="Permanent link">&para;</a></h2>
-<h3 id="collection-dimensionality-mismatch">Collection Dimensionality Mismatch<a class="headerlink" href="#collection-dimensionality-mismatch" title="Permanent link">&para;</a></h3>
-<p><strong>Symptoms:</strong></p>
-<p>This error usually exhibits in the following error message:</p>
-<p><code>chromadb.errors.InvalidDimensionException: Embedding dimension XXX does not match collection dimensionality YYY</code></p>
-<p><strong>Context:</strong></p>
-<p>When adding/upserting or querying Chroma collection. This error is more visible/pronounced when using the Python APIs,
-but will
-also show up in also surface in other clients.</p>
-<p><strong>Cause:</strong></p>
-<p>You are trying to add or query a collection with vectors of a different dimensionality than the collection was created
-with.</p>
-<p><strong>Explanation/Solution:</strong></p>
-<p>When you first create a collection <code>client.create_collection("name")</code>, the collection will not have knowledge of its
-dimensionality so that allows you to add vectors of any dimensionality to it. However, once your first batch of
-embeddings is added to the collection, the collection will be locked to that dimensionality. Any subsequent query or
-add operation must use embeddings of the same dimensionality. The dimensionality of the embeddings is a characteristic
-of the embedding model (EmbeddingFunction) used to generate the embeddings, therefore it is important to consistently
-use the same EmbeddingFunction when adding or querying a collection.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>If you do not specify an <code>embedding_function</code> when creating (<code>client.create_collection</code>) or getting
-(<code>client.get_or_create_collection</code>) a collection, Chroma wil use its default <a href="https://docs.trychroma.com/embeddings#default-all-minilm-l6-v2">embedding function</a>.</p>
-</div>
-<h3 id="large-distances-in-search-results">Large Distances in Search Results<a class="headerlink" href="#large-distances-in-search-results" title="Permanent link">&para;</a></h3>
-<p><strong>Symptoms:</strong></p>
-<p>When querying a collection, you get results that are in the 10s or 100s.</p>
-<p><strong>Context:</strong></p>
-<p>Frequently when using you own embedding function.</p>
-<p><strong>Cause:</strong></p>
-<p>The embeddings are not normalized.</p>
-<p><strong>Explanation/Solution:</strong></p>
-<p><code>L2</code> (Euclidean distance) and <code>IP</code> (inner product) distance metrics are sensitive to the magnitude of the vectors.
-Chroma uses <code>L2</code> by
-default. Therefore, it is recommended to normalize the embeddings before adding them to Chroma.</p>
-<p>Here is an example how to normalize embeddings using L2 norm:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">normalize_L2</span><span class="p">(</span><span class="n">vector</span><span class="p">):</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Normalizes a vector to unit length using L2 norm.&quot;&quot;&quot;</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="k">if</span> <span class="n">norm</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="k">return</span> <span class="n">vector</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">return</span> <span class="n">vector</span> <span class="o">/</span> <span class="n">norm</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">chromadb.utils.data_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">ImageLoader</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">chromadb.utils.embedding_functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenCLIPEmbeddingFunction</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">collection</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_collection</span><span class="p">(</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;multimodal_collection&quot;</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">embedding_function</span><span class="o">=</span><span class="n">OpenCLIPEmbeddingFunction</span><span class="p">(),</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">data_loader</span><span class="o">=</span><span class="n">ImageLoader</span><span class="p">(),</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">],</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">uris</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;/path/to/cat.png&quot;</span><span class="p">,</span> <span class="s2">&quot;/path/to/dog.jpg&quot;</span><span class="p">],</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">metadatas</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;cat&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;dog&quot;</span><span class="p">}],</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">)</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">text_results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a photo of a dog&quot;</span><span class="p">],</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;uris&quot;</span><span class="p">,</span> <span class="s2">&quot;metadatas&quot;</span><span class="p">,</span> <span class="s2">&quot;distances&quot;</span><span class="p">],</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="p">)</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">image_results</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">query_uris</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;/path/to/dog.jpg&quot;</span><span class="p">],</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    <span class="n">n_results</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;uris&quot;</span><span class="p">,</span> <span class="s2">&quot;metadatas&quot;</span><span class="p">,</span> <span class="s2">&quot;distances&quot;</span><span class="p">],</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="operationalerror-no-such-column-collectionstopic"><code>OperationalError: no such column: collections.topic</code><a class="headerlink" href="#operationalerror-no-such-column-collectionstopic" title="Permanent link">&para;</a></h3>
-<p><strong>Symptoms:</strong></p>
-<p>The error <code>OperationalError: no such column: collections.topic</code> is raised when trying to access Chroma locally or
-remotely.</p>
-<p><strong>Context:</strong></p>
-<p>After upgrading to Chroma <code>0.5.0</code> or accessing your Chroma persistent data with Chroma client version <code>0.5.0</code>.</p>
-<p><strong>Cause:</strong></p>
-<p>In version <code>0.5.x</code> Chroma has made some SQLite3 schema changes that are not backwards compatible with the previous
-versions. Once you access your persistent data on the server or locally with the new Chroma version it will
-automatically migrate to the new schema. This operation is not reversible.</p>
-<p><strong>Explanation/Solution:</strong></p>
-<p>To resolve this issue you will need to upgrade all your clients accessing the Chroma data to version <code>0.5.x</code>.</p>
-<p>Here's a link to the migration performed by
-Chroma - https://github.com/chroma-core/chroma/blob/main/chromadb/migrations/sysdb/00005-remove-topic.sqlite.sql</p>
-<h3 id="sqlite3operationalerror-database-or-disk-is-full"><code>sqlite3.OperationalError: database or disk is full</code><a class="headerlink" href="#sqlite3operationalerror-database-or-disk-is-full" title="Permanent link">&para;</a></h3>
-<p><strong>Symptoms:</strong></p>
-<p>The error <code>sqlite3.OperationalError: database or disk is full</code> is raised when trying to access Chroma locally or
-remotely. The error can occur in any of the Chroma API calls.</p>
-<p><strong>Context:</strong></p>
-<p>There are two contexts in which this error can occur:</p>
+<h2 id="end-to-end-python-walkthrough">End-to-End Python Walkthrough<a class="headerlink" href="#end-to-end-python-walkthrough" title="Permanent link">&para;</a></h2>
+<p>The runnable example uses:</p>
 <ul>
-<li>When the persistent disk space is full or the disk quota is reached - This is where your <code>PERSIST_DIRECTORY</code> points
-  to.</li>
-<li>When there is not enough space in the temporary director - frequently <code>/tmp</code> on your system or container.</li>
+<li>local persistence (<code>PersistentClient</code>)</li>
+<li>bundled sample images (<code>cat</code>, <code>dog</code>, <code>dog-with-person</code>)</li>
+<li>OpenCLIP embeddings generated by Chroma</li>
 </ul>
-<p><strong>Cause:</strong></p>
-<p>When inserting new data and your Chroma persistent disk space is full or the disk quota is reached, the database will
-not be able to write metadata to SQLite3 db thus raising the error.</p>
-<p>When performing large queries or multiple concurrent queries, the temporary disk space may be exhausted.</p>
-<p><strong>Explanation/Solution:</strong></p>
-<p>To work around the first issue, you can increase the disk space or clean up the disk space. To work around the second
-issue, you can increase the temporary disk space (works fine for containers but might be a problem for VMs) or point
-SQLite3 to a different temporary directory by using <code>SQLITE_TMPDIR</code> environment variable.</p>
-<details class="tip">
-<summary>SQLite Temp File</summary>
-<p>More information on how sqlite3 uses temp files can be found <a href="https://www.sqlite.org/tempfiles.html">here</a>.</p>
-</details>
-<h3 id="runtimeerror-chroma-is-running-in-http-only-client-mode-and-can-only-be-run-with-chromadbapifastapifastapi"><code>RuntimeError: Chroma is running in http-only client mode, and can only be run with 'chromadb.api.fastapi.FastAPI'</code><a class="headerlink" href="#runtimeerror-chroma-is-running-in-http-only-client-mode-and-can-only-be-run-with-chromadbapifastapifastapi" title="Permanent link">&para;</a></h3>
-<p><strong>Symptoms and Context:</strong></p>
-<p>The following error is raised when trying to create a new <code>PersistentClient</code>, <code>EphemeralClient</code>, or <code>Client</code>:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>RuntimeError: Chroma is running in http-only client mode, and can only be run with &#39;chromadb.api.fastapi.FastAPI&#39; 
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>as the chroma_api_impl. see https://docs.trychroma.com/usage-guide?lang=py#using-the-python-http-only-client for more information.
+<p>Run:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>examples/image-search/python
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>python<span class="w"> </span>image_search.py
 </span></code></pre></div>
-<p><strong>Cause:</strong></p>
-<p>There are two possible causes for this error:</p>
+<p>Expected output includes:</p>
 <ul>
-<li><code>chromadb-client</code> is installed and you are trying to work with a local client.</li>
-<li>Dependency conflict with <code>chromadb-client</code> and <code>chromadb</code> packages.</li>
+<li>ranked text-to-image results for <code>"a photo of a dog"</code></li>
+<li>ranked text-to-image results for <code>"a photo of a cat"</code></li>
+<li>ranked image-to-image results using <code>dog-with-person.jpg</code> as query</li>
 </ul>
-<p><strong>Explanation/Solution:</strong></p>
-<p>Chroma (python) comes in two packages - <code>chromadb</code> and <code>chromadb-client</code>. The <code>chromadb-client</code> package is used to
-interact with
-a remote Chroma server. If you are trying to work with a local client, you should use the <code>chromadb</code> package. If you are
-planning to interact with remote server only it is recommended to use the <code>chromadb-client</code> package.</p>
-<p>If you intend to work locally with Chroma (e.g. embed in your app) then we suggest that you uninstall
-the <code>chromadb-client</code> package and install the <code>chromadb</code> package.</p>
-<p>To check which package you have installed:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pip<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>chromadb
-</span></code></pre></div>
-<p>To uninstall the <code>chromadb-client</code> package:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pip<span class="w"> </span>uninstall<span class="w"> </span>chromadb-client
-</span></code></pre></div>
-<details class="tip">
-<summary>Working with virtual environments</summary>
-<p>It is recommended to work with virtual environments to avoid dependency conflicts. To create a virtual environment 
-you can use the following snippet:</p>
-<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>pip<span class="w"> </span>install<span class="w"> </span>virtualenv
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>myenv
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">source</span><span class="w"> </span>myenv/bin/activate
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>pip<span class="w"> </span>install<span class="w"> </span>chromadb<span class="w"> </span><span class="c1"># and other packages you need</span>
-</span></code></pre></div>
-Alternatively you can use <code>conda</code> or <code>poetry</code> to manage your environments.</p>
-</details>
-<details class="tip">
-<summary>Default Embedding Function</summary>
-<p>Default embedding function - <code>chromadb.utils.embedding_functions.DefaultEmbeddingFunction</code> - can only be used with
-<code>chromadb</code> package.</p>
-</details>
-<h3 id="valueerror-you-must-provide-an-embedding-function-to-compute-embeddings"><code>ValueError: You must provide an embedding function to compute embeddings</code><a class="headerlink" href="#valueerror-you-must-provide-an-embedding-function-to-compute-embeddings" title="Permanent link">&para;</a></h3>
-<p><strong>Symptoms and Context:</strong></p>
-<p>The
-error <code>ValueError: You must provide an embedding function to compute embeddings.https://docs.trychroma.com/embeddings"</code>
-is frequently raised when trying to add embeddings to a collection using Python thin client (<code>chromadb-client</code> package).</p>
-<p><strong>Cause:</strong></p>
-<p>To reduce the size of the <code>chromadb-client</code> package the default embedding function which requires <code>onnxruntime</code> package
-is not included and is instead aliased to <code>None</code>.</p>
-<p><strong>Explanation/Solution:</strong></p>
-<p>To resolve this issue you must always provide an embedding function when you call <code>get_collection</code>
-or <code>get_or_create_collection</code> methods to provide the Http client with the necessary information to compute embeddings.</p>
-<h3 id="adding-documents-is-slow">Adding documents is slow<a class="headerlink" href="#adding-documents-is-slow" title="Permanent link">&para;</a></h3>
-<p><strong>Symptoms:</strong></p>
-<p>Adding documents to Chroma appears slow.</p>
-<p><strong>Context:</strong></p>
-<p>You've tried adding documents to a collection using the <code>add()</code> or <code>upsert()</code> methods.</p>
-<p><strong>Cause:</strong></p>
-<p>There are several reasons why the addition may be slow:</p>
+<h2 id="operational-notes">Operational Notes<a class="headerlink" href="#operational-notes" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Very large batches</li>
-<li>Slow embeddings</li>
-<li>Slow network</li>
+<li>First run downloads model weights; startup is slower initially.</li>
+<li>CPU-only execution works but is slower than GPU.</li>
+<li>Keep image files accessible on disk if you store local URIs.</li>
+<li>Use metadata (<code>where</code>) to scope search in multi-tenant or multi-source pipelines.</li>
+<li>Example data is written under <code>examples/image-search/python/chroma_data/image_search_example</code>.</li>
 </ul>
-<p>Let's break down each of the factors.</p>
-<p><strong>Very large batches</strong></p>
-<p>If you are trying to add 1000s or even 10,000s of documents at once and depending on how much data is already in your collection Chroma (specifically the HNSW graph updates) can become a bottleneck.</p>
-<p>To debug if this is the case you can reduce the size of the batch and see if the operation is faster. You can also check how many records are in the collection with <code>count()</code> method.</p>
-<p><strong>Slow embeddings</strong></p>
-<p>This is the most common reason for slow addition. Some embedding functions are slower than others. To debug this you can try the following example by adjusting the embeding function to your own. What the code tests is how much it takes to compute the embedings and then to add them to the collection in separate steps such that each can be measured independenty.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">chromadb.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">embedding_functions</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">chromadb</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">uuid</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">list_of_sentences</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">,</span> <span class="s2">&quot;How are you?&quot;</span><span class="p">]</span> <span class="c1"># this should be your list of documents to add</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># change the below EF definition to match your embedding function</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="n">default_ef</span> <span class="o">=</span> <span class="n">embedding_functions</span><span class="o">.</span><span class="n">DefaultEmbeddingFunction</span><span class="p">()</span> 
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="n">embeddings</span><span class="o">=</span><span class="n">default_ef</span><span class="p">(</span><span class="n">list_of_sentences</span><span class="p">)</span>
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Embedding time: </span><span class="si">{</span><span class="n">end_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>
-</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="o">.</span><span class="n">PersistentClient</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;my_chroma_data&quot;</span><span class="p">)</span>
-</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="n">collection</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_or_create_collection</span><span class="p">(</span><span class="s2">&quot;my_collection&quot;</span><span class="p">)</span>
-</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>
-</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="c1"># this will add your documents and the generated embeddings without Chroma doing the embedding for you internally</span>
-</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list_of_sentences</span><span class="p">))],</span><span class="n">documents</span><span class="o">=</span><span class="n">list_of_sentences</span><span class="p">,</span> <span class="n">embeddings</span><span class="o">=</span><span class="n">embeddings</span><span class="p">)</span>
-</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Chroma add time: </span><span class="si">{</span><span class="n">end_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span></code></pre></div>
-<p><strong>Slow network</strong></p>
-<p>If you are adding documents to a remote Chroma the network speed can become a bottleneck. To debug this you can with a local <code>PersistentClient</code> and see if the operation is faster.</p>
+<h2 id="core-references">Core References<a class="headerlink" href="#core-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../core/collections/">Collections API (<code>add</code>, <code>query</code>, result shapes)</a></li>
+<li><a href="../../embeddings/embedding-models/">Embedding Models (overview of supported models)</a></li>
+<li><a href="../../embeddings/gpu-support/">Embedding Functions GPU Support (OpenCLIP)</a></li>
+</ul>
+<h2 id="full-runnable-example">Full Runnable Example<a class="headerlink" href="#full-runnable-example" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/amikos-tech/chroma-cookbook/tree/main/examples/image-search">Overview and run commands</a></li>
+<li><a href="https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/image-search/python/image_search.py">Python</a></li>
+<li><a href="https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/image-search/python/requirements.txt">Requirements</a></li>
+</ul>
 
 
 
@@ -3286,7 +3112,7 @@ or <code>get_or_create_collection</code> methods to provide the Http client with
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 27, 2024 15:00:04 UTC">October 27, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 27, 2026 06:10:59 UTC">February 27, 2026</span>
   </span>
 
     
@@ -3448,20 +3274,20 @@ or <code>get_or_create_collection</code> methods to provide the Http client with
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.annotate", "content.code.copy", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.indexes"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.annotate", "content.code.copy", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="../javascripts/gtag.js"></script>
+        <script src="../../javascripts/gtag.js"></script>
       
-        <script src="../javascripts/ethicalads-init.js"></script>
+        <script src="../../javascripts/ethicalads-init.js"></script>
       
-        <script src="../javascripts/concepts-pipeline.js"></script>
+        <script src="../../javascripts/concepts-pipeline.js"></script>
       
-        <script src="../javascripts/resource-calculator.js"></script>
+        <script src="../../javascripts/resource-calculator.js"></script>
       
-        <script src="../javascripts/filter-builder.js"></script>
+        <script src="../../javascripts/filter-builder.js"></script>
       
     
   </body>

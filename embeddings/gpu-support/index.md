@@ -69,11 +69,11 @@ Prior to [PR #1806](https://github.com/chroma-core/chroma/pull/1806), we simply 
 import chromadb
 from chromadb.utils.embedding_functions import OpenCLIPEmbeddingFunction
 from chromadb.utils.data_loaders import ImageLoader
-import toch
+import torch
 import os
 
 IMAGE_FOLDER = "images"
-toch.device("cuda")
+torch.device("cuda")
 
 embedding_function = OpenCLIPEmbeddingFunction()
 image_loader = ImageLoader()
@@ -95,3 +95,5 @@ After [PR #1806](https://github.com/chroma-core/chroma/pull/1806):
 from chromadb.utils.embedding_functions import OpenCLIPEmbeddingFunction
 embedding_function = OpenCLIPEmbeddingFunction(device="cuda")
 ```
+
+For a full local walkthrough (index image URIs + text-to-image and image-to-image queries), see [Image Search](https://cookbook.chromadb.dev/strategies/image-search/index.md).
