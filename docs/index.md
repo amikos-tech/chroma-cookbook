@@ -31,6 +31,7 @@ Latest ChromaDB version: [1.5.1](https://github.com/chroma-core/chroma/releases/
 
 ## New and Noteworthy
 
+- 🖼️ [Image Search](strategies/image-search.md) - Added a multimodal retrieval walkthrough with a full runnable Python example for text-to-image and image-to-image search using OpenCLIP - 📅`26-Feb-2026`
 - 🔎 [Keyword Search](strategies/keyword-search.md) - Expanded with Rust/Go guidance, regex (`$regex`/`$not_regex`) patterns, composition hints, and full runnable Python/TypeScript/Go/Rust examples - 📅`26-Feb-2026`
 - ✅ [Metadata Schema Validation](strategies/metadata-schema-validation.md) - Added app-layer metadata contract patterns with short snippets and runnable Python/TypeScript/Go/Rust examples - 📅`26-Feb-2026`
 - 🧩 [Deployment Patterns](running/deployment-patterns.md) - Added two practical deployment walkthroughs: embed Chroma directly in a Python app, or run it as a standalone server and connect with `HttpClient` - 📅`24-Feb-2026`
@@ -113,6 +114,7 @@ Below is a list of available clients for ChromaDB.
 - [Backup](strategies/backup.md) - Backing up ChromaDB data
 - [Batch Imports](strategies/batching.md) - Importing data in batches
 - [Multi-Tenancy](strategies/multi-tenancy/index.md) - Running multiple ChromaDB instances
+- [Image Search](strategies/image-search.md) - Multimodal retrieval with OpenCLIP (`query_texts` and `query_uris`) plus a runnable Python example
 - [Keyword Search](strategies/keyword-search.md) - Keyword and regex document filtering with concise snippets plus runnable Python/TypeScript/Go/Rust examples
 - [Memory Management](strategies/memory-management.md) - Managing memory in ChromaDB
 - [Metadata Schema Validation](strategies/metadata-schema-validation.md) - Enforcing metadata contracts in your app layer (Pydantic/Zod/Go validator/Rust validator)
