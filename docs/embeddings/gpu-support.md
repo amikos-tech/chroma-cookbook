@@ -79,11 +79,11 @@ model and run it on the GPU.
 import chromadb
 from chromadb.utils.embedding_functions import OpenCLIPEmbeddingFunction
 from chromadb.utils.data_loaders import ImageLoader
-import toch
+import torch
 import os
 
 IMAGE_FOLDER = "images"
-toch.device("cuda")
+torch.device("cuda")
 
 embedding_function = OpenCLIPEmbeddingFunction()
 image_loader = ImageLoader()

@@ -31,6 +31,9 @@ Use this default flow:
     Use the runnable example for an end-to-end script.
 
 ```python
+from chromadb.utils.data_loaders import ImageLoader
+from chromadb.utils.embedding_functions import OpenCLIPEmbeddingFunction
+
 collection = client.create_collection(
     name="multimodal_collection",
     embedding_function=OpenCLIPEmbeddingFunction(),

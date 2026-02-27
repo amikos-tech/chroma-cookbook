@@ -36,16 +36,17 @@ def _build_openclip_components() -> tuple[Any, Any]:
         from chromadb.utils.embedding_functions import OpenCLIPEmbeddingFunction
     except ImportError as exc:
         raise SystemExit(
-            "Missing optional image-search dependencies. Install them with:\n"
-            "  pip install -r examples/image-search/python/requirements.txt"
+            "Missing optional image-search dependencies. From this directory, install with:\n"
+            "  pip install -r requirements.txt"
         ) from exc
 
     try:
         return OpenCLIPEmbeddingFunction(), ImageLoader()
     except Exception as exc:
         raise SystemExit(
-            "OpenCLIP initialization failed. Ensure optional dependencies are installed:\n"
-            "  pip install -r examples/image-search/python/requirements.txt"
+            f"OpenCLIP initialization failed: {exc}\n"
+            "If dependencies are missing, from this directory install with:\n"
+            "  pip install -r requirements.txt"
         ) from exc
 
 
