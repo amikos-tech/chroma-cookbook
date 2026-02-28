@@ -7,7 +7,7 @@ Shows a full roundtrip:
 4) run a filtered query and parse top metadata result
 
 Requires a running Chroma server, for example:
-    docker run --rm -p 8000:8000 chromadb/chroma:1.5.1
+    docker run --rm -p 8000:8000 chromadb/chroma:1.5.2
 """
 
 from typing import Any, Literal

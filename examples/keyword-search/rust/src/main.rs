@@ -1,7 +1,7 @@
 //! Chroma keyword search example using document filters and vector search.
 //!
 //! Requires a running Chroma server:
-//!     docker run --rm -p 8000:8000 chromadb/chroma:1.5.1
+//!     docker run --rm -p 8000:8000 chromadb/chroma:1.5.2
 
 use chroma::client::ChromaHttpClientOptions;
 use chroma::types::{

@@ -134,7 +134,7 @@ Prerequisites:
 docker run -d --rm --name chromadb \
   -p 8000:8000 \
   -v ./chroma-data:/data \
-  chromadb/chroma:1.5.1
+  chromadb/chroma:1.5.2
 ```
 
 Options:
@@ -142,7 +142,7 @@ Options:
 - `-p 8000:8000` specifies the port on which the Chroma server will be exposed.
 - `-v` specifies a local dir which is where Chroma will store its data so when the container is destroyed the data
   remains. For current Chroma server images, mount `/data` to persist DB files.
-- `chromadb/chroma:1.5.1` indicates the Chroma release version.
+- `chromadb/chroma:1.5.2` indicates the Chroma release version.
 
 !!! note "Current v1.x Images"
 
@@ -167,7 +167,7 @@ Options:
       -v ./chroma-data:/data \
       -v ./chroma.docker.yaml:/chroma/config.yaml:ro \
       -e CONFIG_PATH=/chroma/config.yaml \
-      chromadb/chroma:1.5.1
+      chromadb/chroma:1.5.2
     ```
 
 ### Docker Compose
@@ -181,7 +181,7 @@ Prerequisites:
 ```yaml
 services:
   chromadb:
-    image: chromadb/chroma:1.5.1
+    image: chromadb/chroma:1.5.2
     volumes:
       - ./chroma-data:/data
     ports:
@@ -193,7 +193,7 @@ services:
       retries: 3
 ```
 
-The above will create a container with Chroma `1.5.1`, expose it on local port `8000`, and persist data in
+The above will create a container with Chroma `1.5.2`, expose it on local port `8000`, and persist data in
 `./chroma-data` relative to where `docker-compose.yaml` is run.
 
 ??? example "Optional: Docker Compose with YAML config file (collapsed)"
@@ -201,7 +201,7 @@ The above will create a container with Chroma `1.5.1`, expose it on local port `
     ```yaml
     services:
       chromadb:
-        image: chromadb/chroma:1.5.1
+        image: chromadb/chroma:1.5.2
         volumes:
           - ./chroma-data:/data
           - ./chroma.docker.yaml:/chroma/config.yaml:ro
@@ -249,7 +249,7 @@ Get and install the chart:
 helm repo add chroma https://amikos-tech.github.io/chromadb-chart/
 helm repo update
 helm install chroma chroma/chromadb \
-  --set image.tag="1.5.1"
+  --set image.tag="1.5.2"
 ```
 
 ??? note "Auth values for Chroma `>= 1.0.0`"

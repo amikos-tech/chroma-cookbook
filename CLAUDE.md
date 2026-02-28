@@ -45,7 +45,7 @@ The cookbook is organized as a MkDocs documentation site:
 
 - Documentation uses Markdown with MkDocs Material extensions (admonition, pymdownx, etc.)
 - Code snippets support syntax highlighting and copy buttons
-- Latest ChromaDB version tracked in index.md: 1.5.1
+- Latest ChromaDB version tracked in index.md: 1.5.2
 - New content should follow existing patterns in respective directories
 - Use admonitions for notes, warnings, and tips
 - Include practical examples and code snippets where applicable

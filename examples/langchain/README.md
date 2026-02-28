@@ -2,7 +2,7 @@
 
 This example matches:
 
-- `chromadb==1.5.1`
+- `chromadb==1.5.2`
 - current `langchain_chroma` APIs (`from langchain_chroma import Chroma`)
 
 ## Run

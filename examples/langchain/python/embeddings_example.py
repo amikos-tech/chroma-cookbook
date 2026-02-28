@@ -1,4 +1,4 @@
-"""LangChain embeddings example for Chroma 1.5.1 and current LangChain APIs.
+"""LangChain embeddings example for Chroma 1.5.2 and current LangChain APIs.
 
 This script demonstrates:
 1. Using a LangChain embedding model with a native Chroma collection via
