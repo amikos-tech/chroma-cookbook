@@ -1,7 +1,7 @@
 """Chroma filtering examples - metadata filters, document filters, and pagination.
 
 Requires a running Chroma server, for example:
-    docker run -p 8000:8000 chromadb/chroma:1.5.0
+    docker run -p 8000:8000 chromadb/chroma:1.5.2
 """
 
 import chromadb
