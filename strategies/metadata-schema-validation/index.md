@@ -220,7 +220,7 @@ metadata.validate()?;
 All runnable examples assume a local Chroma server:
 
 ```bash
-docker run --rm -p 8000:8000 chromadb/chroma:1.5.1
+docker run --rm -p 8000:8000 chromadb/chroma:1.5.2
 ```
 
 - [Overview and run commands](https://github.com/amikos-tech/chroma-cookbook/tree/main/examples/metadata-schema)

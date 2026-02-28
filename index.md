@@ -2,9 +2,16 @@
 
 This is a collection of small guides and recipes to help you get started with Chroma.
 
-Latest ChromaDB version: [1.5.1](https://github.com/chroma-core/chroma/releases/tag/1.5.1)
+Latest ChromaDB version: [1.5.2](https://github.com/chroma-core/chroma/releases/tag/1.5.2)
 
-API Changelog (1.5.1 and 1.5.0)
+API Changelog (1.5.2, 1.5.1, and 1.5.0)
+
+**Version [1.5.2](https://github.com/chroma-core/chroma/releases/tag/1.5.2) (February 27, 2026)**
+
+| Area                | API-facing change                                                  | Reference                                                |
+| ------------------- | ------------------------------------------------------------------ | -------------------------------------------------------- |
+| Python Client       | Added `Client.close()` and context manager support (`with` syntax) | [#6373](https://github.com/chroma-core/chroma/pull/6373) |
+| Embedding Functions | Added Perplexity embedding function support (`Pplx EF`)            | [#6511](https://github.com/chroma-core/chroma/pull/6511) |
 
 **Version [1.5.1](https://github.com/chroma-core/chroma/releases/tag/1.5.1) (February 19, 2026)**
 

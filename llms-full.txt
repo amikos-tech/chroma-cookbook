@@ -10,9 +10,16 @@ This llms.txt index points to the Chroma Cookbook pages that are most useful for
 
 This is a collection of small guides and recipes to help you get started with Chroma.
 
-Latest ChromaDB version: [1.5.1](https://github.com/chroma-core/chroma/releases/tag/1.5.1)
+Latest ChromaDB version: [1.5.2](https://github.com/chroma-core/chroma/releases/tag/1.5.2)
 
-API Changelog (1.5.1 and 1.5.0)
+API Changelog (1.5.2, 1.5.1, and 1.5.0)
+
+**Version [1.5.2](https://github.com/chroma-core/chroma/releases/tag/1.5.2) (February 27, 2026)**
+
+| Area                | API-facing change                                                  | Reference                                                |
+| ------------------- | ------------------------------------------------------------------ | -------------------------------------------------------- |
+| Python Client       | Added `Client.close()` and context manager support (`with` syntax) | [#6373](https://github.com/chroma-core/chroma/pull/6373) |
+| Embedding Functions | Added Perplexity embedding function support (`Pplx EF`)            | [#6511](https://github.com/chroma-core/chroma/pull/6511) |
 
 **Version [1.5.1](https://github.com/chroma-core/chroma/releases/tag/1.5.1) (February 19, 2026)**
 
@@ -5254,12 +5261,12 @@ chroma run --path ./getting-started
 ```
 
 ```bash
-docker pull chromadb/chroma:1.5.1 && docker run -p 8000:8000 chromadb/chroma:1.5.1
+docker pull chromadb/chroma:1.5.2 && docker run -p 8000:8000 chromadb/chroma:1.5.2
 ```
 
 Version pinning
 
-Avoid relying on `latest` for production or repeatable environments. Pin to a specific image tag (for example `chromadb/chroma:1.5.1`) and upgrade intentionally after validation.
+Avoid relying on `latest` for production or repeatable environments. Pin to a specific image tag (for example `chromadb/chroma:1.5.2`) and upgrade intentionally after validation.
 
 ## Chroma CLI (Standalone Installer)
 
@@ -6119,7 +6126,7 @@ docker-compose.yml
 ```yaml
 services:
   chroma:
-    image: chromadb/chroma:1.5.1
+    image: chromadb/chroma:1.5.2
     ports:
       - "8000:8000"
     volumes:
@@ -6208,7 +6215,7 @@ The simplest form of health check is to use the `healthcheck` directive in the `
 ```yaml
 services:
   chromadb:
-    image: chromadb/chroma:1.5.1
+    image: chromadb/chroma:1.5.2
     volumes:
       - ./chroma-data:/data
     ports:
@@ -7144,14 +7151,14 @@ Prerequisites:
 docker run -d --rm --name chromadb \
   -p 8000:8000 \
   -v ./chroma-data:/data \
-  chromadb/chroma:1.5.1
+  chromadb/chroma:1.5.2
 ```
 
 Options:
 
 - `-p 8000:8000` specifies the port on which the Chroma server will be exposed.
 - `-v` specifies a local dir which is where Chroma will store its data so when the container is destroyed the data remains. For current Chroma server images, mount `/data` to persist DB files.
-- `chromadb/chroma:1.5.1` indicates the Chroma release version.
+- `chromadb/chroma:1.5.2` indicates the Chroma release version.
 
 Current v1.x Images
 
@@ -7177,7 +7184,7 @@ docker run -d --rm --name chromadb \
   -v ./chroma-data:/data \
   -v ./chroma.docker.yaml:/chroma/config.yaml:ro \
   -e CONFIG_PATH=/chroma/config.yaml \
-  chromadb/chroma:1.5.1
+  chromadb/chroma:1.5.2
 ```
 
 ### Docker Compose
@@ -7191,7 +7198,7 @@ Prerequisites:
 ```yaml
 services:
   chromadb:
-    image: chromadb/chroma:1.5.1
+    image: chromadb/chroma:1.5.2
     volumes:
       - ./chroma-data:/data
     ports:
@@ -7203,14 +7210,14 @@ services:
       retries: 3
 ```
 
-The above will create a container with Chroma `1.5.1`, expose it on local port `8000`, and persist data in `./chroma-data` relative to where `docker-compose.yaml` is run.
+The above will create a container with Chroma `1.5.2`, expose it on local port `8000`, and persist data in `./chroma-data` relative to where `docker-compose.yaml` is run.
 
 Optional: Docker Compose with YAML config file (collapsed)
 
 ```yaml
 services:
   chromadb:
-    image: chromadb/chroma:1.5.1
+    image: chromadb/chroma:1.5.2
     volumes:
       - ./chroma-data:/data
       - ./chroma.docker.yaml:/chroma/config.yaml:ro
@@ -7258,7 +7265,7 @@ Get and install the chart:
 helm repo add chroma https://amikos-tech.github.io/chromadb-chart/
 helm repo update
 helm install chroma chroma/chromadb \
-  --set image.tag="1.5.1"
+  --set image.tag="1.5.2"
 ```
 
 Auth values for Chroma `>= 1.0.0`
@@ -7404,12 +7411,12 @@ Last updated: **February 25, 2026**
 
 ## What's New In This Refresh
 
-- Updated embeddings guidance for Chroma `1.5.1`.
+- Updated embeddings guidance for Chroma `1.5.2`.
 - Replaced legacy vector store imports with `from langchain_chroma import Chroma`.
 - Replaced deprecated adapter usage with `ChromaLangchainEmbeddingFunction`.
 - Added a full runnable example: [examples/langchain/python/embeddings_example.py](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/langchain/python/embeddings_example.py)
 - Added example dependencies: [examples/langchain/requirements.txt](https://github.com/amikos-tech/chroma-cookbook/blob/main/examples/langchain/requirements.txt)
-- Documented a Chroma `1.5.1` query workaround for wrapped LangChain embeddings.
+- Documented a Chroma `1.5.2` query workaround for wrapped LangChain embeddings.
 
 ## Guides
 
@@ -7418,18 +7425,18 @@ Last updated: **February 25, 2026**
 
 # LangChain Embeddings
 
-This page shows the current Chroma (`1.5.1`) and LangChain embedding integration patterns.
+This page shows the current Chroma (`1.5.2`) and LangChain embedding integration patterns.
 
 ## Use LangChain Embeddings With Chroma Collections
 
-In Chroma `1.5.1`, wrap a LangChain `Embeddings` implementation with `ChromaLangchainEmbeddingFunction`.
+In Chroma `1.5.2`, wrap a LangChain `Embeddings` implementation with `ChromaLangchainEmbeddingFunction`.
 
-Query workaround in 1.5.1
+Query workaround in 1.5.2
 
 If `collection.query(query_texts=[...])` raises an error with wrapped LangChain embeddings, use `query_embeddings=[lc_embeddings.embed_query("...")]` instead.
 
 ```python
-# pip install chromadb==1.5.1 langchain-core langchain-huggingface sentence-transformers
+# pip install chromadb==1.5.2 langchain-core langchain-huggingface sentence-transformers
 import chromadb
 from chromadb.utils.embedding_functions import ChromaLangchainEmbeddingFunction
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -7448,7 +7455,7 @@ collection.add(ids=["1"], documents=["test document goes here"])
 ```
 
 ```python
-# pip install chromadb==1.5.1 langchain-core langchain-openai
+# pip install chromadb==1.5.2 langchain-core langchain-openai
 import chromadb
 from chromadb.utils.embedding_functions import ChromaLangchainEmbeddingFunction
 from langchain_openai import OpenAIEmbeddings
@@ -7469,7 +7476,7 @@ collection.add(ids=["1"], documents=["test document goes here"])
 For LangChain vector stores, use the `langchain-chroma` package:
 
 ```python
-# pip install chromadb==1.5.1 langchain-core langchain-chroma langchain-openai
+# pip install chromadb==1.5.2 langchain-core langchain-chroma langchain-openai
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 
@@ -9478,7 +9485,7 @@ Hints:
 All runnable examples assume a local Chroma server:
 
 ```bash
-docker run --rm -p 8000:8000 chromadb/chroma:1.5.1
+docker run --rm -p 8000:8000 chromadb/chroma:1.5.2
 ```
 
 - [Overview and run commands](https://github.com/amikos-tech/chroma-cookbook/tree/main/examples/keyword-search)
@@ -9804,7 +9811,7 @@ metadata.validate()?;
 All runnable examples assume a local Chroma server:
 
 ```bash
-docker run --rm -p 8000:8000 chromadb/chroma:1.5.1
+docker run --rm -p 8000:8000 chromadb/chroma:1.5.2
 ```
 
 - [Overview and run commands](https://github.com/amikos-tech/chroma-cookbook/tree/main/examples/metadata-schema)

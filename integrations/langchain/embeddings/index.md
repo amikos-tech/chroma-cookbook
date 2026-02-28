@@ -1,17 +1,17 @@
 # LangChain Embeddings
 
-This page shows the current Chroma (`1.5.1`) and LangChain embedding integration patterns.
+This page shows the current Chroma (`1.5.2`) and LangChain embedding integration patterns.
 
 ## Use LangChain Embeddings With Chroma Collections
 
-In Chroma `1.5.1`, wrap a LangChain `Embeddings` implementation with `ChromaLangchainEmbeddingFunction`.
+In Chroma `1.5.2`, wrap a LangChain `Embeddings` implementation with `ChromaLangchainEmbeddingFunction`.
 
-Query workaround in 1.5.1
+Query workaround in 1.5.2
 
 If `collection.query(query_texts=[...])` raises an error with wrapped LangChain embeddings, use `query_embeddings=[lc_embeddings.embed_query("...")]` instead.
 
 ```python
-# pip install chromadb==1.5.1 langchain-core langchain-huggingface sentence-transformers
+# pip install chromadb==1.5.2 langchain-core langchain-huggingface sentence-transformers
 import chromadb
 from chromadb.utils.embedding_functions import ChromaLangchainEmbeddingFunction
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -30,7 +30,7 @@ collection.add(ids=["1"], documents=["test document goes here"])
 ```
 
 ```python
-# pip install chromadb==1.5.1 langchain-core langchain-openai
+# pip install chromadb==1.5.2 langchain-core langchain-openai
 import chromadb
 from chromadb.utils.embedding_functions import ChromaLangchainEmbeddingFunction
 from langchain_openai import OpenAIEmbeddings
@@ -51,7 +51,7 @@ collection.add(ids=["1"], documents=["test document goes here"])
 For LangChain vector stores, use the `langchain-chroma` package:
 
 ```python
-# pip install chromadb==1.5.1 langchain-core langchain-chroma langchain-openai
+# pip install chromadb==1.5.2 langchain-core langchain-chroma langchain-openai
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 

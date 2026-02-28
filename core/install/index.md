@@ -17,12 +17,12 @@ chroma run --path ./getting-started
 ```
 
 ```bash
-docker pull chromadb/chroma:1.5.1 && docker run -p 8000:8000 chromadb/chroma:1.5.1
+docker pull chromadb/chroma:1.5.2 && docker run -p 8000:8000 chromadb/chroma:1.5.2
 ```
 
 Version pinning
 
-Avoid relying on `latest` for production or repeatable environments. Pin to a specific image tag (for example `chromadb/chroma:1.5.1`) and upgrade intentionally after validation.
+Avoid relying on `latest` for production or repeatable environments. Pin to a specific image tag (for example `chromadb/chroma:1.5.2`) and upgrade intentionally after validation.
 
 ## Chroma CLI (Standalone Installer)
 
