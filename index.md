@@ -33,6 +33,7 @@ API Changelog (1.5.2, 1.5.1, and 1.5.0)
 
 ## New and Noteworthy
 
+- 🧨 [Local Markdown CLI with Go `PersistentClient`](https://cookbook.chromadb.dev/strategies/go-local-markdown-cli/index.md) - New end-to-end local-first CLI example (`index` + `search`) using `chroma-go` with `default_ef`, markdown chunking, and metadata filter DSL (`env:prod`) - 📅`05-Mar-2026`
 - 🖼️ [Image Search](https://cookbook.chromadb.dev/strategies/image-search/index.md) - Added a multimodal retrieval walkthrough with a full runnable Python example for text-to-image and image-to-image search using OpenCLIP - 📅`26-Feb-2026`
 - 🔎 [Keyword Search](https://cookbook.chromadb.dev/strategies/keyword-search/index.md) - Expanded with Rust/Go guidance, regex (`$regex`/`$not_regex`) patterns, composition hints, and full runnable Python/TypeScript/Go/Rust examples - 📅`26-Feb-2026`
 - ✅ [Metadata Schema Validation](https://cookbook.chromadb.dev/strategies/metadata-schema-validation/index.md) - Added app-layer metadata contract patterns with short snippets and runnable Python/TypeScript/Go/Rust examples - 📅`26-Feb-2026`
@@ -113,6 +114,7 @@ Below is a list of available clients for ChromaDB.
 - [Backup](https://cookbook.chromadb.dev/strategies/backup/index.md) - Backing up ChromaDB data
 - [Batch Imports](https://cookbook.chromadb.dev/strategies/batching/index.md) - Importing data in batches
 - [Multi-Tenancy](https://cookbook.chromadb.dev/strategies/multi-tenancy/index.md) - Running multiple ChromaDB instances
+- [Go Local Markdown CLI](https://cookbook.chromadb.dev/strategies/go-local-markdown-cli/index.md) - Build a local-only Go CLI with `PersistentClient`, `default_ef`, markdown chunking, and metadata-filtered search
 - [Image Search](https://cookbook.chromadb.dev/strategies/image-search/index.md) - Multimodal retrieval with OpenCLIP (`query_texts` and `query_uris`) plus a runnable Python example
 - [Keyword Search](https://cookbook.chromadb.dev/strategies/keyword-search/index.md) - Keyword and regex document filtering with concise snippets plus runnable Python/TypeScript/Go/Rust examples
 - [Memory Management](https://cookbook.chromadb.dev/strategies/memory-management/index.md) - Managing memory in ChromaDB
