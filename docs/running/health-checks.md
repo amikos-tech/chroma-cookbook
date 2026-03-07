@@ -10,7 +10,7 @@ if you are deploying Chroma alongside other services that may depend on it.
 ```yaml
 services:
   chromadb:
-    image: chromadb/chroma:1.5.2
+    image: chromadb/chroma:1.5.3
     volumes:
       - ./chroma-data:/data
     ports:

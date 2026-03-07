@@ -124,7 +124,7 @@ A complete runnable version is available at [`examples/deployment-patterns/serve
 ```yaml title="docker-compose.yml"
 services:
   chroma:
-    image: chromadb/chroma:1.5.2
+    image: chromadb/chroma:1.5.3
     ports:
       - "8000:8000"
     volumes:

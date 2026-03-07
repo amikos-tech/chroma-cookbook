@@ -2,11 +2,18 @@
 
 This is a collection of small guides and recipes to help you get started with Chroma.
 
-Latest ChromaDB version: [1.5.2](https://github.com/chroma-core/chroma/releases/tag/1.5.2)
+Latest ChromaDB version: [1.5.3](https://github.com/chroma-core/chroma/releases/tag/1.5.3)
 
 <div class="api-changelog" markdown="1">
 
-??? info "API Changelog (1.5.2, 1.5.1, and 1.5.0)"
+??? info "API Changelog (1.5.3, 1.5.2, 1.5.1, and 1.5.0)"
+
+    **Version [1.5.3](https://github.com/chroma-core/chroma/releases/tag/1.5.3) (March 7, 2026)**
+
+    | Area | API-facing change | Reference |
+    |---|---|---|
+    | Collections | Added delete operations with `limit` in server and client APIs | [#6573](https://github.com/chroma-core/chroma/pull/6573), [#6578](https://github.com/chroma-core/chroma/pull/6578) |
+    | Python Client | Updated Python packaging compatibility by dropping Pydantic v1 compatibility layer for Python 3.14 support | [#6356](https://github.com/chroma-core/chroma/pull/6356) |
 
     **Version [1.5.2](https://github.com/chroma-core/chroma/releases/tag/1.5.2) (February 27, 2026)**
 
@@ -38,7 +45,7 @@ Latest ChromaDB version: [1.5.2](https://github.com/chroma-core/chroma/releases/
 
 ## New and Noteworthy
 
-- 🧨 [Local Markdown CLI with Go `PersistentClient`](strategies/go-local-markdown-cli.md) - New end-to-end local-first CLI example (`index` + `search`) using `chroma-go` with `default_ef`, markdown chunking, and metadata filter DSL (`env:prod`) - 📅`05-Mar-2026`
+- 🧨 [Go Local/Persistent Client Example](strategies/go-local-markdown-cli.md) - A new local/persistent Go client is available, and this page includes a complete example for markdown indexing and search - 📅`05-Mar-2026`
 - 🖼️ [Image Search](strategies/image-search.md) - Added a multimodal retrieval walkthrough with a full runnable Python example for text-to-image and image-to-image search using OpenCLIP - 📅`26-Feb-2026`
 - 🔎 [Keyword Search](strategies/keyword-search.md) - Expanded with Rust/Go guidance, regex (`$regex`/`$not_regex`) patterns, composition hints, and full runnable Python/TypeScript/Go/Rust examples - 📅`26-Feb-2026`
 - ✅ [Metadata Schema Validation](strategies/metadata-schema-validation.md) - Added app-layer metadata contract patterns with short snippets and runnable Python/TypeScript/Go/Rust examples - 📅`26-Feb-2026`
@@ -73,10 +80,11 @@ ChromaDB.
 
 ## Running ChromaDB
 
+- [Running Chroma](running/running-chroma.md) - Main guide for running ChromaDB via CLI, Docker, Docker Compose, and Kubernetes
 - [Deployment Patterns](running/deployment-patterns.md) - Decide between embedded (`PersistentClient`) and standalone server (`HttpClient`) with copy/paste examples
-- [CLI](running/running-chroma.md#chroma-cli) - Running ChromaDB via the CLI
 - [Docker](running/running-chroma.md#docker) - Running ChromaDB in Docker
 - [Docker Compose](running/running-chroma.md#docker-compose) - Running ChromaDB in Docker Compose
+- [CLI](running/running-chroma.md#chroma-cli) - Running ChromaDB via the CLI
 - [Kubernetes](running/running-chroma.md#minikube-with-helm-chart) - Running ChromaDB in Kubernetes (Minikube)
 
 ## Integrations

@@ -8,7 +8,7 @@
 //
 // Requires a running Chroma server:
 //
-//	docker run --rm -p 8000:8000 chromadb/chroma:1.5.2
+//	docker run --rm -p 8000:8000 chromadb/chroma:1.5.3
 package main
 
 import (

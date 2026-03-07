@@ -24,12 +24,12 @@ nav:
           - core/advanced/wal-pruning.md
           - core/advanced/wal.md
   - Running:
-      - running/deployment-patterns.md
-      - running/health-checks.md
-      - running/maintenance.md
-      - running/performance-tips.md
-      - running/road-to-prod.md
       - running/running-chroma.md
+      - running/deployment-patterns.md
+      - running/road-to-prod.md
+      - running/health-checks.md
+      - running/performance-tips.md
+      - running/maintenance.md
       - running/systemd-service.md
   - Embedding:
       - embeddings/bring-your-own-embeddings.md
