@@ -2,9 +2,16 @@
 
 This is a collection of small guides and recipes to help you get started with Chroma.
 
-Latest ChromaDB version: [1.5.2](https://github.com/chroma-core/chroma/releases/tag/1.5.2)
+Latest ChromaDB version: [1.5.3](https://github.com/chroma-core/chroma/releases/tag/1.5.3)
 
-API Changelog (1.5.2, 1.5.1, and 1.5.0)
+API Changelog (1.5.3, 1.5.2, 1.5.1, and 1.5.0)
+
+**Version [1.5.3](https://github.com/chroma-core/chroma/releases/tag/1.5.3) (March 7, 2026)**
+
+| Area          | API-facing change                                                                                          | Reference                                                                                                          |
+| ------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Collections   | Added delete operations with `limit` in server and client APIs                                             | [#6573](https://github.com/chroma-core/chroma/pull/6573), [#6578](https://github.com/chroma-core/chroma/pull/6578) |
+| Python Client | Updated Python packaging compatibility by dropping Pydantic v1 compatibility layer for Python 3.14 support | [#6356](https://github.com/chroma-core/chroma/pull/6356)                                                           |
 
 **Version [1.5.2](https://github.com/chroma-core/chroma/releases/tag/1.5.2) (February 27, 2026)**
 
@@ -33,7 +40,7 @@ API Changelog (1.5.2, 1.5.1, and 1.5.0)
 
 ## New and Noteworthy
 
-- 🧨 [Local Markdown CLI with Go `PersistentClient`](https://cookbook.chromadb.dev/strategies/go-local-markdown-cli/index.md) - New end-to-end local-first CLI example (`index` + `search`) using `chroma-go` with `default_ef`, markdown chunking, and metadata filter DSL (`env:prod`) - 📅`05-Mar-2026`
+- 🧨 [Go Local/Persistent Client Example](https://cookbook.chromadb.dev/strategies/go-local-markdown-cli/index.md) - A new local/persistent Go client is available, and this page includes a complete example for markdown indexing and search - 📅`05-Mar-2026`
 - 🖼️ [Image Search](https://cookbook.chromadb.dev/strategies/image-search/index.md) - Added a multimodal retrieval walkthrough with a full runnable Python example for text-to-image and image-to-image search using OpenCLIP - 📅`26-Feb-2026`
 - 🔎 [Keyword Search](https://cookbook.chromadb.dev/strategies/keyword-search/index.md) - Expanded with Rust/Go guidance, regex (`$regex`/`$not_regex`) patterns, composition hints, and full runnable Python/TypeScript/Go/Rust examples - 📅`26-Feb-2026`
 - ✅ [Metadata Schema Validation](https://cookbook.chromadb.dev/strategies/metadata-schema-validation/index.md) - Added app-layer metadata contract patterns with short snippets and runnable Python/TypeScript/Go/Rust examples - 📅`26-Feb-2026`
@@ -67,10 +74,11 @@ Once you're comfortable with the concepts, you can jump to the [Installation](ht
 
 ## Running ChromaDB
 
+- [Running Chroma](https://cookbook.chromadb.dev/running/running-chroma/index.md) - Main guide for running ChromaDB via CLI, Docker, Docker Compose, and Kubernetes
 - [Deployment Patterns](https://cookbook.chromadb.dev/running/deployment-patterns/index.md) - Decide between embedded (`PersistentClient`) and standalone server (`HttpClient`) with copy/paste examples
-- [CLI](https://cookbook.chromadb.dev/running/running-chroma/#chroma-cli) - Running ChromaDB via the CLI
 - [Docker](https://cookbook.chromadb.dev/running/running-chroma/#docker) - Running ChromaDB in Docker
 - [Docker Compose](https://cookbook.chromadb.dev/running/running-chroma/#docker-compose) - Running ChromaDB in Docker Compose
+- [CLI](https://cookbook.chromadb.dev/running/running-chroma/#chroma-cli) - Running ChromaDB via the CLI
 - [Kubernetes](https://cookbook.chromadb.dev/running/running-chroma/#minikube-with-helm-chart) - Running ChromaDB in Kubernetes (Minikube)
 
 ## Integrations

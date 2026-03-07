@@ -126,7 +126,7 @@ docker-compose.yml
 ```yaml
 services:
   chroma:
-    image: chromadb/chroma:1.5.2
+    image: chromadb/chroma:1.5.3
     ports:
       - "8000:8000"
     volumes:

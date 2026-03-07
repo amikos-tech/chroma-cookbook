@@ -9,7 +9,7 @@ The simplest form of health check is to use the `healthcheck` directive in the `
 ```yaml
 services:
   chromadb:
-    image: chromadb/chroma:1.5.2
+    image: chromadb/chroma:1.5.3
     volumes:
       - ./chroma-data:/data
     ports:
