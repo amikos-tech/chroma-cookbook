@@ -21,7 +21,7 @@ All examples validate the same contract:
 Run Chroma locally:
 
 ```bash
-docker run --rm -p 8000:8000 chromadb/chroma:1.5.2
+docker run --rm -p 8000:8000 chromadb/chroma:1.5.3
 ```
 
 ## Python (Pydantic)
