@@ -77,6 +77,49 @@ func main() {
 	}
 	fmt.Printf("get: %s\n", fetched.Name())
 
+	// ── Delete Records ──
+
+	track("delete_records")
+	deleteCol, err := client.CreateCollection(ctx, "delete_records")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	deleteIDs := []chroma.DocumentID{"del-1", "del-2", "del-3"}
+	deleteTexts := []string{"draft note one", "draft note two", "published note"}
+	deleteMetas := make([]chroma.DocumentMetadata, len(deleteIDs))
+	deleteEmbs := []embeddings.Embedding{
+		embeddings.NewEmbeddingFromFloat32([]float32{0.11, 0.12, 0.13}),
+		embeddings.NewEmbeddingFromFloat32([]float32{0.21, 0.22, 0.23}),
+		embeddings.NewEmbeddingFromFloat32([]float32{0.31, 0.32, 0.33}),
+	}
+	for i, status := range []string{"draft", "draft", "published"} {
+		m := chroma.NewDocumentMetadata()
+		m.SetString("status", status)
+		m.SetString("category", string(rune('a'+i/2)))
+		deleteMetas[i] = m
+	}
+
+	err = deleteCol.Add(ctx,
+		chroma.WithIDs(deleteIDs...),
+		chroma.WithTexts(deleteTexts...),
+		chroma.WithMetadatas(deleteMetas...),
+		chroma.WithEmbeddings(deleteEmbs...),
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = deleteCol.Delete(ctx, chroma.WithWhere(chroma.EqString("status", "draft")))
+	if err != nil {
+		log.Fatal(err)
+	}
+	remainingDeleteRecords, err := deleteCol.Count(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("delete records remaining: %d\n", remainingDeleteRecords)
+
 	// ── Delete Collection ──
 
 	track("delete_me")

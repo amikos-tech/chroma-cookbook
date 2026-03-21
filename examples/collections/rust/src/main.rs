@@ -4,7 +4,9 @@
 //!     docker run -p 8000:8000 chromadb/chroma
 
 use chroma::client::ChromaHttpClientOptions;
-use chroma::types::Metadata;
+use chroma::types::{
+    Metadata, MetadataComparison, MetadataExpression, MetadataValue, PrimitiveOperator, Where,
+};
 use chroma::ChromaHttpClient;
 use url::Url;
 
@@ -21,7 +23,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     };
 
     // Clean up from previous runs
-    for name in &["create_basic", "get_or_create", "delete_me", "results_demo"] {
+    for name in &[
+        "create_basic",
+        "get_or_create",
+        "delete_records",
+        "delete_me",
+        "results_demo",
+    ] {
         let _ = client.delete_collection(name).await;
     }
 
@@ -31,7 +39,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let collection = client
         .get_or_create_collection("create_basic", None, None)
         .await?;
-    println!("created: create_basic (count={})", collection.count().await?);
+    println!(
+        "created: create_basic (count={})",
+        collection.count().await?
+    );
 
     // ── Get or Create Collection ──
 
@@ -57,6 +68,76 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let fetched = client.get_collection("create_basic").await?;
     println!("get: {}", fetched.name());
+
+    // ── Delete Records ──
+
+    track("delete_records");
+    let delete_col = client
+        .get_or_create_collection("delete_records", None, None)
+        .await?;
+
+    let delete_ids = vec![
+        "del-1".to_string(),
+        "del-2".to_string(),
+        "del-3".to_string(),
+    ];
+    let delete_documents = vec![
+        Some("draft note one".to_string()),
+        Some("draft note two".to_string()),
+        Some("published note".to_string()),
+    ];
+    let delete_embeddings = vec![
+        vec![0.11, 0.12, 0.13],
+        vec![0.21, 0.22, 0.23],
+        vec![0.31, 0.32, 0.33],
+    ];
+    let delete_metadatas = vec![
+        {
+            let mut m = Metadata::new();
+            m.insert("status".into(), "draft".into());
+            m.insert("category".into(), "a".into());
+            Some(m)
+        },
+        {
+            let mut m = Metadata::new();
+            m.insert("status".into(), "draft".into());
+            m.insert("category".into(), "a".into());
+            Some(m)
+        },
+        {
+            let mut m = Metadata::new();
+            m.insert("status".into(), "published".into());
+            m.insert("category".into(), "b".into());
+            Some(m)
+        },
+    ];
+
+    delete_col
+        .add(
+            delete_ids,
+            delete_embeddings,
+            Some(delete_documents),
+            None,
+            Some(delete_metadatas),
+        )
+        .await?;
+
+    // This example crate is currently locked to chroma 0.13.0, which exposes
+    // delete(ids, where) but not limit/deleted-count yet.
+    delete_col
+        .delete(
+            None,
+            Some(Where::Metadata(MetadataExpression {
+                key: "status".to_string(),
+                comparison: MetadataComparison::Primitive(
+                    PrimitiveOperator::Equal,
+                    MetadataValue::Str("draft".to_string()),
+                ),
+            })),
+        )
+        .await?;
+    assert_eq!(delete_col.count().await?, 1);
+    println!("delete records remaining: {}", delete_col.count().await?);
 
     // ── Delete Collection ──
 
@@ -92,7 +173,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .collect();
 
     res_col
-        .add(ids, embeddings.clone(), Some(documents), None, Some(metadatas))
+        .add(
+            ids,
+            embeddings.clone(),
+            Some(documents),
+            None,
+            Some(metadatas),
+        )
         .await?;
 
     // GET: index-based iteration

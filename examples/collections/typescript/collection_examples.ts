@@ -103,6 +103,23 @@ console.log(`peek: ${JSON.stringify(peeked.ids)}`);
 const itemCount = await convCol.count();
 console.log(`count: ${itemCount}`);
 
+// ── Delete Records ──
+
+track("delete_records");
+await tryDelete("delete_records");
+const deleteCol = await client.createCollection({ name: "delete_records" });
+await deleteCol.add({
+    ids: ["del-1", "del-2", "del-3"],
+    documents: ["draft note one", "draft note two", "published note"],
+    metadatas: [
+        { status: "draft", category: "a" },
+        { status: "draft", category: "a" },
+        { status: "published", category: "b" },
+    ],
+});
+await deleteCol.delete({ where: { status: "draft" } });
+console.log(`delete records remaining: ${await deleteCol.count()}`);
+
 // ── Delete Collection ──
 
 await tryDelete("delete_me");

@@ -10,6 +10,7 @@ configured embedding function handle vectorization.
 
 import os
 import random
+import inspect
 
 import chromadb
 
@@ -29,6 +30,13 @@ def cleanup(name):
         client.delete_collection(name)
     except Exception:
         pass
+
+
+def delete_limit_supported(collection):
+    try:
+        return "limit" in inspect.signature(collection.delete).parameters
+    except (TypeError, ValueError):
+        return False
 
 
 # ── Create Collection ──
@@ -97,6 +105,30 @@ col.add(
 
 print(f"peek: {col.peek(limit=2)['ids']}")
 print(f"count: {col.count()}")
+
+# ── Delete Records ──
+
+cleanup("delete_records")
+delete_col = client.create_collection("delete_records")
+delete_col.add(
+    ids=["del-1", "del-2", "del-3"],
+    documents=["draft note one", "draft note two", "published note"],
+    metadatas=[
+        {"status": "draft", "category": "a"},
+        {"status": "draft", "category": "a"},
+        {"status": "published", "category": "b"},
+    ],
+    embeddings=[rand_emb(), rand_emb(), rand_emb()],
+)
+
+if delete_limit_supported(delete_col):
+    delete_result = delete_col.delete(where={"status": "draft"}, limit=1)
+    print(f"delete records with limit: deleted={delete_result['deleted']}")
+else:
+    delete_col.delete(ids=["del-1"])
+    print("delete records fallback: current client has no delete limit/count support; deleted id del-1")
+
+print(f"delete records remaining: {delete_col.count()}")
 
 # ── Delete Collection ──
 
