@@ -1545,6 +1545,95 @@ await collection.peek({ limit: 5 });
 await collection.count();
 ```
 
+### Deleting records from a collection
+
+Use `collection.delete(...)` to remove records while keeping the collection itself. To remove the entire collection object, use [Deleting a collection](#deleting-a-collection).
+
+Destructive Operation
+
+Deleting records permanently removes their embeddings, documents, and metadata from the collection.
+
+Record deletion is selected by IDs and/or filters:
+
+- `ids` targets specific records
+- `where` targets records by metadata
+- `where_document` / `whereDocument` targets records by document content on clients that expose it
+
+Merged Core vs Released Clients
+
+Core changes from [#6573](https://github.com/chroma-core/chroma/pull/6573) and [#6582](https://github.com/chroma-core/chroma/pull/6582) added a delete response payload with a `deleted` count and filter-based `limit` support. Released client support is still not uniform:
+
+- Rust `chroma = "0.13.2"` already returns `response.deleted` and supports `limit` with `where`
+- The runnable Rust example in this repository is currently locked to `chroma 0.13.0`, so it still uses the older `delete(ids, where)` surface
+- Current Python releases on PyPI also expose `limit` and return `DeleteResult` with `deleted`
+- Current TypeScript and Go releases support selector-based deletes, but do not yet expose delete counts or `limit`
+
+```python
+collection.delete(ids=["doc-1", "doc-2"])
+collection.delete(where={"status": "archived"})
+collection.delete(where_document={"$contains": "deprecated"})
+deleted = collection.delete(where={"status": "deleted"}, limit=10)["deleted"]
+```
+
+Builds that include [#6573](https://github.com/chroma-core/chroma/pull/6573) and [#6582](https://github.com/chroma-core/chroma/pull/6582) also add `limit` for filter-based deletes and return a payload such as `{"deleted": 2}`.
+
+```typescript
+await collection.delete({ ids: ["doc-1", "doc-2"] });
+await collection.delete({ where: { status: "archived" } });
+await collection.delete({ whereDocument: { $contains: "deprecated" } });
+```
+
+```go
+err := collection.Delete(ctx, chroma.WithIDs("doc-1", "doc-2"))
+if err != nil {
+    panic(err)
+}
+
+err = collection.Delete(ctx, chroma.WithWhere(chroma.EqString("status", "archived")))
+if err != nil {
+    panic(err)
+}
+
+err = collection.Delete(ctx, chroma.WithWhereDocument(chroma.Contains("deprecated")))
+if err != nil {
+    panic(err)
+}
+```
+
+```rust
+use chroma::types::{
+    MetadataComparison, MetadataExpression, MetadataValue, PrimitiveOperator, Where,
+};
+
+let by_id = collection
+    .delete(
+        Some(vec!["doc-1".to_string(), "doc-2".to_string()]),
+        None,
+        None,
+    )
+    .await?;
+println!("Deleted {} records by ID", by_id.deleted);
+
+let delete_result = collection
+    .delete(
+        None,
+        Some(Where::Metadata(MetadataExpression {
+            key: "status".to_string(),
+            comparison: MetadataComparison::Primitive(
+                PrimitiveOperator::Equal,
+                MetadataValue::Str("deleted".to_string()),
+            ),
+        })),
+        Some(10),
+    )
+    .await?;
+println!(
+    "Deleted {} records matching status=deleted",
+    delete_result.deleted
+);
+let deleted = delete_result.deleted;
+```
+
 ## Query and Get Results
 
 `collection.get()` and `collection.query()` return column-oriented results.
@@ -10897,6 +10986,10 @@ col.delete(ids=["1"])
 
 client.delete_collection(col.name)
 ```
+
+Delete return value on newer core builds
+
+This example keeps `col.delete(ids=["1"])` simple for compatibility. On core-backed clients that include [#6573](https://github.com/chroma-core/chroma/pull/6573) and [#6582](https://github.com/chroma-core/chroma/pull/6582), the same call may return a payload with a `deleted` count.
 
 Full code
 

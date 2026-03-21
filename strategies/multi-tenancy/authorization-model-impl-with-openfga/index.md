@@ -740,6 +740,10 @@ col.delete(ids=["1"])
 client.delete_collection(col.name)
 ```
 
+Delete return value on newer core builds
+
+This example keeps `col.delete(ids=["1"])` simple for compatibility. On core-backed clients that include [#6573](https://github.com/chroma-core/chroma/pull/6573) and [#6582](https://github.com/chroma-core/chroma/pull/6582), the same call may return a payload with a `deleted` count.
+
 Full code
 
 You can find the full code in `test_auth.ipynb`

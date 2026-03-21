@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -3696,6 +3696,10 @@ controls is a thing that WILL keep you up at night.</p>
 </span><span id="__span-22-20"><a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a><span class="n">client</span><span class="o">.</span><span class="n">delete_collection</span><span class="p">(</span><span class="n">col</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 </span></code></pre></div>
 <div class="admonition note">
+<p class="admonition-title">Delete return value on newer core builds</p>
+<p>This example keeps <code>col.delete(ids=["1"])</code> simple for compatibility. On core-backed clients that include <a href="https://github.com/chroma-core/chroma/pull/6573">#6573</a> and <a href="https://github.com/chroma-core/chroma/pull/6582">#6582</a>, the same call may return a payload with a <code>deleted</code> count.</p>
+</div>
+<div class="admonition note">
 <p class="admonition-title">Full code</p>
 <p>You can find the full code in <code>test_auth.ipynb</code></p>
 </div>
@@ -3803,7 +3807,7 @@ these collections are created within the same database (<code>default_database</
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 15, 2024 09:27:42 UTC">April 15, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 21, 2026 15:00:41 UTC">March 21, 2026</span>
   </span>
 
     
