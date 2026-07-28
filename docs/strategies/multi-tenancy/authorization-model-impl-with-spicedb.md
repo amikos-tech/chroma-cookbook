@@ -380,6 +380,11 @@ From here:
   code.
 - For resource-level access over Chroma's API (tenants, databases, collections),
   see the [OpenFGA guides](authorization-model-with-openfga.md).
+- Take it to production and go agentic: the
+  [agentic RAG authorization example](https://github.com/authzed/examples/tree/main/agentic-rag-authorization)
+  wires the same deterministic SpiceDB check into a LangGraph agent as a
+  non-bypassable node, with a richer department-based schema, a 50-document
+  corpus, and a FastAPI UI.
 - Run it yourself: the
   [companion repo](https://github.com/authzed/examples/tree/main/chroma-spicedb-rag)
   has everything wired together.
