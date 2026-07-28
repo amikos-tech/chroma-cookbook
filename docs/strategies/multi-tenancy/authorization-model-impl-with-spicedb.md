@@ -146,6 +146,8 @@ Ask SpiceDB *first*. `LookupResources` answers a lovely question in one call:
 to exactly that set with a `$in` metadata filter, and the vector search never
 even considers a document Kim can't see.
 
+![Pre-filter flow: the application sends a LookupRequest to SpiceDB to get the user's authorized document IDs, embeds the query, queries ChromaDB with that filter for relevant context, then sends the query, context, and prompt to Ollama for the response](../../assets/images/spicedb-chroma-prefilter.png)
+
 ```python
 # query_prefilter.py
 from authzed.api.v1 import LookupResourcesRequest
@@ -200,6 +202,8 @@ strategy fits better.
 The other direction: let Chroma retrieve *first*, then throw out anything the
 user isn't allowed to see. One `CheckBulkPermissions` call checks every returned
 document at once.
+
+![Post-filter flow: the application embeds the query and retrieves relevant context from ChromaDB first, then sends a CheckPermission request to SpiceDB for the returned documents, and passes the authorized query, context, and prompt to Ollama for the response](../../assets/images/spicedb-chroma-postfilter.png)
 
 ```python
 # query_postfilter.py
