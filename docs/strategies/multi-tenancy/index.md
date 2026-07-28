@@ -16,3 +16,7 @@ multi-tenancy approaches in Chroma.
   with OpenFGA.
 - [Implementing OpenFGA Authorization Model In Chroma](authorization-model-impl-with-openfga.md) - Learn how to
   implement OpenFGA authorization model in Chroma with full code example.
+- [Fine-Grained RAG Permissions with SpiceDB (Part 1: The Model)](authorization-model-with-spicedb.md) - Model
+  document-level access for a RAG pipeline using SpiceDB's relationship-based authorization.
+- [Fine-Grained RAG Permissions with SpiceDB (Part 2: Implementation)](authorization-model-impl-with-spicedb.md) -
+  Enforce document-level permissions at query time in Chroma with pre-filtering and post-filtering, end to end.
