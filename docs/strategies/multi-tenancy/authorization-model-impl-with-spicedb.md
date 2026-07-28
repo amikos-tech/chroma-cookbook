@@ -1,11 +1,11 @@
-# Build Fine-Grained RAG Permissions with SpiceDB and Chroma — Part 2: Implementation
+# Build Fine-Grained RAG Permissions with SpiceDB and Chroma, Part 2: Implementation
 
 !!! note "Source Code"
 
     The full, runnable source code for this two-part guide can be found
     [here](https://github.com/authzed/examples/tree/main/chroma-spicedb-rag).
 
-[Part 1](authorization-model-with-spicedb.md) built the model — a SpiceDB schema
+[Part 1](authorization-model-with-spicedb.md) built the model: a SpiceDB schema
 where a user can `view` a `document`, and a way to ask "can this user see this
 document?" Now we make the retriever ask that question. Every time.
 
@@ -16,7 +16,7 @@ allowed to `view`. There are two honest ways to do that, and we'll build both.
 
 ## Prerequisites
 
-- SpiceDB and Chroma running locally — the
+- SpiceDB and Chroma running locally. The
   [companion repo](https://github.com/authzed/examples/tree/main/chroma-spicedb-rag)'s
   `docker compose up -d` starts both, or run SpiceDB as shown in
   [Part 1](authorization-model-with-spicedb.md).
@@ -31,7 +31,7 @@ pip install chromadb authzed ollama
 ```
 
 We'll keep the clients and a couple of helpers in one place. Note the SpiceDB
-client is `SyncClient` — the synchronous flavor — talking to a local, insecure
+client is `SyncClient`, the synchronous flavor, talking to a local, insecure
 gRPC endpoint:
 
 ```python
@@ -76,7 +76,7 @@ def user_subject(uid=USER):
 The one rule that makes all of this work: **every record you add to Chroma
 carries the `doc_id` of the SpiceDB `document` it belongs to.** Here we index a
 handful of sample documents using Chroma's default embedding function
-(all-MiniLM-L6-v2, downloaded on first use — no API key required):
+(all-MiniLM-L6-v2, downloaded on first use, no API key required):
 
 ```python
 # index_documents.py
@@ -105,7 +105,7 @@ if __name__ == "__main__":
 ```
 
 One document is one record here to keep things readable. In a real corpus you'd
-chunk each document into many vectors — just repeat the parent `doc_id` on every
+chunk each document into many vectors. Just repeat the parent `doc_id` on every
 chunk's metadata, and everything below works unchanged. The `doc_id` is the
 join key between "what the vector store knows" and "what the authorization
 system knows."
@@ -136,7 +136,7 @@ updates = [
 client.WriteRelationships(WriteRelationshipsRequest(updates=updates))
 ```
 
-`OPERATION_TOUCH` is the idempotent write — create the relationship if it isn't
+`OPERATION_TOUCH` is the idempotent write: create the relationship if it isn't
 there, leave it alone if it is. Re-running the seed doesn't blow up.
 
 ## Strategy 1: pre-filter
@@ -191,7 +191,7 @@ put it on the list.
 
 **When to reach for this:** large corpora where each user can see a small slice.
 The filter shrinks the search space before it's searched, which is efficient and
-leak-proof by construction. The one caveat — if a user can see hundreds of
+leak-proof by construction. The one caveat: if a user can see hundreds of
 thousands of documents, an `$in` list of that size gets unwieldy, and the next
 strategy fits better.
 
@@ -253,14 +253,14 @@ candidate ids: ['salary-bands', 'board-notes', 'eng-oncall', 'roadmap-q3', 'offi
 allowed ids: ['eng-oncall', 'roadmap-q3', 'office-wifi']
 ```
 
-The vector search did exactly what you'd fear — the two most relevant documents
+The vector search did exactly what you'd fear: the two most relevant documents
 to a salary question are `salary-bands` and `board-notes`, and it returned them
 first. Then `CheckBulkPermissions` filtered them straight out. The model never
 sees them.
 
 **When to reach for this:** smaller corpora, high hit-rates, or users with broad
-access — cases where retrieving first is cheap and you'd rather not build a huge
-pre-filter list.
+access. These are cases where retrieving first is cheap and you'd rather not
+build a huge pre-filter list.
 
 ## Pre-filter or post-filter?
 
@@ -282,7 +282,7 @@ becomes a problem.
 
 You'll have noticed `FULLY_CONSISTENT` on every SpiceDB call. That isn't
 decoration. By default SpiceDB optimizes for latency and may answer from a
-slightly stale snapshot — which is usually fine, but bites you the instant you
+slightly stale snapshot, which is usually fine, but bites you the instant you
 grant access and immediately check it (you'll get back `false` for a permission
 you *just* wrote). That's the classic read-your-writes gap.
 
@@ -295,7 +295,7 @@ Full consistency asks SpiceDB to evaluate against the freshest data, so you
 always see your own writes. In production you'd usually do better than "always
 fully consistent": `WriteRelationships` hands back a **ZedToken**, and passing it
 as `at_least_as_fresh` gets you read-your-writes correctness *and* SpiceDB's
-caching — you only pay for freshness up to the moment that mattered. This is
+caching, so you only pay for freshness up to the moment that mattered. This is
 SpiceDB's answer to Zanzibar's "new enemy" problem: never let a stale check
 leak access that was just revoked. See the
 [SpiceDB consistency docs](https://authzed.com/docs/spicedb/concepts/consistency)
@@ -309,7 +309,7 @@ retrieve Kim's authorized context, hand it to a local Ollama model, and ask a
 question.
 
 ```python
-# rag_demo.py (abridged — full version in the companion repo)
+# rag_demo.py (abridged; full version in the companion repo)
 import ollama
 from common import spicedb_client, chroma_client, COLLECTION_NAME, USER
 from query_prefilter import authorized_doc_ids
@@ -350,8 +350,8 @@ A: The Q3 product roadmap prioritizes two things:
    2. Single Sign-On (SSO)
 ```
 
-Now revoke that one relationship — `OPERATION_DELETE` on
-`document:roadmap-q3 viewer user:kim` — and ask the exact same question:
+Now revoke that one relationship (`OPERATION_DELETE` on
+`document:roadmap-q3 viewer user:kim`) and ask the exact same question:
 
 ```text
 revoked viewer on document:roadmap-q3 for user:kim
@@ -361,7 +361,7 @@ A: I don't know.
 ```
 
 Nothing about the model or the prompt changed. The only thing that changed is a
-single edge in the permission graph — and because retrieval now respects that
+single edge in the permission graph, and because retrieval now respects that
 edge, the document simply isn't in the context anymore. The model can't leak
 what it never received.
 
@@ -370,12 +370,12 @@ what it never received.
 Fine-grained RAG authorization comes down to one discipline: the retriever must
 answer to the person asking, and the vector store is the wrong place to keep
 that truth. Keep permissions in SpiceDB as relationships, tie each vector to a
-`document` with a `doc_id`, and enforce `view` at query time — pre-filter,
-post-filter, or both.
+`document` with a `doc_id`, and enforce `view` at query time with pre-filtering,
+post-filtering, or both.
 
 From here:
 
-- Grow the model — [Part 1's](authorization-model-with-spicedb.md) "going
+- Grow the model. [Part 1's](authorization-model-with-spicedb.md) "going
   further" section adds groups, folders, and inheritance without touching this
   code.
 - For resource-level access over Chroma's API (tenants, databases, collections),
@@ -385,5 +385,5 @@ From here:
   has everything wired together.
 
 The industry spent the last decade learning to scope what a *user* can retrieve.
-RAG just makes the stakes louder — the model will repeat, fluently, whatever you
+RAG just makes the stakes louder: the model will repeat, fluently, whatever you
 let it read.
