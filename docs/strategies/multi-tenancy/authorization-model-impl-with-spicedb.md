@@ -336,6 +336,7 @@ def answer(question):
         f"Context:\n{context}\n\nQuestion: {question}"
     )
     resp = ollama.chat(model=MODEL, messages=[{"role": "user", "content": prompt}])
+    print("\nQ:", question)
     print("A:", resp["message"]["content"].strip())
 ```
 
