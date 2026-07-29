@@ -102,6 +102,11 @@ that anyone who can edit can also read. Every document your retriever might
 return becomes a `document:<id>` in this model, and a query is only ever allowed
 to surface documents on which the asking user has `view`.
 
+Those relations are just edges in a graph. Kim can `view` a document when a path
+connects her to it, and can't when none does:
+
+![SpiceDB relationship graph: user:kim has viewer relationships to document:roadmap-q3 and document:eng-oncall so view is granted, while there is no relationship to document:salary-bands so view is denied; permission view = viewer + editor](../../assets/images/spicedb-chroma-rebac-graph.png)
+
 ## Running SpiceDB locally
 
 You can get a SpiceDB instance up in one command. This runs it with an
