@@ -7,12 +7,12 @@
 
 [Part 1](authorization-model-with-spicedb.md) built the model: a SpiceDB schema
 where a user can `view` a `document`, and a way to ask "can this user see this
-document?" Now we make the retriever ask that question. Every time.
+document?" Now we'll make the retriever ask that question before presenting information to the user.
 
-The plan is simple to state. Each vector in Chroma carries a `doc_id` in its
+Each vector in Chroma carries a `doc_id` in its
 metadata that points back to a `document:<id>` in SpiceDB. At query time we make
 sure the documents that reach the model are only the ones the asking user is
-allowed to `view`. There are two honest ways to do that, and we'll build both.
+allowed to `view`. There are two ways to do that, and we'll build both.
 
 ## Prerequisites
 
@@ -74,7 +74,7 @@ def user_subject(uid=USER):
 ## Indexing: link every vector to a document
 
 The one rule that makes all of this work: **every record you add to Chroma
-carries the `doc_id` of the SpiceDB `document` it belongs to.** Here we index a
+carries metadata - i.e the the `doc_id` of the SpiceDB `document` it belongs to.** Here we index a
 handful of sample documents using Chroma's default embedding function
 (all-MiniLM-L6-v2, downloaded on first use, no API key required):
 
@@ -106,8 +106,8 @@ if __name__ == "__main__":
 
 One document is one record here to keep things readable. In a real corpus you'd
 chunk each document into many vectors. Just repeat the parent `doc_id` on every
-chunk's metadata, and everything below works unchanged. The `doc_id` is the
-join key between "what the vector store knows" and "what the authorization
+chunk's metadata, and everything below works in the same way. The `doc_id` is basically the
+join key between "what the vector database stores" and "what the authorization
 system knows."
 
 ## Seeding relationships
@@ -136,15 +136,14 @@ updates = [
 client.WriteRelationships(WriteRelationshipsRequest(updates=updates))
 ```
 
-`OPERATION_TOUCH` is the idempotent write: create the relationship if it isn't
-there, leave it alone if it is. Re-running the seed doesn't blow up.
+In a real-life system, you would create, update or delete a relationship anytime the state of a system changes.
 
-## Strategy 1: pre-filter
+## Strategy 1: Pre-filter
 
-Ask SpiceDB *first*. `LookupResources` answers a lovely question in one call:
-"give me every document this user can `view`." Then constrain the Chroma query
-to exactly that set with a `$in` metadata filter, and the vector search never
-even considers a document Kim can't see.
+The pre-filter technique is to ask SpiceDB *first* what the user is allowed to view. `LookupResources` answers this question in one call:
+"give me every document this user can `view`." You can then constrain the Chroma query
+to exactly that set with a `$in` metadata filter, and the vector search will retrieve only
+from the documents Kim is authorized to view.
 
 ![Pre-filter flow: the application sends a LookupRequest to SpiceDB to get the user's authorized document IDs, embeds the query, queries ChromaDB with that filter for relevant context, then sends the query, context, and prompt to Ollama for the response](../../assets/images/spicedb-chroma-prefilter.png)
 
@@ -180,28 +179,18 @@ def main():
     print("returned ids:", results["ids"][0])
 ```
 
-Run it, and note what happens even though the question is practically *begging*
-for the salary document:
+Run it, and note what happens even though the user's question asks for information about the
+for the salary document, a document the user cannot access.
 
 ```text
 authorized doc_ids: ['eng-oncall', 'office-wifi', 'roadmap-q3']
 returned ids: ['eng-oncall', 'roadmap-q3', 'office-wifi']
 ```
 
-`salary-bands` never shows up. It was never a candidate, because SpiceDB never
-put it on the list.
-
-**When to reach for this:** large corpora where each user can see a small slice.
-The filter shrinks the search space before it's searched, which is efficient and
-leak-proof by construction. The one caveat: if a user can see hundreds of
-thousands of documents, an `$in` list of that size gets unwieldy, and the next
-strategy fits better.
-
 ## Strategy 2: post-filter
 
-The other direction: let Chroma retrieve *first*, then throw out anything the
-user isn't allowed to see. One `CheckBulkPermissions` call checks every returned
-document at once.
+This is the inverse of the pre-filter method where we let Chroma retrieve relevant documents *first*, then check user  permissions for each of the documents returned. SpiceDB has a `CheckBulkPermissions` call that checks every returned
+document at once, so it's a single API call to check permissions for multiple resources.
 
 ![Post-filter flow: the application embeds the query and retrieves relevant context from ChromaDB first, then sends a CheckPermission request to SpiceDB for the returned documents, and passes the authorized query, context, and prompt to Ollama for the response](../../assets/images/spicedb-chroma-postfilter.png)
 
@@ -257,18 +246,12 @@ candidate ids: ['salary-bands', 'board-notes', 'eng-oncall', 'roadmap-q3', 'offi
 allowed ids: ['eng-oncall', 'roadmap-q3', 'office-wifi']
 ```
 
-The vector search did exactly what you'd fear: the two most relevant documents
-to a salary question are `salary-bands` and `board-notes`, and it returned them
-first. Then `CheckBulkPermissions` filtered them straight out. The model never
-sees them.
-
-**When to reach for this:** smaller corpora, high hit-rates, or users with broad
-access. These are cases where retrieving first is cheap and you'd rather not
-build a huge pre-filter list.
+The vector search retrieves the two most relevant documents
+to a salary question, namely `salary-bands` and `board-notes`. Then `CheckBulkPermissions` filtered those two out as the user isn't authorized to access it. This way the large language model never sees them.
 
 ## Pre-filter or post-filter?
 
-Both are correct. They trade off differently:
+How do you choose between the two? Well, It Depends:
 
 | | Pre-filter (`LookupResources`) | Post-filter (`CheckBulkPermissions`) |
 | --- | --- | --- |
@@ -276,28 +259,17 @@ Both are correct. They trade off differently:
 | **Best for** | Large corpus, user sees a small fraction | Smaller corpus, high hit-rate, broad access |
 | **Search space** | Shrunk before searching | Full, then trimmed |
 | **Weak spot** | Huge authorized sets → unwieldy `$in` list | Wasted retrieval work on docs you'll discard |
-| **Leak safety** | Unauthorized docs never searched | Unauthorized docs searched, never returned |
 
 A reasonable default: start with pre-filter, and switch to (or combine with)
 post-filter if a user's authorized set gets large enough that the `$in` list
-becomes a problem.
+becomes a problem. You could also pre-filter with a coarse-grained technique such as 'role' or 'org' and then check for permissions with a post-filter.
 
 ## A word on consistency
 
-You'll have noticed `FULLY_CONSISTENT` on every SpiceDB call. That isn't
-decoration. By default SpiceDB optimizes for latency and may answer from a
-slightly stale snapshot, which is usually fine, but bites you the instant you
-grant access and immediately check it (you'll get back `false` for a permission
-you *just* wrote). That's the classic read-your-writes gap.
+You'll have noticed `FULLY_CONSISTENT` on every SpiceDB call. By default SpiceDB optimizes for latency and may answer from a
+slightly stale snapshot, which is usually fine, but your usecase might require trading off latency for consistency. 
 
-```python
-from authzed.api.v1 import Consistency
-FULLY_CONSISTENT = Consistency(fully_consistent=True)
-```
-
-Full consistency asks SpiceDB to evaluate against the freshest data, so you
-always see your own writes. In production you'd usually do better than "always
-fully consistent": `WriteRelationships` hands back a **ZedToken**, and passing it
+The `WriteRelationships` API hands back a **ZedToken**, and passing it
 as `at_least_as_fresh` gets you read-your-writes correctness *and* SpiceDB's
 caching, so you only pay for freshness up to the moment that mattered. This is
 SpiceDB's answer to Zanzibar's "new enemy" problem: never let a stale check
@@ -305,12 +277,11 @@ leak access that was just revoked. See the
 [SpiceDB consistency docs](https://authzed.com/docs/spicedb/concepts/consistency)
 for the full treatment.
 
-## The payoff: revoke access, watch the answer change
+In production, fail closed: if a `view` check errors or SpiceDB is unreachable, deny access and return no context rather than falling back to unfiltered results.
 
-Retrieval that respects permissions is the point, but it's abstract until you
-see a model's answer move. So let's build the smallest possible RAG loop:
-retrieve Kim's authorized context, hand it to a local Ollama model, and ask a
-question.
+## Revoke access, watch the answer change
+
+Let's see if this works when access is revoked. We can build the smallest possible RAG loop: retrieve Kim's authorized context, hand it to a local Ollama model, and ask a question.
 
 ```python
 # rag_demo.py (abridged; full version in the companion repo)
@@ -365,34 +336,19 @@ A: I don't know.
 ```
 
 Nothing about the model or the prompt changed. The only thing that changed is a
-single edge in the permission graph, and because retrieval now respects that
-edge, the document simply isn't in the context anymore. The model can't leak
-what it never received.
+single edge in the permission graph (through the deleted relationship) and because retrieval now respects that edge, the document isn't in the context anymore. 
 
 ## Wrapping up
 
 Fine-grained RAG authorization comes down to one discipline: the retriever must
-answer to the person asking, and the vector store is the wrong place to keep
-that truth. Keep permissions in SpiceDB as relationships, tie each vector to a
-`document` with a `doc_id`, and enforce `view` at query time with pre-filtering,
-post-filtering, or both.
+answer to the person asking. RAG pipelines in enterprise typically have complex, hierarchal permission requirements so consider a ReBAC system that's designed for scale, low latency and high availability. 
 
-From here:
+
+**Next Steps**
 
 - Grow the model. [Part 1's](authorization-model-with-spicedb.md) "going
   further" section adds groups, folders, and inheritance without touching this
   code.
-- For resource-level access over Chroma's API (tenants, databases, collections),
-  see the [OpenFGA guides](authorization-model-with-openfga.md).
 - Take it to production and go agentic: the
-  [agentic RAG authorization example](https://github.com/authzed/examples/tree/main/agentic-rag-authorization)
-  wires the same deterministic SpiceDB check into a LangGraph agent as a
-  non-bypassable node, with a richer department-based schema, a 50-document
-  corpus, and a FastAPI UI.
-- Run it yourself: the
-  [companion repo](https://github.com/authzed/examples/tree/main/chroma-spicedb-rag)
-  has everything wired together.
-
-The industry spent the last decade learning to scope what a *user* can retrieve.
-RAG just makes the stakes louder: the model will repeat, fluently, whatever you
-let it read.
+  [agentic RAG authorization example](https://github.com/authzed/examples/tree/main/agentic-rag-authorization) wires the same deterministic SpiceDB check into a LangGraph agent as a non-bypassable node, with a richer department-based schema, a 50-document corpus, and a FastAPI UI.
+- Run it yourself: the [companion repo](https://github.com/authzed/examples/tree/main/chroma-spicedb-rag) has everything wired together.
