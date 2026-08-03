@@ -64,6 +64,8 @@ nav:
           - strategies/multi-tenancy/index.md
           - strategies/multi-tenancy/authorization-model-impl-with-openfga.md
           - strategies/multi-tenancy/authorization-model-with-openfga.md
+          - strategies/multi-tenancy/authorization-model-with-spicedb.md
+          - strategies/multi-tenancy/authorization-model-impl-with-spicedb.md
           - strategies/multi-tenancy/multi-user-basic-auth.md
           - strategies/multi-tenancy/naive-multi-tenancy.md
   - Security:
