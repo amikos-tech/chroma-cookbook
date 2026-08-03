@@ -3,7 +3,7 @@
 !!! note "Source Code"
 
     The full, runnable source code for this two-part guide can be found
-    [here](https://github.com/authzed/examples/tree/main/chroma-spicedb-rag).
+    [here](https://github.com/sohanmaheshwar/chroma-spicedb-rag).
 
 [Part 1](authorization-model-with-spicedb.md) built the model: a SpiceDB schema
 where a user can `view` a `document`, and a way to ask "can this user see this
@@ -17,7 +17,7 @@ allowed to `view`. There are two ways to do that, and we'll build both.
 ## Prerequisites
 
 - SpiceDB and Chroma running locally. The
-  [companion repo](https://github.com/authzed/examples/tree/main/chroma-spicedb-rag)'s
+  [companion repo](https://github.com/sohanmaheshwar/chroma-spicedb-rag)'s
   `docker compose up -d` starts both, or run SpiceDB as shown in
   [Part 1](authorization-model-with-spicedb.md).
 - Python 3.10+.
@@ -73,9 +73,8 @@ def user_subject(uid=USER):
 
 ## Indexing: link every vector to a document
 
-The one rule that makes all of this work: **every record you add to Chroma
-carries metadata - i.e the the `doc_id` of the SpiceDB `document` it belongs to.** Here we index a
-handful of sample documents using Chroma's default embedding function
+The one rule that makes all of this work: every record you add to Chroma
+carries metadata - i.e the the `doc_id` of the SpiceDB `document` it belongs to. Here we index a handful of sample documents using Chroma's default embedding function
 (all-MiniLM-L6-v2, downloaded on first use, no API key required):
 
 ```python
@@ -275,7 +274,7 @@ caching, so you only pay for freshness up to the moment that mattered. This is
 SpiceDB's answer to Zanzibar's "new enemy" problem: never let a stale check
 leak access that was just revoked. See the
 [SpiceDB consistency docs](https://authzed.com/docs/spicedb/concepts/consistency)
-for the full treatment.
+for more details.
 
 In production, fail closed: if a `view` check errors or SpiceDB is unreachable, deny access and return no context rather than falling back to unfiltered results.
 
@@ -351,4 +350,4 @@ answer to the person asking. RAG pipelines in enterprise typically have complex,
   code.
 - Take it to production and go agentic: the
   [agentic RAG authorization example](https://github.com/authzed/examples/tree/main/agentic-rag-authorization) wires the same deterministic SpiceDB check into a LangGraph agent as a non-bypassable node, with a richer department-based schema, a 50-document corpus, and a FastAPI UI.
-- Run it yourself: the [companion repo](https://github.com/authzed/examples/tree/main/chroma-spicedb-rag) has everything wired together.
+- Run it yourself: the [companion repo](https://github.com/sohanmaheshwar/chroma-spicedb-rag) has everything wired together.
